@@ -1,0 +1,34 @@
+* JDK（Java development Kit）组成：
+Java程序设计语言 + Java虚拟机 + Java API类库
+
+* JRE(Java Runtime Environment)组成：
+Java SE API子集 + Java 虚拟机
+
+
+根据Java技术关注的终点业务领域来划分，Java技术体系可分为4个平台：
+1. `Java Card`： 支持一些Java小程序（Applets）运行在小内存设备（如智能卡）上的平台。
+2. `Java ME(Micro Edition)`：支持Java程序运行在移动终端上的平台，
+3. `Java SE(Standard Edition)`：支持面向桌面级应用的平台，提供完整的核心Java核心API，这个版本以前称为J2SE.
+4. `Java EE(Enterprise Edition)`：支持使用多层架构的企业应用的平台，除了提供Java SE API之外，还对其做了大量的扩充，并提供了相应的部署支持。这个版本以前称为J2EE.
+
+
+## 【JDK 1.6 & 1.7】String.intern()方法
+`String.intern()`是一个Native方法，其作用是：如果字符串常量池中已经包含一个等于此String对象的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。
+
+不同JDK对字符串常量池的实现不同，分界点是JDK1.7。
+例如下面这段代码：
+```Java
+public static void main(String[] args) {
+    String str1 = new StringBuilder("计算机").append("软件").toString();
+    System.out.println(str1.intern() == str1);
+
+    String str2 = new StringBuilder("ja").append("va").toString();
+    System.out.println(str2.intern() == str2);
+}
+```
+以上代码如果在JDK1.6中运行，会得到两个false，但是在JDK1.7之后，会得到一个true和false。
+
+差异的原因在于：
+在JDK1.6中，`intern()`方法会将**首次**遇到的字符实例复制到永久代中，返回的也是永久代中这个字符串实例的引用，而用`StringBuilder`创建的字符串实例在Java堆上，所以必然不是同一个引用，将返回false。
+
+在JDK1.7+中，`intern()`不再复制实例，只是在常量池中记录首次出现的实例引用，因此`intern()`返回的引用和由`StringBuilder`创建的那个字符串将是同一个。对于str2比较返回false是因为“java”这个字符串在执行`StringBuilder.toString()`之前已经出现过，字符串常量中已经有其引用，不符合"**首次**出现"的原则，而“计算机软件”这个字符串则是首次出现的，因此返回true。

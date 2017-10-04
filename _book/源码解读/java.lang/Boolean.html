@@ -1,0 +1,811 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Boolean · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Byte.html" />
+    
+    
+    <link rel="prev" href="Object.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../introduction.html">
+            
+                <a href="../introduction.html">
+            
+                    
+                    源码解读
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="java-lang.html">
+            
+                <a href="java-lang.html">
+            
+                    
+                    java.lang
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Object.html">
+            
+                <a href="Object.html">
+            
+                    
+                    Object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.2" data-path="Boolean.html">
+            
+                <a href="Boolean.html">
+            
+                    
+                    Boolean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Byte.html">
+            
+                <a href="Byte.html">
+            
+                    
+                    Byte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Short.html">
+            
+                <a href="Short.html">
+            
+                    
+                    Short
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Integer.html">
+            
+                <a href="Integer.html">
+            
+                    
+                    Integer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Long.html">
+            
+                <a href="Long.html">
+            
+                    
+                    Long
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Float.html">
+            
+                <a href="Float.html">
+            
+                    
+                    Float
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.8" data-path="Double.html">
+            
+                <a href="Double.html">
+            
+                    
+                    Double
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.9" data-path="Character.html">
+            
+                <a href="Character.html">
+            
+                    
+                    Character
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.10" data-path="String.html">
+            
+                <a href="String.html">
+            
+                    
+                    String
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.11" data-path="StringBuilder.html">
+            
+                <a href="StringBuilder.html">
+            
+                    
+                    StringBuilder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.12" data-path="StringBuffer.html">
+            
+                <a href="StringBuffer.html">
+            
+                    
+                    StringBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.13" data-path="Class.html">
+            
+                <a href="Class.html">
+            
+                    
+                    Class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.14" data-path="ClassLoader.html">
+            
+                <a href="ClassLoader.html">
+            
+                    
+                    ClassLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Java基础知识整理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../Java基础知识整理/JDK.html">
+            
+                <a href="../../Java基础知识整理/JDK.html">
+            
+                    
+                    JDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../Java基础知识整理/数值包装类型.html">
+            
+                <a href="../../Java基础知识整理/数值包装类型.html">
+            
+                    
+                    数值包装类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../Java基础知识整理/修饰符.html">
+            
+                <a href="../../Java基础知识整理/修饰符.html">
+            
+                    
+                    修饰符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../Java基础知识整理/集合框架.html">
+            
+                <a href="../../Java基础知识整理/集合框架.html">
+            
+                    
+                    集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../../Java基础知识整理/Reader.html">
+            
+                <a href="../../Java基础知识整理/Reader.html">
+            
+                    
+                    Reader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../../Java基础知识整理/Java初始化加载顺序.html">
+            
+                <a href="../../Java基础知识整理/Java初始化加载顺序.html">
+            
+                    
+                    Java初始化加载顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Java 8 新特性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                <a href="../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                    
+                    基于-parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../Java 8新特性/lambda表达式.html">
+            
+                <a href="../../Java 8新特性/lambda表达式.html">
+            
+                    
+                    lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    设计模式
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../设计模式/单例模式.html">
+            
+                <a href="../../设计模式/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    JVM
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../JVM/内存区域.html">
+            
+                <a href="../../JVM/内存区域.html">
+            
+                    
+                    内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../JVM/内存溢出.html">
+            
+                <a href="../../JVM/内存溢出.html">
+            
+                    
+                    内存溢出
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Boolean</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="boolean">Boolean</h1>
+<p>Boolean&#x662F;&#x6700;&#x7B80;&#x5355;&#x7684;&#x6570;&#x503C;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#xFF0C;&#x5176;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/Boolean_structure.png" alt="Boolean_structure"></p>
+<p>&#x5305;&#x88C5;&#x7C7B;&#x6700;&#x91CD;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x63D0;&#x4F9B;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#xFF0C;&#x4ECE;&#x4E0A;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#x5B58;&#x5728;&#x7684;&#x3002;</p>
+<h3 id="public-final-class-boolean-implements-javaioserializable-comparable">public final class Boolean implements java.io.Serializable, Comparable<boolean></boolean></h3>
+<p>&#x9996;&#x5148;&#x6CE8;&#x610F;&#x5230;&#x7684;&#x662F;&#x7C7B;&#x58F0;&#x660E;&#xFF0C;&#x88AB;<code>final</code>&#x4FEE;&#x9970;&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x7C7B;&#x4E0D;&#x53EF;&#x88AB;&#x7EE7;&#x627F;&#x3002;&#x7B2C;&#x4E8C;&#x8FD9;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;<code>Serializable</code>&#x548C;<code>Comparable</code>&#x63A5;&#x53E3;&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x7C7B;&#x53EF;&#x88AB;&#x5E8F;&#x5217;&#x5316;&#x548C;&#x6BD4;&#x8F83;&#x3002;</p>
+<h3 id="private-static-final-long-serialversionuid---3665804199014368530l">private static final long serialVersionUID = -3665804199014368530L;</h3>
+<p><code>serialVersionUID</code>&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7684;&#x4E48;&#xFF1F;&#x524D;&#x9762;&#x8BF4;&#x5230;&#x8FD9;&#x4E2A;&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;<code>Serializable</code>&#x63A5;&#x53E3;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x5E38;&#x91CF;&#x7528;&#x6765;&#x8FDB;&#x884C;&#x5E8F;&#x5217;&#x5316;&#x7C7B;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x3002;&#x5177;&#x4F53;&#x600E;&#x4E48;&#x7528;&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x5173;&#x5FC3;&#xFF0C;&#x770B;&#x770B;&#x5C31;&#x597D;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003; <a href="http://blog.csdn.net/yuexuanyu/article/details/30035153" target="_blank">http://blog.csdn.net/yuexuanyu/article/details/30035153</a></p>
+<h3 id="private-final-boolean-value">private final boolean value;</h3>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x503C;&#xFF0C;&#x6CA1;&#x4EC0;&#x4E48;&#x597D;&#x8BF4;&#x7684;&#xFF0C;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C06;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x7684;boolean&#x503C;&#x8D4B;&#x503C;&#x7ED9;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<h3 id="public-static-final-class-type--class-classgetprimitiveclassboolean">public static final Class<boolean> TYPE = (Class<boolean>) Class.getPrimitiveClass(&quot;boolean&quot;);</boolean></boolean></h3>
+<p>&#x53C8;&#x7528;&#x5230;&#x4E86;&#x53CD;&#x5C04;&#x7684;&#x77E5;&#x8BC6;&#x4E86;&#xFF0C;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x548C;&#x5176;&#x5305;&#x88C5;&#x7C7B;&#x600E;&#x4E48;&#x53D6;&#x5F97;&#x8054;&#x7CFB;&#x5462;&#xFF1F;&#x5C31;&#x662F;&#x9760;&#x8FD9;&#x53E5;&#x8BDD;&#x4E86;&#x3002;</p>
+<h3 id="public-static-final-boolean-false--new-booleanfalse">public static final Boolean FALSE = new Boolean(false);</h3>
+<h3 id="public-static-final-boolean-true--new-booleantrue">public static final Boolean TRUE = new Boolean(true);</h3>
+<p>&#x8FD9;&#x4E24;&#x4E2A;&#x91CF;&#x5728;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x51FD;&#x6570;<code>valueOf()</code>&#x4E2D;&#x7528;&#x5230;&#xFF0C;&#x5230;&#x65F6;&#x5019;&#x518D;&#x8BF4;&#x3002;</p>
+<h3 id="public-booleanboolean-value-&#x548C;--public-booleanstring-s">public Boolean(boolean value){..} &#x548C;  public Boolean(String s){...}</h3>
+<p>&#x4E24;&#x4E2A;&#x91CD;&#x8F7D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;boolean&#x578B;&#x7684;&#x53C2;&#x6570;&#x548C;&#x4E00;&#x4E2A;String&#x578B;&#x7684;&#x53C2;&#x6570;&#xFF0C;
+&#x524D;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Boolean</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> value)</span> </span>{
+    <span class="hljs-keyword">this</span>.value = value;
+}
+</code></pre>
+<p>&#x5C06;&#x5E03;&#x5C14;&#x503C;&#x8D4B;&#x503C;&#x7ED9;value&#x5C5E;&#x6027;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x5C31;&#x5B8C;&#x6210;&#x4E86;&#x3002;&#x540E;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Boolean</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">this</span>(parseBoolean(s));
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x8C03;&#x7528;&#x4E86;&#x4E00;&#x4E2A;<code>parseBoolean(..)</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5F97;&#x5230;&#x4E00;&#x4E2A;boolean&#x503C;&#xFF0C;&#x518D;&#x8C03;&#x7528;&#x4E4B;&#x524D;&#x7684;&#x90A3;&#x4E2A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;<code>parseBoolean</code>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">parseBoolean</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">return</span> ((s != <span class="hljs-keyword">null</span>) &amp;&amp; s.equalsIgnoreCase(<span class="hljs-string">&quot;true&quot;</span>));
+}
+</code></pre>
+<p>&#x53EF;&#x89C1;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;&quot;true&quot;&#x7684;&#x4E00;&#x4E9B;&#x5927;&#x5C0F;&#x5199;&#x53D8;&#x4F53;&#x65F6;&#x4F1A;&#x5F97;&#x5230;true&#xFF0C;&#x5176;&#x4ED6;&#x60C5;&#x51B5;&#xFF08;&#x5305;&#x62EC;null&#xFF09;&#x5C06;&#x4F1A;&#x5F97;&#x5230;false&#x3002;</p>
+<blockquote>
+<p>&#x53EF;&#x89C1;Boolean&#x7C7B;&#x6CA1;&#x6709;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;<code>Boolean b = new Boolean()</code>&#x8FD9;&#x79CD;&#x4E8B;&#x7F16;&#x8BD1;&#x4E0D;&#x901A;&#x8FC7;&#x7684;&#x3002;</p>
+</blockquote>
+<h3 id="public-static-boolean-parsebooleanstring-s-">public static boolean parseBoolean(String s) {...}</h3>
+<p>&#x5C06;String&#x7C7B;&#x578B;&#x8F6C;&#x4E3A;boolean&#x57FA;&#x672C;&#x6570;&#x503C;&#x7C7B;&#x578B;&#x7684;&#xFF0C;&#x524D;&#x9762;&#x8BB2;&#x8FC7;&#xFF0C;&#x4E0D;&#x591A;&#x8BF4;&#x4E86;&#x3002;</p>
+<h3 id="public-boolean-booleanvalue">public boolean booleanValue(){...}</h3>
+<p>&#x83B7;&#x53D6;&#x5BF9;&#x8C61;&#x7684;&#x57FA;&#x672C;&#x6570;&#x503C;&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;value&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">booleanValue</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> value;
+}
+</code></pre>
+<h3 id="public-static-boolean-valueofboolean-b">public static Boolean valueOf(boolean b){...}</h3>
+<h3 id="public-static-boolean-valueofstring-s">public static Boolean valueOf(String s){...}</h3>
+<p><code>valueOf</code>&#x662F;&#x57FA;&#x672C;&#x5305;&#x88C5;&#x7C7B;&#x4E2D;&#x6700;&#x91CD;&#x8981;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6D89;&#x53CA;&#x5230;&quot;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&quot;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5373;&#x5982;&#x4F55;&#x7531;&#x57FA;&#x672C;&#x6570;&#x503C;&#x7C7B;&#x578B;&#x83B7;&#x5F97;&#x5176;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#x3002;&#x8BF6;&#xFF0C;new&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x51FA;&#x6765;&#x4E0D;&#x5C31;&#x884C;&#x4E86;&#x4E48;&#xFF1F;&#x8BF4;&#x7684;&#x6CA1;&#x9519;&#xFF0C;&#x4F46;&#x662F;&#x8DDF;&#x8FD9;&#x8FB9;&#x5C06;&#x7684;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#x3002;&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;&#x57FA;&#x672C;&#x6570;&#x503C;&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F80;&#x5F80;&#x5E76;&#x6CA1;&#x6709;&#x90A3;&#x4E48;&#x523B;&#x610F;&#x53BB;new&#xFF0C;&#x800C;&#x591A;&#x662F;&#x91C7;&#x53D6;<code>Boolean b = false;</code>&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#xFF0C;&#x8FD9;&#x91CC;&#x6CA1;&#x6709;new&#xFF0C;&#x6CA1;&#x6709;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x554A;&#xFF0C;&#x600E;&#x4E48;&#x5C31;&#x83B7;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x5077;&#x5077;&#x8C03;&#x7528;&#x7684;<code>valueOf</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x201C;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x201D;&#x3002;</p>
+<p>Boolean&#x5B9A;&#x4E49;&#x4E86;&#x4E24;&#x4E2A;<code>valueOf</code>&#x65B9;&#x6CD5;&#xFF0C;&#x524D;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Boolean <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> b)</span> </span>{
+     <span class="hljs-keyword">return</span> (b ? TRUE : FALSE);
+ }
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x7684;<code>TRUE</code>&#x548C;<code>FALSE</code>&#x662F;&#x524D;&#x9762;&#x8BF4;&#x5230;&#x7684;&#x79C1;&#x6709;&#x9759;&#x6001;&#x5E38;&#x91CF;&#x3002;&#x5982;&#x679C;&#x591A;&#x6B21;&#x8C03;&#x7528;<code>valueOf</code>&#x65B9;&#x6CD5;&#xFF0C;&#x53EA;&#x8981;&#x53C2;&#x6570;&#x4E00;&#x6837;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF01;&#x6CE8;&#x610F;&#xFF0C;&#x662F;<strong>&#x540C;&#x4E00;&#x4E2A;</strong>&#x5BF9;&#x8C61;&#x3002;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BooleanTest</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Boolean b1 = <span class="hljs-keyword">false</span>;
+        Boolean b2 = <span class="hljs-keyword">false</span>;
+        Boolean b3 = <span class="hljs-keyword">new</span> Boolean(<span class="hljs-keyword">false</span>);
+        System.out.println(b1 == b2 );
+        System.out.println(b2 == b3);
+
+    }
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;<code>==</code>&#x8FD0;&#x7B97;&#x7B26;&#x6BD4;&#x8F83;&#x7684;&#x662F;&#x6570;&#x503C;&#xFF0C;&#x5F53;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BD4;&#x8F83;&#x7684;&#x662F;&#x5F15;&#x7528;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x6240;&#x4EE5;&#x4E0A;&#x4F8B;&#x8F93;&#x51FA;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">true</span>
+<span class="hljs-keyword">false</span>
+</code></pre>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x4EE5;String&#x7C7B;&#x578B;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x7684;<code>valueOf</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Boolean <span class="hljs-title">valueOf</span><span class="hljs-params">(String s)</span> </span>{
+    <span class="hljs-keyword">return</span> parseBoolean(s) ? TRUE : FALSE;
+}
+</code></pre>
+<p>&#x8C03;&#x7528;&#x4E86;<code>parseBoolean</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
+<h3 id="public-string-tostring-&#x548C;-public-static-string-tostringboolean-b">public String toString(){...} &#x548C; public static String toString(boolean b){...}</h3>
+<p>&#x4E00;&#x4E2A;&#x975E;&#x9759;&#x6001;&#xFF0C;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#xFF0C;&#x65B9;&#x6CD5;&#x4F53;&#x90FD;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x524D;&#x8005;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">return</span> value ? <span class="hljs-string">&quot;true&quot;</span> : <span class="hljs-string">&quot;false&quot;</span>;
+}
+</code></pre>
+<p>&#x540E;&#x8005;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">toString</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> b)</span> </span>{
+   <span class="hljs-keyword">return</span> b ? <span class="hljs-string">&quot;true&quot;</span> : <span class="hljs-string">&quot;false&quot;</span>;
+}
+</code></pre>
+<p>&#x6CA1;&#x4EC0;&#x4E48;&#x597D;&#x8BF4;&#x7684;&#x3002;</p>
+<h3 id="public-boolean-equalsobject-obj">public boolean equals(Object obj){...}</h3>
+<p>&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>{
+    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> Boolean) {
+        <span class="hljs-keyword">return</span> value == ((Boolean)obj).booleanValue();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+</code></pre>
+<p>&#x5148;&#x6BD4;&#x8F83;&#x7C7B;&#x578B;&#xFF0C;&#x518D;&#x6BD4;&#x8F83;&#x6570;&#x503C;&#x3002;&#x6CE8;&#x610F;&#xFF0C;equals&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x7C7B;&#x578B;&#x8F6C;&#x5316;&#x54E6;&#x3002;</p>
+<h3 id="public-static-int-hashcodeboolean-value-&#x548C;-public-int-hashcode">public static int hashCode(boolean value){...} &#x548C; public int hashCode(){...}</h3>
+<p>&#x4E00;&#x4E2A;&#x9759;&#x6001;&#xFF0C;&#x4E00;&#x4E2A;&#x975E;&#x9759;&#x6001;&#xFF0C;&#x524D;&#x8005;&#x8C03;&#x7528;&#x540E;&#x8005;&#xFF0C;&#x524D;&#x8005;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-java">
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> Boolean.hashCode(value);
+}
+</code></pre>
+<p>&#x540E;&#x8005;&#x5B9A;&#x4E49;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> value)</span> </span>{
+    <span class="hljs-keyword">return</span> value ? <span class="hljs-number">1231</span> : <span class="hljs-number">1237</span>;
+}
+</code></pre>
+<p>&#x53EF;&#x89C1;&#xFF0C;<code>true</code>&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x4E3A;1231&#xFF0C;<code>false</code>&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x4E3A;1237&#x3002;</p>
+<h3 id="public-static-boolean-getbooleanstring-name">public static boolean getBoolean(String name){...}</h3>
+<p>&#x8FD9;&#x91CC;&#x7684;name&#x662F;&#x67D0;&#x4E2A;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">getBoolean</span><span class="hljs-params">(String name)</span> </span>{
+    <span class="hljs-keyword">boolean</span> result = <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">try</span> {
+        result = parseBoolean(System.getProperty(name));
+    } <span class="hljs-keyword">catch</span> (IllegalArgumentException | NullPointerException e) {
+    }
+    <span class="hljs-keyword">return</span> result;
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x53EB;&#x53EB;&#x8FD9;&#x4E2A;&#x540D;&#x5B57;&#x7684;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;&#xFF0C;&#x6216;&#x8005;&#x503C;&#x4E3A;&#x7A7A;&#xFF0C;&#x8FD4;&#x56DE;false&#x3002;</p>
+<h3 id="public-int-comparetoboolean-b">public int compareTo(Boolean b){..}</h3>
+<p>&#x4E24;&#x4E2A;Boolean&#x5BF9;&#x8C61;&#x7684;&#x6BD4;&#x8F83;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x6BD4;&#x8F83;&#x7684;&#x662F;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x503C;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;:</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Boolean b)</span> </span>{
+    <span class="hljs-keyword">return</span> compare(<span class="hljs-keyword">this</span>.value, b.value);
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x8C03;&#x7528;&#x7684;<code>compare</code>&#x662F;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> x, <span class="hljs-keyword">boolean</span> y)</span> </span>{
+    <span class="hljs-keyword">return</span> (x == y) ? <span class="hljs-number">0</span> : (x ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>);
+}
+</code></pre>
+<p>x.compareTo(y)&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x8005;&#x76F8;&#x7B49;&#xFF0C;&#x8FD4;&#x56DE;0&#x3002;&#x5426;&#x5219;&#x5F53;x&#x4E0D;&#x4E3A;0&#x7684;&#x65F6;&#x5019;&#x8FD4;&#x56DE;1&#xFF0C;&#x4E3A;0&#x7684;&#x65F6;&#x5019;&#x8FD4;&#x56DE;-1&#x3002;</p>
+<h3 id="public-static-int-compareboolean-x-boolean-y">public static int compare(boolean x, boolean y){...}</h3>
+<p>&#x4E0A;&#x9762;&#x5C06;&#x591A;&#x4E86;&#xFF0C;&#x4E0D;&#x591A;&#x8BF4;&#x3002;</p>
+<h3 id="public-static-boolean-logicalandboolean-a-boolean-b-&#x548C;-public-static-boolean-logicalorboolean-a-boolean-b-&#x548C;-public-static-boolean-logicalxorboolean-a-boolean-b">public static boolean logicalAnd(boolean a, boolean b){...} &#x548C; public static boolean logicalOr(boolean a, boolean b){...} &#x548C; public static boolean logicalXor(boolean a, boolean b){...}</h3>
+<p>&#x903B;&#x8F91;&#x4F4D;&#x8FD0;&#x7B97;&#xFF0C;&#x5206;&#x522B;&#x8FD4;&#x56DE;<code>x &amp; y</code>&#xFF0C; <code>x | y</code>&#xFF0C; <code>x ^ y</code>&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Object.html" class="navigation navigation-prev " aria-label="Previous page: Object">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Byte.html" class="navigation navigation-next " aria-label="Next page: Byte">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Boolean","level":"1.2.1.2","depth":3,"next":{"title":"Byte","level":"1.2.1.3","depth":3,"path":"源码解读/java.lang/Byte.md","ref":"源码解读/java.lang/Byte.md","articles":[]},"previous":{"title":"Object","level":"1.2.1.1","depth":3,"path":"源码解读/java.lang/Object.md","ref":"源码解读/java.lang/Object.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Boolean.md","mtime":"2017-10-02T06:25:40.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-04T05:01:20.045Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
