@@ -33,9 +33,9 @@ Object类的结果如下：
 
   `getClass`也是一个由 `native`修饰的方法，由`final`修饰表示不能被继承。返回的是此Object对象的类对象/运行时类对象Class<?>，效果与Object.class相同。
 
-  上面这段话中，注意到一个词：“类对象”，那么什么是”类对象”呢？在Java中，**类**是对具有一组相同特征或行为的实例的抽象并进行描述，**对象**是此类所描述的特征或行为的具体实例。而作为概念层次的“类”，其本省也具有某些共同的特性，比如都具有类名称，由类加载器去加载，都具有包，具有父类、属性和方法等。所以，Java中有专门定义的一个类——**Class**，去描述其他类所具有的这些特征。因此，从这个角度看，类本身也是属于Class类的对象。为了与经常意义上的对象相区别，在此称为"类对象"。
+  上面这段话中，注意到一个词：“类对象”，那么什么是”类对象”呢？在Java中，**类**是对具有一组相同特征或行为的实例的抽象并进行描述，**对象**是此类所描述的特征或行为的具体实例。而作为概念层次的“类”，其本身也具有某些共同的特性，比如都具有类名称，由类加载器去加载，都具有包，具有父类、属性和方法等。所以，Java中有专门定义的一个类——**Class**，去描述其他类所具有的这些特征。因此，从这个角度看，类本身也是属于Class类的对象。为了与经常意义上的对象相区别，在此称为"类对象"。
 
-  这个方法常常与“反射”联系到一起，至于反射的相关知识点会有一个专题去学习，再次不做记录。
+  这个方法常常与“反射”联系到一起，至于反射的相关知识点会有一个专题去学习，在此不做记录。
 
 ### public boolean equals(Object obj){...}
 
@@ -150,7 +150,7 @@ public class User {
 
 `clone()`方法返回一个引用，指向的是新的clone出来的对象，此对象和原来对象占据了不同的堆空间。既然这样，我就可以写出下面这段程序了:
 ```java
-public class ObjectCloneTest {
+public class ObjectCloneTest{
     public static void main(String[] args) {
         Object object = new Object();
         Object object1 = object.clone();
@@ -215,7 +215,7 @@ public String toString() {
 
 ### protected void finalize() throws Throwable{}
 
-`finalize()`方法主要和垃圾回收机制有段，在Object类中该方法的定义如下：
+`finalize()`方法主要和垃圾回收机制有关，在Object类中该方法的定义如下：
 ```java
 protected void finalize() throws Throwable { }
 ```
