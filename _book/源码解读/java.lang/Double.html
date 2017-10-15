@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Short · GitBook</title>
+        <title>Double · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Integer.html" />
+    <link rel="next" href="Character.html" />
     
     
-    <link rel="prev" href="Byte.html" />
+    <link rel="prev" href="Float.html" />
     
 
     </head>
@@ -169,7 +169,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.4" data-path="Short.html">
+        <li class="chapter " data-level="1.2.1.4" data-path="Short.html">
             
                 <a href="Short.html">
             
@@ -221,7 +221,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.8" data-path="Double.html">
+        <li class="chapter active" data-level="1.2.1.8" data-path="Double.html">
             
                 <a href="Double.html">
             
@@ -811,7 +811,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Short</a>
+        <a href="../.." >Double</a>
     </h1>
 </div>
 
@@ -826,64 +826,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="short">Short</h1>
-<p>Short&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p><img src="http://ovn0i3kdg.bkt.clouddn.com/short_structure.png" alt="short_class"></p>
-<p>Short&#x548C;Byte&#x7C7B;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x6311;&#x62E3;&#x51E0;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;&#x8BB2;&#x3002;</p>
-<h3 id="public-static-short-valueofshort-s">public static Short valueOf(short s){..}</h3>
-<p>&#x548C;Byte&#x4E00;&#x6837;&#xFF0C;Short&#x7C7B;&#x4E5F;&#x91C7;&#x53D6;&#x4E86;&#x7F13;&#x5B58;&#xFF0C;&#x4F46;&#x662F;&#x7A0D;&#x5FAE;&#x6709;&#x70B9;&#x4E0D;&#x4E00;&#x6837;&#x3002;valueOf&#x65B9;&#x6CD5;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Short <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">short</span> s)</span> </span>{
-   <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> offset = <span class="hljs-number">128</span>;
-   <span class="hljs-keyword">int</span> sAsInt = s;
-   <span class="hljs-keyword">if</span> (sAsInt &gt;= -<span class="hljs-number">128</span> &amp;&amp; sAsInt &lt;= <span class="hljs-number">127</span>) { <span class="hljs-comment">// must cache</span>
-       <span class="hljs-keyword">return</span> ShortCache.cache[sAsInt + offset];
-   }
-   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Short(s);
+                                <h1 id="double">Double</h1>
+<p>&#x6D6E;&#x70B9;&#x578B;&#x9ED8;&#x8BA4;&#x4E3A;double&#xFF0C;&#x6240;&#x4EE5;Double&#x4E5F;&#x6BD4;Float&#x5E38;&#x7528;&#xFF0C;&#x5176;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/Double_structure.png" alt="Double_structure"></p>
+<p>&#x548C;Float&#x6CA1;&#x5DEE;&#x591A;&#x5C11;&#x3002;</p>
+<h3 id="public-static-double-valueofdouble-d">public static Double valueOf(double d){...}</h3>
+<p>&#x540C;&#x6837;&#x6CA1;&#x6709;&#x7F13;&#x5B58;&#xFF0C;&#x6BCF;&#x6B21;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x90FD;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;new&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<h3 id="public-static-int-hashcodedouble-value">public static int hashCode(double value){...}</h3>
+<p>&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">(<span class="hljs-keyword">double</span> value)</span> </span>{
+   <span class="hljs-keyword">long</span> bits = doubleToLongBits(value);
+   <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(bits ^ (bits &gt;&gt;&gt; <span class="hljs-number">32</span>));
 }
 </code></pre>
-<p>&#x5176;&#x4E2D;&#x5185;&#x90E8;&#x9759;&#x6001;&#x7C7B;<code>ShortCache</code>&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShortCache</span> </span>{
-    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">ShortCache</span><span class="hljs-params">()</span></span>{}
-
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Short cache[] = <span class="hljs-keyword">new</span> Short[-(-<span class="hljs-number">128</span>) + <span class="hljs-number">127</span> + <span class="hljs-number">1</span>];
-
-    <span class="hljs-keyword">static</span> {
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; cache.length; i++)
-            cache[i] = <span class="hljs-keyword">new</span> Short((<span class="hljs-keyword">short</span>)(i - <span class="hljs-number">128</span>));
-    }
-}
-</code></pre>
-<p>&#x4E4D;&#x4E00;&#x770B;&#x597D;&#x50CF;&#x548C;Byte&#x6CA1;&#x4EC0;&#x4E48;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x662F;&#x5C31;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x56E0;&#x4E3A;Short&#x5360;16&#x4F4D;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x7F13;&#x5B58;&#x4E86;[-128,127]&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x6709;&#x4E86;&#x533A;&#x522B;&#xFF0C;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x7A0B;&#x5E8F;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShortTest</span> </span>{
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
-        Short s1 = <span class="hljs-number">100</span>;
-        Short s2 = <span class="hljs-number">100</span>;
-
-        System.out.println(s1 == s2);
-
-        Short s3 = <span class="hljs-number">200</span>;
-        Short s4 = <span class="hljs-number">200</span>;
-
-        System.out.println(s3 == s4);
-
-
-    }
-}
-</code></pre>
-<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-keyword">true</span>
-<span class="hljs-keyword">false</span>
-</code></pre>
-<p>&#x4E3A;&#x4EC0;&#x4E48;&#x4E24;&#x4E2A;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E0D;&#x4E00;&#x6837;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;s1&#x548C;s2&#x7684;&#x503C;&#x90FD;&#x662F;100&#xFF0C;&#x5728;[-128, 127]&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x6240;&#x4EE5;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x8FD4;&#x56DE;&#x7684;&#x5176;&#x5B9E;&#x662F;<code>cache</code>&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x800C;s3&#x548C;s4&#x7684;&#x503C;&#x90FD;&#x662F;200&#xFF0C;&#x4E0D;&#x5728;[-128, 127]&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x6BCF;&#x6B21;&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F;&#x65B0;new&#x51FA;&#x6765;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
-<h3 id="public-static-short-reversebytesshort-i">public static short reverseBytes(short i){..}</h3>
-<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5728;Byte&#x4E2D;&#x6CA1;&#x6709;&#xFF0C;&#x7528;&#x6765;&#x5E72;&#x4EC0;&#x4E48;&#x7684;&#x5462;&#xFF1F;&#x5B57;&#x9762;&#x4E0A;&#x7FFB;&#x8BD1;&#x5C31;&#x662F;&quot;&#x4F4D;&#x7FFB;&#x8F6C;&quot;&#xFF0C;&#x5C31;&#x662F;&#x8BB2;int&#x515A;&#x59D4;&#x4E8C;&#x8FDB;&#x5236;&#xFF0C;&#x5DE6;&#x8FB9;&#x7684;&#x4F4D;&#x4E0E;&#x53F3;&#x8FB9;&#x7684;&#x4F4D;&#x8FDB;&#x884C;&#x4E92;&#x6362;&#xFF0C;reverse&#x662F;&#x6309;&#x4F4D;&#x8FDB;&#x884C;&#x4E92;&#x6362;&#xFF0C;reverseBytes&#x662F;&#x6309;&#x7167;byte&#x8FDB;&#x884C;&#x4E92;&#x6362;&#xFF0C;&#x770B;&#x5B83;&#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">short</span> <span class="hljs-title">reverseBytes</span><span class="hljs-params">(<span class="hljs-keyword">short</span> i)</span> </span>{
-   <span class="hljs-keyword">return</span> (<span class="hljs-keyword">short</span>) (((i &amp; <span class="hljs-number">0xFF00</span>) &gt;&gt; <span class="hljs-number">8</span>) | (i &lt;&lt; <span class="hljs-number">8</span>));
-}
-</code></pre>
-<p>&#x8BE5;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x662F;&#x5F97;&#x5230;2&#x7684;&#x8865;&#x7801;&#x8868;&#x793A;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x8282;&#x7684;&#x987A;&#x5E8F;&#x98A0;&#x5012;&#x8FC7;&#x6765;&#x7684;short&#x503C;&#x3002;&#x989D;&#x5176;&#x5B9E;&#x6211;&#x6CA1;&#x770B;&#x61C2;&#x79FB;&#x4F4D;&#x8FD0;&#x7B97;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#xFF0C;&#x770B;&#x6765;&#x8981;&#x60F3;&#x8BFB;&#x61C2;&#x6E90;&#x7801;&#x8FD8;&#x5F97;&#x6076;&#x8865;&#x4F4D;&#x8FD0;&#x7B97;&#xFF0C;/(&#x3112;o&#x3112;)/~~ &#x4F4D;&#x8FD0;&#x7B97;&#x771F;&#x7684;&#x597D;&#x70E6;&#x8E81;&#x554A;</p>
-<h3 id="public-xxx-xxxvalueshort-s">public xxx xxxValue(short s){...}</h3>
-<p>&#x8FD8;&#x662F;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#xFF0C;&#x8FD9;&#x91CC;&#x6CE8;&#x610F;<code>byteValue</code>&#x65B9;&#x6CD5;&#x4F1A;&#x635F;&#x5931;&#x7CBE;&#x5EA6;&#xFF0C;&#x522B;&#x7684;&#x65B9;&#x6CD5;&#x5012;&#x4E0D;&#x4F1A;&#x3002;</p>
+<p>&#x548C;Float&#x7C7B;&#x4F3C;&#xFF0C;&#x8C03;&#x7528;<code>doubleToLongBits</code>&#x65B9;&#x6CD5;&#x5F97;&#x5230;&#x4E00;&#x4E2A;long&#x7C7B;&#x578B;&#x503C;&#xFF0C;&#x8FD4;&#x56DE;&#x8BA9;&#x8BE5;&#x503C;&#x7684;&#x9AD8;32&#x4F4D;&#x548C;&#x4F4E;32&#x4F4D;&#x505A;OR&#x8FD0;&#x7B97;&#x5F97;&#x5230;&#x54C8;&#x5E0C;&#x503C;&#x3002;</p>
 
                                 
                                 </section>
@@ -911,12 +867,12 @@
 
             
                 
-                <a href="Byte.html" class="navigation navigation-prev " aria-label="Previous page: Byte">
+                <a href="Float.html" class="navigation navigation-prev " aria-label="Previous page: Float">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Integer.html" class="navigation navigation-next " aria-label="Next page: Integer">
+                <a href="Character.html" class="navigation navigation-next " aria-label="Next page: Character">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -927,7 +883,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Short","level":"1.2.1.4","depth":3,"next":{"title":"Integer","level":"1.2.1.5","depth":3,"path":"源码解读/java.lang/Integer.md","ref":"源码解读/java.lang/Integer.md","articles":[]},"previous":{"title":"Byte","level":"1.2.1.3","depth":3,"path":"源码解读/java.lang/Byte.md","ref":"源码解读/java.lang/Byte.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Short.md","mtime":"2017-10-02T14:37:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-14T16:14:29.207Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Double","level":"1.2.1.8","depth":3,"next":{"title":"Character","level":"1.2.1.9","depth":3,"path":"源码解读/java.lang/Character.md","ref":"源码解读/java.lang/Character.md","articles":[]},"previous":{"title":"Float","level":"1.2.1.7","depth":3,"path":"源码解读/java.lang/Float.md","ref":"源码解读/java.lang/Float.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Double.md","mtime":"2017-10-02T13:41:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-14T16:14:29.207Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

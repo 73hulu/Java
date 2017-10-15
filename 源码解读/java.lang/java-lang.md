@@ -23,7 +23,7 @@ Java语言包（java.lang）是Java语言体系中其他所有类库的基础（
 |Object   |  是所有Java类的根类 |
 |Package   |  	封装了有关Java包的实现和规范的版本信息 |
 |Runtime   |  Runtime类对象使Java应用程序与其运行环境相连接 |
-|  StrictMath |   用于实现基本的数学运算|
+|StrictMath |   用于实现基本的数学运算|
 |StringBuffer   | 用于可变字符串的操作  |
 |StringBuilder   |  创建可变的字符串对象 |
 |System   |封装了一些与Java虚拟机系统相关的方法|

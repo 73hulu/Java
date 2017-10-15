@@ -11,6 +11,20 @@ Java SE API子集 + Java 虚拟机
 3. `Java SE(Standard Edition)`：支持面向桌面级应用的平台，提供完整的核心Java核心API，这个版本以前称为J2SE.
 4. `Java EE(Enterprise Edition)`：支持使用多层架构的企业应用的平台，除了提供Java SE API之外，还对其做了大量的扩充，并提供了相应的部署支持。这个版本以前称为J2EE.
 
+## java命令
+
+| 命令 | 作用 |
+| :------------- | :------------- |
+|javac   |  讲一个.java文件编译成.class文件 |
+| java | 用来运行一个.class文件 |
+|  javadoc |用来生成api文档   |
+|jar   |用来生成jar包   |
+|jdb   | 调试工具  |
+|javaprof   | 剖析工具  |
+
+
+命令可以通过-`help`来查看用法，如`javac -help`:
+![javac](http://ovn0i3kdg.bkt.clouddn.com/javac.png)
 
 ## 【JDK 1.6 & 1.7】String.intern()方法
 `String.intern()`是一个Native方法，其作用是：如果字符串常量池中已经包含一个等于此String对象的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。

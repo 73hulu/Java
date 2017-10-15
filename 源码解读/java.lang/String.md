@@ -649,6 +649,8 @@ public String replace(CharSequence target, CharSequence replacement) {
 }
 ```
 
+需要注意的是，这个方法的第一个参数是正则表达式，而不是字符串，有道笔试题就是用`.`作为第一个参数，问你结果是什么？`.`在正则中表示任何字符，所以当然是全部替换啦。
+
 ### public String[] split(String regex, int limit){...} 和  public String[] split(String regex){...}
 
 后者调用前者，设置第二个参数为0。前者方法中第二个参数的含义是，定义如下：

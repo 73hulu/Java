@@ -113,7 +113,7 @@ public class Launcher {
 ```
 打印的实在是太多了就不粘贴过来了。
 
-现在知道了，三个类加载器是通过查阅响应的环境属性：`sun.boot.class.path`、`java.ext.dirs`和`java.class.path`来加载资源文件的。
+现在知道了，三个类加载器是通过查阅相应的环境属性：`sun.boot.class.path`、`java.ext.dirs`和`java.class.path`来加载资源文件的。
 
 回想一下，在学习`Class`类的时，有一个`getClassLoader`方法用来获取该类的加载器，下面是测试程序
 ```java
@@ -227,6 +227,8 @@ public  URLClassLoader(URL[] urls, ClassLoader parent,
 5. ExtClassLoader查找不成功，AppClassLoader就自己查找，在`java.class.path路径下查找`。找到就返回。如果没有找到就让子类找，如果没有子类会怎么样？抛出各种异常。
 
 可以看出，委托和查询的方向是相反的。
+
+> 这时候又有一个问题了，JVM是如何判断类相同？有两个标准，一个是**类的全称**（类加载器实例+包名+类名）;另一个是**类加载器**。
 
 为什么是这样的顺序，需要从源码中找答案，`loadClass`是类加载时候执行的方法，这个方法通过指定的全限定类名加载class，定义如下：
 ```java
@@ -467,6 +469,8 @@ public class Thread implements Runnable {
 线程上下文类加载器正好解决了这个问题。如果不做任何的设置，Java 应用的线程的上下文类加载器默认就是系统上下文类加载器。在 SPI 接口的代码中使用线程上下文类加载器，就可以成功的加载到 SPI 实现的类。线程上下文类加载器在很多 SPI 的实现中都会用到。
 
 > 参考 http://www.cnblogs.com/doit8791/p/5820037.html
+
+
 
 
 
