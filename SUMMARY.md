@@ -22,6 +22,7 @@
         * [Error](源码解读/java.lang/Error.md)
         * [RuntimeException](源码解读/java.lang/RuntimeException.md)
         * [Thread](源码解读/java.lang/Thread.md)
+        * [ThreadGroup](源码解读/java.lang/ThreadGroup.md)
         * [java.lang.reflect](源码解读/java.lang/java.lang.reflect/java.lang.reflect.md)
 * Java基础知识整理
     * [JDK](Java基础知识整理/JDK.md)
@@ -41,6 +42,8 @@
 * Java 8 新特性
     * [基于-parameters](Java 8新特性/基于-parameters编译器标志.md)
     * [lambda表达式](Java 8新特性/lambda表达式.md)
+    * [接口定义方法体了](Java 8新特性/接口定义方法体了.md)
+    * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
 * 设计模式
     * [单例模式](设计模式/单例模式.md)
 * JVM

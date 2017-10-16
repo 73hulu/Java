@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="java.lang.reflect/java.lang.reflect.html" />
+    <link rel="next" href="ThreadGroup.html" />
     
     
     <link rel="prev" href="RuntimeException.html" />
@@ -377,7 +377,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.20" data-path="java.lang.reflect/java.lang.reflect.html">
+        <li class="chapter " data-level="1.2.1.20" data-path="ThreadGroup.html">
+            
+                <a href="ThreadGroup.html">
+            
+                    
+                    ThreadGroup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.21" data-path="java.lang.reflect/java.lang.reflect.html">
             
                 <a href="java.lang.reflect/java.lang.reflect.html">
             
@@ -641,6 +654,32 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4.3" data-path="../../Java 8新特性/接口定义方法体了.html">
+            
+                <a href="../../Java 8新特性/接口定义方法体了.html">
+            
+                    
+                    接口定义方法体了
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                <a href="../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                    
+                    @FunctionalInterface注解
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -831,7 +870,704 @@
 <p><img src="http://ovn0i3kdg.bkt.clouddn.com/Thread_1.png" alt="Thread">
 <img src="http://ovn0i3kdg.bkt.clouddn.com/Thread_2.png" alt="Thread">
 <img src="http://ovn0i3kdg.bkt.clouddn.com/Thread_3.png" alt="Thread"></p>
-<p>Thread&#x7C7B;&#x7684;&#x7ED3;&#x679C;&#x5982;&#x4E0A;&#x3002;</p>
+<p>Thread&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x5982;&#x4E0A;&#x3002;</p>
+<h3 id="public-class-thread-implements-runnable">public class Thread implements Runnable</h3>
+<p>&#x9996;&#x5148;&#x662F;&#x7C7B;&#x58F0;&#x660E;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>Thread</code>&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;<code>Runnable</code>&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7684;&#x5462;</p>
+<pre><code class="lang-java"><span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-comment">/**
+     * When an object implementing interface &lt;code&gt;Runnable&lt;/code&gt; is used
+     * to create a thread, starting the thread causes the object&apos;s
+     * &lt;code&gt;run&lt;/code&gt; method to be called in that separately executing
+     * thread.
+     * &lt;p&gt;
+     * The general contract of the method &lt;code&gt;run&lt;/code&gt; is that it may
+     * take any action whatsoever.
+     *
+     * <span class="hljs-doctag">@see</span>     java.lang.Thread#run()
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>&#x4E00;&#x4E2A;&#x5B9E;&#x73B0;<code>Runnable</code>&#x63A5;&#x53E3;&#x7684;&#x5B50;&#x7C7B;&#x9700;&#x8981;&#x91CD;&#x5199;run&#x65B9;&#x6CD5;&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x8C03;&#x52A8;&#x91CD;&#x5199;&#x8FC7;&#x7684;run()&#x6765;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#xFF0C;&#x90A3;&#x8BE5;&#x600E;&#x4E48;&#x542F;&#x52A8;&#x5462;&#xFF1F;&#x5230;&#x540E;&#x9762;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;<code>Thread</code>&#x7C7B;&#x6709;&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;<code>public Thread(Runnable targer)</code>&#xFF0C;&#x6B64;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x63A5;&#x53D7;<code>Runnable</code>&#x7684;&#x5B50;&#x7C7B;&#x5B9E;&#x4F8B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Thread&#x7C7B;&#x6765;&#x542F;&#x52A8;Runnable&#x5B9E;&#x73B0;&#x7684;&#x591A;&#x7EBF;&#x7A0B;&#x3002;&#xFF08;start&#x53EF;&#x4EE5;&#x534F;&#x8C03;&#x7CFB;&#x7EDF;&#x7684;&#x8D44;&#x6E90;&#xFF09;&#x3002;</p>
+<blockquote>
+<p><code>@FunctionalInterface</code>&#x6CE8;&#x89E3;&#x8868;&#x660E;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF0C;&#x8FD9;&#x662F;Java 8&#x7684;&#x65B0;&#x7279;&#x6027;&#xFF0C;&#x66F4;&#x591A;&#x5185;&#x5BB9;&#x53C2;&#x89C1;&quot;Java 8&#x65B0;&#x7279;&#x6027;/@FunctionalInterface&#x6CE8;&#x89E3;&quot;&#x3002;</p>
+</blockquote>
+<h3 id="private-static-native-void-registernatives">private static native void registerNatives();</h3>
+<p>&#x8BF6;&#x8FD9;&#x4E2A;&#x5C31;&#x6709;&#x70B9;&#x719F;&#x6089;&#x4E86;&#xFF0C;&#x5728;<code>Object</code>&#x7C7B;&#x4E2D;&#x89C1;&#x5230;&#x8FC7;&#xFF0C;&#x672C;&#x5730;&#x6CE8;&#x518C;&#x65B9;&#x6CD5;&#xFF0C;&#x600E;&#x4E48;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5462;&#xFF1F;&#x8DDF;Object&#x7C7B;&#x4E2D;&#x4E00;&#x6837;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x5728;&#x9759;&#x6001;&#x6784;&#x9020;&#x5757;&#x4E2D;&#x8C03;&#x7528;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> {
+    registerNatives();
+}
+</code></pre>
+<h3 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;">&#x6784;&#x9020;&#x65B9;&#x6CD5;</h3>
+<p><code>Thread</code>&#x7C7B;&#x5B9A;&#x4E49;&#x4E86;9&#x79CD;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x5B9E;&#x8D28;&#x90FD;&#x662F;&#x628A;&#x5F62;&#x53C2;&#x7C7B;&#x522B;&#x518D;&#x4F20;&#x9012;&#x7ED9;<code>init</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x7528;&#x770B;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x5C31;&#x591F;&#x4E86;&#x3002;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Thread</span><span class="hljs-params">()</span> </span>{
+    init(<span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;Thread-&quot;</span> + nextThreadNum(), <span class="hljs-number">0</span>);
+}
+</code></pre>
+<p>&#x65B9;&#x6CD5;&#x4E2D;&#x8C03;&#x7528;&#x7684;&#x662F;<code>init</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8BE5;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(ThreadGroup g, Runnable target, String name,
+                      <span class="hljs-keyword">long</span> stackSize)</span> </span>{
+    init(g, target, name, stackSize, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<p>&#x800C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x662F;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x91CD;&#x8F7D;<code>init</code>&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(ThreadGroup g, Runnable target, String name,
+                     <span class="hljs-keyword">long</span> stackSize, AccessControlContext acc,
+                     <span class="hljs-keyword">boolean</span> inheritThreadLocals)</span> </span>{
+     <span class="hljs-keyword">if</span> (name == <span class="hljs-keyword">null</span>) {
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">&quot;name cannot be null&quot;</span>);
+     }
+
+     <span class="hljs-keyword">this</span>.name = name;
+
+     Thread parent = currentThread();
+     SecurityManager security = System.getSecurityManager();
+     <span class="hljs-keyword">if</span> (g == <span class="hljs-keyword">null</span>) {
+         <span class="hljs-comment">/* Determine if it&apos;s an applet or not */</span>
+
+         <span class="hljs-comment">/* If there is a security manager, ask the security manager
+            what to do. */</span>
+         <span class="hljs-keyword">if</span> (security != <span class="hljs-keyword">null</span>) {
+             g = security.getThreadGroup();
+         }
+
+         <span class="hljs-comment">/* If the security doesn&apos;t have a strong opinion of the matter
+            use the parent thread group. */</span>
+         <span class="hljs-keyword">if</span> (g == <span class="hljs-keyword">null</span>) {
+             g = parent.getThreadGroup();
+         }
+     }
+
+     <span class="hljs-comment">/* checkAccess regardless of whether or not threadgroup is
+        explicitly passed in. */</span>
+     g.checkAccess();
+
+     <span class="hljs-comment">/*
+      * Do we have the required permissions?
+      */</span>
+     <span class="hljs-keyword">if</span> (security != <span class="hljs-keyword">null</span>) {
+         <span class="hljs-keyword">if</span> (isCCLOverridden(getClass())) {
+             security.checkPermission(SUBCLASS_IMPLEMENTATION_PERMISSION);
+         }
+     }
+
+     g.addUnstarted();
+
+     <span class="hljs-keyword">this</span>.group = g;
+     <span class="hljs-keyword">this</span>.daemon = parent.isDaemon();
+     <span class="hljs-keyword">this</span>.priority = parent.getPriority();
+     <span class="hljs-keyword">if</span> (security == <span class="hljs-keyword">null</span> || isCCLOverridden(parent.getClass()))
+         <span class="hljs-keyword">this</span>.contextClassLoader = parent.getContextClassLoader();
+     <span class="hljs-keyword">else</span>
+         <span class="hljs-keyword">this</span>.contextClassLoader = parent.contextClassLoader;
+     <span class="hljs-keyword">this</span>.inheritedAccessControlContext =
+             acc != <span class="hljs-keyword">null</span> ? acc : AccessController.getContext();
+     <span class="hljs-keyword">this</span>.target = target;
+     setPriority(priority);
+     <span class="hljs-keyword">if</span> (inheritThreadLocals &amp;&amp; parent.inheritableThreadLocals != <span class="hljs-keyword">null</span>)
+         <span class="hljs-keyword">this</span>.inheritableThreadLocals =
+             ThreadLocal.createInheritedMap(parent.inheritableThreadLocals);
+     <span class="hljs-comment">/* Stash the specified stack size in case the VM cares */</span>
+     <span class="hljs-keyword">this</span>.stackSize = stackSize;
+
+     <span class="hljs-comment">/* Set thread ID */</span>
+     tid = nextThreadID();
+ }
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6839;&#x636E;&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;<code>init</code>&#x6574;&#x4E2A;&#x8FDE;&#x8D77;&#x6765;&#x770B;&#x4E00;&#x4E0B;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x662F;&#x5BF9;<code>name</code>&#x7684;&#x8D4B;&#x503C;&#xFF0C;<code>name</code>&#x662F;<code>Thread</code>&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#xFF0C;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> String name;
+</code></pre>
+<p>&#x6CE8;&#x610F;&#x88AB;<code>volatile</code>&#x5173;&#x952E;&#x8BCD;&#x4FEE;&#x9970;&#xFF0C;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x503C;&#x53EF;&#x80FD;&#x88AB;&#x597D;&#x51E0;&#x4E2A;&#x7EBF;&#x7A0B;&#x66F4;&#x6539;&#x3002;
+&#x5C06;&#x5F62;&#x53C2;<code>name</code>&#x7684;&#x503C;&#x8D4B;&#x7ED9;&#x8BE5;&#x5C5E;&#x6027;&#xFF0C;&#x5F62;&#x53C2;<code>name</code>&#x662F;&#x5B57;&#x7B26;&#x4E32;&quot;Thread-&quot; &#x548C;&#x65B9;&#x6CD5; <code>nextThreadNum()</code>&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x62FC;&#x63A5;,&#x4E0E;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x5173;&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> threadInitNumber;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">int</span> <span class="hljs-title">nextThreadNum</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> threadInitNumber++;
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x662F;&#x88AB;<code>synchronized</code>&#x4FEE;&#x9970;&#xFF0C;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x7C7B;&#x53D8;&#x91CF;<code>threadInitNumber</code>&#x7684;&#x503C;&#xFF0C;&#x4E4B;&#x540E;&#x81EA;&#x589E;&#x4E00;&#x6B21;&#xFF0C;&#x6CE8;&#x610F;&#x662F;&#x7C7B;&#x53D8;&#x91CF;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E2D;&#x5F00;&#x542F;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x4F1A;&#x88AB;&#x5B89;&#x6392;&#x4E00;&#x4E2A;&#x6574;&#x578B;&#x53D8;&#x91CF;&#xFF0C;&#x4ECE;0&#x5F00;&#x59CB;&#x7F16;&#x53F7;&#xFF0C;&#x6700;&#x540E;&#x8FDB;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x62FC;&#x63A5;&#xFF0C;&#x8D4B;&#x503C;&#x7ED9;name&#xFF0C;&#x6700;&#x7EC8;&#x8FD9;&#x4E9B;name&#x53EF;&#x80FD;&#x662F;<code>Thread-0</code>&#x3001;<code>Thread-1</code>...&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x5F62;&#x53C2;<code>name</code>&#x662F;null&#x7684;&#x8BDD;&#xFF0C;&#x5C06;&#x4F1A;&#x629B;&#x51FA;<code>NullPointerException</code>&#x3002;</p>
+<p>&#x63A5;&#x7740;<code>Thread parent = currentThread();</code>&#x8FD9;&#x53E5;&#x8BDD;&#x8C03;&#x7528;&#x4E86;&#x9759;&#x6001;&#x65B9;&#x6CD5;<code>currentThread</code>&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> Thread <span class="hljs-title">currentThread</span><span class="hljs-params">()</span></span>;
+</code></pre>
+<p>native&#x65B9;&#x6CD5;&#xFF0C;&#x4ECE;&#x540D;&#x5B57;&#x5C31;&#x80FD;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;<code>SecurityManager security = System.getSecurityManager();</code>&#x83B7;&#x53D6;Java&#x5B89;&#x5168;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x662F;&#x5BF9;&#x53D8;&#x91CF;g&#x7684;&#x8D4B;&#x503C;&#x8FC7;&#x7A0B;&#xFF0C;&#x53D8;&#x91CF;g&#x662F;&#x4EC0;&#x4E48;&#xFF1F;&#x7EBF;&#x7A0B;&#x7EC4;&#xFF0C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7EC4;&#x7BA1;&#x7406;&#x5F88;&#x591A;&#x7EBF;&#x7A0B;&#x3002;g&#x7684;&#x521D;&#x59CB;&#x503C;&#x4E3A;null&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x8FDB;&#x5165;if&#x8BED;&#x53E5;&#x5757;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x5C1D;&#x8BD5;&#x8BA9;Java&#x5B89;&#x5168;&#x7EC4;&#x4EF6;&#x7ED9;g&#x8D4B;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x884C;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x5C06;&#x8FD9;&#x4E2A;&#x65B0;&#x521B;&#x5EFA;&#x7684;&#x7EBF;&#x7A0B;&#x52A0;&#x5165;&#x5230;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x7EBF;&#x7A0B;&#x7EC4;&#x4E2D;&#x3002;</p>
+<p>&#x4F60;&#x8BF4;&#x52A0;&#x5165;&#x5C31;&#x52A0;&#x5165;&#xFF1F;&#x5F53;&#x7136;&#x4E0D;&#x884C;&#xFF0C;&#x540E;&#x9762;&#x8FD8;&#x6709;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x68C0;&#x67E5;balabala&#xFF0C;&#x73B0;&#x5728;&#x770B;&#x4E0D;&#x61C2;&#xFF0C;&#x5B66;&#x5230;<code>ThreadGroup</code>&#x7684;&#x65F6;&#x5019;&#x518D;&#x8BF4;&#x3002;</p>
+<p>&#x4E4B;&#x540E;&#x5C31;&#x6109;&#x5FEB;&#x5730;&#x628A;g&#x8FD9;&#x4E2A;&#x503C;&#x8D4B;&#x503C;&#x7ED9;&#x6210;&#x5458;&#x53D8;&#x91CF;group&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> ThreadGroup group;
+</code></pre>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x8FD9;&#x53E5;<code>this.daemon = parent.isDaemon();</code>&#xFF0C;daemon&#x662F;&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;&#xFF0C;&#x5B9A;&#x4E49;&#x4E3A;</p>
+<pre><code class="lang-java"> <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span>  daemon = <span class="hljs-keyword">false</span>;
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x6807;&#x8BC6;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x4E3A;&#x201C;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x201D;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#xFF1F;</p>
+<p>&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x662F;&#x6307;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7684;&#x65F6;&#x5019;&#x518D;&#x540E;&#x53F0;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x79CD;&#x901A;&#x7528;&#x670D;&#x52A1;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x6BD4;&#x5982;&#x5783;&#x573E;&#x56DE;&#x6536;&#x7EBF;&#x7A0B;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x79F0;&#x804C;&#x7684;&#x5B88;&#x62A4;&#x8005;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x79CD;&#x7EBF;&#x7A0B;&#x5E76;&#x4E0D;&#x5C5E;&#x4E8E;&#x7A0B;&#x5E8F;&#x4E2D;&#x4E0D;&#x53EF;&#x6216;&#x7F3A;&#x7684;&#x90E8;&#x5206;&#x3002;&#x56E0;&#x6B64;&#x5F53;&#x6240;&#x6709;&#x7684;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x7A0B;&#x5E8F;&#x4E5F;&#x5C31;&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x540C;&#x65F6;&#x4F1A;&#x6740;&#x6B7B;&#x8FDB;&#x7A0B;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x3002;&#x53CD;&#x8FC7;&#x6765;&#x8BF4;&#xFF0C;&#x53EA;&#x6709;&#x4EFB;&#x4F55;&#x975E;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x8FD8;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x7A0B;&#x5E8F;&#x5C31;&#x4E0D;&#x4F1A;&#x4E2D;&#x6B62;&#x3002;</p>
+<blockquote>
+<p>&#x66F4;&#x591A;&#x5173;&#x4E8E;&#x5B88;&#x62A4;&#x7EBF;&#x7A0B;&#x7684;&#x5185;&#x5BB9;&#x53C2;&#x8003;&quot;Java&#x57FA;&#x7840;&#x77E5;&#x8BC6;&#x6574;&#x7406;/&#x591A;&#x7EBF;&#x7A0B;&quot;</p>
+</blockquote>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x65B0;&#x5EFA;&#x7684;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x8BE5;&#x5C5E;&#x6027;&#x88AB;&#x8D4B;&#x503C;&#x4E3A;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;daemon&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x90A3;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F97;&#x51FA;&#x7ED3;&#x8BBA;&#xFF1A;&#x4ECE;daemon&#x7EBF;&#x7A0B;&#x4E2D;&#x4EA7;&#x751F;&#x7684;&#x7EBF;&#x7A0B;&#x4E5F;&#x662F;daemon&#x7EBF;&#x7A0B;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x6267;&#x884C;<code>this.priority = parent.getPriority();</code>&#x8FD9;&#x53E5;&#x8BDD;&#xFF0C;<code>priority</code>&#x53D8;&#x91CF;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> priority;
+</code></pre>
+<p>&#x6CE8;&#x610F;&#x5230;&#x65F6;int&#x578B;&#x53D8;&#x91CF;&#xFF0C;<code>getPriority</code>&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getPriority</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> priority;
+}
+</code></pre>
+<p>&#x6240;&#x4EE5;&#x65B0;&#x5EFA;&#x7684;&#x7EBF;&#x7A0B;&#x4E0E;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x4FDD;&#x6301;&#x4E00;&#x81F4;&#xFF1F;&#x4E0D;&#xFF0C;&#x4F18;&#x5148;&#x7EA7;&#x8FD9;&#x4E8B;&#x8FD8;&#x6CA1;&#x5B8C;&#xFF0C;&#x540E;&#x9762;&#x8FD8;&#x6709;&#x62DB;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x5F80;&#x4E0B;&#x662F;&#x7ED9;<code>contextClassLoader</code>&#x548C;<code>inheritedAccessControlContext</code>&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x8D4B;&#x503C;&#xFF0C;&#x6D89;&#x53CA;&#x5230;Java&#x5B89;&#x5168;&#x4F53;&#x7CFB;&#xFF0C;&#x770B;&#x4E0D;&#x592A;&#x61C2;&#xFF0C;&#x5148;&#x4E0D;&#x7BA1;&#x4E86;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x7ED9;<code>target</code>&#x53D8;&#x91CF;&#x8D4B;&#x503C;&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> Runnable target;
+</code></pre>
+<p>&#x81EA;&#x5E26;<code>run</code>&#x65B9;&#x6CD5;&#x800C;&#x6765;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x8BBE;&#x5B9A;<code>priority</code>&#x4E86;&#xFF0C;<code>setPriority</code>&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPriority</span><span class="hljs-params">(<span class="hljs-keyword">int</span> newPriority)</span> </span>{
+    ThreadGroup g;
+    checkAccess();
+    <span class="hljs-keyword">if</span> (newPriority &gt; MAX_PRIORITY || newPriority &lt; MIN_PRIORITY) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException();
+    }
+    <span class="hljs-keyword">if</span>((g = getThreadGroup()) != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (newPriority &gt; g.getMaxPriority()) {
+            newPriority = g.getMaxPriority();
+        }
+        setPriority0(priority = newPriority);
+    }
+}
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x9996;&#x5148;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x5408;&#x6CD5;&#x6027;&#x5224;&#x65AD;&#xFF0C;<code>Thread</code>&#x7C7B;&#x5B9A;&#x4E49;&#x4E86;&#x4E09;&#x79CD;&#x7EBF;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+    * The minimum priority that a thread can have.
+    */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> MIN_PRIORITY = <span class="hljs-number">1</span>;
+
+  <span class="hljs-comment">/**
+    * The default priority that is assigned to a thread.
+    */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> NORM_PRIORITY = <span class="hljs-number">5</span>;
+
+   <span class="hljs-comment">/**
+    * The maximum priority that a thread can have.
+    */</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> MAX_PRIORITY = <span class="hljs-number">10</span>;
+</code></pre>
+<p><code>priority</code>&#x53EA;&#x6709;&#x4E09;&#x79CD;&#x53D6;&#x503C;&#xFF0C;&#x4E0D;&#x5F97;&#x8D85;&#x51FA;&#x8303;&#x56F4;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x65B0;&#x7EBF;&#x7A0B;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x4E0D;&#x5F97;&#x5927;&#x4E8E;&#x7EBF;&#x7A0B;&#x7EC4;&#x4E2D;&#x7684;&#x6700;&#x5927;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x5982;&#x679C;&#x8D85;&#x51FA;&#x4E86;&#xFF0C;&#x5C06;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x8C03;&#x6574;&#x4E3A;&#x7EBF;&#x7A0B;&#x7EC4;&#x7684;&#x6700;&#x5927;&#x4F18;&#x5148;&#x7EA7;&#x3002;&#x600E;&#x4E48;&#x8C03;&#x6574;&#xFF1F;&#x8C03;&#x7528;<code>setPriority0</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x591A;&#x8BB2;&#x4E86;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x8BBE;&#x5B9A;<code>inheritableThreadLocals</code>&#x8FD9;&#x4E2A;&#x503C;&#x4E0D;&#x77E5;&#x9053;&#x5728;&#x5E72;&#x4EC0;&#x4E48;&#x4E86;&#xFF0C;/(&#x3112;o&#x3112;)/~~</p>
+<p>&#x7136;&#x540E;&#x8BBE;&#x5B9A;<code>stackSize</code>&#x7684;&#x503C;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A;0&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x8BBE;&#x5B9A;&#x53D8;&#x91CF;tid&#x7684;&#x503C;&#xFF0C;&#x8C03;&#x7528;<code>nextThreadID</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">long</span> <span class="hljs-title">nextThreadID</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">return</span> ++threadSeqNumber;
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x8FD9;&#x4E2A;<code>threadSeqNumber</code>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x662F;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x53D8;&#x91CF;<code>private static long threadSeqNumber;</code></p>
+<p>&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;?&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x548C;&#x4E4B;&#x524D;&#x8BF4;&#x5230;&#x7684;<code>threadInitNumber</code>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x4E48;&#xFF1F;&#x73B0;&#x5728;&#x6211;&#x80FD;&#x5206;&#x8FA8;&#x7684;&#x533A;&#x522B;&#x662F;&#xFF1A;<code>threadInitNumber</code>&#x662F;&#x5728;name&#x4E2D;&#x662F;&#x4ECE;0&#x5F00;&#x59CB;&#x7684;&#xFF0C;&#x800C;<code>threadSeqNumber</code>&#x5728;&#x88AB;&#x64CD;&#x4F5C;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x503C;&#x662F;1&#x3002;&#x505A;&#x4E86;&#x4E00;&#x4E2A;&#x5B9E;&#x9A8C;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+   Thread thread = <span class="hljs-keyword">new</span> Thread();
+
+   System.out.print(thread.toString());
+}
+</code></pre>
+<p>debug&#x5F97;&#x5230;&#x7684;thread&#x7684;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/Thread_test.png" alt="thread_test"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;name&#x503C;&#x662F;&#x201C;Thread-0&#x201D;&#xFF0C;&#x800C;tid&#x5374;&#x662F;12&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#xFF1F;&#xFF1F;&#x4E0D;&#x5E94;&#x8BE5;&#x662F;&#x4ECE;1&#x5F00;&#x59CB;&#x4E48;&#xFF1F;</p>
+<h3 id="void-blockedoninterruptible-b-">void blockedOn(Interruptible b) {...}</h3>
+<h3 id="public-synchronized-void-start">public synchronized void start(){...}</h3>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x592A;&#x91CD;&#x8981;&#x4E86;&#xFF0C;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">/**
+     * This method is not invoked for the main method thread or &quot;system&quot;
+     * group threads created/set up by the VM. Any new functionality added
+     * to this method in the future may have to also be added to the VM.
+     *
+     * A zero status value corresponds to state &quot;NEW&quot;.
+     */</span>
+    <span class="hljs-keyword">if</span> (threadStatus != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalThreadStateException();
+
+    <span class="hljs-comment">/* Notify the group that this thread is about to be started
+     * so that it can be added to the group&apos;s list of threads
+     * and the group&apos;s unstarted count can be decremented. */</span>
+    group.add(<span class="hljs-keyword">this</span>);
+
+    <span class="hljs-keyword">boolean</span> started = <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">try</span> {
+        start0();
+        started = <span class="hljs-keyword">true</span>;
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">if</span> (!started) {
+                group.threadStartFailed(<span class="hljs-keyword">this</span>);
+            }
+        } <span class="hljs-keyword">catch</span> (Throwable ignore) {
+            <span class="hljs-comment">/* do nothing. If start0 threw a Throwable then
+              it will be passed up the call stack */</span>
+        }
+    }
+}
+</code></pre>
+<p>&#x5F00;&#x53D1;&#x8005;&#x8C03;&#x52A8;<code>start</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x7531;JVM&#x8C03;&#x7528;<code>run</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6CE8;&#x610F;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x8005;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x8BE5;&#x65B9;&#x6CD5;&#x9996;&#x5148;&#x5224;&#x65AD;&#x7EBF;&#x7A0B;&#x72B6;&#x6001;&#xFF0C;&#x5FC5;&#x987B;&#x662F;0&#x5426;&#x5219;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x662F;0&#xFF1F;<code>threadStartFailed</code>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x4E3A;:<code>private volatile int threadStatus = 0;</code>&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x88AB;<code>volatile</code>&#x5173;&#x952E;&#x8BCD;&#x4FEE;&#x9970;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x91CF;&#x5C06;&#x6765;&#x4F1A;&#x591A;&#x4E2A;&#x73B0;&#x8C61;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x63A5;&#x7740;<code>group.add(this)</code>&#x5C06;&#x901A;&#x77E5;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6240;&#x5C5E;&#x7684;&#x7EBF;&#x7A0B;&#x7EC4;&#xFF1A;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x5DF2;&#x7ECF;&#x51C6;&#x5907;&#x597D;&#x4E86;&#x54E6;&#xFF0C;&#x7EBF;&#x7A0B;&#x7EC4;&#x5C06;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#x6DFB;&#x52A0;&#x5230;&#x7EBF;&#x7A0B;&#x6570;&#x7EC4;&#x91CC;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x6570;&#x91CF;&#x52A0;&#x4E0A;1&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x8FD8;&#x662F;&#x5B66;&#x5230;<code>ThreadGroup</code>&#x7684;&#x65F6;&#x5019;&#x770B;&#x5427;&#x3002;</p>
+<p>&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x4E86;<code>start0</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x90A3;&#x4E48;&#x7EBF;&#x7A0B;&#x7EC4;&#x5C06;&#x4F1A;&#x79FB;&#x9664;&#x8FD9;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x76F8;&#x5E94;&#x7684;&#x8BA1;&#x6570;&#x5668;<code>nUnstartedThreads</code>&#x589E;&#x52A0;1&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x5BF9;&#x5F02;&#x5E38;&#x4E0D;&#x4F5C;&#x5904;&#x7406;&#xFF0C;&#x628A;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x629B;&#x7ED9;&#x8C03;&#x7528;&#x8005;&#x3002;</p>
+<h3 id="public-void-run">public void run(){...}</h3>
+<pre><code class="lang-java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (target != <span class="hljs-keyword">null</span>) {
+        target.run();
+    }
+}
+</code></pre>
+<p><code>run</code>&#x65B9;&#x6CD5;&#x624D;&#x662F;&#x771F;&#x6B63;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x7684;&#x903B;&#x8F91;&#x3002;Thread<code>&#x5B9E;&#x73B0;&#x4E86;</code>Runnable<code>&#x63A5;&#x53E3;&#xFF0C;&#x6240;&#x4EE5;&#x91CD;&#x5199;&#x4E86;run&#x65B9;&#x6CD5;&#x3002;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x770B;&#x5230;</code>Thread`&#x7684;run&#x65B9;&#x6CD5;&#x672C;&#x8EAB;&#x8C03;&#x7528;&#x7684;target&#x7684;run&#x65B9;&#x6CD5;&#xFF0C;target&#x662F;&#x4EC0;&#x4E48;&#xFF1F;&#x662F;&#x5B9E;&#x73B0;Runnable&#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x6240;&#x4EE5;&#x554A;&#xFF0C;&#x8981;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;run&#x903B;&#x8F91;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<ol>
+<li><p>&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x7EE7;&#x627F;<code>Thread</code>&#xFF0C;&#x91CD;&#x5199;run()&#x65B9;&#x6CD5;&#x8986;&#x76D6;&#x7236;&#x7C7B;&#xFF08;&#x5F3A;&#x5236;&#xFF09;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x8BE5;&#x7C7B;&#xFF0C;&#x8C03;&#x7528;start&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> </span>{
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+
+       MyThread myThread = <span class="hljs-keyword">new</span> MyThread();
+       myThread.start();
+       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">100</span>; j++){
+           System.out.println(<span class="hljs-string">&quot;test1.main()----&quot;</span>+j);
+       }
+   }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span></span>{
+
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++){
+           System.out.println(<span class="hljs-string">&quot;MyThread.run()...&quot;</span>+i);
+       }   <span class="hljs-comment">/*&#x5355;&#x6761;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x4E00;&#x767E;&#x6B21;*/</span>
+   }
+}
+</code></pre>
+</li>
+<li><p>&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x7EE7;&#x627F;<code>Runnable</code>&#x63A5;&#x53E3;&#xFF0C;&#x91CD;&#x5199;run()&#x65B9;&#x6CD5;&#xFF08;&#x975E;&#x5F3A;&#x5236;&#xFF09;&#xFF0C;&#x5B9E;&#x4F8B;&#x5316;&#x8BE5;&#x7C7B;&#xFF0C;&#x4EE5;&#x6B64;&#x4E3A;&#x53C2;&#x6570;&#x521B;&#x5EFA;<code>Thread</code>&#x5BF9;&#x8C61;&#xFF0C;&#x8C03;&#x7528;start&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RunableTest</span> </span>{
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+       MyThread1 myThread = <span class="hljs-keyword">new</span> MyThread1();
+       Thread a = <span class="hljs-keyword">new</span> Thread(myThread);
+       Thread b = <span class="hljs-keyword">new</span> Thread(myThread);
+       Thread c = <span class="hljs-keyword">new</span> Thread(myThread);
+       a.start();
+       b.start();
+       c.start();
+   }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread1</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>{
+   <span class="hljs-meta">@Override</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++){
+           System.out.println(<span class="hljs-string">&quot;MyThread.run()...&quot;</span>+i);
+       }   <span class="hljs-comment">/*&#x5355;&#x6761;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x4E00;&#x767E;&#x6B21;*/</span>
+   }
+}
+</code></pre>
+</li>
+</ol>
+<p>&#x4E0A;&#x9762;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#xFF0C;&#x800C;&#x4E14;&#x7ED3;&#x679C;&#x76F8;&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#x6700;&#x597D;&#x662F;&#x7B2C;&#x4E8C;&#x79CD;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x73B0;&#x5B9E;&#x95EE;&#x9898;&#x4E2D;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x8BA9;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x6765;&#x6267;&#x884C;&#x540C;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x8FD8;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4E2A;&#x8D44;&#x6E90;&#xFF0C;&#x8FD9;&#x79CD;&#x9700;&#x6C42;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B9E;&#x73B0;<code>Runable</code>&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#x4EFB;&#x52A1;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x6269;&#x5C55;Thread&#x7C7B;&#x662F;&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RunableTest</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        MyThread m=<span class="hljs-keyword">new</span> MyThread();
+        Thread t1=<span class="hljs-keyword">new</span> Thread(m,<span class="hljs-string">&quot;Thread 1&quot;</span>);
+        Thread t2=<span class="hljs-keyword">new</span> Thread(m,<span class="hljs-string">&quot;Thread 2&quot;</span>);
+        Thread t3=<span class="hljs-keyword">new</span> Thread(m,<span class="hljs-string">&quot;Thread 3&quot;</span>);
+        t1.start();         <span class="hljs-comment">/*&#x5171;&#x8FD0;&#x884C;&#x4E00;&#x767E;&#x6B21;&#xFF0C;  &#x4E09;&#x6761;&#x7EBF;&#x7A0B;&#x54EA;&#x6761;&#x62A2;&#x5230;&#x8D44;&#x6E90;&#x5C31;&#x8FD0;&#x884C;&#x54EA;&#x6761;  */</span>
+        t2.start();
+        t3.start();
+    }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span></span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">while</span>(i&lt;<span class="hljs-number">100</span>){
+                i++;
+                System.out.println(i+<span class="hljs-string">&quot;  MyThread.run &quot;</span>+Thread.currentThread().getName());
+        }
+    }
+}
+</code></pre>
+<p>&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#x4F18;&#x52A3;&#x603B;&#x7ED3;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">&#x7EE7;&#x627F; Thread   &#x7C7B;</th>
+<th>&#x5B9E;&#x73B0;Runnable&#x63A5;&#x53E3;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&#x4F18;&#x70B9;</td>
+<td style="text-align:left">&#x7F16;&#x5199;&#x7B80;&#x5355;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#xFF0C;&#x65E0;&#x9700;&#x4F7F;&#x7528;Thread.currentThread()&#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;this&#xFF0C;&#x5373;&#x53EF;&#x83B7;&#x5F97;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x3002;</td>
+<td>&#x7EBF;&#x7A0B;&#x7C7B;&#x53EA;&#x662F;&#x5B9E;&#x73B0;&#x4E86;Runable&#x63A5;&#x53E3;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x5176;&#x4ED6;&#x7684;&#x7C7B;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x4E2A;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;&#x975E;&#x5E38;&#x9002;&#x5408;&#x591A;&#x4E2A;&#x76F8;&#x540C;&#x7EBF;&#x7A0B;&#x6765;&#x5904;&#x7406;&#x540C;&#x4E00;&#x4EFD;&#x8D44;&#x6E90;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4ECE;&#x800C;&#x53EF;&#x4EE5;&#x5C06;CPU&#x4EE3;&#x7801;&#x548C;&#x6570;&#x636E;&#x5206;&#x5F00;&#xFF0C;&#x5F62;&#x6210;&#x6E05;&#x6670;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x8F83;&#x597D;&#x5730;&#x4F53;&#x73B0;&#x4E86;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x601D;&#x60F3;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x7F3A;&#x70B9;</td>
+<td style="text-align:left">&#x56E0;&#x4E3A;&#x7EBF;&#x7A0B;&#x7C7B;&#x5DF2;&#x7ECF;&#x7EE7;&#x627F;&#x4E86;Thread&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x80FD;&#x518D;&#x7EE7;&#x627F;&#x5176;&#x4ED6;&#x7684;&#x7236;&#x7C7B;&#x3002;</td>
+<td>&#x7F16;&#x7A0B;&#x7A0D;&#x5FAE;&#x590D;&#x6742;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;Thread.currentThread()&#x65B9;&#x6CD5;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="private-void-exit-">private void exit() {...}</h3>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x88AB;JVM&#x8C03;&#x7528;&#x7684;&#xFF0C;&#x5728;&#x771F;&#x6B63;&#x9000;&#x51FA;&#x4E4B;&#x524D;&#x7ED9;&#x7EBF;&#x7A0B;&#x4E00;&#x4E2A;&#x6E05;&#x7406;&#x7684;&#x673A;&#x4F1A;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x6E05;&#x7406;&#xFF1F;&#x5783;&#x573E;&#x56DE;&#x6536;&#x554A;~</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exit</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-keyword">if</span> (group != <span class="hljs-keyword">null</span>) {
+       group.threadTerminated(<span class="hljs-keyword">this</span>);
+       group = <span class="hljs-keyword">null</span>;
+   }
+   <span class="hljs-comment">/* Aggressively null out all reference fields: see bug 4006245 */</span>
+   target = <span class="hljs-keyword">null</span>;
+   <span class="hljs-comment">/* Speed the release of some of these resources */</span>
+   threadLocals = <span class="hljs-keyword">null</span>;
+   inheritableThreadLocals = <span class="hljs-keyword">null</span>;
+   inheritedAccessControlContext = <span class="hljs-keyword">null</span>;
+   blocker = <span class="hljs-keyword">null</span>;
+   uncaughtExceptionHandler = <span class="hljs-keyword">null</span>;
+}
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x628A;&#x5F15;&#x7528;&#x5168;&#x90E8;&#x7F6E;&#x4E3A;null&#xFF0C;&#x8FD8;&#x901A;&#x77E5;&#x6240;&#x5C5E;&#x7684;&#x7EBF;&#x7A0B;&#x7EC4;&#x7ED3;&#x675F;&#x6389;&#x8BE5;&#x7EBF;&#x7A0B;&#x3002;</p>
+<h3 id="public-static-native-void-yield">public static native void yield();</h3>
+<p><code>yield</code>&#x672C;&#x8EAB;&#x662F;native&#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;&#x4E0D;&#x5F97;&#x800C;&#x77E5;&#x3002;&#x90A3;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;&#x5462;&#xFF1F;&#x5355;&#x6B21;&quot;yield&quot;&#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x5C48;&#x670D;&#x3001;&#x653E;&#x5F03;&#x201D;&#xFF0C;<code>Thread.yield( )</code>&#x65B9;&#x6CD5;&#x7ECF;&#x5E38;&#x88AB;&#x7FFB;&#x8BD1;&#x6210;&#x201C;&#x7EBF;&#x7A0B;&#x8BA9;&#x6B65;&#x201D;&#xFF0C;&#x5B83;&#x4F1A;&#x628A;&#x81EA;&#x5DF1;&#x7684;CPU&#x6267;&#x884C;&#x65F6;&#x95F4;&#x8BA9;&#x6389;&#xFF0C;&#x8BA9;&#x81EA;&#x5DF1;&#x6216;&#x8005;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x3002;&#x4ECE;&#x7EBF;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x8F6C;&#x5316;&#x89D2;&#x5EA6;&#x770B;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x8BA9;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x4ECE;<strong>&#x8FD0;&#x884C;</strong>&#x72B6;&#x6001;&#x53D8;&#x4E3A;<strong>&#x5C31;&#x7EEA;&#x72B6;&#x6001;</strong>&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5B83;&#x5C31;&#x548C;&#x522B;&#x7684;&#x5904;&#x4E8E;&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#x7684;&#x7EBF;&#x7A0B;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x4E0B;&#x4E00;&#x6B21;&#x80FD;&#x4E0D;&#x80FD;&#x88AB;&#x8C03;&#x5EA6;&#x5B8C;&#x5168;&#x53D6;&#x51B3;&#x4E8E;OS&#xFF0C;&#x5B83;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x4F18;&#x52BF;&#x3002;&#x90A3;&#x4E48;&#x8FD9;&#x4E9B;&#x7EBF;&#x7A0B;&#x4E2D;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#x7684;&#x5C31;&#x6709;&#x4F18;&#x52BF;&#x4E48;&#xFF1F;&#x6CA1;&#x6709;&#xFF0C;&#x53EA;&#x662F;&#x88AB;&#x6311;&#x4E2D;&#x7684;&#x6982;&#x7387;&#x9AD8;&#x4E00;&#x70B9;&#x800C;&#x5DF2;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x4F18;&#x5148;&#x7EA7;&#x4F4E;&#x7684;&#x62A2;&#x5230;&#x4E86;&#x3002;</p>
+<h3 id="sleep&#x65B9;&#x6CD5;">sleep&#x65B9;&#x6CD5;</h3>
+<p>sleep&#x4F1A;&#x5BFC;&#x81F4;<strong>&#x5F53;&#x524D;&#x7EBF;&#x7A0B;</strong>&#x8FDB;&#x5165;&#x7761;&#x7720;&#x72B6;&#x6001;&#xFF0C;&#x5373;&#x963B;&#x585E;&#x72B6;&#x6001;&#x3002;&#x6709;&#x4E24;&#x4E2A;&#x91CD;&#x8F7D;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x7684;sleep&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-keyword">long</span> millis, <span class="hljs-keyword">int</span> nanos)</span>
+ <span class="hljs-keyword">throws</span> InterruptedException </span>{
+     <span class="hljs-keyword">if</span> (millis &lt; <span class="hljs-number">0</span>) {
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;timeout value is negative&quot;</span>);
+     }
+
+     <span class="hljs-keyword">if</span> (nanos &lt; <span class="hljs-number">0</span> || nanos &gt; <span class="hljs-number">999999</span>) {
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(
+                             <span class="hljs-string">&quot;nanosecond timeout value out of range&quot;</span>);
+     }
+
+     <span class="hljs-keyword">if</span> (nanos &gt;= <span class="hljs-number">500000</span> || (nanos != <span class="hljs-number">0</span> &amp;&amp; millis == <span class="hljs-number">0</span>)) {
+         millis++;
+     }
+
+     sleep(millis);
+ }
+</code></pre>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5355;&#x4F4D;&#x662F;&#x6BEB;&#x79D2;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x5355;&#x4F4D;&#x662F;&#x7EB3;&#x79D2;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x8BBE;&#x8BA1;&#xFF1F;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x5728;&#x4E4B;&#x524D;Object&#x91CC;&#x7684;wait()&#x65B9;&#x6CD5;&#x4E2D;&#x89C1;&#x8FC7;&#xFF0C;&#x4E3A;&#x4E86;&#x66F4;&#x7CBE;&#x786E;&#x5730;&#x63A7;&#x5236;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x3002;&#x6700;&#x540E;&#x8C03;&#x7528;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7684;sleep&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sleep</span><span class="hljs-params">(<span class="hljs-keyword">long</span> millis)</span> <span class="hljs-keyword">throws</span> InterruptedException</span>;
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#xFF0C;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x4E0D;&#x8981;&#x6DF1;&#x7EA0;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x70B9;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;&#x5728;&#x6E90;&#x7801;&#x4E2D;&#x88AB;&#x660E;&#x786E;&#x8BF4;&#x660E;&#xFF1A;</p>
+<blockquote>
+<p>The thread does not lose ownership of any monitors.</p>
+</blockquote>
+<p>&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x4E0D;&#x4F1A;&#x5931;&#x53BB;&#x4EFB;&#x4F55;&#x7684;&#x9501;&#xFF01;&#xFF01;&#xFF01;</p>
+<h3 id="join&#x65B9;&#x6CD5;">join&#x65B9;&#x6CD5;</h3>
+<p><code>thread.join</code>&#x65B9;&#x6CD5;&#x628A;&#x6307;&#x5B9A;&#x7684;&#x7EBF;&#x7A0B;&#x52A0;&#x5165;&#x5230;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x4E24;&#x4E2A;&#x4EA4;&#x66FF;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x5408;&#x5E76;&#x4E3A;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x4EC0;&#x4E48;&#x610F;&#x601D;&#x5462;&#xFF1F;&#x539F;&#x6765;A&#x548C;B&#x7EBF;&#x7A0B;&#x662F;&#x4EA4;&#x66FF;&#x8FDB;&#x884C;&#x7684;&#xFF0C;&#x6B64;&#x65F6;&#x5728;B&#x7EBF;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#x7684;a.join()&#xFF0C;&#x90A3;&#x4E48;&#x76F4;&#x5230;&#x7EBF;&#x7A0B;A&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;&#x624D;&#x4F1A;&#x7EE7;&#x7EED;&#x6267;&#x884C;B&#xFF0C;&#x8FD9;&#x6837;&#x539F;&#x672C;&#x5E76;&#x53D1;&#x7684;&#x7EBF;&#x7A0B;&#x5C31;&#x5E76;&#x884C;&#x4E86;&#x3002;&#x6709;&#x4E09;&#x4E2A;&#x91CD;&#x8F7D;&#x65B9;&#x6CD5;&#xFF0C;&#x6838;&#x5FC3;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-keyword">long</span> millis)</span>
+ <span class="hljs-keyword">throws</span> InterruptedException </span>{
+     <span class="hljs-keyword">long</span> base = System.currentTimeMillis();
+     <span class="hljs-keyword">long</span> now = <span class="hljs-number">0</span>;
+
+     <span class="hljs-keyword">if</span> (millis &lt; <span class="hljs-number">0</span>) {
+         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;timeout value is negative&quot;</span>);
+     }
+
+     <span class="hljs-keyword">if</span> (millis == <span class="hljs-number">0</span>) {
+         <span class="hljs-keyword">while</span> (isAlive()) {
+             wait(<span class="hljs-number">0</span>);
+         }
+     } <span class="hljs-keyword">else</span> {
+         <span class="hljs-keyword">while</span> (isAlive()) {
+             <span class="hljs-keyword">long</span> delay = millis - now;
+             <span class="hljs-keyword">if</span> (delay &lt;= <span class="hljs-number">0</span>) {
+                 <span class="hljs-keyword">break</span>;
+             }
+             wait(delay);
+             now = System.currentTimeMillis() - base;
+         }
+     }
+ }
+</code></pre>
+<p>&#x4ECE;&#x4EE3;&#x7801;&#x4E2D;&#x53EF;&#x4EE5;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x88AB;&#x751F;&#x6210;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6CA1;&#x6709;&#x88AB;&#x542F;&#x52A8;&#xFF0C;&#x5373;isAlive&#x8FD4;&#x56DE;false&#xFF0C;&#x6B64;&#x65F6;&#x8C03;&#x7528;join&#x662F;&#x6CA1;&#x6709;&#x4F5C;&#x7528;&#x7684;&#xFF0C;&#x5C06;&#x76F4;&#x63A5;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;join&#x65B9;&#x6CD5;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x8C03;&#x7528;&#x4E86;Object&#x7684;wait&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x5F53;main&#x7EBF;&#x7A0B;&#x8C03;&#x7528;t.join&#x7684;&#x65F6;&#x5019;&#xFF0C;main&#x7EBF;&#x7A0B;&#x5C06;&#x4F1A;&#x83B7;&#x5F97;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;t&#x7684;&#x9501;&#xFF08;wait&#x610F;&#x5473;&#x7740;&#x62FF;&#x5230;&#x4E86;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x9501;&#xFF09;&#xFF0C;&#x8C03;&#x7528;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;wait(&#x7B49;&#x5F85;&#x65F6;&#x95F4;)&#xFF0C;&#x77E5;&#x9053;&#x8BE5;&#x5BF9;&#x8C61;&#x5524;&#x9192;main&#x7EBF;&#x7A0B;&#x3002;&#x6BD4;&#x5982;&#x9000;&#x51FA;&#x540E;&#xFF0C;&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;main&#x7EBF;&#x7A0B;&#x8C03;&#x7528;t.join&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x80FD;&#x591F;&#x62FF;&#x5230;&#x7EBF;&#x7A0B;t&#x5BF9;&#x8C61;&#x7684;&#x9501;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x597D;&#x7684;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x8BF4;&#x660E;join&#x65B9;&#x6CD5;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">5</span>; k ++){
+            i = i  + <span class="hljs-number">1</span>;
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+        Runnable r = <span class="hljs-keyword">new</span> ThreadTest();
+        Thread t = <span class="hljs-keyword">new</span> Thread(r);
+        t.start();
+        System.out.print(i);
+    }
+}
+</code></pre>
+<p>&#x8BF7;&#x95EE;&#x4F1A;&#x8F93;&#x51FA;5&#x4E48;&#xFF1F;&#x7B54;&#x6848;&#x662F;&#xFF1A;&#x6709;&#x53EF;&#x80FD;&#xFF0C;&#x4F46;&#x662F;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x4E0B;&#x90FD;&#x4E0D;&#x4F1A;&#x662F;5&#xFF0C;&#x5F53;&#x7136;&#x8FD9;&#x548C;&#x673A;&#x5668;&#x6709;&#x5F88;&#x5927;&#x7684;&#x5173;&#x7CFB;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x56E0;&#x4E3A;&#x8FD9;&#x91CC;&#x5176;&#x5B9E;&#x6709;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E3B;&#x7EBF;&#x7A0B;main&#x548C;main&#x4E2D;&#x4EA7;&#x751F;&#x7684;&#x7EBF;&#x7A0B;t&#xFF0C;&#x5F53;&#x4E3B;&#x7EBF;&#x7A0B;main&#x6267;&#x884C;<code>System.out.println(a)</code>&#x8FD9;&#x53E5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7EBF;&#x7A0B;t&#x8FD8;&#x6CA1;&#x6709;&#x771F;&#x6B63;&#x5F00;&#x59CB;&#x8FD0;&#x884C;&#xFF0C;&#x6216;&#x8BB8;&#x6B63;&#x5728;&#x4E3A;&#x5B83;&#x5206;&#x914D;&#x8D44;&#x6E90;&#xFF0C;&#x8FD9;&#x9700;&#x8981;&#x65F6;&#x95F4;&#x554A;&#x3002;&#x800C;&#x4E3B;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5230;&#x6253;&#x5370;&#x8BED;&#x53E5;&#x7684;&#x65F6;&#x5019;a&#x8FD8;&#x6CA1;&#x6709;&#x6539;&#x53D8;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x5F53;&#x7136;&#x8F93;&#x51FA;0&#x554A;&#xFF1F;&#x90A3;&#x6211;&#x600E;&#x4E48;&#x624D;&#x80FD;&#x8BA9;&#x7A0B;&#x5E8F;&#x8F93;&#x51FA;5&#x5462;&#xFF0C;&#x90A3;&#x5F53;&#x7136;&#x662F;&#x8BA9;&#x4E3B;&#x7EBF;&#x7A0B;main&#x7B49;&#x5F85;t&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x5B8C;&#x4E4B;&#x540E;&#x518D;&#x6253;&#x5370;&#x3002;&#x7528;join&#x65B9;&#x6CD5;&#x5C31;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x4E86;&#x3002;
+&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">5</span>; k ++){
+            i = i  + <span class="hljs-number">1</span>;
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+        Runnable r = <span class="hljs-keyword">new</span> ThreadTest();
+        Thread t = <span class="hljs-keyword">new</span> Thread(r);
+        t.start();
+        t.join();  <span class="hljs-comment">//&#x9ED8;&#x8BA4;&#x65F6;&#x95F4;&#x662F;0&#xFF0C;&#x8868;&#x793A;&#x4F1A;&#x65E0;&#x9650;&#x671F;&#x5730;&#x7B49;&#x5F85;&#x4E0B;&#x53BB;</span>
+        System.out.print(i);
+    }
+}
+</code></pre>
+<p>&#x7531;&#x4E8E;&#x5728;main&#x7EBF;&#x7A0B;&#x4E2D;&#x8C03;&#x7528;&#x4E86;t&#x7684;join&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x4E3B;&#x7EBF;&#x7A0B;&#x5FC5;&#x987B;&#x7B49;&#x5F85;t&#x7EBF;&#x7A0B;&#x7ED3;&#x675F;&#x540E;&#x624D;&#x80FD;&#x7EE7;&#x7EED;&#x3002;</p>
+<p>join&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x6709;&#x53C2;&#x6570;&#xFF0C;&#x8868;&#x793A;&#x7B49;&#x5F85;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x65E0;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x5019;&#x9ED8;&#x8BA4;&#x4E3A;0&#xFF0C;&#x8868;&#x793A;&#x65E0;&#x671F;&#x9650;&#x7B49;&#x5F85;&#x4E0B;&#x53BB;&#x3002;&#x505A;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x5B9E;&#x9A8C;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            System.out.println(<span class="hljs-string">&quot;Begin sleep&quot;</span>);
+            Thread.sleep(<span class="hljs-number">1000</span>);
+            System.out.println(<span class="hljs-string">&quot;End sleep&quot;</span>);
+        }<span class="hljs-keyword">catch</span> (InterruptedException e){
+            e.printStackTrace();
+        }
+
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception</span>{
+        Runnable r = <span class="hljs-keyword">new</span> ThreadTest();
+        Thread t = <span class="hljs-keyword">new</span> Thread(r);
+        t.start();
+        <span class="hljs-keyword">try</span> {
+            System.out.println(<span class="hljs-string">&quot;JoinBegin&quot;</span>);
+            t.join(<span class="hljs-number">1000</span>);
+            System.out.println(<span class="hljs-string">&quot;JoinFinish&quot;</span>);
+        }<span class="hljs-keyword">catch</span> (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<p>&#x6253;&#x5370;&#x7684;&#x7ED3;&#x679C;&#x662F;&#xFF1A;</p>
+<pre><code class="lang-java">JoinBegin
+Begin sleep
+JoinFinish
+End sleep
+</code></pre>
+<p>&#x5982;&#x679C;run&#x4E2D;&#x7684;sleep&#x7684;&#x53C2;&#x6570;&#x6539;&#x6210;2000&#xFF0C;&#x6253;&#x5370;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#xFF1A;</p>
+<pre><code class="lang-java">JoinBegin
+Begin sleep
+JoinFinish
+End sleep
+</code></pre>
+<p>&#x53EF;&#x89C1;&#xFF0C;&#x7B49;&#x5F85;&#x662F;&#x6709;&#x671F;&#x9650;&#x7684;&#xFF0C;&#x5230;&#x70B9;&#x4E86;&#x6211;&#x5C31;&#x5F80;&#x4E0B;&#x8FDB;&#x884C;&#x4E86;&#xFF0C;&#x4E0D;&#x7BA1;t&#x5230;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x7ED3;&#x675F;&#x3002;</p>
+<p>&#x4E00;&#x4E2A;&#x66F4;&#x52A0;&#x590D;&#x6742;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomThread1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + <span class="hljs-string">&quot; start.&quot;</span>);
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+                System.out.println(threadName + <span class="hljs-string">&quot; loop at &quot;</span> + i);
+                Thread.sleep(<span class="hljs-number">1000</span>);
+            }
+            System.out.println(threadName + <span class="hljs-string">&quot; end.&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            System.out.println(<span class="hljs-string">&quot;Exception from &quot;</span> + threadName + <span class="hljs-string">&quot;.run&quot;</span>);
+        }
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>{
+    CustomThread1 t1;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CustomThread</span><span class="hljs-params">(CustomThread1 t1)</span> </span>{
+        <span class="hljs-keyword">this</span>.t1 = t1;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + <span class="hljs-string">&quot; start.&quot;</span>);
+        <span class="hljs-keyword">try</span> {
+            t1.join();
+            System.out.println(threadName + <span class="hljs-string">&quot; end.&quot;</span>);
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            System.out.println(<span class="hljs-string">&quot;Exception from &quot;</span> + threadName + <span class="hljs-string">&quot;.run&quot;</span>);
+        }
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JoinTest</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + <span class="hljs-string">&quot; start.&quot;</span>);
+        CustomThread1 t1 = <span class="hljs-keyword">new</span> CustomThread1();
+        CustomThread t = <span class="hljs-keyword">new</span> CustomThread(t1);
+        <span class="hljs-keyword">try</span> {
+            t1.start();
+            Thread.sleep(<span class="hljs-number">2000</span>);
+            t.start();
+            t.join(); <span class="hljs-comment">//&#x5728;&#x4E4B;&#x540E;&#x7684;&#x90A3;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x5C06;&#x8FD9;&#x53E5;&#x8BDD;&#x6CE8;&#x91CA;&#x6389;</span>
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            System.out.println(<span class="hljs-string">&quot;Exception from main&quot;</span>);
+        }
+        System.out.println(threadName + <span class="hljs-string">&quot; end!&quot;</span>);
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7684;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">main start.    <span class="hljs-comment">//main&#x65B9;&#x6CD5;&#x6240;&#x5728;&#x7684;&#x7EBF;&#x7A0B;&#x8D77;&#x52A8;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x9A6C;&#x4E0A;&#x7ED3;&#x675F;&#xFF0C;&#x56E0;&#x4E3A;&#x8C03;&#x7528;t.join();&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x7B49;&#x5230;t&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x6B64;&#x7EBF;&#x7A0B;&#x624D;&#x80FD;&#x5411;&#x4E0B;&#x6267;&#x884C;&#x3002;</span>
+[CustomThread1] Thread start.     <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x8D77;&#x52A8;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">0</span>  <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">1</span>  <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x6267;&#x884C;</span>
+[CustomThread] Thread start.      <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread&#x8D77;&#x52A8;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x9A6C;&#x4E0A;&#x7ED3;&#x675F;&#xFF0C;&#x56E0;&#x4E3A;&#x8C03;&#x7528;t1.join();&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x7B49;&#x5230;t1&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x6B64;&#x7EBF;&#x7A0B;&#x624D;&#x80FD;&#x5411;&#x4E0B;&#x6267;&#x884C;&#x3002;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">2</span>  <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">3</span>  <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">4</span>  <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread end.       <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7ED3;&#x675F;&#x4E86;</span>
+[CustomThread] Thread end.        <span class="hljs-comment">// &#x7EBF;&#x7A0B;CustomThread&#x5728;t1.join();&#x963B;&#x585E;&#x5904;&#x8D77;&#x52A8;&#xFF0C;&#x5411;&#x4E0B;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;</span>
+main end!      <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread&#x7ED3;&#x675F;&#xFF0C;&#x6B64;&#x7EBF;&#x7A0B;&#x5728;t.join();&#x963B;&#x585E;&#x5904;&#x8D77;&#x52A8;&#xFF0C;&#x5411;&#x4E0B;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x3002;</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x5C06;<code>t.join()</code>&#x6CE8;&#x91CA;&#x6389;&#xFF0C;&#x90A3;&#x4E48;&#x6253;&#x5370;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">main start. <span class="hljs-comment">// main&#x65B9;&#x6CD5;&#x6240;&#x5728;&#x7684;&#x7EBF;&#x7A0B;&#x8D77;&#x52A8;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x9A6C;&#x4E0A;&#x7ED3;&#x675F;&#xFF0C;&#x8FD9;&#x91CC;&#x5E76;&#x4E0D;&#x662F;&#x56E0;&#x4E3A;join&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x662F;&#x56E0;&#x4E3A;Thread.sleep(2000);</span>
+[CustomThread1] Thread start.      <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x8D77;&#x52A8;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">0</span>   <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">1</span>   <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x6267;&#x884C;</span>
+main end!   <span class="hljs-comment">// Thread.sleep(2000);&#x7ED3;&#x675F;&#xFF0C;&#x867D;&#x7136;&#x5728;&#x7EBF;&#x7A0B;CustomThread&#x6267;&#x884C;&#x4E86;t1.join();&#xFF0C;&#x4F46;&#x8FD9;&#x5E76;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;(&#x8FD9;&#x91CC;main&#x65B9;&#x6CD5;&#x6240;&#x5728;&#x7684;&#x7EBF;&#x7A0B;)&#x3002;</span>
+[CustomThread] Thread start.       <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread&#x8D77;&#x52A8;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x9A6C;&#x4E0A;&#x7ED3;&#x675F;&#xFF0C;&#x56E0;&#x4E3A;&#x8C03;&#x7528;t1.join();&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x7B49;&#x5230;t1&#x7ED3;&#x675F;&#x4E86;&#xFF0C;&#x6B64;&#x7EBF;&#x7A0B;&#x624D;&#x80FD;&#x5411;&#x4E0B;&#x6267;&#x884C;&#x3002;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">2</span>   <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">3</span>   <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread loop at <span class="hljs-number">4</span>   <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7EE7;&#x7EED;&#x6267;&#x884C;</span>
+[CustomThread1] Thread end.       <span class="hljs-comment">//&#x7EBF;&#x7A0B;CustomThread1&#x7ED3;&#x675F;&#x4E86;</span>
+[CustomThread] Thread end.        <span class="hljs-comment">// &#x7EBF;&#x7A0B;CustomThread&#x5728;t1.join();&#x963B;&#x585E;&#x5904;&#x8D77;&#x52A8;&#xFF0C;&#x5411;&#x4E0B;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;</span>
+</code></pre>
+<p>&#x6B64;&#x5916;&#xFF0C;main&#x7EBF;&#x7A0B;&#x5728;&#x8C03;&#x7528;join&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5FC5;&#x987B;&#x80FD;&#x591F;&#x62FF;&#x5230;&#x7EBF;&#x7A0B;t&#x5BF9;&#x8C61;&#x7684;&#x6240;&#xFF0C;&#x5982;&#x679C;&#x62FF;&#x4E0D;&#x5230;&#x662F;&#x65E0;&#x6CD5;wait&#x7684;&#xFF0C;&#x521A;&#x624D;&#x7684;&#x4F8B;&#x5B50;t.join(1000)&#x4E0D;&#x662F;&#x4E3A;&#x4E86;main&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;1&#x79D2;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x8BA9;&#x7B49;&#x5F85;&#x4E4B;&#x524D;&#xFF0C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x83B7;&#x53D6;&#x4E86;t&#x5BF9;&#x8C61;&#x7684;&#x9501;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x7B49;&#x5F85;&#x7684;&#x65F6;&#x95F4;&#x53EF;&#x5C31;&#x4E0D;&#x662F;1&#x79D2;&#x4E86;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RunnableImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{  
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{  
+        <span class="hljs-keyword">try</span> {  
+            System.out.println(<span class="hljs-string">&quot;Begin sleep&quot;</span>);  
+            Thread.sleep(<span class="hljs-number">2000</span>);  
+            System.out.println(<span class="hljs-string">&quot;End sleep&quot;</span>);  
+        } <span class="hljs-keyword">catch</span> (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }  
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThreadTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> </span>{  
+
+    Thread thread;  
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThreadTest</span><span class="hljs-params">(Thread thread)</span> </span>{  
+        <span class="hljs-keyword">this</span>.thread = thread;  
+    }  
+
+    <span class="hljs-meta">@Override</span>  
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{  
+        <span class="hljs-keyword">synchronized</span> (thread) {  
+            System.out.println(<span class="hljs-string">&quot;getObjectLock&quot;</span>);  
+            <span class="hljs-keyword">try</span> {  
+                Thread.sleep(<span class="hljs-number">9000</span>);  
+            } <span class="hljs-keyword">catch</span> (InterruptedException ex) {  
+             ex.printStackTrace();  
+            }  
+            System.out.println(<span class="hljs-string">&quot;ReleaseObjectLock&quot;</span>);  
+        }  
+    }  
+}
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JoinTest</span> </span>{  
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{  
+            Thread t = <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> RunnableImpl());  
+           <span class="hljs-keyword">new</span> ThreadTest(t).start();  
+            t.start();  
+            <span class="hljs-keyword">try</span> {  
+                t.join();  
+                System.out.println(<span class="hljs-string">&quot;joinFinish&quot;</span>);  
+            } <span class="hljs-keyword">catch</span> (InterruptedException e) {  
+                e.printStackTrace();           
+            }  
+        }  
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x662F;&#xFF1A;</p>
+<pre><code class="lang-java">getObjectLock
+Begin sleep
+End sleep
+ReleaseObjectLock
+joinFinish
+</code></pre>
+<p>&#x5728;main&#x65B9;&#x6CD5;&#x4E2D; &#x901A;&#x8FC7;<code>new  ThreadTest(t).start()</code>&#x5B9E;&#x4F8B;&#x5316; ThreadTest &#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#xFF0C; &#x5B83;&#x901A;&#x8FC7;<code>synchronized  (thread)</code> &#xFF0C;&#x83B7;&#x53D6;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;t&#x7684;&#x9501;&#xFF0C;&#x5E76;<code>Sleep&#xFF08;9000&#xFF09;</code>&#x540E;&#x91CA;&#x653E;&#xFF0C;&#x8FD9;&#x5C31;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5373;&#x4F7F;main&#x65B9;&#x6CD5;<code>t.join(1000)</code>&#x7B49;&#x5F85;&#x4E00;&#x79D2;&#x949F;&#xFF0C;&#x5B83;&#x5FC5;&#x987B;&#x7B49;&#x5F85;ThreadTest &#x7EBF;&#x7A0B;&#x91CA;&#x653E;t&#x9501;&#x540E;&#x624D;&#x80FD;&#x8FDB;&#x5165;wait&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5B83;&#x5B9E;&#x9645;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x662F;9000+1000ms&#x3002;</p>
+<h4 id="public-final-synchronized-void-joinlong-millis-throws-interruptedexception-">public final synchronized void join(long millis) throws InterruptedException {...}</h4>
+<h3 id="public-void-interrupt">public void interrupt(){...}</h3>
+<p>&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">interrupt</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> != Thread.currentThread())
+        checkAccess();
+
+    <span class="hljs-keyword">synchronized</span> (blockerLock) {
+        Interruptible b = blocker;
+        <span class="hljs-keyword">if</span> (b != <span class="hljs-keyword">null</span>) {
+            interrupt0();           <span class="hljs-comment">// Just to set the interrupt flag</span>
+            b.interrupt(<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">return</span>;
+        }
+    }
+    interrupt0();
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x9762;&#x6709;&#x4E9B;&#x53D8;&#x91CF;&#x9700;&#x8981;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x3002;<code>blockerLock</code>&#x662F;<code>Thread</code>&#x7C7B;&#x7684;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x5E38;&#x91CF;<code>private final Object blockerLock = new Object();</code>&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#xFF0C;&#x800C;<code>blocker</code>&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1A;<code>private volatile Interruptible blocker;</code>&#x3002;&#x800C;<code>interrupt0</code>&#x662F;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x6E90;&#x7801;&#x4E2D;&#x5BF9;&#x8BE5;&#x65B9;&#x6CD5;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x89E3;&#x91CA;</p>
+<blockquote>
+<p>&#x4E2D;&#x65AD;&#x7EBF;&#x7A0B;&#x3002;
+&#x5982;&#x679C;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6CA1;&#x6709;&#x4E2D;&#x65AD;&#x5B83;&#x81EA;&#x5DF1;&#xFF08;&#x8FD9;&#x5728;&#x4EFB;&#x4F55;&#x60C5;&#x51B5;&#x4E0B;&#x90FD;&#x662F;&#x5141;&#x8BB8;&#x7684;&#xFF09;&#xFF0C;&#x5219;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684; checkAccess &#x65B9;&#x6CD5;&#x5C31;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x629B;&#x51FA; SecurityException&#x3002;
+&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x5728;&#x8C03;&#x7528; Object &#x7C7B;&#x7684; wait()&#x3001;wait(long) &#x6216; wait(long, int) &#x65B9;&#x6CD5;&#xFF0C;&#x6216;&#x8005;&#x8BE5;&#x7C7B;&#x7684; join()&#x3001;join(long)&#x3001;join(long, int)&#x3001;sleep(long) &#x6216; sleep(long, int) &#x65B9;&#x6CD5;&#x8FC7;&#x7A0B;&#x4E2D;&#x53D7;&#x963B;&#xFF0C;&#x5219;&#x5176;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x5C06;&#x88AB;&#x6E05;&#x9664;&#xFF0C;&#x5B83;&#x8FD8;&#x5C06;&#x6536;&#x5230;&#x4E00;&#x4E2A; InterruptedException&#x3002;
+&#x5982;&#x679C;&#x8BE5;&#x7EBF;&#x7A0B;&#x5728;&#x53EF;&#x4E2D;&#x65AD;&#x7684;&#x901A;&#x9053;&#x4E0A;&#x7684; I/O &#x64CD;&#x4F5C;&#x4E2D;&#x53D7;&#x963B;&#xFF0C;&#x5219;&#x8BE5;&#x901A;&#x9053;&#x5C06;&#x88AB;&#x5173;&#x95ED;&#xFF0C;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x5C06;&#x88AB;&#x8BBE;&#x7F6E;&#x5E76;&#x4E14;&#x8BE5;&#x7EBF;&#x7A0B;&#x5C06;&#x6536;&#x5230;&#x4E00;&#x4E2A; ClosedByInterruptException&#x3002;
+&#x5982;&#x679C;&#x8BE5;&#x7EBF;&#x7A0B;&#x5728;&#x4E00;&#x4E2A; Selector &#x4E2D;&#x53D7;&#x963B;&#xFF0C;&#x5219;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x5C06;&#x88AB;&#x8BBE;&#x7F6E;&#xFF0C;&#x5B83;&#x5C06;&#x7ACB;&#x5373;&#x4ECE;&#x9009;&#x62E9;&#x64CD;&#x4F5C;&#x8FD4;&#x56DE;&#xFF0C;&#x5E76;&#x53EF;&#x80FD;&#x5E26;&#x6709;&#x4E00;&#x4E2A;&#x975E;&#x96F6;&#x503C;&#xFF0C;&#x5C31;&#x597D;&#x50CF;&#x8C03;&#x7528;&#x4E86;&#x9009;&#x62E9;&#x5668;&#x7684; wakeup &#x65B9;&#x6CD5;&#x4E00;&#x6837;&#x3002;
+&#x5982;&#x679C;&#x4EE5;&#x524D;&#x7684;&#x6761;&#x4EF6;&#x90FD;&#x6CA1;&#x6709;&#x4FDD;&#x5B58;&#xFF0C;&#x5219;&#x8BE5;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x5C06;&#x88AB;&#x8BBE;&#x7F6E;&#x3002;</p>
+</blockquote>
+<p>&#x8FC7;&#x7A0B;&#x8FD8;&#x662F;&#x770B;&#x4E0D;&#x61C2;&#x554A;&#xFF0C;&#x90A3;&#x5C31;&#x5148;&#x8BB0;&#x4F4F;&#x7ED3;&#x8BBA;&#x5427;&#x3002; <code>interrupt()</code>&#x4E0D;&#x4F1A;&#x4E2D;&#x65AD;&#x4E00;&#x4E2A;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x8FD9;&#x4E00;&#x65B9;&#x6CD5;&#x5B9E;&#x9645;&#x4E0A;&#x5B8C;&#x6210;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x7EBF;&#x7A0B;&#x53D7;&#x5230;&#x963B;&#x585E;&#x65F6;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x4FE1;&#x53F7;&#xFF0C;&#x8FD9;&#x6837;&#x7EBF;&#x7A0B;&#x5C31;&#x5F97;&#x4EE5;&#x9000;&#x51FA;&#x963B;&#x585E;&#x7684;&#x72B6;&#x6001;&#x3002;&#x66F4;&#x786E;&#x5207;&#x7684;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x88AB;<code>Object.wait</code>, <code>Thread.join</code>&#x548C;<code>Thread.sleep</code>&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#x4E4B;&#x4E00;&#x963B;&#x585E;&#xFF0C;&#x90A3;&#x4E48;&#xFF0C;&#x5B83;&#x5C06;&#x63A5;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x4E2D;&#x65AD;&#x5F02;&#x5E38;&#xFF08;InterruptedException&#xFF09;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x65E9;&#x5730;&#x7EC8;&#x7ED3;&#x88AB;&#x963B;&#x585E;&#x72B6;&#x6001;&#xFF1B;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x6CA1;&#x6709;&#x88AB;&#x963B;&#x585E;&#xFF0C;&#x8FD9;&#x65F6;&#x8C03;&#x7528;<code>interrupt()</code>&#x5C06;&#x4E0D;&#x8D77;&#x4F5C;&#x7528;&#xFF1B;&#x5426;&#x5219;&#xFF0C;&#x7EBF;&#x7A0B;&#x5C31;&#x5C06;&#x5F97;&#x5230;&#x5F02;&#x5E38;&#xFF08;&#x8BE5;&#x7EBF;&#x7A0B;&#x5FC5;&#x987B;&#x4E8B;&#x5148;&#x9884;&#x5907;&#x597D;&#x5904;&#x7406;&#x6B64;&#x72B6;&#x51B5;&#xFF09;&#xFF0C;&#x63A5;&#x7740;&#x9003;&#x79BB;&#x963B;&#x585E;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x7EBF;&#x7A0B;A&#x5728;&#x6267;&#x884C;<code>sleep</code>&#xFF0C;<code>wait</code>,<code>join</code>&#x65F6;,&#x7EBF;&#x7A0B;B&#x8C03;&#x7528;A&#x7684;<code>interrupt</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7684;&#x786E;&#x8FD9;&#x4E00;&#x4E2A;&#x65F6;&#x5019;A&#x4F1A;&#x6709;<code>InterruptedException</code>&#x5F02;&#x5E38;&#x629B;&#x51FA;&#x6765;.&#x4F46;&#x8FD9;&#x5176;&#x5B9E;&#x662F;&#x5728;<code>sleep</code>&#xFF0C;<code>wait</code>&#xFF0C;<code>join</code>&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x4F1A;&#x4E0D;&#x65AD;&#x68C0;&#x67E5;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x7684;&#x503C;,&#x800C;&#x81EA;&#x5DF1;&#x629B;&#x51FA;&#x7684;<code>InterruptedException</code>&#x3002;</p>
+<p>&#x5982;&#x679C;&#x7EBF;&#x7A0B;A&#x6B63;&#x5728;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x6307;&#x5B9A;&#x7684;&#x64CD;&#x4F5C;&#x65F6;&#x5982;&#x8D4B;&#x503C;&#xFF0C;for&#xFF0C;while&#xFF0C;if&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x7B49;&#xFF0C;&#x90FD;&#x4E0D;&#x4F1A;&#x53BB;&#x68C0;&#x67E5;&#x4E2D;&#x65AD;&#x72B6;&#x6001;,&#x6240;&#x4EE5;&#x7EBF;&#x7A0B;A&#x4E0D;&#x4F1A;&#x629B;&#x51FA;<code>InterruptedException</code>,&#x800C;&#x4F1A;&#x4E00;&#x76F4;&#x6267;&#x884C;&#x7740;&#x81EA;&#x5DF1;&#x7684;&#x64CD;&#x4F5C;&#x3002;
+&#x5F53;&#x7EBF;&#x7A0B;A&#x7EC8;&#x4E8E;&#x6267;&#x884C;&#x5230;<code>wait()</code>&#xFF0C;<code>sleep()</code>&#xFF0C;<code>join()</code>&#x65F6;&#xFF0C;&#x624D;&#x9A6C;&#x4E0A;&#x4F1A;&#x629B;&#x51FA;<code>InterruptedException</code>&#x3002;&#x82E5;&#x6CA1;&#x6709;&#x8C03;&#x7528;<code>sleep()</code>&#xFF0C;<code>wait()</code>&#xFF0C;<code>join()</code>&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;,&#x6216;&#x662F;&#x6CA1;&#x6709;&#x5728;&#x7EBF;&#x7A0B;&#x91CC;&#x81EA;&#x5DF1;&#x68C0;&#x67E5;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x81EA;&#x5DF1;&#x629B;&#x51FA;<code>InterruptedException</code>&#x7684;&#x8BDD;,&#x90A3;<code>InterruptedException</code>&#x662F;&#x4E0D;&#x4F1A;&#x88AB;&#x629B;&#x51FA;&#x6765;&#x7684;.</p>
+<p>&#x8BF6; &#x770B;&#x4E0D;&#x592A;&#x61C2;&#x8BF6;</p>
+<h3 id="public-static-boolean-interrupted">public static boolean interrupted(){...}</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">interrupted</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> currentThread().isInterrupted(<span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<p>&#x6D4B;&#x8BD5;<strong>&#x5F53;&#x524D;&#x7EBF;&#x7A0B;</strong>&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x4E2D;&#x65AD;&#x3002;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x4E5F;&#x7531;&#x8BE5;&#x65B9;&#x6CD5;&#x6E05;&#x9664;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x8FDE;&#x7EED;&#x4E24;&#x6B21;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x4E48;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x5DF2;&#x7ECF;&#x5904;&#x4E8E;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE;true&#xFF0C;&#x540C;&#x65F6;&#x6E05;&#x9664;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x88AB;&#x6807;&#x8BB0;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x3002;&#x7B2C;&#x4E8C;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#xFF0C;&#xFF08;&#x7B2C;&#x4E8C;&#x6B21;&#x8C03;&#x7528;&#x4E4B;&#x524D;&#xFF0C;&#x6CA1;&#x6709;&#x518D;&#x6B21;&#x8C03;&#x7528;Thread.currentThread().interrupt();&#xFF09;&#x5C31;&#x4F1A;&#x8FD4;&#x56DE;false&#x4E86;&#x3002;
+&#x5176;&#x4E2D;<code>isInterrupted</code>&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isInterrupted</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> ClearInterrupted)</span></span>;
+</code></pre>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x7528;&#x6765;&#x6D4B;&#x8BD5;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x4E2D;&#x65AD;&#x3002;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001; &#x4E0D;&#x53D7;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x5F71;&#x54CD;&#x3002; &#x5982;&#x679C;&#x8BE5;&#x7EBF;&#x7A0B;&#x5DF2;&#x7ECF;&#x4E2D;&#x65AD;&#xFF0C;&#x5219;&#x8FD4;&#x56DE; true&#xFF1B;&#x5426;&#x5219;&#x8FD4;&#x56DE; false&#x3002;&#x548C;<code>interrupted</code>&#x65B9;&#x6CD5;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E0D;&#x5177;&#x6709;&#x6E05;&#x9664;&#x72B6;&#x6001;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<h3 id="public-final-native-boolean-isalive">public final native boolean isAlive();</h3>
+<p>&#x7528;&#x6765;&#x68C0;&#x6D4B;&#x7EBF;&#x7A0B;&#x65F6;&#x5019;&#x8FD8;&#x6D3B;&#x7740;&#xFF0C;&#x53EA;&#x8981;&#x7EBF;&#x7A0B;&#x72B6;&#x6001;&#x5904;&#x4E8E;start&#x548C;die&#x4E4B;&#x95F4;&#xFF0C;&#x90FD;&#x662F;&#x6D3B;&#x7740;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
+<h3 id="public-static-int-activecount">public static int activeCount(){...}</h3>
+<p>&#x83B7;&#x5F97;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7EC4;&#x83B7;&#x5F97;&#x7EBF;&#x7A0B;&#x6570;&#x3002;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">activeCount</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> currentThread().getThreadGroup().activeCount();
+}
+</code></pre>
+<h3 id="public-static-int-enumeratethread-tarray">public static int enumerate(Thread tarray[]){...}</h3>
+<p>&#x5C06;&#x6D3B;&#x52A8;&#x7EBF;&#x7A0B;&#x62F7;&#x8D1D;&#x5230;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">enumerate</span><span class="hljs-params">(Thread tarray[])</span> </span>{
+    <span class="hljs-keyword">return</span> currentThread().getThreadGroup().enumerate(tarray);
+}
+</code></pre>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="http://blog.csdn.net/krito_blog/article/details/54808617" target="_blank">&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x7684;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x533A;&#x522B;</a></li>
+<li><a href="http://blog.csdn.net/fjse51/article/details/53928272" target="_blank">Thread.interrupted()&#x4E0E;Thread.isInterrupted()&#x7684;&#x533A;&#x522B;</a></li>
+<li><a href="http://macleo.iteye.com/blog/626283" target="_blank">Thread&#x7C7B;&#x7684;interrupt,interrupted,isInterrupted&#x65B9;&#x6CD5;&#x7684;&#x7406;&#x89E3;</a></li>
+<li><a href="http://www.blogjava.net/fhtdy2004/archive/2009/06/08/280728.html" target="_blank">Java&#x591A;&#x7EBF;&#x7A0B;sleep(),join(),interrupt(),wait(),notify()</a></li>
+<li><a href="http://uule.iteye.com/blog/1101994" target="_blank">Java&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;join&#x65B9;&#x6CD5;&#x7684;&#x7406;&#x89E3;</a>!!!</li>
+<li><a href="http://www.cnblogs.com/onlywujun/p/3565082.html" target="_blank">Thread&#x7684;&#x4E2D;&#x65AD;&#x673A;&#x5236;(interrupt)</a></li>
+</ul>
 
                                 
                                 </section>
@@ -864,7 +1600,7 @@
                 </a>
                 
                 
-                <a href="java.lang.reflect/java.lang.reflect.html" class="navigation navigation-next " aria-label="Next page: java.lang.reflect">
+                <a href="ThreadGroup.html" class="navigation navigation-next " aria-label="Next page: ThreadGroup">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -875,7 +1611,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Thread","level":"1.2.1.19","depth":3,"next":{"title":"java.lang.reflect","level":"1.2.1.20","depth":3,"path":"源码解读/java.lang/java.lang.reflect/java.lang.reflect.md","ref":"源码解读/java.lang/java.lang.reflect/java.lang.reflect.md","articles":[]},"previous":{"title":"RuntimeException","level":"1.2.1.18","depth":3,"path":"源码解读/java.lang/RuntimeException.md","ref":"源码解读/java.lang/RuntimeException.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Thread.md","mtime":"2017-10-14T09:49:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-14T16:14:29.207Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Thread","level":"1.2.1.19","depth":3,"next":{"title":"ThreadGroup","level":"1.2.1.20","depth":3,"path":"源码解读/java.lang/ThreadGroup.md","ref":"源码解读/java.lang/ThreadGroup.md","articles":[]},"previous":{"title":"RuntimeException","level":"1.2.1.18","depth":3,"path":"源码解读/java.lang/RuntimeException.md","ref":"源码解读/java.lang/RuntimeException.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Thread.md","mtime":"2017-10-15T08:35:06.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-15T08:34:37.608Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

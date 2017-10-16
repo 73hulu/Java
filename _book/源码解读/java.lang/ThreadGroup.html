@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Byte · GitBook</title>
+        <title>ThreadGroup · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Short.html" />
+    <link rel="next" href="java.lang.reflect/java.lang.reflect.html" />
     
     
-    <link rel="prev" href="Boolean.html" />
+    <link rel="prev" href="Thread.html" />
     
 
     </head>
@@ -156,7 +156,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.3" data-path="Byte.html">
+        <li class="chapter " data-level="1.2.1.3" data-path="Byte.html">
             
                 <a href="Byte.html">
             
@@ -377,7 +377,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.20" data-path="ThreadGroup.html">
+        <li class="chapter active" data-level="1.2.1.20" data-path="ThreadGroup.html">
             
                 <a href="ThreadGroup.html">
             
@@ -850,7 +850,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Byte</a>
+        <a href="../.." >ThreadGroup</a>
     </h1>
 </div>
 
@@ -865,129 +865,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="byte">Byte</h1>
-<p>Byte&#x662F;&#x6700;&#x6700;&#x57FA;&#x672C;&#x7684;&#x6574;&#x578B;&#x6570;&#x503C;&#x5305;&#x88C5;&#x7C7B;&#xFF0C;&#x5176;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p><img src="http://ovn0i3kdg.bkt.clouddn.com/byte_structure.png" alt="byte_class"></p>
-<p>&#x6709;&#x4E9B;&#x5185;&#x5BB9;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x4E5F;&#x4E0E;Boolean&#x7684;&#x5185;&#x5BB9;&#x91CD;&#x590D;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x6311;&#x4E0D;&#x540C;&#x7684;&#x6216;&#x8005;&#x6BD4;&#x8F83;&#x91CD;&#x8981;&#x7684;&#x6765;&#x8BB2;&#x3002;</p>
-<h3 id="public-final-class-byte-extends-number-implements-comparable">public final class Byte extends Number implements Comparable<byte></byte></h3>
-<p>&#x7C7B;&#x58F0;&#x660E;&#x88AB;final&#x4FEE;&#x9970;&#xFF0C;&#x8868;&#x793A;&#x4E0D;&#x80FD;&#x88AB;&#x7EE7;&#x627F;&#x3002;&#x672C;&#x8EAB;&#x7EE7;&#x627F;&#x4E86;<code>Number</code>&#x7C7B;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;<code>Comparable</code>&#x63A5;&#x53E3;&#x3002;</p>
-<h3 id="&#x5C5E;&#x6027;&#x53D8;&#x91CF;">&#x5C5E;&#x6027;&#x53D8;&#x91CF;</h3>
-<pre><code>  public static final byte   MIN_VALUE = -128;
-  public static final byte   MAX_VALUE = 127;
-  @SuppressWarnings(&quot;unchecked&quot;)
-    public static final Class&lt;Byte&gt;     TYPE = (Class&lt;Byte&gt;) Class.getPrimitiveClass(&quot;byte&quot;);
-   public static final int SIZE = 8;
-   public static final int BYTES = SIZE / Byte.SIZE;
-   private final byte value;
-   private static final long serialVersionUID = -7183698231559129828L;
-</code></pre><p>&#x524D;&#x4E24;&#x53E5;&#x8BDD;&#x5B9A;&#x4E49;&#x4E86;Byte&#x7C7B;&#x578B;&#x5BF9;&#x8C61;&#x8868;&#x793A;&#x7684;&#x8303;&#x56F4;&#x662F;[-128,127]&#x3002;
-&#x88AB;&#x6CE8;&#x89E3;&#x4E3A;&#x5BF9;&#x5C06;&#x8B66;&#x544A;&#x4FDD;&#x6301;&#x9759;&#x9ED8;&#x7684;&#x8FD9;&#x53E5;&#x8BDD;&#x662F;&#x83B7;&#x5F97;&#x8BE5;&#x7C7B;&#x7684;&#x539F;&#x59CB;&#x7C7B;&#xFF0C;&#x8FD9;&#x91CC;&#x7528;&#x5230;&#x4E86;&#x53CD;&#x5C04;&#x3002;&#x4E4B;&#x540E;&#x5B9A;&#x4E49;&#x4E86;Byte&#x7684;&#x5927;&#x5C0F;&#x4E3A;8&#x4F4D;&#xFF0C;1&#x5B57;&#x8282;&#x3002;</p>
-<h3 id="public-bytebyte-value--&#x548C;-public-bytestring-s-throws-numberformatexception--">public Byte(byte value) {...} &#x548C; public Byte(String s) throws NumberFormatException  {...}</h3>
-<p>  &#x4E24;&#x79CD;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x5206;&#x522B;&#x652F;&#x6301;byte&#x578B;&#x57FA;&#x672C;&#x6570;&#x503C;&#x7C7B;&#x578B;&#x548C;String&#x7C7B;&#x578B;&#xFF0C;&#x540E;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Byte</span><span class="hljs-params">(String s)</span> <span class="hljs-keyword">throws</span> NumberFormatException </span>{
-       <span class="hljs-keyword">this</span>.value = parseByte(s, <span class="hljs-number">10</span>);
-   }
-</code></pre>
-<p>  &#x8FD9;&#x91CC;&#x505A;&#x4E86;&#x9650;&#x5236;&#xFF0C;&#x4F20;&#x5165;&#x7684;&#x5FC5;&#x987B;&#x662F;&#x80FD;&#x8F6C;&#x4E3A;&#x6570;&#x5B57;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4E0D;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x5219;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;&#x8FD9;&#x91CC;&#x8C03;&#x7528;&#x4E86;<code>parseByte</code>&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;10&#x8FDB;&#x5236;&#x8F6C;&#x6362;&#x6570;&#x503C;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">byte</span> <span class="hljs-title">parseByte</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> radix)</span>
-     <span class="hljs-keyword">throws</span> NumberFormatException </span>{
-     <span class="hljs-keyword">int</span> i = Integer.parseInt(s, radix);
-     <span class="hljs-keyword">if</span> (i &lt; MIN_VALUE || i &gt; MAX_VALUE)
-         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(
-             <span class="hljs-string">&quot;Value out of range. Value:\&quot;&quot;</span> + s + <span class="hljs-string">&quot;\&quot; Radix:&quot;</span> + radix);
-     <span class="hljs-keyword">return</span> (<span class="hljs-keyword">byte</span>)i;
- }
-</code></pre>
-<p>&#x5148;&#x5C06;&#x8BE5;&#x6570;&#x503C;&#x8F6C;&#x5316;&#x4E3A;10&#x8FDB;&#x5236;&#x7684;int&#x578B;&#xFF0C;&#x5982;&#x679C;&#x8BE5;&#x503C;&#x8D85;&#x4E0D;&#x5728;[-128, 127]&#x5185;&#xFF0C;&#x5219;&#x91CD;&#x65B0;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
-<h3 id="public-static-string-tostringbyte-b-&#x548C;-public-string-tostring">public static String toString(byte b){...} &#x548C; public String toString(){..}</h3>
-<p>&#x524D;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">toString</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> b)</span> </span>{
-    <span class="hljs-keyword">return</span> Integer.toString((<span class="hljs-keyword">int</span>)b, <span class="hljs-number">10</span>);
-}
-</code></pre>
-<p>&#x540E;&#x8005;&#x91CD;&#x5199;&#x4ECE;Object&#x7EE7;&#x627F;&#x7684;toString&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">return</span> Integer.toString((<span class="hljs-keyword">int</span>)value);
-}
-</code></pre>
-<p>&#x5B83;&#x4EEC;&#x5B9E;&#x5219;&#x90FD;&#x662F;&#x5728;&#x8C03;&#x7528;Integer&#x7684;toString&#x65B9;&#x6CD5;&#x3002;</p>
-<h3 id="public-static-byte-valueofbyte-b--&#x548C;---public-static-byte-valueofstring-s-throws-numberformatexception--&#x548C;---public-static-byte-valueofstring-s-int-radix-throws-numberformatexception-">public static Byte valueOf(byte b) {...} &#x548C;   public static Byte valueOf(String s) throws NumberFormatException {..} &#x548C;   public static Byte valueOf(String s, int radix) throws NumberFormatException {..}</h3>
-<p>&#x4E09;&#x79CD;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x65B9;&#x6CD5;&#xFF0C;&#x7B2C;&#x4E00;&#x79CD;&#x7EC4;&#x91CD;&#x8981;&#xFF0C;&#x5F88;&#x91CD;&#x8981;&#xFF01;&#xFF01;&#xFF01;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Byte <span class="hljs-title">valueOf</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> b)</span> </span>{
-    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> offset = <span class="hljs-number">128</span>;
-    <span class="hljs-keyword">return</span> ByteCache.cache[(<span class="hljs-keyword">int</span>)b + offset];
-}
-</code></pre>
-<p>&#x4ECE;Byte&#x5F00;&#x59CB;&#xFF0C;&#x57FA;&#x672C;&#x6574;&#x578B;&#x6570;&#x503C;&#x5305;&#x88C5;&#x7C7B;&#x90FD;&#x4F7F;&#x7528;&#x4E86;&#x7F13;&#x5B58;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x91CC;ByteCache&#x662F;Byte&#x4E2D;&#x7684;&#x5185;&#x90E8;&#x9759;&#x6001;&#x7C7B;&#xFF0C;&#x800C;cache&#x662F;ByteCache&#x4E2D;&#x7684;&#x9759;&#x6001;&#x5E38;&#x91CF;&#x6570;&#x7EC4;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;:</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ByteCache</span> </span>{
-  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">ByteCache</span><span class="hljs-params">()</span></span>{}
-
-  <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Byte cache[] = <span class="hljs-keyword">new</span> Byte[-(-<span class="hljs-number">128</span>) + <span class="hljs-number">127</span> + <span class="hljs-number">1</span>];
-
-  <span class="hljs-keyword">static</span> {
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; cache.length; i++)
-          cache[i] = <span class="hljs-keyword">new</span> Byte((<span class="hljs-keyword">byte</span>)(i - <span class="hljs-number">128</span>));
-  }
-}
-</code></pre>
-<p>&#x5F53;Byte&#x7C7B;&#x88AB;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;&#x4E0D;&#x4F1A;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x521D;&#x59CB;&#x5316;&#x5462;&#xFF1F;&#x5728;valueOf&#x88AB;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E2A;&#x5185;&#x624D;&#x88AB;&#x52A0;&#x8F7D;&#x3001;&#x521D;&#x59CB;&#x5316;&#x3002;&#x53EF;&#x89C1;&#xFF0C;&#x5982;&#x679C;&#x4F20;&#x5165;<code>valueOf</code>&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x76F8;&#x540C;&#xFF0C;&#x6700;&#x7EC8;&#x53D6;&#x5230;&#x7684;&#x5BF9;&#x8C61;&#x503C;&#x662F;<strong>&#x540C;&#x4E00;&#x4E2A;</strong>&#xFF01;</p>
-<p>&#x540E;&#x4E24;&#x8005;&#x63A5;&#x6536;&#x5B57;&#x7B26;&#x4E32;&#x4F5C;&#x4E3A;&#x88AB;&#x8F6C;&#x5316;&#x7684;&#x91CF;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x9ED8;&#x8BA4;&#x8FDB;&#x5236;&#x662F;10&#xFF0C; &#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x53EF;&#x6307;&#x5B9A;&#x8FDB;&#x5236;&#xFF0C;&#x5176;&#x5B9A;&#x4E49;&#x5206;&#x522B;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Byte <span class="hljs-title">valueOf</span><span class="hljs-params">(String s)</span> <span class="hljs-keyword">throws</span> NumberFormatException </span>{
-    <span class="hljs-keyword">return</span> valueOf(s, <span class="hljs-number">10</span>);
-}
-</code></pre>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Byte <span class="hljs-title">valueOf</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> radix)</span>
-   <span class="hljs-keyword">throws</span> NumberFormatException </span>{
-   <span class="hljs-keyword">return</span> valueOf(parseByte(s, radix));
-}
-</code></pre>
-<h3 id="public-static-byte-decodestring-nm-throws-numberformatexception">public static Byte decode(String nm) throws NumberFormatException{...}</h3>
-<p>decode &#x7528;&#x6765;&#x5206;&#x6790;&#x6570;&#x5B57;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Byte <span class="hljs-title">decode</span><span class="hljs-params">(String nm)</span> <span class="hljs-keyword">throws</span> NumberFormatException </span>{
-    <span class="hljs-keyword">int</span> i = Integer.decode(nm);
-    <span class="hljs-keyword">if</span> (i &lt; MIN_VALUE || i &gt; MAX_VALUE)
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(
-                <span class="hljs-string">&quot;Value &quot;</span> + i + <span class="hljs-string">&quot; out of range from input &quot;</span> + nm);
-    <span class="hljs-keyword">return</span> valueOf((<span class="hljs-keyword">byte</span>)i);
-}
-</code></pre>
-<p>&#x53C8;&#x662F;&#x5728;&#x8C03;&#x7528;Integer&#x7C7B;&#x7684;&#x9759;&#x6001;decode&#x65B9;&#x6CD5;&#x5F97;&#x5230;int&#x578B;&#x53D8;&#x91CF;&#x540E;&#x5728;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5728;Byte&#x7684;&#x8868;&#x793A;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x4E0D;&#x518D;&#x5219;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;&#x54CE;&#xFF0C;&#x6570;&#x503C;&#x7C7B;&#x578B;Integer&#x8FD8;&#x662F;&#x8001;&#x5927;&#x54E5;&#x554A;&#xFF0C;&#x5F88;&#x591A;&#x5173;&#x952E;&#x7684;&#x95EE;&#x9898;&#x8FD8;&#x8981;&#x9760;&#x4ED6;&#x6765;&#x89E3;&#x51B3;&#x3002;</p>
-<h3 id="public-xxx-xxxvalue">public xxx xxxValue(){...}</h3>
-<p>&#x8FD9;&#x4E00;&#x7C7B;&#x90FD;&#x662F;&#x91CD;&#x5199;&#x4E86;&#x5176;&#x7236;&#x7C7B;<code>Number</code>&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x8F6C;&#x5316;&#x540E;&#x8FD4;&#x56DE;&#x76F8;&#x5E94;&#x7684;&#x503C;&#xFF0C;&#x8FD9;&#x4E00;&#x7CFB;&#x5217;&#x6709;&#x54EA;&#x4E9B;&#x5462;&#xFF1F;<code>byteValue()</code>&#x3001;<code>shortValue</code>&#x3001;<code>intValue</code>&#x3001;<code>longValue</code>&#x3001;<code>floatValue</code>&#x3001;<code>doubleValue</code>&#xFF0C;&#x6BD4;&#x5982;<code>intValue</code>&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">longValue</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">long</span>)value;
-}
-</code></pre>
-<p>Byte&#x662F;&#x6700;&#x57FA;&#x672C;&#x7684;&#x6570;&#x503C;&#x5305;&#x88C5;&#x7C7B;&#x578B;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x6837;&#x7684;&#x5F3A;&#x5236;&#x8F6C;&#x5316;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7CBE;&#x5EA6;&#x635F;&#x5931;&#x3002;</p>
-<h3 id="public-int-hashcode-&#x548C;-public-static-int-hashcodebyte-value-">public int hashCode{..} &#x548C; public static int hashCode(byte value) {..}</h3>
-<p>&#x524D;&#x8005;&#x8C03;&#x7528;&#x540E;&#x8005;&#xFF0C;&#x540E;&#x8005;&#x5B9A;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hashCode</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> value)</span> </span>{
-    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)value;
-}
-</code></pre>
-<p>&#x5C06;&#x5176;value&#x503C;&#x8F6C;&#x4E3A;int&#x578B;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x4E86;&#xFF0C;&#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x7B80;&#x5355;&#x3002;</p>
-<h3 id="public-int-comparetobyte-anotherbyte-&#x548C;-public-static-int-comparebyte-x-byte-y">public int compareTo(Byte anotherByte){...} &#x548C; public static int compare(byte x, byte y){..}</h3>
-<p>&#x524D;&#x8005;&#x8C03;&#x7528;&#x540E;&#x8005;&#xFF0C;&#x540E;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> x, <span class="hljs-keyword">byte</span> y)</span> </span>{
-    <span class="hljs-keyword">return</span> x - y;
-}
-</code></pre>
-<p>&#x8FD9;&#x6B21;&#x662F;&#x771F;&#x7684;&#x5728;&#x6BD4;&#x5C0F;&#x5927;&#x4E86;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E3B;&#x8C03;&#x4E0E;&#x53C2;&#x6570;&#x7684;&#x5DEE;&#x503C;&#x3002;</p>
-<h3 id="public-static-int-tounsignedintbyte-x-&#x548C;-public-static-long-tounsignedlongbyte-x">public static int toUnsignedInt(byte x){...} &#x548C; public static long toUnsignedLong(byte x){...}</h3>
-<p>&#x4ECE;&#x540D;&#x5B57;&#x5C31;&#x80FD;&#x770B;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x8F6C;&#x5316;&#x4E3A;&#x65E0;&#x7B26;&#x53F7;&#x7684;int&#x578B;&#x548C;long&#x578B;&#xFF0C;&#x524D;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">toUnsignedInt</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> x)</span> </span>{
-   <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">int</span>) x) &amp; <span class="hljs-number">0xff</span>;
-}
-</code></pre>
-<p>&#x540E;&#x8005;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> <span class="hljs-title">toUnsignedLong</span><span class="hljs-params">(<span class="hljs-keyword">byte</span> x)</span> </span>{
-    <span class="hljs-keyword">return</span> ((<span class="hljs-keyword">long</span>) x) &amp; <span class="hljs-number">0xffL</span>;
-}
-</code></pre>
-<p>&#x7528;&#x5230;&#x4F4D;&#x4E0E;&#x8FD0;&#x7B97;&#x3002;</p>
-<blockquote>
-<p>&amp; &#x8FD0;&#x7B97;&#xFF1A;&#x4E24;&#x4E2A;&#x64CD;&#x4F5C;&#x6570;&#x90FD;&#x4E3A;1&#xFF0C;&#x7ED3;&#x679C;&#x624D;&#x4E3A;1&#xFF0C;&#x5426;&#x5219;&#x4E3A;0&#x3002;</p>
-</blockquote>
+                                <h1 id="threadgroup">ThreadGroup</h1>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/Thread_group.png" alt="ThreadGroup"></p>
 
                                 
                                 </section>
@@ -1015,12 +894,12 @@
 
             
                 
-                <a href="Boolean.html" class="navigation navigation-prev " aria-label="Previous page: Boolean">
+                <a href="Thread.html" class="navigation navigation-prev " aria-label="Previous page: Thread">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Short.html" class="navigation navigation-next " aria-label="Next page: Short">
+                <a href="java.lang.reflect/java.lang.reflect.html" class="navigation navigation-next " aria-label="Next page: java.lang.reflect">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1031,7 +910,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Byte","level":"1.2.1.3","depth":3,"next":{"title":"Short","level":"1.2.1.4","depth":3,"path":"源码解读/java.lang/Short.md","ref":"源码解读/java.lang/Short.md","articles":[]},"previous":{"title":"Boolean","level":"1.2.1.2","depth":3,"path":"源码解读/java.lang/Boolean.md","ref":"源码解读/java.lang/Boolean.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Byte.md","mtime":"2017-10-02T07:08:02.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-15T08:34:37.608Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ThreadGroup","level":"1.2.1.20","depth":3,"next":{"title":"java.lang.reflect","level":"1.2.1.21","depth":3,"path":"源码解读/java.lang/java.lang.reflect/java.lang.reflect.md","ref":"源码解读/java.lang/java.lang.reflect/java.lang.reflect.md","articles":[]},"previous":{"title":"Thread","level":"1.2.1.19","depth":3,"path":"源码解读/java.lang/Thread.md","ref":"源码解读/java.lang/Thread.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/ThreadGroup.md","mtime":"2017-10-15T08:35:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-15T08:34:37.608Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
