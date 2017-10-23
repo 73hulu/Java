@@ -1,8 +1,17 @@
+
+# JDK
+
+### JDK、JRE和JVM
 * JDK（Java development Kit）组成：
 Java程序设计语言 + Java虚拟机 + Java API类库
 
 * JRE(Java Runtime Environment)组成：
-Java SE API子集 + Java 虚拟机
+Java SE API子集 + Java 虚拟机，与JDK相比，它不包含开发工具——编译器、调试器和其他工具
+
+* JVM(Java Virtual Mechinal)：
+虚拟出来的机器，有自己完善的硬件架构，如处理器、堆栈、寄存器和相应的指令系统。Java能跨平台运行，其实就是不同的操作系统，使用不同的JVM映射规则，让其与操作系统无关，完成跨平台性。
+
+JVM主要工作是解释自己的指令集（即字节码）并映射到本地的CPU的指令集或OS的系统调用。
 
 
 根据Java技术关注的终点业务领域来划分，Java技术体系可分为4个平台：
@@ -11,7 +20,7 @@ Java SE API子集 + Java 虚拟机
 3. `Java SE(Standard Edition)`：支持面向桌面级应用的平台，提供完整的核心Java核心API，这个版本以前称为J2SE.
 4. `Java EE(Enterprise Edition)`：支持使用多层架构的企业应用的平台，除了提供Java SE API之外，还对其做了大量的扩充，并提供了相应的部署支持。这个版本以前称为J2EE.
 
-## java命令
+### java开发工具
 
 | 命令 | 作用 |
 | :------------- | :------------- |
@@ -21,7 +30,10 @@ Java SE API子集 + Java 虚拟机
 |jar   |用来生成jar包   |
 |jdb   | 调试工具  |
 |javaprof   | 剖析工具  |
+|javah   |把java代码声明的JNI方法转化成C\C++头文件，就是那些native方法  |
 
+问： Java开发工具是Java语言写的？
+对，但是其底层是C++写的。
 
 命令可以通过-`help`来查看用法，如`javac -help`:
 ![javac](http://ovn0i3kdg.bkt.clouddn.com/javac.png)
@@ -46,3 +58,12 @@ public static void main(String[] args) {
 在JDK1.6中，`intern()`方法会将**首次**遇到的字符实例复制到永久代中，返回的也是永久代中这个字符串实例的引用，而用`StringBuilder`创建的字符串实例在Java堆上，所以必然不是同一个引用，将返回false。
 
 在JDK1.7+中，`intern()`不再复制实例，只是在常量池中记录首次出现的实例引用，因此`intern()`返回的引用和由`StringBuilder`创建的那个字符串将是同一个。对于str2比较返回false是因为“java”这个字符串在执行`StringBuilder.toString()`之前已经出现过，字符串常量中已经有其引用，不符合"**首次**出现"的原则，而“计算机软件”这个字符串则是首次出现的，因此返回true。
+
+
+
+### JDK版本
+
+#### Collections @since 1.2
+#### NIO @since 1.4
+#### Lock @since 1.5
+#### 自动装箱 @since 1.5

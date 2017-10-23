@@ -377,6 +377,7 @@ class MyThread implements Runnable{
 | 优点      | 编写简单，如果需要访问当前线程，无需使用Thread.currentThread()方法，直接使用this，即可获得当前线程。| 线程类只是实现了Runable接口，还可以继承其他的类。在这种方式下，可以多个线程共享同一个目标对象，所以非常适合多个相同线程来处理同一份资源的情况，从而可以将CPU代码和数据分开，形成清晰的模型，较好地体现了面向对象的思想。|
 |缺点   |因为线程类已经继承了Thread类，所以不能再继承其他的父类。   |  编程稍微复杂，如果需要访问当前线程，必须使用Thread.currentThread()方法。 |
 
+> Thread对象可以操纵一个线程，而Runable对象代表一个可被运行的对象。
 ### private void exit() {...}
 
 这个方法也是被JVM调用的，在真正退出之前给线程一个清理的机会？为什么清理？垃圾回收啊~
@@ -780,3 +781,4 @@ public static int enumerate(Thread tarray[]) {
 * [Java多线程sleep(),join(),interrupt(),wait(),notify()](http://www.blogjava.net/fhtdy2004/archive/2009/06/08/280728.html)
 * [Java多线程中join方法的理解](http://uule.iteye.com/blog/1101994)!!!
 * [Thread的中断机制(interrupt)](http://www.cnblogs.com/onlywujun/p/3565082.html)
+* [线程](http://www.cnblogs.com/hvicen/p/6218981.html)
