@@ -33,6 +33,7 @@
                 * [AbstractQueuedSynchronizer](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md)
                 * [ReentrantLock](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.md)
     * [java.io](源码解读/java.io/java-io.md)
+        * [File](源码解读/java.io/File.md)
     * [java.nio](源码解读/java.nio/java-nio.md)
         * [java.Charset](源码解读/java.nio/java.Charset/java-Charset.md)
             * [Charset](源码解读/java.nio/java.Charset/java.Charset/Charset.md)
@@ -52,6 +53,7 @@
     * [异常处理机制](Java基础知识整理/异常处理机制.md)
     * [多线程](Java基础知识整理/多线程.md)
     * [IO](Java基础知识整理/IO.md)
+    * [路径](Java基础知识整理/路径.md)
     * [Java注解](Java基础知识整理/Java注解.md)
     * [集合框架](Java基础知识整理/集合框架.md)
     * [序列化](Java基础知识整理/序列化.md)
@@ -61,6 +63,7 @@
     * [lambda表达式](Java 8新特性/lambda表达式.md)
     * [接口中可以定义非抽象方法了](Java 8新特性/接口中可以定义非抽象方法了.md)
     * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
+    * [Effectively final](Java 8新特性/Effectively final.md)
 * 设计模式
     * [单例模式](设计模式/单例模式.md)
 * JVM
@@ -70,4 +73,3 @@
     * [错题集1](错题集/错题集1.md)
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
-
