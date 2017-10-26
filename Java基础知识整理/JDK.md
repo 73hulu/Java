@@ -1,5 +1,8 @@
 
 # JDK
+Java 体系结构如下图：
+
+![Java System](http://ovn0i3kdg.bkt.clouddn.com/Java_System.png)
 
 ### JDK、JRE和JVM
 * JDK（Java development Kit）组成：

@@ -203,20 +203,20 @@ private File(String child, File parent) {
 | public String getName() | 返回由此抽象路径名表示的文件或目录的名称 |
 |public String getParent()    | 返回此抽象路径名的父路径名字符串，如果此路径名没有指定父目录，则返回null  |
 |public File getParentFile()   |返回此抽象路径名的父路径名的抽象路径名，如果此路名没有指定父目录，则返回null   |
-|public String getPath()   | 将次抽象路径名转化为一个路径名字符串  |
+|**public String getPath()  ** | 将次抽象路径名转化为一个路径名字符串  |
 |public boolean isAbsolute()   | 测试此抽象路径名是否为绝对路径名 |
-|public String getAbsolutePath()  | 返回抽象路径名的绝对路径名字符串  |
-|public String getCanonicalPath() throws IOException  |  返回抽象路径名的规范路径名字符串  |
+|**public String getAbsolutePath() ** | 返回抽象路径名的绝对路径名字符串  |
+|**public String getCanonicalPath() throws IOException**  |  返回抽象路径名的规范路径名字符串  |
 |public boolean canExecute() |  判断文件是否可执行 |
 |public boolean canRead()   |   测试应用程序是否可以读取此抽象路径名表示的的文件|
 | public boolean canWrite() | 测试应用程序是否可以修改此抽象路径名表示的文件  |
-|public boolean exists()   | 测试此抽象路径名表示的文件或目录是否存在  |
+|**public boolean exists()  ** | 测试此抽象路径名表示的文件或目录是否存在  |
 |public boolean isDirectory()   |  测试此抽象路径名表示的文件是否是一个目录 |
 |public boolean isFile()   |测试此抽象路径名表示的文件是否是一个标准文件   |
 |public long lastModify()   |  返回此抽象路径名表示的文件最后一次被需改的时间 |
 |public long length()   |  返回由此抽象路径名表示的文件的长度 |
-|public boolean createNewFile() throws IOException   |  当且仅当不存在具有此抽象路径名指定的文件时，原子地创建由此抽象路径名执行的一个新的空文件，注意这个方法的返回值是boolean值 |
-|public boolean delete()   | 删除此抽象枯井名表示的文件或目录  |
+|**public boolean createNewFile() throws IOException  ** |  当且仅当不存在具有此抽象路径名指定的文件时，原子地创建由此抽象路径名执行的一个新的空文件，注意这个方法的返回值是boolean值 |
+|public boolean delete()   | 删除此抽象路径名表示的文件或目录  |
 |public void deleteOnExit()   |   在虚拟机终止时，请求删除此抽象路径名表示的文件或目录|
 |public String[] list()   |返回由此抽象路径名表示的目录中的文件和目录的名称锁组成的字符串数组   |
 |public String[] list(FilenameFilter filter)   |  返回由包含在目录中的文件和目录的名称所组成的字符串数组，这一目录是通过满足指定过滤器的抽象路径名来表示的。|
@@ -239,7 +239,7 @@ private File(String child, File parent) {
 其中有些方法需要明确概念、适用场景和雷区。
 
 ##### `getPath`、`getAbsolutePath`和`getCanonicalPath`的区别
-这三个方法都不管文件是不是真是存在，只要有文件引用就可以了。前两个的区别很好解释：`getPath`输出的是创建的时候用的路径字符串，`getAbsolutePath`输出的是绝对路径。`getCanonicalPath`方法不但是全路径，而且把一些`..`、`.`这样的符号解析出来了。看下面的例子。
+这三个方法都不管文件是不是真是存在，只要有文件引用就可以了。前两个的区别很好解释：`getPath`输出的是创建的时候用的路径字符串，`getAbsolutePath`输出的是绝对路径。`getCanonicalPath`方法不但输出全路径，而且把一些`..`、`.`这样的符号解析出来了。看下面的例子。
 ```Java
 File file = new File("..\\src\\test1.txt");
 System.out.println(file.getPath());
@@ -283,6 +283,7 @@ public static void main(String[] args) {
     System.out.println("source rename to dest2 " + source.renameTo(dest2));
 }
 ```
+执行结果是：
 ```Java
 dest1 is exist? false
 dest2 is exist? true
@@ -291,4 +292,4 @@ source rename to dest2 false
 ```
 该程序中首先保证了源文件source一定存在，然后分给renameTo到一个不存在的文件bbb.txt，和一个已存在的文件ccc.txt，结果发现，前者成功而后者不成功，并且最后看文件夹发现有一个bbb.txt和ccc.txt，而原来的aaa.txt不见了。所以可以得出结论：使用renameTo重命名文件，首先要保证源文件存在（这个可以做实验验证一下确实是这样），不管这个源文件是一个“文件”还是一个“目录”。最重要的一点是，要保证参数dest是一个不存在的对象。满足以上两点才能重命名成功。这个方法和linux下的`mv`命令不是一样。
 
-但是这个方法有人做过测试，很不靠谱，参考http://www.iteye.com/topic/149328，所以拷贝文件还是用`FileUtilsc.opyFileToDirectory(File,File)`比较好。
+但是这个方法有人做过测试，很不靠谱，参考http://www.iteye.com/topic/149328， 所以拷贝文件还是用`FileUtilsc.opyFileToDirectory(File,File)`比较好。
