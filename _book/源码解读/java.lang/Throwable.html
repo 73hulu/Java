@@ -1,0 +1,2043 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Throwable · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Exception.html" />
+    
+    
+    <link rel="prev" href="ClassLoader.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../introduction.html">
+            
+                <a href="../introduction.html">
+            
+                    
+                    源码解读
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="java-lang.html">
+            
+                <a href="java-lang.html">
+            
+                    
+                    java.lang
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Object.html">
+            
+                <a href="Object.html">
+            
+                    
+                    Object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Boolean.html">
+            
+                <a href="Boolean.html">
+            
+                    
+                    Boolean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Byte.html">
+            
+                <a href="Byte.html">
+            
+                    
+                    Byte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Short.html">
+            
+                <a href="Short.html">
+            
+                    
+                    Short
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Integer.html">
+            
+                <a href="Integer.html">
+            
+                    
+                    Integer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Long.html">
+            
+                <a href="Long.html">
+            
+                    
+                    Long
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Float.html">
+            
+                <a href="Float.html">
+            
+                    
+                    Float
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.8" data-path="Double.html">
+            
+                <a href="Double.html">
+            
+                    
+                    Double
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.9" data-path="Character.html">
+            
+                <a href="Character.html">
+            
+                    
+                    Character
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.10" data-path="String.html">
+            
+                <a href="String.html">
+            
+                    
+                    String
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.11" data-path="StringBuilder.html">
+            
+                <a href="StringBuilder.html">
+            
+                    
+                    StringBuilder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.12" data-path="StringBuffer.html">
+            
+                <a href="StringBuffer.html">
+            
+                    
+                    StringBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.13" data-path="Class.html">
+            
+                <a href="Class.html">
+            
+                    
+                    Class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.14" data-path="ClassLoader.html">
+            
+                <a href="ClassLoader.html">
+            
+                    
+                    ClassLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.15" data-path="Throwable.html">
+            
+                <a href="Throwable.html">
+            
+                    
+                    Throwable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.16" data-path="Exception.html">
+            
+                <a href="Exception.html">
+            
+                    
+                    Exception
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.17" data-path="Error.html">
+            
+                <a href="Error.html">
+            
+                    
+                    Error
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.18" data-path="RuntimeException.html">
+            
+                <a href="RuntimeException.html">
+            
+                    
+                    RuntimeException
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.19" data-path="Thread.html">
+            
+                <a href="Thread.html">
+            
+                    
+                    Thread
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.20" data-path="ThreadGroup.html">
+            
+                <a href="ThreadGroup.html">
+            
+                    
+                    ThreadGroup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.21" data-path="Math.html">
+            
+                <a href="Math.html">
+            
+                    
+                    Math
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.22" data-path="java.lang.reflect/java.lang.reflect.html">
+            
+                <a href="java.lang.reflect/java.lang.reflect.html">
+            
+                    
+                    java.lang.reflect
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../java.util/java-util.html">
+            
+                <a href="../java.util/java-util.html">
+            
+                    
+                    java.util
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="../java.util/Random.md">
+            
+                <span>
+            
+                    
+                    Random
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1" data-path="../java.util/java.util.concurrent/java.util.concurrent.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.html">
+            
+                    
+                    java.util.concurrent
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1.1" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.html">
+            
+                    
+                    java.util.concurrent.locks
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1.1.1" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/Lock.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/Lock.html">
+            
+                    
+                    Lock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.1.1.2" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/Condition.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/Condition.html">
+            
+                    
+                    Condition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.1.1.3" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
+            
+                    
+                    AbstractOwnableSynchronizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.1.1.4" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                    
+                    AbstractQueuedSynchronizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.1.1.5" data-path="../java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.html">
+            
+                <a href="../java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.html">
+            
+                    
+                    ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../java.io/java-io.html">
+            
+                <a href="../java.io/java-io.html">
+            
+                    
+                    java.io
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../java.io/File.html">
+            
+                <a href="../java.io/File.html">
+            
+                    
+                    File
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../java.io/Reader.html">
+            
+                <a href="../java.io/Reader.html">
+            
+                    
+                    Reader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="../java.io/BufferedReader.html">
+            
+                <a href="../java.io/BufferedReader.html">
+            
+                    
+                    BufferedReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../java.io/InputStreamReader.html">
+            
+                <a href="../java.io/InputStreamReader.html">
+            
+                    
+                    InputStreamReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="../java.io/StringReader.html">
+            
+                <a href="../java.io/StringReader.html">
+            
+                    
+                    StringReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="../java.io/FileReader.html">
+            
+                <a href="../java.io/FileReader.html">
+            
+                    
+                    FileReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="../java.io/PipedReader.html">
+            
+                <a href="../java.io/PipedReader.html">
+            
+                    
+                    PipedReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.8" data-path="../java.io/CharArrayReader.html">
+            
+                <a href="../java.io/CharArrayReader.html">
+            
+                    
+                    CharArrayReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.9" data-path="../java.io/FilterReader.html">
+            
+                <a href="../java.io/FilterReader.html">
+            
+                    
+                    FilterReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.10" data-path="../java.io/PushbackReader.html">
+            
+                <a href="../java.io/PushbackReader.html">
+            
+                    
+                    PushbackReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.11" data-path="../java.io/Writer.html">
+            
+                <a href="../java.io/Writer.html">
+            
+                    
+                    Writer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.12" data-path="../java.io/PipedWriter.html">
+            
+                <a href="../java.io/PipedWriter.html">
+            
+                    
+                    PipedWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.13" data-path="../java.io/CharArrayWriter.html">
+            
+                <a href="../java.io/CharArrayWriter.html">
+            
+                    
+                    CharArrayWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.14" data-path="../java.io/FilterWriter.html">
+            
+                <a href="../java.io/FilterWriter.html">
+            
+                    
+                    FilterWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../java.nio/java-nio.html">
+            
+                <a href="../java.nio/java-nio.html">
+            
+                    
+                    java.nio
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../java.nio/java.Charset/java-Charset.html">
+            
+                <a href="../java.nio/java.Charset/java-Charset.html">
+            
+                    
+                    java.Charset
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1.1" data-path="../java.nio/java.Charset/java.Charset/Charset.html">
+            
+                <a href="../java.nio/java.Charset/java.Charset/Charset.html">
+            
+                    
+                    Charset
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    Java基础知识整理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../Java基础知识整理/JDK.html">
+            
+                <a href="../../Java基础知识整理/JDK.html">
+            
+                    
+                    JDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../Java基础知识整理/基本数据类型.html">
+            
+                <a href="../../Java基础知识整理/基本数据类型.html">
+            
+                    
+                    基本数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../Java基础知识整理/数值包装类型.html">
+            
+                <a href="../../Java基础知识整理/数值包装类型.html">
+            
+                    
+                    数值包装类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../Java基础知识整理/修饰符.html">
+            
+                <a href="../../Java基础知识整理/修饰符.html">
+            
+                    
+                    修饰符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../Java基础知识整理/OOP.html">
+            
+                <a href="../../Java基础知识整理/OOP.html">
+            
+                    
+                    OOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../Java基础知识整理/类、抽象类、内部类、接口.html">
+            
+                <a href="../../Java基础知识整理/类、抽象类、内部类、接口.html">
+            
+                    
+                    类、抽象类、内部类、接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../Java基础知识整理/ClassLoader加载机制.html">
+            
+                <a href="../../Java基础知识整理/ClassLoader加载机制.html">
+            
+                    
+                    ClassLoader加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" data-path="../../Java基础知识整理/Java初始化顺序.html">
+            
+                <a href="../../Java基础知识整理/Java初始化顺序.html">
+            
+                    
+                    Java初始化顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" data-path="../../Java基础知识整理/String高效编程.html">
+            
+                <a href="../../Java基础知识整理/String高效编程.html">
+            
+                    
+                    String高效编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" data-path="../../Java基础知识整理/反射机制.html">
+            
+                <a href="../../Java基础知识整理/反射机制.html">
+            
+                    
+                    反射机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.11" data-path="../../Java基础知识整理/异常处理机制.html">
+            
+                <a href="../../Java基础知识整理/异常处理机制.html">
+            
+                    
+                    异常处理机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.12" data-path="../../Java基础知识整理/多线程.html">
+            
+                <a href="../../Java基础知识整理/多线程.html">
+            
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.13" data-path="../../Java基础知识整理/线程通信和进程通信.html">
+            
+                <a href="../../Java基础知识整理/线程通信和进程通信.html">
+            
+                    
+                    线程通信和进程通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.14" data-path="../../Java基础知识整理/IO.html">
+            
+                <a href="../../Java基础知识整理/IO.html">
+            
+                    
+                    IO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.15" data-path="../../Java基础知识整理/路径.html">
+            
+                <a href="../../Java基础知识整理/路径.html">
+            
+                    
+                    路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.16" data-path="../../Java基础知识整理/编码和编码格式.html">
+            
+                <a href="../../Java基础知识整理/编码和编码格式.html">
+            
+                    
+                    编码和编码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.17" data-path="../../Java基础知识整理/国际化.html">
+            
+                <a href="../../Java基础知识整理/国际化.html">
+            
+                    
+                    国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.18" data-path="../../Java基础知识整理/Java注解.html">
+            
+                <a href="../../Java基础知识整理/Java注解.html">
+            
+                    
+                    Java注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.19" data-path="../../Java基础知识整理/集合框架.html">
+            
+                <a href="../../Java基础知识整理/集合框架.html">
+            
+                    
+                    集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.20" data-path="../../Java基础知识整理/序列化.html">
+            
+                <a href="../../Java基础知识整理/序列化.html">
+            
+                    
+                    序列化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.21" data-path="../../Java基础知识整理/Reader.html">
+            
+                <a href="../../Java基础知识整理/Reader.html">
+            
+                    
+                    Reader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.22" data-path="../../Java基础知识整理/空间初始化和增长策略.html">
+            
+                <a href="../../Java基础知识整理/空间初始化和增长策略.html">
+            
+                    
+                    空间初始化和增长策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" >
+            
+                <span>
+            
+                    
+                    Java 8 新特性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                <a href="../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                    
+                    基于-parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="../../Java 8新特性/lambda表达式.html">
+            
+                <a href="../../Java 8新特性/lambda表达式.html">
+            
+                    
+                    lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.3" data-path="../../Java 8新特性/接口中可以定义非抽象方法了.html">
+            
+                <a href="../../Java 8新特性/接口中可以定义非抽象方法了.html">
+            
+                    
+                    接口中可以定义非抽象方法了
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.4" data-path="../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                <a href="../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                    
+                    @FunctionalInterface注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.5" data-path="../../Java 8新特性/Effectively final.html">
+            
+                <a href="../../Java 8新特性/Effectively final.html">
+            
+                    
+                    Effectively final
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" >
+            
+                <span>
+            
+                    
+                    设计模式
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="../../设计模式/单例模式.html">
+            
+                <a href="../../设计模式/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" >
+            
+                <span>
+            
+                    
+                    JVM
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="../../JVM/内存区域.html">
+            
+                <a href="../../JVM/内存区域.html">
+            
+                    
+                    内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="../../JVM/内存溢出.html">
+            
+                <a href="../../JVM/内存溢出.html">
+            
+                    
+                    内存溢出
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" >
+            
+                <span>
+            
+                    
+                    错题集
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.5.1" data-path="../../错题集/错题集1.html">
+            
+                <a href="../../错题集/错题集1.html">
+            
+                    
+                    错题集1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.2" data-path="../../错题集/错题集2.html">
+            
+                <a href="../../错题集/错题集2.html">
+            
+                    
+                    错题集2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5.3" data-path="../../错题集/错题集3.html">
+            
+                <a href="../../错题集/错题集3.html">
+            
+                    
+                    错题集3
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Throwable</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="throwable">Throwable</h1>
+<p>Throwable&#x662F;Java&#x4E2D;&#x5F02;&#x5E38;&#x7C7B;&#x7684;&#x9876;&#x7EA7;&#x7236;&#x7C7B;&#xFF0C;&#x6709;&#x5FC5;&#x8981;&#x770B;&#x770B;&#x6E90;&#x7801;&#x5B9E;&#x73B0;&#x3002;&#x7C7B;&#x7684;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;
+<img src="http://ovn0i3kdg.bkt.clouddn.com/Throwable.png" alt="Throwable"></p>
+<h3 id="public-class-throwable-implements-serializable">public class Throwable implements Serializable</h3>
+<p>&#x9996;&#x5148;&#x770B;&#x5230;&#x7C7B;&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x5B9E;&#x73B0;&#x4E86;<code>Serializable</code>&#xFF0C;&#x8868;&#x793A;&#x53EF;&#x4EE5;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x901A;&#x5E38;&#x8FD8;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x5E38;&#x91CF;<code>serialVersionUID</code>&#x3002;</p>
+<h3 id="private-transient-object-backtrace">private transient Object backtrace;</h3>
+<p>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x4E0A;&#x9762;&#x6709;&#x4E00;&#x884C;&#x6CE8;&#x91CA;<code>Native code saves some indication of the stack backtrace in this slot.</code>&#xFF0C;&#x8868;&#x660E;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x5728;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x4E2D;&#x4FDD;&#x5B58;&#x4E86;&#x5806;&#x6808;&#x56DE;&#x6EAF;&#x7684;&#x4E00;&#x4E9B;&#x6307;&#x793A;&#x3002;&#x6CE8;&#x610F;&#x5230;&#x7684;&#x662F;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x88AB;&#x5173;&#x952E;&#x8BCD;<code>transient</code>&#x4FEE;&#x9970;&#xFF0C;&#x8868;&#x793A;&#x5728;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x65F6;&#x5019;&#x5E8F;&#x5217;&#x8BE5;&#x53D8;&#x91CF;&#x3002;<code>transient</code>&#x4E00;&#x822C;&#x7528;&#x6765;&#x4FEE;&#x9970;&#x4E00;&#x4E9B;&#x654F;&#x611F;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x6BD4;&#x5982;&#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;&#xFF0C;&#x5185;&#x5B58;&#x5806;&#x6808;&#x4FE1;&#x606F;&#x7B49;&#x3002;</p>
+<h3 id="private-string-detailmessage">private String detailMessage;</h3>
+<p>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x63CF;&#x8FF0;&#x6B64;&#x5F02;&#x5E38;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x5982;&#x5982;&#x679C;&#x629B;&#x51FA;<code>FileNotFoundException</code>&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x5C31;&#x4F1A;&#x662F;&#x672A;&#x627E;&#x5230;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x540D;&#x5B57;&#x3002;</p>
+<h3 id="private-throwable-cause--this">private Throwable cause = this;</h3>
+<p>&#x8868;&#x793A;&#x5F53;&#x524D;&#x5F02;&#x5E38;&#x7531;&#x90A3;&#x4E2A;Throwable&#x5F15;&#x8D77;&#xFF0C;&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x6307;&#x5411;&#x4E86;&#x81EA;&#x5DF1;&#x672C;&#x8EAB;&#x3002;&#x5982;&#x679C;&#x4E3A;null&#x8868;&#x793A;&#x6B64;&#x5F02;&#x5E38;&#x4E0D;&#x662F;&#x7531;&#x5176;&#x4ED6;Throwable&#x5F15;&#x8D77;&#x7684;&#x6216;&#x8005;&#x539F;&#x56E0;&#x672A;&#x77E5;&#xFF0C;&#x5982;&#x679C;&#x6B64;&#x5BF9;&#x8C61;&#x4E0E;&#x81EA;&#x5DF1;&#x76F8;&#x540C;,&#x8868;&#x660E;&#x6B64;&#x5F02;&#x5E38;&#x7684;&#x8D77;&#x56E0;&#x5BF9;&#x8C61;&#x8FD8;&#x6CA1;&#x6709;&#x88AB;&#x521D;&#x59CB;&#x5316;</p>
+<h3 id="private-static-final-stacktraceelement-unassignedstack--new-stacktraceelement0">private static final StackTraceElement[] UNASSIGNED_STACK = new StackTraceElement[0];</h3>
+<p>&#x5BF9;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x89E3;&#x91CA;&#x662F;:&#x7A7A;&#x5806;&#x6808;&#x7684;&#x5171;&#x4EAB;&#x503C;&#x3002;&#x800C;&#x5BF9;&#x4E8E;<code>StackTraceElement</code>&#x8FD9;&#x4E2A;&#x7C7B;&#xFF0C;&#x5176;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/StackTraceElement.png" alt="StackTraceElement"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5176;&#x5B9A;&#x4E49;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF1A;<code>declaringClass</code>&#x3001;<code>methodName</code>&#x3001;<code>fileName</code>&#x3001;<code>lineNumber</code>&#x5171;&#x540C;&#x5B9A;&#x4E49;&#x5806;&#x6808;&#x8F68;&#x8FF9;&#x3002;</p>
+<h3 id="private-stacktraceelement-stacktrace--unassignedstack">private StackTraceElement[] stackTrace = UNASSIGNED_STACK;</h3>
+<p>&#x8FD9;&#x662F;&#x771F;&#x6B63;&#x4FDD;&#x5B58;&#x6808;&#x8F68;&#x8FF9;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x6210;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;<code>UNASSIGNED_STACK</code>&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B9E;&#x4F8B;<code>getStackTrace()</code>&#x83B7;&#x53D6;&#x8BE5;&#x6570;&#x7EC4;&#xFF0C;&#x4F7F;&#x7528;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;<code>etStackTrace</code>&#x6216;&#x8005;<code>fillInStackTrace</code>&#x6765;&#x586B;&#x5145;&#x6570;&#x7EC4;&#x3002;</p>
+<h3 id="&#x79C1;&#x6709;&#x9759;&#x6001;&#x5185;&#x90E8;&#x7C7B;sentinelholder">&#x79C1;&#x6709;&#x9759;&#x6001;&#x5185;&#x90E8;&#x7C7B;SentinelHolder</h3>
+<p><code>Throwable</code>&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-Java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SentinelHolder</span> </span>{
+    <span class="hljs-comment">/**
+     * {<span class="hljs-doctag">@linkplain</span> #setStackTrace(StackTraceElement[]) Setting the
+     * stack trace} to a one-element array containing this sentinel
+     * value indicates future attempts to set the stack trace will be
+     * ignored.  The sentinal is equal to the result of calling:&lt;br&gt;
+     * {<span class="hljs-doctag">@code</span> new StackTraceElement(&quot;&quot;, &quot;&quot;, null, Integer.MIN_VALUE)}
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> StackTraceElement STACK_TRACE_ELEMENT_SENTINEL =
+        <span class="hljs-keyword">new</span> StackTraceElement(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-keyword">null</span>, Integer.MIN_VALUE);
+
+    <span class="hljs-comment">/**
+     * Sentinel value used in the serial form to indicate an immutable
+     * stack trace.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> StackTraceElement[] STACK_TRACE_SENTINEL =
+        <span class="hljs-keyword">new</span> StackTraceElement[] {STACK_TRACE_ELEMENT_SENTINEL};
+}
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x7C7B;&#x6682;&#x65F6;&#x8FD8;&#x6CA1;&#x6709;&#x641E;&#x6E05;&#x695A;&#x662F;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#x3002;</p>
+<h3 id="private-static-final-list-suppressedsentinel--collectionsunmodifiablelistnew-arraylist0">private static final List<throwable> SUPPRESSED_SENTINEL = Collections.unmodifiableList(new ArrayList<throwable>(0));</throwable></throwable></h3>
+<h3 id="private-list-suppressedexceptions--suppressedsentinel">private List<throwable> suppressedExceptions = SUPPRESSED_SENTINEL;</throwable></h3>
+<p>&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x662F;&#x4ECE;JDK1.7&#x5F00;&#x59CB;&#x52A0;&#x5165;&#x7684;&#x3002;</p>
+<h3 id="&#x4E00;&#x4E9B;&#x9759;&#x6001;&#x5E38;&#x91CF;">&#x4E00;&#x4E9B;&#x9759;&#x6001;&#x5E38;&#x91CF;</h3>
+<pre><code class="lang-java"><span class="hljs-comment">/** Message for trying to suppress a null exception. */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String NULL_CAUSE_MESSAGE = <span class="hljs-string">&quot;Cannot suppress a null exception.&quot;</span>;
+
+<span class="hljs-comment">/** Message for trying to suppress oneself. */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SELF_SUPPRESSION_MESSAGE = <span class="hljs-string">&quot;Self-suppression not permitted&quot;</span>;
+
+<span class="hljs-comment">/** Caption  for labeling causative exception stack traces */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String CAUSE_CAPTION = <span class="hljs-string">&quot;Caused by: &quot;</span>;
+
+<span class="hljs-comment">/** Caption for labeling suppressed exception stack traces */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SUPPRESSED_CAPTION = <span class="hljs-string">&quot;Suppressed: &quot;</span>;
+</code></pre>
+<h3 id="&#x6784;&#x9020;&#x51FD;&#x6570;">&#x6784;&#x9020;&#x51FD;&#x6570;</h3>
+<p><code>Throwable</code>&#x6709;&#x56DB;&#x79CD;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;</p>
+<h4 id="public-throwable">public Throwable(){..}</h4>
+<p>&#x65E0;&#x53C2;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Throwable</span><span class="hljs-params">()</span> </span>{
+    fillInStackTrace();
+}
+</code></pre>
+<p>&#x53D1;&#x73B0;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x4E86;&#x6210;&#x5458;&#x65B9;&#x6CD5;<code>fillInStackTrace</code>&#xFF0C;&#x5176;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Throwable <span class="hljs-title">fillInStackTrace</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (stackTrace != <span class="hljs-keyword">null</span> ||
+        backtrace != <span class="hljs-keyword">null</span> <span class="hljs-comment">/* Out of protocol state */</span> ) {
+        fillInStackTrace(<span class="hljs-number">0</span>);
+        stackTrace = UNASSIGNED_STACK;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>&#x65B9;&#x6CD5;&#x7528;<code>synchronized</code>&#x4FEE;&#x9970;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x7684;&#x3002;&#x65B9;&#x6CD5;&#x4E2D;&#x9996;&#x5148;&#x5224;&#x65AD;stackTrace&#x548C;backtrace&#x5176;&#x4E2D;&#x6709;&#x6CA1;&#x6709;&#x4E0D;&#x662F;null&#x7684;&#xFF0C;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x975E;null&#x8868;&#x660E;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x8BF4;&#x660E;&#x6808;&#x4E2D;&#x5DF2;&#x7ECF;&#x6709;&#x5185;&#x5BB9;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x5177;&#x6709;&#x53C2;&#x6570;&#x7684;<code>fillInStackTrace</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">native</span> Throwable <span class="hljs-title">fillInStackTrace</span><span class="hljs-params">(<span class="hljs-keyword">int</span> dummy)</span></span>;
+</code></pre>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#xFF0C;dummy&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x610F;&#x601D;&#x76EE;&#x524D;&#x8FD8;&#x4E0D;&#x4E86;&#x89E3;&#x3002;&#x603B;&#x4E4B;&#x662F;&#x8C03;&#x7528;&#x4E86;&#x5427;&#xFF0C;&#x7136;&#x540E;&#x7ED9;stackTrace&#x8D4B;&#x503C;&#xFF0C;&#x6700;&#x540E;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8C03;&#x7528;&#x8005;&#x90A3;&#x91CC;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528;&#x5230;&#x8FD9;&#x4E2A;&#x8FD4;&#x56DE;&#x503C;&#x3002;</p>
+<h4 id="public-throwablestring-message">public Throwable(String message){...}</h4>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Throwable</span><span class="hljs-params">(String message)</span> </span>{
+    fillInStackTrace();
+    detailMessage = message;
+}
+</code></pre>
+<p>&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x7ED9;<code>detailMessage</code>&#x8D4B;&#x503C;&#x7684;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h4 id="public-throwablestring-message-throwable-cause">public Throwable(String message, Throwable cause){...}</h4>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Throwable</span><span class="hljs-params">(String message, Throwable cause)</span> </span>{
+    fillInStackTrace();
+    detailMessage = message;
+    <span class="hljs-keyword">this</span>.cause = cause;
+}
+</code></pre>
+<h4 id="public-throwablethrowable-cause-">public Throwable(Throwable cause) {...</h4>
+<p>&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#x81EA;&#x5DF1;&#x770B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Throwable</span><span class="hljs-params">(Throwable cause)</span> </span>{
+    fillInStackTrace();
+    detailMessage = (cause==<span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : cause.toString());
+    <span class="hljs-keyword">this</span>.cause = cause;
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;<code>toString</code>&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+    String s = getClass().getName();
+    String message = getLocalizedMessage();
+    <span class="hljs-keyword">return</span> (message != <span class="hljs-keyword">null</span>) ? (s + <span class="hljs-string">&quot;: &quot;</span> + message) : s;
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;<code>getLocalizedMessage</code>&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getLocalizedMessage</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> getMessage();
+}
+</code></pre>
+<p>&#x800C;<code>getMessage</code>&#x5B9E;&#x9645;&#x4E0A;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x6210;&#x5458;&#x53D8;&#x91CF;<code>detailMessage</code>&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMessage</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> detailMessage;
+}
+</code></pre>
+<h4 id="protected-throwablestring-message-throwable-cause-boolean-enablesuppression-boolean-writablestacktrace-">protected Throwable(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {...}</h4>
+<p>JDK 1.7 &#x4E2D;&#x5F15;&#x5165;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">Throwable</span><span class="hljs-params">(String message, Throwable cause,
+                       <span class="hljs-keyword">boolean</span> enableSuppression,
+                       <span class="hljs-keyword">boolean</span> writableStackTrace)</span> </span>{
+     <span class="hljs-keyword">if</span> (writableStackTrace) {
+         fillInStackTrace();
+     } <span class="hljs-keyword">else</span> {
+         stackTrace = <span class="hljs-keyword">null</span>;
+     }
+     detailMessage = message;
+     <span class="hljs-keyword">this</span>.cause = cause;
+     <span class="hljs-keyword">if</span> (!enableSuppression)
+         suppressedExceptions = <span class="hljs-keyword">null</span>;
+ }
+</code></pre>
+<h3 id="public-synchronized-throwable-getcause-">public synchronized Throwable getCause() {...}</h3>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x662F;&#x4E00;&#x4E2A;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x6765;&#x83B7;&#x53D6;&#x9020;&#x6210;<code>Throwable</code>&#x7684;cause&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Throwable <span class="hljs-title">getCause</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> (cause==<span class="hljs-keyword">this</span> ? <span class="hljs-keyword">null</span> : cause);
+}
+</code></pre>
+<p>&#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE;&#x9020;&#x6210;<code>Throwable</code>&#x7684;cause&#x6216;&#x8005;null&#xFF0C;&#x540E;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x539F;&#x56E0;&#x672A;&#x77E5;&#x6216;&#x8005;&#x4E0D;&#x5B58;&#x5728;&#x3002;cause&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x88AB;&#x8D4B;&#x503C;&#x5462;&#xFF1F;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;&#x662F;&#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x8D4B;&#x503C;&#x4E3A;this&#xFF0C;&#x5373;&#x6307;&#x5411;&#x81EA;&#x5DF1;&#x672C;&#x8EAB;&#x3002;&#x540E;&#x9762;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x6216;&#x8005;<code>initCause()</code>&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;<code>cause</code>&#x4ECD;&#x65E7;&#x7B49;&#x4E8E;&#x81EA;&#x5DF1;&#xFF0C;&#x8BF4;&#x660E;&#x53D8;&#x91CF;&#x8FD9;&#x4E2A;&#x5F15;&#x8D77;&#x5F02;&#x5E38;&#x7684;&#x5BF9;&#x8C61;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x8FD4;&#x56DE;null&#x3002;</p>
+<h3 id="public-synchronized-throwable-initcausethrowable-cause">public synchronized Throwable initCause(Throwable cause){...}</h3>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x4E0A;&#x9762;<code>getCause</code>&#x65B9;&#x6CD5;&#x4E2D;&#x63D0;&#x5230;&#x7684;<code>initCause</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> Throwable <span class="hljs-title">initCause</span><span class="hljs-params">(Throwable cause)</span> </span>{
+   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.cause != <span class="hljs-keyword">this</span>)
+       <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">&quot;Can&apos;t overwrite cause with &quot;</span> +
+                                       Objects.toString(cause, <span class="hljs-string">&quot;a null&quot;</span>), <span class="hljs-keyword">this</span>);
+   <span class="hljs-keyword">if</span> (cause == <span class="hljs-keyword">this</span>)
+       <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Self-causation not permitted&quot;</span>, <span class="hljs-keyword">this</span>);
+   <span class="hljs-keyword">this</span>.cause = cause;
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>&#x63D0;&#x5230;&#x5F53;&#x4E00;&#x4E2A;<code>Throwable</code>&#x5BF9;&#x8C61;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;cause&#x662F;&#x88AB;&#x8D4B;&#x503C;&#x4E3A;this&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x540E;&#x9762;&#x53EA;&#x80FD;&#x518D;&#x88AB;&#x8D4B;&#x503C;&#x4E00;&#x6B21;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5C31;&#x89E3;&#x91CA;&#x4E3A;&#x4EC0;&#x4E48;&#x53EA;&#x80FD;&#x8D4B;&#x503C;&#x4E00;&#x6B21;&#xFF1A;<code>this.cause != this</code>&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x6B64;&#x65F6;&#x8BF4;&#x660E;cause&#x5DF2;&#x7ECF;&#x88AB;&#x8D4B;&#x503C;&#x8FC7;&#x4E86;&#xFF0C;&#x5FC5;&#x80FD;&#x518D;&#x8D4B;&#x503C;&#x8FDB;&#x884C;&#x8986;&#x76D6;&#x3002;&#x5E76;&#x4E14;&#x8FD9;&#x6B21;&#x8D4B;&#x503C;&#x4E0D;&#x80FD;&#x518D;&#x628A;&#x81EA;&#x8EAB;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6700;&#x591A;&#x53EA;&#x80FD;&#x88AB;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x901A;&#x5E38;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x8C03;&#x7528;&#x7684;&#x662F;<code>Throwable(Throwable)</code>&#x6216;&#x8005;<code>Throwable(String,Throwable)</code>&#x8FD9;&#x79CD;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x7531;&#x4E8E;&#x5728;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x5DF2;&#x7ECF;&#x5BF9;cause&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x5230;&#x5E95;&#x600E;&#x4E48;&#x7528;&#x5462;&#xFF1F;&#x53EF;&#x4EE5;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;
+&#x9996;&#x5148;&#x5B9A;&#x4E49;&#x4E09;&#x4E2A;&#x5F02;&#x5E38;&#x7C7B;</p>
+<pre><code class="lang-java">
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionA</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ExceptionA</span><span class="hljs-params">(String str)</span> </span>{
+        <span class="hljs-keyword">super</span>();
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionB</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ExceptionA</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ExceptionB</span><span class="hljs-params">(String str)</span> </span>{
+        <span class="hljs-keyword">super</span>(str);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionC</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ExceptionA</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ExceptionC</span><span class="hljs-params">(String str)</span> </span>{
+        <span class="hljs-keyword">super</span>(str);
+    }
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NeverCaught</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExceptionB</span>{
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ExceptionB(<span class="hljs-string">&quot;exception b&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExceptionC </span>{
+        <span class="hljs-keyword">try</span> {
+            f();
+        } <span class="hljs-keyword">catch</span> (ExceptionB e) {
+            ExceptionC c = <span class="hljs-keyword">new</span> ExceptionC(<span class="hljs-string">&quot;exception a&quot;</span>);
+            <span class="hljs-keyword">throw</span> c;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+            <span class="hljs-keyword">try</span> {
+                g();
+            } <span class="hljs-keyword">catch</span> (ExceptionC e) {
+                e.printStackTrace();
+            }
+    }
+
+}
+</code></pre>
+<p>&#x7ED3;&#x679C;&#x662F;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+exception.ExceptionC
+at exception.NeverCaught.g(NeverCaught.java:12)
+at exception.NeverCaught.main(NeverCaught.java:19)
+*/</span>
+</code></pre>
+<p>&#x53D1;&#x73B0;&#x53EA;&#x6253;&#x5370;&#x4E86;<code>ExceptionC</code>&#x800C;&#x6CA1;&#x6709;&#x6253;&#x5370;&#x51FA;<code>ExceptionB</code>&#x5462;&#xFF1F;&#x539F;&#x56E0;&#x662F;&#x5728;&#x5B9E;&#x4F8B;&#x5316;<code>ExceptionC</code>&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x662F;<code>Exceotion(String)</code>&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x53EB;&#x505A;&#x201C;&#x5F02;&#x5E38;&#x94FE;&#x201D;&#x4E22;&#x5931;&#xFF0C;&#x5C11;&#x4E86;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x6392;&#x9519;&#x8FC7;&#x7A0B;&#x4E2D;&#x975E;&#x5E38;&#x4E0D;&#x5229;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x7528;&#x5230;&#x4E86;<code>initCause</code>&#x65B9;&#x6CD5;&#xFF1A;&#x4FDD;&#x5B58;&#x5F02;&#x5E38;&#x4FE1;&#x606F;&#xFF0C;&#x5728;&#x629B;&#x51FA;&#x53E6;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x7684;&#x540C;&#x65F6;&#x4E0D;&#x4E22;&#x5931;&#x539F;&#x6765;&#x7684;&#x5F02;&#x5E38;&#xFF1A;</p>
+<pre><code class="lang-java">
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NeverCaught</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExceptionB</span>{
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ExceptionB(<span class="hljs-string">&quot;exception b&quot;</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ExceptionC </span>{
+        <span class="hljs-keyword">try</span> {
+            f();
+        } <span class="hljs-keyword">catch</span> (ExceptionB e) {
+            ExceptionC c = <span class="hljs-keyword">new</span> ExceptionC(<span class="hljs-string">&quot;exception a&quot;</span>);
+            <span class="hljs-comment">//&#x5F02;&#x5E38;&#x94FE;</span>
+            c.initCause(e);
+            <span class="hljs-keyword">throw</span> c;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+            <span class="hljs-keyword">try</span> {
+                g();
+            } <span class="hljs-keyword">catch</span> (ExceptionC e) {
+                e.printStackTrace();
+            }
+    }
+
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;<code>c.initCause</code>&#x4FDD;&#x6301;&#x4E86;&#x5F02;&#x5E38;&#x94FE;&#x7684;&#x5B8C;&#x6574;&#x6027;&#xFF0C;&#x5F53;&#x7136;&#x5176;&#x5B9E;&#x53EF;&#x4EE5;&#x91C7;&#x53D6;<code>ExceptionC c = new ExceptionC(&quot;exception a&quot;, e)</code>&#x8FD9;&#x79CD;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x6765;&#x4F7F;&#x5F02;&#x5E38;&#x94FE;&#x5B8C;&#x6574;&#x7684;&#x3002;&#x6CE8;&#x610F; <code>Throwable</code>&#x4E2D;cause&#x53EA;&#x80FD;&#x88AB;&#x8D4B;&#x503C;&#x4E00;&#x6B21;&#x3002;</p>
+<h3 id="printstacktrace&#x65B9;&#x6CD5;">printStackTrace&#x65B9;&#x6CD5;</h3>
+<p>&#x5B9A;&#x4E49;&#x4E86;&#x4E09;&#x79CD;printStackTrace&#x65B9;&#x6CD5;&#xFF0C;&#x7B2C;&#x4E00;&#x79CD;&#x65E0;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printStackTrace</span><span class="hljs-params">()</span> </span>{
+    printStackTrace(System.err);
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x8C03;&#x7528;&#x4E86;&#x4EE5;<code>PrintStream</code>&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x7684;<code>printStackTrace</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printStackTrace</span><span class="hljs-params">(PrintStream s)</span> </span>{
+    printStackTrace(<span class="hljs-keyword">new</span> WrappedPrintStream(s));
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x8C03;&#x7528;&#x4E86;&#x4EE5;<code>WrappedPrintStream</code>&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x7684;<code>printStackTrace</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printStackTrace</span><span class="hljs-params">(PrintStreamOrWriter s)</span> </span>{
+    <span class="hljs-comment">// Guard against malicious overrides of Throwable.equals by</span>
+    <span class="hljs-comment">// using a Set with identity equality semantics.</span>
+    Set&lt;Throwable&gt; dejaVu =
+        Collections.newSetFromMap(<span class="hljs-keyword">new</span> IdentityHashMap&lt;Throwable, Boolean&gt;());
+    dejaVu.add(<span class="hljs-keyword">this</span>);
+
+    <span class="hljs-keyword">synchronized</span> (s.lock()) {
+        <span class="hljs-comment">// Print our stack trace</span>
+        s.println(<span class="hljs-keyword">this</span>);
+        StackTraceElement[] trace = getOurStackTrace();
+        <span class="hljs-keyword">for</span> (StackTraceElement traceElement : trace)
+            s.println(<span class="hljs-string">&quot;\tat &quot;</span> + traceElement);
+
+        <span class="hljs-comment">// Print suppressed exceptions, if any</span>
+        <span class="hljs-keyword">for</span> (Throwable se : getSuppressed())
+            se.printEnclosedStackTrace(s, trace, SUPPRESSED_CAPTION, <span class="hljs-string">&quot;\t&quot;</span>, dejaVu);
+
+        <span class="hljs-comment">// Print cause, if any</span>
+        Throwable ourCause = getCause();
+        <span class="hljs-keyword">if</span> (ourCause != <span class="hljs-keyword">null</span>)
+            ourCause.printEnclosedStackTrace(s, trace, CAUSE_CAPTION, <span class="hljs-string">&quot;&quot;</span>, dejaVu);
+    }
+}
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5230;<code>System.err</code>&#xFF0C;&#x9996;&#x5148;&#x7B2C;&#x4E00;&#x884C;&#x8C03;&#x7528;<code>toString</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8F93;&#x51FA;&#x5F02;&#x5E38;&#x7684;&#x7C7B;&#x540D;&#x548C;message(&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;)&#x3002;&#x63A5;&#x7740;&#x8C03;&#x7528;<code>getOurStackTrace</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7684;&#xFF1F;</p>
+<pre><code class="lang-java">
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> StackTraceElement[] getOurStackTrace() {
+    <span class="hljs-comment">// Initialize stack trace field with information from</span>
+    <span class="hljs-comment">// backtrace if this is the first call to this method</span>
+    <span class="hljs-keyword">if</span> (stackTrace == UNASSIGNED_STACK ||
+        (stackTrace == <span class="hljs-keyword">null</span> &amp;&amp; backtrace != <span class="hljs-keyword">null</span>) <span class="hljs-comment">/* Out of protocol state */</span>) {
+        <span class="hljs-keyword">int</span> depth = getStackTraceDepth();
+        stackTrace = <span class="hljs-keyword">new</span> StackTraceElement[depth];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i &lt; depth; i++)
+            stackTrace[i] = getStackTraceElement(i);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stackTrace == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span> UNASSIGNED_STACK;
+    }
+    <span class="hljs-keyword">return</span> stackTrace;
+}
+</code></pre>
+<p>&#x5176;&#x4E2D;<code>getStackTraceDepth</code>&#x65B9;&#x6CD5;&#x662F;&#x4E00;&#x4E2A;native&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5B9E;&#x9645;&#x4E0A;&#x5B83;&#x662F;&#x62F7;&#x8D1D;&#x4E86;&#x4E00;&#x4EFD;<code>StackTraceElement</code>&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x4E4B;&#x540E;&#x5FAA;&#x73AF;&#x6253;&#x5370;&#x51FA;&#x5185;&#x5BB9;&#x7136;&#x540E;&#x8C03;&#x7528;&#x4E86;<code>getSuppressed</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">synchronized</span> Throwable[] getSuppressed() {
+    <span class="hljs-keyword">if</span> (suppressedExceptions == SUPPRESSED_SENTINEL ||
+        suppressedExceptions == <span class="hljs-keyword">null</span>)
+        <span class="hljs-keyword">return</span> EMPTY_THROWABLE_ARRAY;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> suppressedExceptions.toArray(EMPTY_THROWABLE_ARRAY);
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x5C06;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x6240;&#x6709;&#x88AB;&#x6291;&#x5236;&#x7684;&#x5F02;&#x5E38;&#x6570;&#x7EC4;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x88AB;&#x4E00;&#x76F4;&#x7684;&#x5F02;&#x5E38;&#x6216;&#x8005;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x672C;&#x8EAB;&#x7531;<code>Throwable(String, Throwable, boolean, boolean)</code>&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#xFF0C;&#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;false&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x88AB;&#x6291;&#x5236;&#x7684;&#x5F02;&#x5E38;&#x4E0D;&#x663E;&#x793A;&#x51FA;&#x6765;&#xFF0C;&#x6B64;&#x65F6;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x7A7A;&#x6570;&#x7EC4;&#x3002;</p>
+<p>&#x8FD9;&#x4E4B;&#x540E;&#x7684;<code>printEnclosedStackTrace</code>&#x53C8;&#x662F;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#xFF0C;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printEnclosedStackTrace</span><span class="hljs-params">(PrintStreamOrWriter s,
+                                        StackTraceElement[] enclosingTrace,
+                                        String caption,
+                                        String prefix,
+                                        Set&lt;Throwable&gt; dejaVu)</span> </span>{
+   <span class="hljs-keyword">assert</span> Thread.holdsLock(s.lock());
+   <span class="hljs-keyword">if</span> (dejaVu.contains(<span class="hljs-keyword">this</span>)) {
+       s.println(<span class="hljs-string">&quot;\t[CIRCULAR REFERENCE:&quot;</span> + <span class="hljs-keyword">this</span> + <span class="hljs-string">&quot;]&quot;</span>);
+   } <span class="hljs-keyword">else</span> {
+       dejaVu.add(<span class="hljs-keyword">this</span>);
+       <span class="hljs-comment">// Compute number of frames in common between this and enclosing trace</span>
+       StackTraceElement[] trace = getOurStackTrace();
+       <span class="hljs-keyword">int</span> m = trace.length - <span class="hljs-number">1</span>;
+       <span class="hljs-keyword">int</span> n = enclosingTrace.length - <span class="hljs-number">1</span>;
+       <span class="hljs-keyword">while</span> (m &gt;= <span class="hljs-number">0</span> &amp;&amp; n &gt;=<span class="hljs-number">0</span> &amp;&amp; trace[m].equals(enclosingTrace[n])) {
+           m--; n--;
+       }
+       <span class="hljs-keyword">int</span> framesInCommon = trace.length - <span class="hljs-number">1</span> - m;
+
+       <span class="hljs-comment">// Print our stack trace</span>
+       s.println(prefix + caption + <span class="hljs-keyword">this</span>);
+       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= m; i++)
+           s.println(prefix + <span class="hljs-string">&quot;\tat &quot;</span> + trace[i]);
+       <span class="hljs-keyword">if</span> (framesInCommon != <span class="hljs-number">0</span>)
+           s.println(prefix + <span class="hljs-string">&quot;\t... &quot;</span> + framesInCommon + <span class="hljs-string">&quot; more&quot;</span>);
+
+       <span class="hljs-comment">// Print suppressed exceptions, if any</span>
+       <span class="hljs-keyword">for</span> (Throwable se : getSuppressed())
+           se.printEnclosedStackTrace(s, trace, SUPPRESSED_CAPTION,
+                                      prefix +<span class="hljs-string">&quot;\t&quot;</span>, dejaVu);
+
+       <span class="hljs-comment">// Print cause, if any</span>
+       Throwable ourCause = getCause();
+       <span class="hljs-keyword">if</span> (ourCause != <span class="hljs-keyword">null</span>)
+           ourCause.printEnclosedStackTrace(s, trace, CAUSE_CAPTION, prefix, dejaVu);
+   }
+}
+</code></pre>
+<p>&#x8FC7;&#x7A0B;&#x597D;&#x590D;&#x6742;&#x770B;&#x4E0D;&#x61C2;&#xFF0C;&#x53CD;&#x6B63;&#x5C31;&#x662F;&#x6253;&#x5370;&#x4E86;&#x5457;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x6253;&#x5370;cause&#xFF0C;&#x540C;&#x6837;&#x662F;&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E0D;&#x770B;&#x4E86;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9664;&#x4E86;&#x7B2C;&#x4E00;&#x884C;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x6253;&#x5370;&#x5F62;&#x5F0F;&#x662F;&#x4F9D;&#x636E;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E0B;&#x9762;&#x6709;&#x51E0;&#x79CD;&#x5178;&#x578B;&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<pre><code class="lang-Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+       crunch(<span class="hljs-keyword">null</span>);
+    }
+   <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">crunch</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] a)</span> </span>{
+      mash(a);
+   }
+   <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mash</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] b)</span> </span>{
+      System.out.println(b[<span class="hljs-number">0</span>]);
+   }
+}
+</code></pre>
+<p>&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x6253;&#x5370;&#x51FA;&#x4EE5;&#x540E;&#x7684;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-Java">java.lang.NullPointerException
+      at MyClass.mash(MyClass.java:<span class="hljs-number">9</span>)
+      at MyClass.crunch(MyClass.java:<span class="hljs-number">6</span>)
+      at MyClass.main(MyClass.java:<span class="hljs-number">3</span>)
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x91CC;&#x629B;&#x51FA;&#x4E86;&#x7A7A;&#x6307;&#x9488;&#x5F02;&#x5E38;&#xFF0C;&#x540E;&#x9762;&#x6253;&#x5370;&#x4E86;<code>StackTraceElement</code>&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x518D;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Junk</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span> </span>{
+          <span class="hljs-keyword">try</span> {
+                    a();
+              } <span class="hljs-keyword">catch</span>(HighLevelException e) {
+                  e.printStackTrace();
+              }
+          }
+         <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">a</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> HighLevelException </span>{
+            <span class="hljs-keyword">try</span> {
+                b();
+            } <span class="hljs-keyword">catch</span>(MidLevelException e) {
+                 <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HighLevelException(e);
+             }
+         }
+         <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">b</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> MidLevelException </span>{
+             c();
+         }
+         <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">c</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> MidLevelException </span>{
+             <span class="hljs-keyword">try</span> {
+                 d();
+             } <span class="hljs-keyword">catch</span>(LowLevelException e) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MidLevelException(e);
+             }
+         }
+         <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">d</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> LowLevelException </span>{
+            e();
+         }
+         <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">e</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> LowLevelException </span>{
+             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> LowLevelException();
+         }
+     }
+
+     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HighLevelException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>{
+         HighLevelException(Throwable cause) { <span class="hljs-keyword">super</span>(cause); }
+     }
+
+     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MidLevelException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>{
+         MidLevelException(Throwable cause)  { <span class="hljs-keyword">super</span>(cause); }
+     }
+
+     <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LowLevelException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>{
+     }
+</code></pre>
+<p>&#x6267;&#x884C;main&#x65B9;&#x6CD5;&#x5C06;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code class="lang-Java">
+HighLevelException: MidLevelException: LowLevelException
+      at Junk.a(Junk.java:<span class="hljs-number">13</span>)
+      at Junk.main(Junk.java:<span class="hljs-number">4</span>)
+Caused by: MidLevelException: LowLevelException
+      at Junk.c(Junk.java:<span class="hljs-number">23</span>)
+      at Junk.b(Junk.java:<span class="hljs-number">17</span>)
+      at Junk.a(Junk.java:<span class="hljs-number">11</span>)
+  ... <span class="hljs-number">1</span> more
+Caused by: LowLevelException
+      at Junk.e(Junk.java:<span class="hljs-number">30</span>)
+      at Junk.d(Junk.java:<span class="hljs-number">27</span>)
+      at Junk.c(Junk.java:<span class="hljs-number">21</span>)
+  ... <span class="hljs-number">3</span> more
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;main&#x65B9;&#x6CD5;&#x6700;&#x7EC8;&#x4F1A;&#x6267;&#x884C;&#x5230;<code>e()</code>&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x629B;&#x51FA;<code>LowLevelException</code>&#x5F02;&#x5E38;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x8C03;&#x7528;&#x7684;&#x662F;&#x7236;&#x7C7B;&#x65E0;&#x53C2;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5176;&#x521B;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#x6CA1;&#x6709;&#x7ED9;cause&#x8D4B;&#x503C;&#x3002;&#x800C;&#x5411;&#x4E0A;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x90FD;&#x8C03;&#x7528;&#x7684;&#x662F;&#x4EE5;cause&#x4E3A;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x5C06;&#x4E0A;&#x4E00;&#x4E2A;&#x4EE5;&#x4E0A;&#x5F53;&#x505A;cause,&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>MidLevelException</code>&#x548C;<code>HighLevelException</code>&#x7684;<code>toString</code>&#x65B9;&#x6CD5;&#x4E0D;&#x5355;&#x5355;&#x6253;&#x5370;&#x4E86;&#x7C7B;&#x540D;&#xFF0C;&#x8FD8;&#x6709;<code>getMessage</code>&#x7684;&#x503C;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x5305;&#x542B;<code>...</code>&#x7684;&#x884C;&#xFF0C;&#x8FD9;&#x4E9B;&#x8868;&#x793A;&#x5806;&#x6808;&#x8DDF;&#x8E2A;&#x7684;&#x5176;&#x4F59;&#x90E8;&#x5206;&#x3002;&#x5F02;&#x5E38;&#x5339;&#x914D;&#x662F;&#x4ECE;&#x5E95;&#x90E8;&#x6307;&#x5B9A;&#x7684;&#x5E27;&#x6570;</p>
+</blockquote>
+<p>&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x6253;&#x5370;&#x7684;&#x662F;cause&#x6570;&#x7EC4;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x201C;&#x88AB;&#x6291;&#x5236;&#x7684;&#x5F02;&#x5E38;&#x201D;&#x662F;&#x4EC0;&#x4E48;&#x610F;&#x601D;&#x5462;&#xFF1F;<code>suppressedExceptions</code>&#x662F;Java 7&#x7684;&#x65B0;&#x7279;&#x6027;&#xFF0C;&#x5728;<code>try-with-resources</code>&#x8BED;&#x6CD5;&#x4E2D;&#x8C03;&#x7528;<code>close()</code>&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x6B64;&#x65F6;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#xFF0C;&#x90A3;&#x4E48;&#x503C;&#x4E4B;&#x524D;&#x51FA;&#x73B0;&#x7684;&#x5F02;&#x5E38;&#x88AB;&#x53EB;&#x505A;<code>Suppressed Exceptions</code>&#x3002;<code>Throwable</code>&#x7C7B;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;<code>addSuppressed</code>&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x5C06;&#x5B83;&#x4FDD;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSuppressed</span><span class="hljs-params">(Throwable exception)</span> </span>{
+      <span class="hljs-keyword">if</span> (exception == <span class="hljs-keyword">this</span>)
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(SELF_SUPPRESSION_MESSAGE, exception);
+
+      <span class="hljs-keyword">if</span> (exception == <span class="hljs-keyword">null</span>)
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(NULL_CAUSE_MESSAGE);
+
+      <span class="hljs-keyword">if</span> (suppressedExceptions == <span class="hljs-keyword">null</span>) <span class="hljs-comment">// Suppressed exceptions not recorded</span>
+          <span class="hljs-keyword">return</span>;
+
+      <span class="hljs-keyword">if</span> (suppressedExceptions == SUPPRESSED_SENTINEL)
+          suppressedExceptions = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-number">1</span>);
+
+      suppressedExceptions.add(exception);
+}
+</code></pre>
+<p>&#x5F53;&#x7528;&#x6237;&#x6355;&#x6349;&#x5230;<code>close</code>&#x91CC;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8C03;&#x7528;<code>Throwable.getSuppressed</code>&#x51FD;&#x6570;&#x6765;&#x53D6;&#x51FA;close&#x4E4B;&#x524D;&#x7684;&#x5F02;&#x5E38;&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">synchronized</span> Throwable[] getSuppressed() {
+    <span class="hljs-keyword">if</span> (suppressedExceptions == SUPPRESSED_SENTINEL ||
+        suppressedExceptions == <span class="hljs-keyword">null</span>)
+        <span class="hljs-keyword">return</span> EMPTY_THROWABLE_ARRAY;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> suppressedExceptions.toArray(EMPTY_THROWABLE_ARRAY);
+}
+</code></pre>
+<p>&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x4F8B;&#x5B50;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">
+Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.Exception: Something happened
+       at Foo.bar(Foo.java:<span class="hljs-number">10</span>)
+       at Foo.main(Foo.java:<span class="hljs-number">5</span>)
+       Suppressed: Resource$CloseFailException: Resource ID = <span class="hljs-number">0</span>
+               at Resource.close(Resource.java:<span class="hljs-number">26</span>)
+               at Foo.bar(Foo.java:<span class="hljs-number">9</span>)
+               ... <span class="hljs-number">1</span> more
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#x517C;&#x6709;&#x4E00;&#x4E2A;<code>cause</code>&#x548C;&#x591A;&#x4E2A;<code>suppressedExceptions</code>&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x7684;&#x6253;&#x5370;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-java">Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.Exception: Main block
+       at Foo3.main(Foo3.java:<span class="hljs-number">7</span>)
+       Suppressed: Resource$CloseFailException: Resource ID = <span class="hljs-number">2</span>
+               at Resource.close(Resource.java:<span class="hljs-number">26</span>)
+               at Foo3.main(Foo3.java:<span class="hljs-number">5</span>)
+       Suppressed: Resource$CloseFailException: Resource ID = <span class="hljs-number">1</span>
+               at Resource.close(Resource.java:<span class="hljs-number">26</span>)
+               at Foo3.main(Foo3.java:<span class="hljs-number">5</span>)
+      Caused by: java.lang.Exception: I did it
+       at Foo3.main(Foo3.java:<span class="hljs-number">8</span>)
+</code></pre>
+<p>&#x540C;&#x6837;&#x7684;,<code>suppressedExceptions</code>&#x4E5F;&#x53EF;&#x80FD;&#x542B;&#x6709;cause&#xFF0C;</p>
+<pre><code class="lang-java">Exception in thread <span class="hljs-string">&quot;main&quot;</span> java.lang.Exception: Main block
+       at Foo4.main(Foo4.java:<span class="hljs-number">6</span>)
+       Suppressed: Resource2$CloseFailException: Resource ID = <span class="hljs-number">1</span>
+               at Resource2.close(Resource2.java:<span class="hljs-number">20</span>)
+               at Foo4.main(Foo4.java:<span class="hljs-number">5</span>)
+       Caused by: java.lang.Exception: Rats, you caught me
+               at Resource2$CloseFailException.&amp;lt;init&amp;gt;(Resource2.java:<span class="hljs-number">45</span>)
+               ... <span class="hljs-number">2</span> more
+</code></pre>
+<h3 id="private-void-readobjectobjectinputstream-s-throws-ioexception-classnotfoundexception">private void readObject(ObjectInputStream s) throws IOException, ClassNotFoundException{...}</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readObject</span><span class="hljs-params">(ObjectInputStream s)</span>
+        <span class="hljs-keyword">throws</span> IOException, ClassNotFoundException </span>{
+    s.defaultReadObject();     <span class="hljs-comment">// read in all fields</span>
+    <span class="hljs-keyword">if</span> (suppressedExceptions != <span class="hljs-keyword">null</span>) {
+        List&lt;Throwable&gt; suppressed = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span> (suppressedExceptions.isEmpty()) {
+            <span class="hljs-comment">// Use the sentinel for a zero-length list</span>
+            suppressed = SUPPRESSED_SENTINEL;
+        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// Copy Throwables to new list</span>
+            suppressed = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-number">1</span>);
+            <span class="hljs-keyword">for</span> (Throwable t : suppressedExceptions) {
+                <span class="hljs-comment">// Enforce constraints on suppressed exceptions in</span>
+                <span class="hljs-comment">// case of corrupt or malicious stream.</span>
+                <span class="hljs-keyword">if</span> (t == <span class="hljs-keyword">null</span>)
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(NULL_CAUSE_MESSAGE);
+                <span class="hljs-keyword">if</span> (t == <span class="hljs-keyword">this</span>)
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(SELF_SUPPRESSION_MESSAGE);
+                suppressed.add(t);
+            }
+        }
+        suppressedExceptions = suppressed;
+    } <span class="hljs-comment">// else a null suppressedExceptions field remains null</span>
+
+    <span class="hljs-comment">/*
+     * For zero-length stack traces, use a clone of
+     * UNASSIGNED_STACK rather than UNASSIGNED_STACK itself to
+     * allow identity comparison against UNASSIGNED_STACK in
+     * getOurStackTrace.  The identity of UNASSIGNED_STACK in
+     * stackTrace indicates to the getOurStackTrace method that
+     * the stackTrace needs to be constructed from the information
+     * in backtrace.
+     */</span>
+    <span class="hljs-keyword">if</span> (stackTrace != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (stackTrace.length == <span class="hljs-number">0</span>) {
+            stackTrace = UNASSIGNED_STACK.clone();
+        }  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (stackTrace.length == <span class="hljs-number">1</span> &amp;&amp;
+                    <span class="hljs-comment">// Check for the marker of an immutable stack trace</span>
+                    SentinelHolder.STACK_TRACE_ELEMENT_SENTINEL.equals(stackTrace[<span class="hljs-number">0</span>])) {
+            stackTrace = <span class="hljs-keyword">null</span>;
+        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// Verify stack trace elements are non-null.</span>
+            <span class="hljs-keyword">for</span>(StackTraceElement ste : stackTrace) {
+                <span class="hljs-keyword">if</span> (ste == <span class="hljs-keyword">null</span>)
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException(<span class="hljs-string">&quot;null StackTraceElement in serial stream. &quot;</span>);
+            }
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// A null stackTrace field in the serial form can result</span>
+        <span class="hljs-comment">// from an exception serialized without that field in</span>
+        <span class="hljs-comment">// older JDK releases; treat such exceptions as having</span>
+        <span class="hljs-comment">// empty stack traces.</span>
+        stackTrace = UNASSIGNED_STACK.clone();
+    }
+}
+</code></pre>
+<h3 id="private-synchronized-void-writeobjectobjectoutputstream-s-throws-ioexception">private synchronized void writeObject(ObjectOutputStream s) throws IOException{...}</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeObject</span><span class="hljs-params">(ObjectOutputStream s)</span>
+       <span class="hljs-keyword">throws</span> IOException </span>{
+   <span class="hljs-comment">// Ensure that the stackTrace field is initialized to a</span>
+   <span class="hljs-comment">// non-null value, if appropriate.  As of JDK 7, a null stack</span>
+   <span class="hljs-comment">// trace field is a valid value indicating the stack trace</span>
+   <span class="hljs-comment">// should not be set.</span>
+   getOurStackTrace();
+
+   StackTraceElement[] oldStackTrace = stackTrace;
+   <span class="hljs-keyword">try</span> {
+       <span class="hljs-keyword">if</span> (stackTrace == <span class="hljs-keyword">null</span>)
+           stackTrace = SentinelHolder.STACK_TRACE_SENTINEL;
+       s.defaultWriteObject();
+   } <span class="hljs-keyword">finally</span> {
+       stackTrace = oldStackTrace;
+   }
+}
+</code></pre>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x6240;&#x6709;&#x884C;&#x8F93;&#x51FA;&#x4E86;&#x7531;<code>fillInStackTrace</code>&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="http://blog.sina.com.cn/s/blog_6f6c0f3501019mdo.html" target="_blank">Java&#x5F02;&#x5E38;&#x5904;&#x7406;&#x673A;&#x5236;</a></li>
+<li><a href="http://blog.csdn.net/hengyunabc/article/details/18459463" target="_blank">Java7&#x91CC;try-with-resources&#x5206;&#x6790;</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ClassLoader.html" class="navigation navigation-prev " aria-label="Previous page: ClassLoader">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Exception.html" class="navigation navigation-next " aria-label="Next page: Exception">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Throwable","level":"1.2.1.15","depth":3,"next":{"title":"Exception","level":"1.2.1.16","depth":3,"path":"源码解读/java.lang/Exception.md","ref":"源码解读/java.lang/Exception.md","articles":[]},"previous":{"title":"ClassLoader","level":"1.2.1.14","depth":3,"path":"源码解读/java.lang/ClassLoader.md","ref":"源码解读/java.lang/ClassLoader.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.lang/Throwable.md","mtime":"2017-10-14T06:27:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-28T07:53:09.133Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

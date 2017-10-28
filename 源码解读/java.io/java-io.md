@@ -10,8 +10,8 @@
 | **Reader**	   | 用于读取字符流的抽象类  |
 |** BufferedReader **|   从字符输入流读取文本，缓冲字符，以提供字符，数组和行的有效读取|
 |**InputStreamReader	**   |  InputStreamReader是从字节流到字符流的桥梁：它读取字节，并使用指定的字符集将其解码为字符|
-| **FileReader**  |   用于读取过滤后的字符流的抽象类|
-|StringReader	   |   |
+| **FileReader**  |  用于读取字符文件的方便的流|
+|StringReader	   | 用于读取字符串的流 |
 |PipedReader   |   |
 |CharArrayReader   |   |
 |FilterReader   |   |
