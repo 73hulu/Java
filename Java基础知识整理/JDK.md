@@ -70,3 +70,4 @@ public static void main(String[] args) {
 #### NIO @since 1.4
 #### Lock @since 1.5
 #### 自动装箱 @since 1.5
+#### Enum @since 1.5

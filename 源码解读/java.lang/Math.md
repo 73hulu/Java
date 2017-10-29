@@ -4,7 +4,7 @@
 ![Math](http://ovn0i3kdg.bkt.clouddn.com/Math_1.png)
 ![Math](http://ovn0i3kdg.bkt.clouddn.com/Math_2.png)
 
-全部都是抽象方法，而且大部分的方法都是借助了`StrictMath`中的方法，并且如果实现并不重要，当成工具类会用即可。
+全部都是静态方法，而且大部分的方法都是借助了`StrictMath`中的方法，并且实现并不重要，当成工具类会用即可。
 
 类中有两个字符：
 1. static double E
@@ -16,10 +16,7 @@
 
 | 方法   | 描述    |
 | :------------- | :------------- |
-| static double abs(double a)       | 此方法返回一个double值的绝对值.       |
-|static float abs(float a)    |此方法返回一个float值的绝对值.|
-|  static int abs(int a)  | 此方法返回一个int值的绝对值.  |
-|  static long abs(long a)  | 此方法返回一个long值的绝对值.  |
+| static double abs(double a)  【还有一系列重载方法】     | 此方法返回一个double值的绝对值.       |
 | static double acos(double a)   | 此方法返回一个值的反余弦值，返回的角度范围从0.0到pi.  |
 | static double asin(double a)   |   此方法返回一个值的反正弦，返回的角度范围在-pi/2到pi/2.|
 | static double atan(double a)   |此方法返回一个值的反正切值，返回的角度范围在-pi/2到pi/2.|
@@ -59,7 +56,6 @@ Math.floor(-2.7) = -3.0;
 2. Math.ceil()
 `>=`的概念，向上取整，返回值是double类型。
 ```java
-
 Math.ceil(2.2) = 3.0;  
 Math.ceil(-2.2) = -2.0;  
 Math.ceil(2.5) = 3.0;  
@@ -81,7 +77,6 @@ Math.round(-2.7) = -3
 4. Math.rint()
 返回最接近该值的那个整数，注意！如果存在两个这样的整数，则返回其中的**偶数**。
 ```java
-
 Math.rint(2.2) = 2.0；  
 Math.rint(-2.2) = -2.0；  
 Math.rint(2.7) = 3.0；  
@@ -96,7 +91,20 @@ Math.rint(-3.5) = -4.0；
 返回一个**[0.0, 1.0)**之间的double值，注意区间和返回值类型！！！可以利用它来返回一某个区间（左开右闭）的随机浮点数，如果要返回整型，千万别忘记类型转化。
 例如，返回[a,b)之间的随机整数， 则`int r = (int)(Math.random() * (b - a) + 10)`。
 
-> Math.random() 和java.util.Random有什么关系？
+  `random`方法还可以用来生成字符。例如生成a~z之间的任意字符： ` (char)('a' + Math.random() * ('z' - 'a' + 1) )`；随机生成一个ch1-ch2之间的任意字符：`(char)(ch1 + Math.random() * (ch2 - ch1 + 1))`;
+
+  随机数一般可以使用两种方法来实现：一是使用`Math.random()`方法，二是使用`java.util.Random`对象，两者有什么关系？
+  我们看下`random`方法的实现：
+  ```java
+  public static double random() {
+      return RandomNumberGeneratorHolder.randomNumberGenerator.nextDouble();
+  }
+  ```
+  追溯`nextDouble`发现它就是`Random`类的实例方法`nextDouble`！
+
+  所以一般情况下，大部分程序员都是用`Math.random`，比较方便。
+
+  > 有关`Random`类，请查看相关博客。
 
 参考
 * [java中Math.random()与java.util.random()的区别](http://blog.csdn.net/huangbiao86/article/details/6433964)
