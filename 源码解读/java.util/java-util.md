@@ -6,7 +6,7 @@ Java工具包(java.util)是非常非常重要的包，它提供了一些使用�
 
 | 接口 | 功能 |
 | :------------- | :------------- |
-| Collection<E> |  集合层次机构中的根接口|
+| Collection<E> |  集合体系中的根接口|
 |Set<E>	   |  不能包含重复元素的集合 |
 |List<E>   |有序集合，也叫序列|
 |Map<K,V>  | 键值对  |
@@ -27,6 +27,7 @@ Java工具包(java.util)是非常非常重要的包，它提供了一些使用�
 |AbstractSet<E>   | 该类提供了Set接口的骨架实现，以最大限度地减少实现此接口所需的工作量。  |
 |HashSet<E>|此类实现了Set接口，由哈希表（实际上是HashMap实例）支持。|
 |LinkedHashSet<E> |  哈希表和链接列表实现的Set接口，具有可预测的迭代顺序。 |
+|TreeSet   |   |
 |AbstractList<E> |   该类提供了List接口的骨架实现，以最大限度地减少实现此接口所需的工作量。  |
 |ArrayList<E>	 | List接口的可调整大小的数组实现  |
 |LinkedList<E>   | List和Deque接口的双向链表实现。  |

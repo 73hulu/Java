@@ -23,7 +23,7 @@ JVM主要工作是解释自己的指令集（即字节码）并映射到本地�
 3. `Java SE(Standard Edition)`：支持面向桌面级应用的平台，提供完整的核心Java核心API，这个版本以前称为J2SE.
 4. `Java EE(Enterprise Edition)`：支持使用多层架构的企业应用的平台，除了提供Java SE API之外，还对其做了大量的扩充，并提供了相应的部署支持。这个版本以前称为J2EE.
 
-### java开发工具
+### java开发工具w
 
 | 命令 | 作用 |
 | :------------- | :------------- |
@@ -66,8 +66,10 @@ public static void main(String[] args) {
 
 ### JDK版本
 
-#### Collections @since 1.2
+#### 集合框架 @since 1.2
 #### NIO @since 1.4
 #### Lock @since 1.5
 #### 自动装箱 @since 1.5
 #### Enum @since 1.5
+#### Objects @since 1.7
+#### Predicate @since 1.8
