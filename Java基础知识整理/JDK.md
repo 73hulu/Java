@@ -23,7 +23,24 @@ JVM主要工作是解释自己的指令集（即字节码）并映射到本地�
 3. `Java SE(Standard Edition)`：支持面向桌面级应用的平台，提供完整的核心Java核心API，这个版本以前称为J2SE.
 4. `Java EE(Enterprise Edition)`：支持使用多层架构的企业应用的平台，除了提供Java SE API之外，还对其做了大量的扩充，并提供了相应的部署支持。这个版本以前称为J2EE.
 
-### java开发工具w
+### C++和Java的异同
+相同：OOP
+不同：
+1. Java是解释型语言（.java -(编译)-> .class -(JVM解释)->执行），C++是编译型语言。所以JAVA比C++要慢一点
+2. Java跨平台，C++不跨平台
+3. Java纯面向独享，不存在全局变量或全局函数，C++具有面向过程和面向对象，可以定义全局变量和全局函数
+4. Java没有指针更加安全
+5. Java不支持多重继承，但是有接口继承，C++可以有多重继承
+6. Java提供垃圾回收器来实现垃圾的自动回收，C++需要开发人员自己管理内存
+7. Java不支持运算符重载，C++支持
+8. Java没有预处理器（但是提供import与预处理器相似），C++有预处理器
+9. Java不支持goto，但是`goto`是保留字，C++支持goto。
+10. Java不支持自动类型转换，必须由开发人员进行显示强制类型转换
+11. Java没有结构和联合，C++支持，C++会导致安全问题
+12. Java支持文档内建，C++不支持
+13. Java提供标准库，如Servlet、JSP提供对web的支持，Socket、RMI可以用来开发分布式应用程序。C++依靠一些非标准、由其他厂商提供的库
+
+### java开发工具
 
 | 命令 | 作用 |
 | :------------- | :------------- |
@@ -73,3 +90,4 @@ public static void main(String[] args) {
 #### Enum @since 1.5
 #### Objects @since 1.7
 #### Predicate @since 1.8
+#### Iterable @since 1.5

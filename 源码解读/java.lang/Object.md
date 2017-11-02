@@ -6,7 +6,7 @@ Object类的结果如下：
 ![Object_classStructure](http://ovn0i3kdg.bkt.clouddn.com/Object_classStructure.png)
 
 
-可以看到，Object类没有任何的属性，只有12方法，而且这些方法都被其子类继承覆盖，非常重要。
+可以看到，Object类没有任何的属性，只有12种方法，而且这些方法都被其子类继承覆盖，非常重要。
 
 > 严格来说，Object有13个方法，没有在structure中显示出来的是默认构造方法`public Object()`。这是因为，Java中规定：在类定义过程中，对于未定义构造函数的类，默认会生成一个无参数的构造函数。Object作为所有类的基类，自然要反映出此特性，在源码中虽然没有给出定义，但是这个方法实际上是存在的。
 

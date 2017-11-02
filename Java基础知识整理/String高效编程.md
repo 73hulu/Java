@@ -115,6 +115,7 @@ public void test();
 从上面代码的注释部分可以看出确实是用`StringBuilder`实现的，虽然编译器帮我们做了这些事，但是在实际编码的时候，建议还是使用`StringBuilder`,毕竟这样可以加深你对性能的理解，而且不依赖特定的编译器优化。
 
 
-参考[String高效编程优化（Java）](http://blog.csdn.net/bianlians/article/details/51644592)
-[Java编程优化之旅（二） String类型知多少](http://blog.csdn.net/guodongxiaren/article/details/22511427)
-[Java编译器对String的优化](http://www.cnblogs.com/chybin/p/5503885.html)
+参考
+* [String高效编程优化（Java）](http://blog.csdn.net/bianlians/article/details/51644592)
+* [Java编程优化之旅（二） String类型知多少](http://blog.csdn.net/guodongxiaren/article/details/22511427)
+* [Java编译器对String的优化](http://www.cnblogs.com/chybin/p/5503885.html)

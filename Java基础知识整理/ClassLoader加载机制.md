@@ -460,7 +460,7 @@ public class Thread implements Runnable {
    }
 }
 ```
-发现`contextClassLoader`只是一个成员白能量，通过`setContextClassLoader`方法设置，通过`getContextClassLoader`获得。
+发现`contextClassLoader`只是一个成员变量，通过`setContextClassLoader`方法设置，通过`getContextClassLoader`获得。
 
 如果没有通过 setContextClassLoader(ClassLoader cl)方法进行设置的话，线程将继承其父线程的上下文类加载器。Java 应用运行的初始线程的上下文类加载器是系统类加载器。在线程中运行的代码可以通过此类加载器来加载类和资源。
 

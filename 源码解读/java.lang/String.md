@@ -241,7 +241,7 @@ public String(StringBuilder builder) {
 可以看到，前者使用了`synchronized`关键词，是线程安全的，而后者并没有。
 
 ##### String(char[] value, boolean share){...}
-这里第二个参数的总是接受true，其实我没有弄明白这个参数有什么作用，在定义中也没有体现，只是简单地将字符数字赋值给数组属性而已：
+这里第二个参数的总是接受true，注意到之前同样有一个单接受字符数组的构造函数，但是不同的是，那个构造函数重新拷贝了一份数组再对value进行赋值，此时实例变量value和形参value指向的就是不同的两个地址，而在这个方法中，直接将形参的值赋值给实例变量，即两者的指向是相同的，这就是所谓的"share"。
 ```java
 String(char[] value, boolean share) {
    // assert share : "unshared not supported";

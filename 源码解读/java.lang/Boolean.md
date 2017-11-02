@@ -11,7 +11,7 @@ Boolean是最简单的数值包装类型，其结果如下：
 
 ### private static final long serialVersionUID = -3665804199014368530L;
 
-`serialVersionUID`是做什么的么？前面说到这个类实现了`Serializable`接口，那么这个常量用来进行序列化类的时候使用。具体怎么用，暂时不关心，看看就好，可以参考 http://blog.csdn.net/yuexuanyu/article/details/30035153
+`serialVersionUID`是做什么的呢？前面说到这个类实现了`Serializable`接口，那么这个常量用来进行序列化类的时候使用。具体怎么用，暂时不关心，看看就好，可以参考 http://blog.csdn.net/yuexuanyu/article/details/30035153
 
 ### private final boolean value;
 这就是包装类的值，没什么好说的，在实例化的时候，将基本类型的boolean值赋值给这个属性就可以了。

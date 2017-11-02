@@ -35,7 +35,7 @@ Java工具包(java.util)是非常非常重要的包，它提供了一些使用�
 |HashMap<K,V>|基于哈希表的Map接口实现。|
 |LinkedHashMap<K,V>	|哈希表和链接列表实现的Map接口，具有可预测的迭代顺序。|
 |Hashtable<K,V>   |   哈希表类，该类实现了一个哈希表，它将键映射到值。|
-|WeakHashMap<K,V>   |  基于哈希表的实现Map界面，具有弱键。 |
+|WeakHashMap<K,V>   |  基于哈希表的实现Map接口，具有弱键。 |
 |AbstractQueue<E>   |  该类提供了Queue接口的骨架实现 |
 |PriorityQueue<E>   |  具有优先级的队列 |
 |Collections   | 这个类完全由静态方法组成或返回集合。  |
