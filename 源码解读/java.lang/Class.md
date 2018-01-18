@@ -10,11 +10,11 @@ Class真的很重要啊，年少无知的我听到"反射"一词就很烦躁，�
 
 在阅读源码之前，我们了解下基本概念，`Class`到底是什么？`Class`是一个，跟Java API中定义的诸如`Thread`、`Integer`没有什么两样。类是对一类事物的抽象，那么`Class`抽象了什么呢？它的实例又代表了什么呢？
 
-在一个运行的程序中，会有许多的类和接口存在。我们用`Class`来表示对这些类和接口的抽象，而`Class`类的每个实例则代表了运行中的一个类。例如，运行的程序有ABC三个雷，那么Class类就是对ABC三个类的抽象。所谓抽象，就是提取这些类的一个公共特征，比如这些类都有类名，都有对应的hashcode方法，可以判断类型是属于class、interface、enum还是annotation，这些可以封装成`Class`类的域，另外可以定义一些方法，比如获取某个方法、获取类型名字等等，这样就封装了一个表示类型(type)的类。
+在一个运行的程序中，会有许多的类和接口存在。我们用`Class`来表示对这些类和接口的抽象，而`Class`类的每个实例则代表了运行中的一个类。例如，运行的程序有ABC三个类，那么Class类就是对ABC三个类的抽象。所谓抽象，就是提取这些类的一个公共特征，比如这些类都有类名，都有对应的hashcode方法，可以判断类型是属于class、interface、enum还是annotation，这些可以封装成`Class`类的域，另外可以定义一些方法，比如获取某个方法、获取类型名字等等，这样就封装了一个表示类型(type)的类。
 
 Java中，每个类class都有一个相应的Class，也就是说，当我们编写一个类，编译完成之后，在生成的`.class`文件中，就会产生一个Class对象，用于表示这个类的信息。运行程序时，JVM首先检查是否要加载的类对应的Class对象是否已经加载，如果没有加载，JVM就会根据类名查找.class文件，并将其Class对象载入。虚拟机只会产生一份字节码，用这份字节码可以产生多个实例对象。
 
-特别的是，8种基本数据类型和void关键字也都对应了一个Class对象；每个数组属于被映射为Class对象的一个雷，所有具有相同元素类型和维数的数组都共享该Class对象。
+特别的是，8种基本数据类型和void关键字也都对应了一个Class对象；每个数组属于被映射为Class对象的一个类，所有具有相同元素类型和维数的数组都共享该Class对象。
 
 一般某个类的Class对象被载入内存，它就用来创建这个类的所有对象。
 
@@ -27,7 +27,8 @@ Java中，每个类class都有一个相应的Class，也就是说，当我们编
 ```java
 public TypeVariable<?>[] getTypeParameters();
 ```
-用来返回实体声明（定义）的所有类型变量，测试程序参考http://blog.csdn.net/a327369238/article/details/52710827
+用来返回实体声明（定义）的所有类型变量，测试程序参考 http://blog.csdn.net/a327369238/article/details/52710827
+
 `Type`接口是Java变成语言中所有类型的公共高级接口。也只有一个方法：
 ```java
 default String getTypeName() {
@@ -36,7 +37,7 @@ default String getTypeName() {
 ```
 > 这里的default是可访问性修饰符么，相当于为空？？？
 
-`AnnotatedElement`表示目前正在此 VM 中运行的程序的一个已注释元素。定义的方法如下：
+`AnnotatedElement`接口表示目前正在此 VM 中运行的程序的一个已注释元素。定义的方法如下：
 ![AnnotatedElement](http://ovn0i3kdg.bkt.clouddn.com/AnnotatedElement.png)
 
  `java.lang.reflect`这个子包很重要，详情见专门的博客，这里就不喧宾夺主了。
@@ -75,9 +76,9 @@ private final ClassLoader classLoader;
 那么这个参数又是怎么回事呢?等下回我们分析`ClassLoader`这个类的时候再说吧。
 
 说道这里，我们知道`ClassLoader`对象由自己创建，但是反射机制就是通过类对象来操作类啊，我们还必须得得到这个类对象才行!既然不能自己创建，那么能不能获取呢。可以的，有三种来获取Class对象。
-##### 通过某个对象的`getClass()`方法
+1.  通过某个对象的`getClass()`方法
 还记得`Object`类的源码么？里面的`getClass`方法就是用来获取类对象的。比如`Class userClass = new User().getClass();`
-##### 通过Class类的静态方法`forName`方法来获取
+2. 通过Class类的静态方法`forName`方法来获取
 这个方法的定义如下：
 ```java
 @CallerSensitive
@@ -88,11 +89,10 @@ public static Class<?> forName(String className)
 }
 ```
 这里有个JVM注解`@CallerSensitive`，作用可以参考http://blog.csdn.net/hel_wor/article/details/50199797 还有 http://blog.csdn.net/aguda_king/article/details/72355807， 这个方法中调用了`Reflection`的静态方法，具体怎么实现我也不追究了（主要是好复杂啊 (⊙﹏⊙)b）。反正可以获取到就行了，注意这里可能会抛出异常。
-
 `forName`还有两个重载的方法，不常用就不说了。
-
-##### 如果T是一个Java类型，那么T.class就代表了匹配的类对象。
+2. 通过类名。如果T是一个Java类型，那么T.class就代表了匹配的类对象。
 例如：
+
 ```java
 public class ClassTest {
   public static void main(String[] args) {
@@ -102,16 +102,15 @@ public class ClassTest {
        Class cls1 = int.class;
        System.out.println(cls1.getName()); //int
 
-
        Class cls2 = double.class;
        System.out.println(cls2.getName()); //double
 
        Class cls3 = Double[].class;
-       System.out.println(cls3.getName()); //[Ljava.lang.Double;
+       System.out.println(cls3.getName()); //Ljava.lang.Double;
 
        Double[] doubleArr = new Double[10];
        Class cls4 = doubleArr.getClass();
-       System.out.println(cls4.getName());//[Ljava.lang.Double;
+       System.out.println(cls4.getName());//Ljava.lang.Double;
 
        System.out.println(cls4 == cls3); // true
 
@@ -121,10 +120,15 @@ public class ClassTest {
    }
 }
 ```
-上面的测试程序可以验证这几点：①基本数据类型也对应了各自的类对象，也就是说Class对象实际上描述的只是类型，而这类型未必是类或接口。②相同类型的数组对象的类对象是同一个；③由于历史原因，数组类型的getName方法会返回奇怪的名字，比如上面的Ljava.lang.Double;
+上面的测试程序可以验证这几点：
+①基本数据类型也对应了各自的类对象，也就是说Class对象实际上描述的只是类型，而这类型未必是类或接口。
+
+②相同类型的数组对象的类对象是同一个；
+
+③由于历史原因，数组类型的getName方法会返回奇怪的名字，比如上面的`Ljava.lang.Double`;
 
 ### public String getName(){...}
-这个方法在前面用到了，方法将以字符串的行驶返回此Class对象所表示的实体(类、接口、数组类、基本类型或void)完整名称。方法定义如下:
+这个方法在前面用到了，方法将以字符串的行驶返回此Class对象所表示的实体(类、接口、数组类、基本类型或void)**完整**名称。方法定义如下:
 ```java
 public String getName() {
    String name = this.name;
@@ -209,7 +213,7 @@ private native String getName0();
    private volatile transient Class<?>       newInstanceCallerCache;
 
 ```
-哎好长好烦躁，总之这个方法是调用了默认构造器（无参数）构造器初始化新建对象。这里需要注意两点：① 如果类本身没有定义无参构造方法但是定义的有参构造方法，这时候是无法默认产生无参构造方法的，所以这时候用`newInstance`方式来创建对象的话，会抛出`InstantiationException`异常。②`newInstance`方法返回的是Object对象，需要进行类型转换。
+哎好长好烦躁，总之这个方法是调用了**默认构造器（无参数）构造器**初始化新建对象。这里需要注意两点：① 如果类本身没有定义无参构造方法但是定义的有参构造方法，这时候是无法默认产生无参构造方法的，所以这时候用`newInstance`方式来创建对象的话，会抛出`InstantiationException`异常。②`newInstance`方法返回的是Object对象，需要进行类型转换。
 
 
 ###  public String toString() {...}
@@ -219,7 +223,9 @@ public String toString() {
          + getName();
  }
 ```
+>   `isPrimitive`方法是判断是不是基本类型。
 在类名之前加上类型，是类的就加上"class"，是接口的就加上"interface", 是基本类型的就什么都不加。前面说到Enum是类，Annotation是接口，我们来验证一下：
+
 ```java
 Class cls1 = Enum.class;
 System.out.println(cls1.toString()); //class java.lang.Enum
@@ -258,9 +264,9 @@ private final ClassLoader classLoader;
 
 | 方法 | 作用   |  使用示例|
 | :------------- | :------------- | :--- |
-| public Field[] getFields() throws SecurityException{...}   | 反射中获得public域成员  |  Field[] fields = String.class.getFields();for (Field field : fields){  System.out.print(field.toString()); //public static final java.util.Comparator java.lang.String.CASE_INSENSITIVE_ORDER }|
+| public Field[] getFields() throws SecurityException{...}   | 反射中获得public域成员，包括父类  |  Field[] fields = String.class.getFields();for (Field field : fields){  System.out.print(field.toString()); //public static final java.util.Comparator java.lang.String.CASE_INSENSITIVE_ORDER }|
 |public Field getField(String name) throws NoSuchFieldException, SecurityException{..}    |  反射中获得特定名称public域成员，可能会抛出异常|   |
-|public Field[] getDeclaredFields() throws SecurityException{...}   | 反射中获得所有域成员  |   |
+|public Field[] getDeclaredFields() throws SecurityException{...}   | 反射中获得所有域成员，不限访问控制符，但只能是自己的，不包括父类，  |   |
 |public Field getDeclaredField(String name) throws NoSuchFieldException, SecurityException{...}   | 反射中获得特定名称的域成员，可能会抛出异常  |   |
 |public Method[] getMethods(){...}    | 获得方法  |   |
 |getConstructors() {...}   | 获得所有的构造方法  |   |

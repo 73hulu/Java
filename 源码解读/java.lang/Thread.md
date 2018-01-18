@@ -281,7 +281,7 @@ public synchronized void start() {
     }
 }
 ```
-开发者调动`start`方法，然后再由JVM调用`run`方法，注意这两个方法的调用者是不同的。该方法首先判断线程状态，必须是0否则抛出异常，为什么是0？`threadStartFailed`这个变量的声明为:`private volatile int threadStatus = 0;`发现这个变量被`volatile`关键词修饰，所以这个量将来会多个现象改变。
+开发者调动`start`方法，然后再由JVM调用`run`方法，注意这两个方法的调用者是不同的。该方法首先判断线程状态，必须是0否则抛出异常，为什么是0？`threadStartFailed`这个变量的声明为:`private volatile int threadStatus = 0;`发现这个变量被`volatile`关键词修饰，所以这个量将来会多个线程改变。
 
 接着`group.add(this)`将通知这个线程所属的线程组：这个线程已经准备好了哦，线程组将这个线程添加到线程数组里面，然后把数量加上1，具体的还是学到`ThreadGroup`的时候看吧。
 
@@ -296,7 +296,7 @@ public void run() {
     }
 }
 ```
-`run`方法才是真正线程执行的逻辑。Thread`实现了`Runnable`接口，所以重写了run方法。但是可以看到`Thread`的run方法本身调用的target的run方法，target是什么？是实现Runnable接口的类的实例。所以啊，要创建线程实现自己的run逻辑，可以有以下两种方法。
+`run`方法才是真正线程执行的逻辑。`Thread`实现了`Runnable`接口，所以重写了run方法。但是可以看到`Thread`的run方法本身调用的target的run方法，target是什么？是实现Runnable接口的类的实例。所以啊，要创建线程实现自己的run逻辑，可以有以下两种方法。
 
 1. 自定义类继承`Thread`，重写run()方法覆盖父类（强制），实例化该类，调用start方法。
 
@@ -377,7 +377,10 @@ class MyThread implements Runnable{
 | 优点      | 编写简单，如果需要访问当前线程，无需使用Thread.currentThread()方法，直接使用this，即可获得当前线程。| 线程类只是实现了Runable接口，还可以继承其他的类。在这种方式下，可以多个线程共享同一个目标对象，所以非常适合多个相同线程来处理同一份资源的情况，从而可以将CPU代码和数据分开，形成清晰的模型，较好地体现了面向对象的思想。|
 |缺点   |因为线程类已经继承了Thread类，所以不能再继承其他的父类。   |  编程稍微复杂，如果需要访问当前线程，必须使用Thread.currentThread()方法。 |
 
+3. 实现Callable接口
+
 > Thread对象可以操纵一个线程，而Runable对象代表一个可被运行的对象。
+
 ### private void exit() {...}
 
 这个方法也是被JVM调用的，在真正退出之前给线程一个清理的机会？为什么清理？垃圾回收啊~
@@ -427,14 +430,16 @@ public static void sleep(long millis, int nanos)
 ```java
 public static native void sleep(long millis) throws InterruptedException;
 ```
-这个一个native方法，怎么实现不要深纠了，但是有一点非常非常非常重要。在源码中被明确说明：
+这个一个native方法，怎么实现不要深纠了。
+
+sleep这个方法是静态方法，所以方法调用的形式是`Thread.sleep()`，另外注意，使用该方法需要捕获`InterruptedException`异常。还有一点非常非常非常重要。在源码中被明确说明：
 
 > The thread does not lose ownership of any monitors.
 
-当前线程不会失去任何的锁！！！
+当前线程不会失去任何的锁！！！即如果当前线程持有某个对象锁，在它sleep的这段时间内，锁还是由他保有的，不会被释放掉。
 
 ### join方法
-`thread.join`方法把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。什么意思呢？原来A和B线程是交替进行的，此时在B线程中调用的a.join()，那么直到线程A执行完毕之后，才会继续执行B，这样原本并发的线程就并行了。有三个重载方法，核心是下面这个：
+`thread.join`方法把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。什么意思呢？原来A和B线程是交替进行的，此时在B线程中调用的a.join()，那么直到线程A执行完毕之后，才会继续执行B，这样原本并发的线程就串行了。有三个重载方法，核心是下面这个：
 ```java
 public final synchronized void join(long millis)
  throws InterruptedException {
@@ -463,7 +468,7 @@ public final synchronized void join(long millis)
 ```
 从代码中可以可以看到，如果线程被生成了，但是还没有被启动，即isAlive返回false，此时调用join是没有作用的，将直接继续往下执行。
 
-还可以看到，join方法实际上是调用了Object的wait方法实现的。当main线程调用t.join的时候，main线程将会获得线程对象t的锁（wait意味着拿到了该对象的锁），调用该对象的wait(等待时间)，知道该对象唤醒main线程。比如退出后，这就意味着main线程调用t.join时，必须能够拿到线程t对象的锁。
+还可以看到，join方法实际上是调用了Object的wait方法实现的。当main线程调用t.join的时候，main线程将会获得线程对象t的锁（wait意味着拿到了该对象的锁），调用该对象的wait(等待时间)，直到该对象唤醒main线程。比如退出后，这就意味着main线程调用t.join时，必须能够拿到线程t对象的锁。
 
 一个非常好的例子可以说明join方法的作用。
 
@@ -638,7 +643,7 @@ main end!   // Thread.sleep(2000);结束，虽然在线程CustomThread执行了t
 [CustomThread] Thread end.        // 线程CustomThread在t1.join();阻塞处起动，向下继续执行的结果
 ```
 
-此外，main线程在调用join方法的时候，必须能够拿到线程t对象的所，如果拿不到是无法wait的，刚才的例子t.join(1000)不是为了main线程等待1秒，如果在让等待之前，其他线程获取了t对象的锁，那么它等待的时间可就不是1秒了。例如：
+此外，main线程在调用join方法的时候，必须能够拿到线程t对象的锁，如果拿不到是无法wait的，刚才的例子t.join(1000)不是为了main线程等待1秒，如果在让等待之前，其他线程获取了t对象的锁，那么它等待的时间可就不是1秒了。例如：
 ```java
 class RunnableImpl implements Runnable {  
 
@@ -698,10 +703,6 @@ joinFinish
 在main方法中 通过`new  ThreadTest(t).start()`实例化 ThreadTest 线程对象， 它通过`synchronized  (thread)` ，获取线程对象t的锁，并`Sleep（9000）`后释放，这就意味着，即使main方法`t.join(1000)`等待一秒钟，它必须等待ThreadTest 线程释放t锁后才能进入wait方法中，它实际等待时间是9000+1000ms。
 
 
-
-####  public final synchronized void join(long millis) throws InterruptedException {...}
-
-
 ### public void interrupt(){...}
 
 定义如下：
@@ -733,7 +734,7 @@ public void interrupt() {
 
 过程还是看不懂啊，那就先记住结论吧。 `interrupt()`不会中断一个正在运行的线程。这一方法实际上完成的是，在线程受到阻塞时抛出一个中断信号，这样线程就得以退出阻塞的状态。更确切的说，如果线程被`Object.wait`, `Thread.join`和`Thread.sleep`三种方法之一阻塞，那么，它将接收到一个中断异常（InterruptedException），从而提早地终结被阻塞状态；如果线程没有被阻塞，这时调用`interrupt()`将不起作用；否则，线程就将得到异常（该线程必须事先预备好处理此状况），接着逃离阻塞状态。
 
-线程A在执行`sleep`，`wait`,`join`时,线程B调用A的`interrupt`方法，的确这一个时候A会有`InterruptedException`异常抛出来.但这其实是在`sleep`，`wait`，`join`这些方法内部会不断检查中断状态的值,而自己抛出的`InterruptedException`。
+线程A在执行`sleep`，`wait`,`join`时,线程B调用A的`interrupt`方法，的确这一个时候A会有`InterruptedException`异常抛出来。但这其实是在`sleep`，`wait`，`join`这些方法内部会不断检查中断状态的值,而自己抛出的`InterruptedException`。
 
 如果线程A正在执行一些指定的操作时如赋值，for，while，if调用方法等，都不会去检查中断状态,所以线程A不会抛出`InterruptedException`,而会一直执行着自己的操作。
 当线程A终于执行到`wait()`，`sleep()`，`join()`时，才马上会抛出`InterruptedException`。若没有调用`sleep()`，`wait()`，`join()`这些方法,或是没有在线程里自己检查中断状态自己抛出`InterruptedException`的话,那`InterruptedException`是不会被抛出来的.
