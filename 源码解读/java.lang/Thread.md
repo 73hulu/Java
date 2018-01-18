@@ -739,7 +739,24 @@ public void interrupt() {
 如果线程A正在执行一些指定的操作时如赋值，for，while，if调用方法等，都不会去检查中断状态,所以线程A不会抛出`InterruptedException`,而会一直执行着自己的操作。
 当线程A终于执行到`wait()`，`sleep()`，`join()`时，才马上会抛出`InterruptedException`。若没有调用`sleep()`，`wait()`，`join()`这些方法,或是没有在线程里自己检查中断状态自己抛出`InterruptedException`的话,那`InterruptedException`是不会被抛出来的.
 
-诶 看不太懂诶
+"中断"的意思并不是让线程停止（而stop方法则是让线程终止），而只是改变了线程的状态，至于改变了这种状态之后，线程是死亡？继续？还是怎样，完全视线程本身而定。有时候这种中断反而不是阻止，反而是让其继续执行，比如一个正发生死锁的线程，中断它才能让它继续执行。
+
+每个线程实例都有一个boolean类型标记，表示这个线程是否被请求中断，当其`interrupt`方法被调用的时候，这个boolean状态位会置为true。调用了某个线程a的中断方法`interrupt()`，一定会让线程a停下来么？不一定，因为这个方法只是把标志位的状态改变了，并没有真正kill掉线程。那么这个状态的变化有什么用呢？当然有用，如果该线程正处于阻塞状态（比如等待阻塞、同步阻塞或者睡眠阻塞等），处于这种状态的线程是会不断检查这个标志位的，一旦检查到了这个标注为被标注为true，则抛出`InterruptedException`，同时清楚这个标志位为false。这时候线程就从阻塞状态被唤醒了，至于被唤醒之后要做什么，完全看线程本身的实现。如果线程正在运行着，它是不会检查这个标志位的，也就是说，即使标志位设为true，它也能照常运行。
+
+上面说到wait的线程如果发现状态位为true了，将被唤醒，和notify与notifyAll的效果类似，有什么不同呢？不同之处就在于try-catch块了：如果线程是被notify或者notifyAll唤醒的，那么紧接着wait方法之后的语句会照常执行，而如果是被中断唤醒的话，那么就会直接进入catch语句，这就是普通的异常捕获过程，没什么难理解的。
+
+举一个例子：程序开始让一个线程`sleep`一年，但是你反悔了，那么此时调用`interrupted`方法将是唤醒这个线程的唯一办法。同理，`wait`、`join`也是同样的道理，特别注意的是，`synchronized`在获锁的过程中是不能被中断的，意思是说如果产生了死锁，则不可能被中断。与`synchronized`功能相似的`reentrantLock.lock()`方法也是一样，它也不可中断的，即如果发生死锁，那么`reentrantLock.lock()`方法无法终止，如果调用时被阻塞，则它一直阻塞到它获取到锁为止。但是如果调用带超时的`tryLock`方法`reentrantLock.tryLock(long timeout, TimeUnit unit)`，那么如果线程在等待时被中断，将抛出一个`InterruptedException`异常，这是一个非常有用的特性，因为它允许程序打破死锁。你也可以调用`reentrantLock.lockInterruptibly()`方法，它就相当于一个超时设为无限的`tryLock`方法。这一点要牢记。
+
+
+`interrupt`方法是JVM来中断线程的一个武器，有商量的余地，效果还是比较温和的。JVM还提供了几个杀伤力巨大的武器，由于杀伤力太大，会殃及无辜，所以都废弃了，但是还是学习一下。这些武器有：`stop`、`suspend`。
+
+首先是`stop`方法，这个方法已经被废弃了，千万别用了，因为执行这个方法将会立即杀死一个线程，将其锁执有的锁全都释放，导致本该被锁控制同步的所有位置变得无法控制。会产生无法预计的问题，这妥妥的是一场灾难。
+
+其次是`suspend`方法，这个方法还是可用的但是尽量别用，官方的说法是可能导致死锁。代替这个方法的是wait和notify方法。
+
+其实学习过之后就忘了吧。脑子就这么大，记多了容易混~~~
+
+
 
 ### public static boolean interrupted(){...}
 ```java
@@ -753,6 +770,8 @@ public static boolean interrupted() {
 private native boolean isInterrupted(boolean ClearInterrupted);
 ```
 该方法用来测试线程是否已经中断。线程的中断状态 不受该方法的影响。 如果该线程已经中断，则返回 true；否则返回 false。和`interrupted`方法不同的是，这个方法不具有清除状态的功能。
+
+> 要特别注意静态方法`interrupted`方法和实例方法`isInterrupted`的区别
 
 ### public final native boolean isAlive();
 用来检测线程时候还活着，只要线程状态处于start和die之间，都是活着的状态。

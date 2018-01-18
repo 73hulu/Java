@@ -4,6 +4,8 @@
 
 > 作者Doug Lea大概是世界上对Java影响最大的人了。可以看下它关于并发文章，译文见 http://ifeve.com/doug-lea/
 
+![java.util.concurrent](http://ovn0i3kdg.bkt.clouddn.com/java.util.concurrent.locks.png)
+
 JDK 5.0 中的并发改进可以分为三组：
 * **JVM 级别更改**。大多数现代处理器对并发对某一硬件级别提供支持，通常以 compare-and-swap （CAS）指令形式。CAS 是一种低级别的、细粒度的技术，它允许多个线程更新一个内存位置，同时能够检测其他线程的冲突并进行恢复。它是许多高性能并发算法的基础。在 JDK 5.0 之前，Java 语言中用于协调线程之间的访问的惟一原语是同步，同步是更重量级和粗粒度的。公开 CAS 可以开发高度可伸缩的并发 Java 类。这些更改主要由 JDK 库类使用，而不是由开发人员使用。
 * **低级实用程序类 -- 锁定和原子类**。使用 CAS 作为并发原语，`ReentrantLock` 类提供与 `synchronized` 原语相同的锁定和内存语义，然而这样可以更好地控制锁定（如计时的锁定等待、锁定轮询和可中断的锁定等待）和提供更好的可伸缩性（竞争时的高性能）。大多数开发人员将不再直接使用 `ReentrantLock` 类，而是使用在 `ReentrantLock` 类上构建的高级类。

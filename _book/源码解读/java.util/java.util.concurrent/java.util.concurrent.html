@@ -939,10 +939,9 @@
             
 
             
-            <ul class="articles">
-                
+        </li>
     
-        <li class="chapter active" data-level="1.2.2.23.1" data-path="java.util.concurrent.html">
+        <li class="chapter active" data-level="1.2.2.24" data-path="java.util.concurrent.html">
             
                 <a href="java.util.concurrent.html">
             
@@ -953,9 +952,10 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="1.2.2.23.2" data-path="ConcurrentHashMap.html">
+        <li class="chapter " data-level="1.2.2.24.1" data-path="ConcurrentHashMap.html">
             
                 <a href="ConcurrentHashMap.html">
             
@@ -966,10 +966,9 @@
             
 
             
-            <ul class="articles">
-                
+        </li>
     
-        <li class="chapter " data-level="1.2.2.23.2.1" data-path="java.util.concurrent.locks/java.util.concurrent.locks.html">
+        <li class="chapter " data-level="1.2.2.24.2" data-path="java.util.concurrent.locks/java.util.concurrent.locks.html">
             
                 <a href="java.util.concurrent.locks/java.util.concurrent.locks.html">
             
@@ -983,7 +982,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.23.2.1.1" data-path="java.util.concurrent.locks/Lock.html">
+        <li class="chapter " data-level="1.2.2.24.2.1" data-path="java.util.concurrent.locks/Lock.html">
             
                 <a href="java.util.concurrent.locks/Lock.html">
             
@@ -996,7 +995,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.23.2.1.2" data-path="java.util.concurrent.locks/Condition.html">
+        <li class="chapter " data-level="1.2.2.24.2.2" data-path="java.util.concurrent.locks/Condition.html">
             
                 <a href="java.util.concurrent.locks/Condition.html">
             
@@ -1009,7 +1008,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.23.2.1.3" data-path="java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
+        <li class="chapter " data-level="1.2.2.24.2.3" data-path="java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
             
                 <a href="java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
             
@@ -1022,7 +1021,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.23.2.1.4" data-path="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+        <li class="chapter " data-level="1.2.2.24.2.4" data-path="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
             
                 <a href="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
             
@@ -1035,7 +1034,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2.23.2.1.5" data-path="java.util.concurrent.locks/ReentrantLock.html">
+        <li class="chapter " data-level="1.2.2.24.2.5" data-path="java.util.concurrent.locks/ReentrantLock.html">
             
                 <a href="java.util.concurrent.locks/ReentrantLock.html">
             
@@ -1045,11 +1044,6 @@
                 </a>
             
 
-            
-        </li>
-    
-
-            </ul>
             
         </li>
     
@@ -2093,6 +2087,7 @@
 <blockquote>
 <p>&#x4F5C;&#x8005;Doug Lea&#x5927;&#x6982;&#x662F;&#x4E16;&#x754C;&#x4E0A;&#x5BF9;Java&#x5F71;&#x54CD;&#x6700;&#x5927;&#x7684;&#x4EBA;&#x4E86;&#x3002;&#x53EF;&#x4EE5;&#x770B;&#x4E0B;&#x5B83;&#x5173;&#x4E8E;&#x5E76;&#x53D1;&#x6587;&#x7AE0;&#xFF0C;&#x8BD1;&#x6587;&#x89C1; <a href="http://ifeve.com/doug-lea/" target="_blank">http://ifeve.com/doug-lea/</a></p>
 </blockquote>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/java.util.concurrent.locks.png" alt="java.util.concurrent"></p>
 <p>JDK 5.0 &#x4E2D;&#x7684;&#x5E76;&#x53D1;&#x6539;&#x8FDB;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E09;&#x7EC4;&#xFF1A;</p>
 <ul>
 <li><strong>JVM &#x7EA7;&#x522B;&#x66F4;&#x6539;</strong>&#x3002;&#x5927;&#x591A;&#x6570;&#x73B0;&#x4EE3;&#x5904;&#x7406;&#x5668;&#x5BF9;&#x5E76;&#x53D1;&#x5BF9;&#x67D0;&#x4E00;&#x786C;&#x4EF6;&#x7EA7;&#x522B;&#x63D0;&#x4F9B;&#x652F;&#x6301;&#xFF0C;&#x901A;&#x5E38;&#x4EE5; compare-and-swap &#xFF08;CAS&#xFF09;&#x6307;&#x4EE4;&#x5F62;&#x5F0F;&#x3002;CAS &#x662F;&#x4E00;&#x79CD;&#x4F4E;&#x7EA7;&#x522B;&#x7684;&#x3001;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x66F4;&#x65B0;&#x4E00;&#x4E2A;&#x5185;&#x5B58;&#x4F4D;&#x7F6E;&#xFF0C;&#x540C;&#x65F6;&#x80FD;&#x591F;&#x68C0;&#x6D4B;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x7684;&#x51B2;&#x7A81;&#x5E76;&#x8FDB;&#x884C;&#x6062;&#x590D;&#x3002;&#x5B83;&#x662F;&#x8BB8;&#x591A;&#x9AD8;&#x6027;&#x80FD;&#x5E76;&#x53D1;&#x7B97;&#x6CD5;&#x7684;&#x57FA;&#x7840;&#x3002;&#x5728; JDK 5.0 &#x4E4B;&#x524D;&#xFF0C;Java &#x8BED;&#x8A00;&#x4E2D;&#x7528;&#x4E8E;&#x534F;&#x8C03;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x7684;&#x60DF;&#x4E00;&#x539F;&#x8BED;&#x662F;&#x540C;&#x6B65;&#xFF0C;&#x540C;&#x6B65;&#x662F;&#x66F4;&#x91CD;&#x91CF;&#x7EA7;&#x548C;&#x7C97;&#x7C92;&#x5EA6;&#x7684;&#x3002;&#x516C;&#x5F00; CAS &#x53EF;&#x4EE5;&#x5F00;&#x53D1;&#x9AD8;&#x5EA6;&#x53EF;&#x4F38;&#x7F29;&#x7684;&#x5E76;&#x53D1; Java &#x7C7B;&#x3002;&#x8FD9;&#x4E9B;&#x66F4;&#x6539;&#x4E3B;&#x8981;&#x7531; JDK &#x5E93;&#x7C7B;&#x4F7F;&#x7528;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7531;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x3002;</li>
@@ -2195,7 +2190,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"java.util.concurrent","level":"1.2.2.23.1","depth":4,"next":{"title":"ConcurrentHashMap","level":"1.2.2.23.2","depth":4,"path":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","ref":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","articles":[{"title":"java.util.concurrent.locks","level":"1.2.2.23.2.1","depth":5,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.md","articles":[{"title":"Lock","level":"1.2.2.23.2.1.1","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Lock.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Lock.md","articles":[]},{"title":"Condition","level":"1.2.2.23.2.1.2","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Condition.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Condition.md","articles":[]},{"title":"AbstractOwnableSynchronizer","level":"1.2.2.23.2.1.3","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.md","articles":[]},{"title":"AbstractQueuedSynchronizer","level":"1.2.2.23.2.1.4","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md","articles":[]},{"title":"ReentrantLock","level":"1.2.2.23.2.1.5","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.md","articles":[]}]}]},"previous":{"title":"Objects","level":"1.2.2.23","depth":3,"path":"源码解读/java.util/Objects.md","ref":"源码解读/java.util/Objects.md","articles":[{"title":"java.util.concurrent","level":"1.2.2.23.1","depth":4,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.md","articles":[]},{"title":"ConcurrentHashMap","level":"1.2.2.23.2","depth":4,"path":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","ref":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","articles":[{"title":"java.util.concurrent.locks","level":"1.2.2.23.2.1","depth":5,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.md","articles":[{"title":"Lock","level":"1.2.2.23.2.1.1","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Lock.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Lock.md","articles":[]},{"title":"Condition","level":"1.2.2.23.2.1.2","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Condition.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Condition.md","articles":[]},{"title":"AbstractOwnableSynchronizer","level":"1.2.2.23.2.1.3","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractOwnableSynchronizer.md","articles":[]},{"title":"AbstractQueuedSynchronizer","level":"1.2.2.23.2.1.4","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md","articles":[]},{"title":"ReentrantLock","level":"1.2.2.23.2.1.5","depth":6,"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.md","ref":"源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/ReentrantLock.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.md","mtime":"2017-10-23T05:43:17.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-14T07:48:47.897Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"java.util.concurrent","level":"1.2.2.24","depth":3,"next":{"title":"ConcurrentHashMap","level":"1.2.2.24.1","depth":4,"path":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","ref":"源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md","articles":[]},"previous":{"title":"Objects","level":"1.2.2.23","depth":3,"path":"源码解读/java.util/Objects.md","ref":"源码解读/java.util/Objects.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"源码解读/java.util/java.util.concurrent/java.util.concurrent.md","mtime":"2018-01-18T12:53:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-18T11:29:16.628Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
