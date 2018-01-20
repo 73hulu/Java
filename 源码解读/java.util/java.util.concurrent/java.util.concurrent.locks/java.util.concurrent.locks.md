@@ -1,6 +1,7 @@
 # java.util.concurrent.locks
 
-这个包中的接口和类提供了一个框架，用于锁定和等待与内置同步和监视器不同的条件。该框架允许在使用`locks`和`Condition`方面具有更大的灵活性的语法。
+这个包中的接口和类提供了一个框架，用于锁定和等待与内置同步和监视器不同的条件。该框架允许在使用`Lock`和`Condition`方面具有更大的灵活性的语法。
+
 
 主要的接口
 
@@ -17,7 +18,7 @@
 | :------------- | :------------- |
 | AbstractOwnableSynchronizer      | Item Two       |
 |AbstractQueuedLongSynchronizer   |   |
-|AbstractQueuedSynchronizer   |   |
+|AbstractQueuedSynchronizer   |  JUC包的核心，最重要的基础设施类之一 |
 |LockSupport   |   |
 |ReentrantLock	|   |
 |ReentrantReadWriteLock   |   |

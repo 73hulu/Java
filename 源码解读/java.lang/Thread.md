@@ -802,3 +802,4 @@ public static int enumerate(Thread tarray[]) {
 * [Java多线程中join方法的理解](http://uule.iteye.com/blog/1101994)!!!
 * [Thread的中断机制(interrupt)](http://www.cnblogs.com/onlywujun/p/3565082.html)
 * [线程](http://www.cnblogs.com/hvicen/p/6218981.html)
+* [Java线程同步小陷阱，你掉进去过吗](http://blog.csdn.net/smcwwh/article/details/7190933)

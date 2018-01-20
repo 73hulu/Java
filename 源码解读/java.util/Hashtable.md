@@ -206,3 +206,4 @@ public synchronized boolean containsKey(Object key) {
 3. `HashMap`允许一个key为null的映射和多个value为null的映射；`Hashtable`不允许key为null或value为null的映射，否则会抛出空指针异常。
 4. `HashMap`是非线程安全的，如果要建立线程安全的HashMap，则需要借助`Collections`；`Hashtable`是线程安全的。
 5. `HashMap`发生冲突的使用链地址法，`Hashtable`使用再散列。
+6. `HashMap`借助哈希桶 + 链表/红黑树的设计（JDK1.8）,`Hashtable`借助哈希桶 + 链表的设计方法。
