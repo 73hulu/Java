@@ -16,14 +16,14 @@
 
 | 类名 | 功能 |
 | :------------- | :------------- |
-| AbstractOwnableSynchronizer      | Item Two       |
+| AbstractOwnableSynchronizer      |       |
 |AbstractQueuedLongSynchronizer   |   |
 |AbstractQueuedSynchronizer   |  JUC包的核心，最重要的基础设施类之一 |
-|LockSupport   |   |
-|ReentrantLock	|   |
-|ReentrantReadWriteLock   |   |
-|ReentrantReadWriteLock.ReadLock   |   |
-|ReentrantReadWriteLock.WriteLock	   |   |
+|LockSupport   | 线程阻塞和唤醒原语  |
+|ReentrantLock	|  可重入锁 |
+|ReentrantReadWriteLock   |  可重入的读写锁 |
+|ReentrantReadWriteLock.ReadLock   | 可重入的读写锁中的读锁  |
+|ReentrantReadWriteLock.WriteLock	   |  可重入的读写锁中的写锁  |
 |StampedLock	   |   |
 
 `Lock`接口支持在语义（可重入，公平等）方面不同的锁定规则，并且可以在非块结构的上下文中使用，包括手工和锁重新排序算法。主要实现是`ReentrantLock`。

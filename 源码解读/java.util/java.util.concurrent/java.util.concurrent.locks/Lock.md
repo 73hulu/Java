@@ -89,6 +89,11 @@ if (lock.tryLock()) {
 
 
 
+
+
+
+
+
 参考：
 * [Java中Lock，tryLock，lockInterruptibly有什么区别？](https://www.zhihu.com/question/36771163)
 * [Java中的锁-Lock接口解析](http://blog.csdn.net/canot/article/details/52050633)

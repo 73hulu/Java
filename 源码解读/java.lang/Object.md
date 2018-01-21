@@ -302,7 +302,7 @@ public class ObjectFinalizeTest {
 
 *  public final native void notify();
 
-  作用是唤醒在此对象监视器上等待的单个线程。
+  作用是唤醒在此对象监视器上等待的随机单个线程。
 
 * public final native void notifyAll();
 
