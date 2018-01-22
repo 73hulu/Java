@@ -3,6 +3,7 @@
 AQS提供了线程等待队列的操作，其中线程阻塞和唤醒操作是通过`LockSupport`的静态方法来进行的。实际上，`LockSupport`是用来创建锁和其他同步类的基本线程阻塞原语。
 
 类结构如下
+
 ![LockSupport](http://ovn0i3kdg.bkt.clouddn.com/LockSupport.png?imageView/2/w/500)
 
 注意到，该类对外提供的都是静态方法，其中`park()`和`unpark()`分别用来阻塞线程和解除阻塞。而且`park()`和`unpark()`不会遇到`Thread.suspend` 和 `Thread.resume`所可能引发的死锁”问题。
