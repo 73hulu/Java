@@ -23,4 +23,7 @@
 2. 线程并发量过多，抢占系统资源从而导致阻塞
 3. 对线程进行一些简单的管理，比如延迟执行，定时循环执行等。
 
-Java在JUC中提供了`Executor`框架，作为线程池的实现，涉及的重要的类有`ThreadPoolExecutor`、`E`
+Java在JUC中提供了`Executor`框架，框架中重要类的继承树如下：
+
+
+![Executor框架](http://img.blog.csdn.net/20151027091552190)

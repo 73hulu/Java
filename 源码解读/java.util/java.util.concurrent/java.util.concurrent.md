@@ -26,6 +26,8 @@ JUC大致上又可以分为三个子包：
 | 类名 | 功能 |
 | :------------- | :------------- |
 |  Executors |  线程池的工厂类|
+|ThreadPoolExecutor   | 线程池   |
+|  ScheduledThreadPoolExecutor |   |
 |ConcurrentHashMap   |  |
 |ConcurrentLinkedDeque   |   |
 |ConcurrentLinkedQueue   |   |
@@ -36,13 +38,14 @@ JUC大致上又可以分为三个子包：
 |LinkedBlockingDeque   |   |
 |LinkedBlockingQueue   |   |
 |PriorityBlockingQueue   |   |
+|ThreadPolExecutor   |   |
 
 
 定义的接口有下面这些
 
 | 接口 | 功能 |
 | :------------- | :------------- |
-|Executor | 启动了该线程      |
+|Executor | 线程启动类      |
 |ExecutorService   | 控制线程的执行和取消   |
 |ScheduledExecutorService   |  提供了线程启动时机的控制 |
 |Callable  | 提供了对线程的控制  |
