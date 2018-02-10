@@ -341,6 +341,9 @@ public void extraTypeProvider(){
 }
 ```
 
+> 在实践过程中遇到这样一个问题：有一个布尔量，并未对其设置serialize=false属性，但是序列化的时候无法序列化该属性。后来经过[JavaBean的boolean isXXX反序列化问题](https://www.cnblogs.com/xulingfeng/p/6143317.html)这篇文章的提醒，发现我的布尔量的命名是isXXX，无论是利用`@Getter`和`@Setter`注解省略getter和setter方法，还是idea生成getter和setter方法，其getter/setter为`isXXX/setXXX`，而`Boolean`的getter/setter为`getXXX/setXXX`。
+> 对于boolean量，将其写成`isXXX`实际上是不规范的，此时IDE默认的getter/setter并不会被fastjson识别，反序列化过程错误。解决办法就是手动将`isXXX/setXXX`改成`isIsXXX/setIsXXX`.
+
 
 参考
 * [源码地址](https://github.com/alibaba/fastjson)
