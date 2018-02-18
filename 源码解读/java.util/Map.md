@@ -47,13 +47,13 @@ Map接口结构如下：
 ### void clear();
 移除map中的所有元素。
 
-### Set&l;tK> keySet();
+### Set&lt;K&gt; keySet();
 返回此映射中包含的key的Set视图。**对map的任何修改都会反映到该集合中，反之亦然**。如果在对集合进行迭代的过程中修改了映射（除了通过迭代器自己的删除操作），迭代的结果是未定义的。该Set集合支持元素删除，通过`Iterator.remove`，`Set.remove`、`Set.removeAll`、`Set.retainAll`和`Set.clear`操作从映射中删除相应的映射，它不支持`add`和`addAll`操作。
 
 ### Collection<V> values();
 返回此映射中包含的value的集合视图。同样，**对map的任何修改都会反映到该集合中，反之亦然。**
 
-### Set<Map.Entry<K, V>> entrySet();
+### Set&lt;Map.Entry<K, V>&gt; entrySet();
 返回此映射中包含的映射关系。**对map的任何修改都会反映到该集合中，反之亦然。**。注意到，其中Set的元素类型是`Map.Entry<K, V>`类型，这是Map定义的一个内部接口，指的是一个映射关系。定义如下：
 ```java
 interface Entry<K,V> {
@@ -114,4 +114,4 @@ default V getOrDefault(Object key, V defaultValue) {
 
 后面还有几个JDK1.8新加入的方法，不常用在此不做讲解。
 
-继承Map接口的类或者接口有：`HashMap`、`TreeMap`、`HashTable`、`SortedMap`、`Set`。
+继承Map接口的类或者接口有：`HashMap`、`TreeMap`、`HashTable`、`SortedMap`。

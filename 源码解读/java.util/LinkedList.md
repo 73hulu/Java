@@ -376,7 +376,7 @@ public E remove(int index) {
 ### 单向队列（Queue）
 Java中`LinkedList`实现了单向队列的功能，单向队列规定队首只能出队，队尾只能入队。下面这些方法就是针对队列设计的功能。
 #### public E peek(){...} 和 public E element(){...}
-两个方法都是获取到对首的元素，但是不出队。两者有细微的差别：`peek`方法在遇到空链表的时候会返回null，而`element`方法在遇到空链表的时候会抛出异常。
+两个方法都是获取到队首的元素，但是不出队。两者有细微的差别：`peek`方法在遇到空链表的时候会返回null，而`element`方法在遇到空链表的时候会抛出异常。
 ```Java
 public E peek() {
     final Node<E> f = first;
@@ -451,7 +451,7 @@ public E peekFirst() {
   return (f == null) ? null : f.item;
 }
 ```
-#### public E peekFirst() {...}
+#### public E peekLast() {...}
 获取队尾元素，但是不出队。
 ```java
 public E peekLast() {

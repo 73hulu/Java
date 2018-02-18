@@ -22,7 +22,7 @@ private transient HashMap<E,Object> map;
 注意到这是一个`HashMap`的实例，用关键词`transient`修饰，表明不是持久化。`HashSet`中的元素都是作为`map`中的key存放的。也可见，其实`HashSet`内部是由`HashMap`的实例来实现的。在这个无参构造函数中，未指定初始化大小和装载因子，根据`HashMap`的知识可知，初始化大小为16，装载因子是0.75。
 
 #### public HashSet(Collection<? extends E> c){...}
-，创建一个包含指定集合中的元素的`HashSet`实例。定义如下：
+创建一个包含指定集合中的元素的`HashSet`实例。定义如下：
 ```java
 public HashSet(Collection<? extends E> c) {
     map = new HashMap<>(Math.max((int) (c.size()/.75f) + 1, 16));
@@ -110,7 +110,7 @@ public void clear() {
 > 浅拷贝是指在拷贝对象时，对于基本数据类型的变量会重新复制一份，而对于引用类型的变量只是对引用进行拷贝。
 > 深拷贝是指在拷贝对象时，同时会对引用指向的对象进行拷贝。
 > 区别就在于是否对  对象中的引用变量所指向的对象进行拷贝。
-> 参考[谈Java中的深拷贝和浅拷贝（转载）](http://www.cnblogs.com/dolphin0520/p/3700693.html)，“浅拷贝”和“深拷贝”的区别会在《集合框架》专题z具体讲到。
+> 参考[谈Java中的深拷贝和浅拷贝（转载）](http://www.cnblogs.com/dolphin0520/p/3700693.html)，“浅拷贝”和“深拷贝”的区别会在《集合框架》专题中具体讲到。
 
 没有对引用指向的对象进行拷贝。
 ```java

@@ -25,7 +25,7 @@ for (Iterator i = suits.iterator(); i.hasNext(); )
     for (Iterator j = ranks.iterator(); j.hasNext(); )
         sortedDeck.add(new Card(i.next(), j.next()));
 ```
-这是一个常常会犯错的错误，执行后将会抛出`NoSuchElementException`异常，原因在于在内层循环中`suits`的`next`方法执行了太多次，而这个方法每执行一次都会讲迭代游标后移，所以最后会过早将元素读完，抛出异常。正确的写法如下：
+这是一个常常会犯错的错误，执行后将会抛出`NoSuchElementException`异常，原因在于在内层循环中`suits`的`next`方法执行了太多次，而这个方法每执行一次都会将迭代游标后移，所以最后会过早将元素读完，抛出异常。正确的写法如下：
 ```java
 for (Iterator i = suits.iterator(); i.hasNext(); ) {
   Suit suit = i.next();
