@@ -160,3 +160,7 @@ void afterNodeAccess(Node<K,V> e) { // move node to last
 它实际上就是修改了中双向链表中最后被访问的元素节点的两个指针，使得该节点处于双向链表的最后。而这个方法在任何元素访问的方法（比如get，replace等）中被调用。
 
 > LinkedHashMap 的内容还需要细纠！
+
+参考
+* [初识LinkedHashMap](https://www.cnblogs.com/xrq730/p/5052323.html)
+* [【集合框架】JDK1.8源码分析之LinkedHashMap（二）](https://www.cnblogs.com/leesf456/p/5248868.html)

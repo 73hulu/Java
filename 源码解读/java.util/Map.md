@@ -36,7 +36,7 @@ Map接口结构如下：
 取得key对应的值，当map中含有一对键值k-v使得`(key==null ? k==null : key.equals(k))}`，此时返回v，否则返回null。（如果map允许null值，那么另外返回null这种设计是没有必要的）。
 
 ### V put(K key, V value);
-往map中存放入一对键值。如果map中已经包含key作为键的键值对，那么将会覆盖，狗则会建增。
+往map中存放入一对键值。如果map中已经包含key作为键的键值对，那么将会覆盖，则会建增。
 
 ### V remove(Object key);
 删除map中键值为key的键值对，如果存在该键值对，则删除并返回被删除的value值，如果不存在就返回null。
