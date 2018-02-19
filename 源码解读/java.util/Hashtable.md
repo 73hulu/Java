@@ -202,7 +202,7 @@ public synchronized boolean containsKey(Object key) {
 
 总结一下`HashMap`和`Hashtable`的差异之处：
 1. `HashMap`继承自`AbstractMap`，`Hashtable`继承自`Dictionary`，这也是造成两者不同的主要原因。
-2. `HashMap`默认初始容量为16，负载因子为0.75，约定容量和阈值必须为2的倍数，即一定为合数，扩容策略为2倍；`Hashtable`默认初始容量为11，负载因袭为0.75，没有2的倍数的硬性约定，扩容策略为2倍加上1。（Hashtable的容量设计里面来自于“素数导致冲突的概率小于合数”，参考http://blog.csdn.net/liuqiyao_01/article/details/14475159）
+2. `HashMap`默认初始容量为16，负载因子为0.75，约定容量和阈值必须为2的倍数，即一定为合数，扩容策略为2倍；`Hashtable`默认初始容量为11，负载因子为0.75，没有2的倍数的硬性约定，扩容策略为2倍加上1。（Hashtable的容量设计里面来自于“素数导致冲突的概率小于合数”，参考http://blog.csdn.net/liuqiyao_01/article/details/14475159）
 3. `HashMap`允许一个key为null的映射和多个value为null的映射；`Hashtable`不允许key为null或value为null的映射，否则会抛出空指针异常。
 4. `HashMap`是非线程安全的，如果要建立线程安全的HashMap，则需要借助`Collections`；`Hashtable`是线程安全的。
 5. `HashMap`发生冲突的使用链地址法，`Hashtable`使用再散列。
