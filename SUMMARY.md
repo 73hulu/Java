@@ -47,6 +47,7 @@
         * [Arrays](源码解读/java.util/Arrays.md)
         * [DualPivotQuicksort](源码解读/java.util/DualPivotQuicksort.md)
         * [Collection](源码解读/java.util/Collection.md)
+        * [Collections](源码解读/java.util/Collections.md)
         * [Set](源码解读/java.util/Set.md)
         * [HashSet](源码解读/java.util/HashSet.md)
         * [LinkedHashSet](源码解读/java.util/LinkedHashSet.md)
@@ -168,3 +169,4 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
 * [资源整理](资源整理.md)
+
