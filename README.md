@@ -11,7 +11,7 @@
 * OOP -> 修饰符 -> 类、抽象类、内部类和接口 -> 设计模式
 * ClassLoader -> 类编译、加载和执行 -> 反射Class -> reflect -> 虚拟机
 * 防御式编程 -> 异常 -> 断言
-* 集合框架 -> Collection| ArrayList |LinkedList | HashSet | LinkedHashSet | TreeSet | HashMap | LinkedHashMap| TreeMap | PriorityQueue| ConcurrentHashMap | Collections | Arrays-> 空间增长原则 -> 数据结构（数组、线性表、栈、队列、树）
+* 集合框架 -> Collection| ArrayList |LinkedList | HashSet | LinkedHashSet | TreeSet | HashMap | LinkedHashMap| TreeMap | PriorityQueue| ConcurrentHashMap | Collections | Arrays-> 空间增长原则 -> 数据结构（数组、线性表、栈、队列、树） -> 算法
 * 线程 -> Thread -> ThreadGroup -> ThreadPool -> concurrent包
 
 
@@ -62,7 +62,7 @@
 * Field中操作属性的方法（get和set）
 * 基本数据类型和void也有class对象、数组也有class对象
 
-##### 集合框架
+##### **集合框架和算法**
 * 框架大概情况
 * iterable和iterator的区别
 * Iterator中remove方法的用法
@@ -88,4 +88,7 @@
   - 二叉树定义、常用结论
   - 二叉树的三种遍历方式的非递归实现（重要）
   - BST、AVL、B-、B+、B*树之间的区别和联系，各自的查找、插入和删除实现过程
-  -
+  - Collections中的算法实现：排序(sort)、反转(rotate)、二分查找（binarySearch）、混排(shuffle)、填充（fill）、拷贝(copy)、替代（replaceAll）、子串匹配(indexOfSubList和lastIndexOfSubList)、最大(max)、最小(min)
+  - Arrays中的算法实现
+  - 查找算法
+  - 排序算法
