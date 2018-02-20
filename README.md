@@ -11,7 +11,7 @@
 * OOP -> 修饰符 -> 类、抽象类、内部类和接口 -> 设计模式
 * ClassLoader -> 类编译、加载和执行 -> 反射Class -> reflect -> 虚拟机
 * 防御式编程 -> 异常 -> 断言
-* 集合框架 -> Collection| ArrayList |LinkedList | HashSet | LinkedHashSet | TreeSet | HashMap | LinkedHashMap| TreeMap | ConcurrentHashMap | Collections | Arrays-> 空间增长原则
+* 集合框架 -> Collection| ArrayList |LinkedList | HashSet | LinkedHashSet | TreeSet | HashMap | LinkedHashMap| TreeMap | PriorityQueue| ConcurrentHashMap | Collections | Arrays-> 空间增长原则 -> 数据结构（数组、线性表、栈、队列、树）
 * 线程 -> Thread -> ThreadGroup -> ThreadPool -> concurrent包
 
 
@@ -79,3 +79,13 @@
 * HashMap寻址和冲突解决办法 putVal
 * map如何进行遍历
 * 弄明白`HashMap`、`LinkedList`中数据结构的继承关系
+* 数据结构中数组、线性表、栈、队列、树
+  - 数组存储地址的计算
+  - 三种特殊矩阵的压缩存储原理、稀疏矩阵的表示
+  - 线性表的顺序存储和链式存储的实现
+  - 栈的顺序存储和链式存储的实现
+  - 队列的顺序存储(循环队列)和链式存储的实现
+  - 二叉树定义、常用结论
+  - 二叉树的三种遍历方式的非递归实现（重要）
+  - BST、AVL、B-、B+、B*树之间的区别和联系，各自的查找、插入和删除实现过程
+  -
