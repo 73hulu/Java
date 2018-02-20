@@ -4,7 +4,11 @@
 	"plugins": [
 		"splitter",
 		"tbfed-pagefooter",
-		"toggle-chapters"
+		"toggle-chapters",
+    "copy-code-button",
+    "expandable-chapters-small",
+    "simple-page-toc",
+    "anchors"
 	],
 	"pluginsConfig": {
 		"sharing": {
@@ -19,8 +23,12 @@
 				"weibo", "instapaper"
 			]
 		},
+    "simple-page-toc": {
+        "maxDepth": 5,
+        "skipFirstH1": true
+    },
 		"tbfed-pagefooter": {
-			"copyright": "Copyright &copy zhangjikai.com 2015",
+			"copyright": "Copyright &copy baoxiao fang.com 2018",
 			"modify_label": "该文件修订时间：",
 			"modify_format": "YYYY-MM-DD HH:mm:ss"
 		}
