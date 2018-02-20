@@ -90,5 +90,5 @@
   - BST、AVL、B-、B+、B*树之间的区别和联系，各自的查找、插入和删除实现过程
   - Collections中的算法实现：排序(sort)、反转(rotate)、二分查找（binarySearch）、混排(shuffle)、填充（fill）、拷贝(copy)、替代（replaceAll）、子串匹配(indexOfSubList和lastIndexOfSubList)、最大(max)、最小(min)
   - Arrays中的算法实现
-  - 查找算法
-  - 排序算法
+  - 查找算法（7种）：顺序、二分、差值、斐波那契、树表（BST、AVL、B+、B-、B*、红黑树）、分块查找、哈希查找 及各自的效率
+  - 排序算法（5类8种）：插入排序（直接插入、希尔）、选择（简单选择、堆排序）、交换（冒泡、快排）、归并、基数排序 及各自的效率
