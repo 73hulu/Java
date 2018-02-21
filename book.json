@@ -1,36 +1,108 @@
 {
-	"title": "Java Foundation",
+	"title": "Linux",
+	"description": "Linux学习比较",
+	"author": "xiaofang.bao",
+	"output.name": "site",
 	"language": "zh-hans",
+	"gitbook": "3.2.3",
+	"root": ".",
+	"links": {
+		"sidebar": {
+			"Home": "http://www.guhuaijin.com"
+		}
+	},
 	"plugins": [
-		"splitter",
-		"tbfed-pagefooter",
-		"toggle-chapters",
-    "copy-code-button",
-    "expandable-chapters-small",
-    "simple-page-toc",
-    "anchors"
+		"-lunr",
+		"-search",
+		"-livereload",
+		"search-plus@^0.0.11",
+		"github@^2.0.0",
+		"edit-link@^2.0.2",
+		"disqus@^0.1.0",
+		"advanced-emoji@^0.2.1",
+		"anchors@^0.7.1",
+		"include-codeblock@^3.0.2",
+		"ace@^0.3.2",
+		"emphasize@^1.1.0",
+		"katex@^1.1.3",
+		"splitter@^0.0.8",
+		"mermaid-gb3@2.1.0",
+		"tbfed-pagefooter@^0.0.1",
+		"expandable-chapters-small@^0.1.7",
+		"sectionx@^3.1.0",
+		"sitemap-general@^0.1.1",
+		"anchor-navigation-ex@0.1.8",
+		"favicon@^0.0.2",
+		"todo@^0.1.3",
+		"terminal@^0.3.2",
+		"klipse@^1.2.0"
 	],
+
 	"pluginsConfig": {
+		"theme-default": {
+			"showLevel": true
+		},
+		"disqus": {
+			"shortName": "gitbookuse"
+		},
+		"github": {
+			"url": "https://github.com/guhuaijin/Java"
+		},
+		"include-codeblock": {
+			"template": "ace",
+			"unindent": true,
+			"edit": true
+		},
 		"sharing": {
-			"weibo": true,
-			"facebook": true,
-			"twitter": true,
-			"google": false,
+			"douban": false,
+			"facebook": false,
+			"google": true,
+			"hatenaBookmark": false,
 			"instapaper": false,
+			"line": false,
+			"linkedin": true,
+			"messenger": false,
+			"pocket": false,
+			"qq": false,
+			"qzone": false,
+			"stumbleupon": false,
+			"twitter": false,
+			"viber": false,
 			"vk": false,
+			"weibo": true,
+			"whatsapp": false,
 			"all": [
 				"facebook", "google", "twitter",
-				"weibo", "instapaper"
+				"weibo", "instapaper", "linkedin",
+				"pocket", "stumbleupon", "qq", "qzone"
 			]
 		},
-    "simple-page-toc": {
-        "maxDepth": 5,
-        "skipFirstH1": true
-    },
 		"tbfed-pagefooter": {
-			"copyright": "Copyright &copy baoxiao fang.com 2018",
+			"copyright": "Copyright © baoxiaofang.com 2017",
 			"modify_label": "该文件修订时间：",
 			"modify_format": "YYYY-MM-DD HH:mm:ss"
+		},
+		"edit-link": {
+			"base": "https://github.com/guhuaijin/Java/edit/master",
+			"label": "Edit This Page"
+		},
+		"sitemap-general": {
+			"prefix": "https://www.gitbook.com"
+		},
+		"anchor-navigation-ex": {
+			"multipleH1": true,
+			"mode": "float",
+			"isRewritePageTitle": false,
+			"tocLevel1Icon": "fa fa-hand-o-right",
+			"tocLevel2Icon": "fa fa-hand-o-right",
+			"tocLevel3Icon": "fa fa-hand-o-right"
+		},
+		"sectionx": {
+			"tag": "b"
+		},
+		"favicon": {
+			"shortcut": "favicon.ico",
+			"bookmark": "favicon.ico"
 		}
 	}
 }
