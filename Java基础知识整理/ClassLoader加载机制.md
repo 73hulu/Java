@@ -1,8 +1,10 @@
 # ClassLoader加载机制
+<!-- toc -->
+<!-- tocstop -->
 
 从看`Class`开始，就感觉Java的学习境界更上一层楼了，`ClassLoader`应该比较接近 JVM了。虽然我不是什么框架开发者，一般来说用不到，但是理解classLoader的加载机制，也有利于我们编写出更高效的代码。尝试看看吧。
 
-### 什么是ClassLoader
+## 什么是ClassLoader
 翻译过来就是"加载器"，加载什么呢?加载class文件。当我们编写的源文件经过编译后，产生字节码文件，即所谓的class文件，ClassLoader的作用就是讲class文件加载到JVM中，然后程序就可以正确运行了，但是JVM启动的时候，并不会一次加载所有的class文件【那当然了，那么多的class文件，都加载了内存岂不是要爆炸】，而是根据程序的需要，通过类加载机制（ClassLoader)来动态加载某个class文件到内存当中去，只要class文件被载入到了内存之后，才能被其他class所引用。
 
 那么Java的类加载流程是怎样的呢？
@@ -210,7 +212,7 @@ public  URLClassLoader(URL[] urls, ClassLoader parent,
 
 之前说过`BootstrapClassLoader`是由C++写的，是JVM的一部分，但是不是java类，所以无法再java代码中取得它的引用。JVM启动是首先启动`BootstrapClassLoader`加载器，像int.class、String.class这种都是由它加载的，这也就是为什么之前用`getParent`对int.class取得父加载器抛出异常的原因。之后，JVM初始化`sun.misc.Launcher`并创建`Extension ClassLoader`和`AppClassLoader`实例，将`BootstrapClassLoader`设置为`Extension ClassLoader`的父加载器，将`Extension ClassLoader`设置为`AppClassLoader`的父加载器，这也就是为什么说`BootstrapClassLoader`是`ExtClassLoader`的父加载器的原因。
 
-### 双亲委托机制
+## 双亲委托机制
 
 一个类加载器查找class和resource时候，采用双亲委托机制？什么意思？
 >  首先判断这个class是不是已经加载成功，如果没有的话它并不是自己进行查找，而是先通过父加载器，然后递归下去，直到Bootstrap ClassLoader，如果Bootstrap classloader找到了，直接返回，如果没有找到，则一级一级返回，最后到达自身去查找这些对象。这种机制就叫做双亲委托。
@@ -280,7 +282,7 @@ protected Class<?> loadClass(String name, boolean resolve)
 这段源码体现的就是“双亲委托”机制。
 
 
-### 自定义ClassLoader
+## 自定义ClassLoader
 
 经过前面的学习发现系统默认的ClassLoader都是通过路径来获取资源，那么我能不能自定义资源路径，再写一个自定义的ClassLoader来获取这些自定义的资源呢。可以，按照下面的步骤。
 1. 编写一个类继承自ClassLoader抽象类。
