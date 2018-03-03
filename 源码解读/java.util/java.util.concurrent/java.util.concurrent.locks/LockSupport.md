@@ -107,5 +107,9 @@ main continue
 经常会问到`park`和`wait`方法有什么不同，两者都是让线程进入等待阻塞，不同的是，`wait`方法是通过锁来进行同步的，即让线程阻塞之前，必须要获得锁。而`park`是阻塞原语，是不需要获得锁的。
 
 
+> 什么是原语？内核或微核提供核外调用的过程或函数称为原语(primitive)，就理解为一组机器指令。
+
+
+
 参考
 * [Java多线程系列--“JUC锁”07之 LockSupport](https://www.cnblogs.com/skywang12345/p/3505784.html#a1)

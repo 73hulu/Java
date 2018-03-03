@@ -234,10 +234,10 @@ private final boolean parkAndCheckInterrupt() {
 
 这个方法非常重要，用下面这张图可以总结一下：
 
-![acquire](https://images2015.cnblogs.com/blog/721070/201511/721070-20151102145743461-623794326.png)
+![acquire](http://ovn0i3kdg.bkt.clouddn.com/AQS%E4%B8%ADacquire.png)
 
 
-### public final boolean release(int arg){...}
+## public final boolean release(int arg){...}
 `release`是`acquire`的反操作，此方法是**独占模式**下线程释放共享资源的顶层入口。它会释放指定量的资源，如果彻底释放了（即`state=0`）,它会唤醒等待队列里的其他线程来获取资源。这也正是`unlock()`的语义，当然不仅仅只限于`unlock()`。下面是release()的源码：
 ```java
 public final boolean release(int arg) {

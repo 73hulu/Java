@@ -19,7 +19,7 @@ lang-->util-->io-->nio-->sql-->math-->text-->security
 |java.security   | 为安全框架提供类和接口  |
 
 我都用的JDK版本是1.8。
-> java 8 doc https://docs.oracle.com/javase/8/docs/api/
+> Java 8 Doc API https://docs.oracle.com/javase/8/docs/api/
 
 不求每天都读1个Java源文件，但是有空的时候还是顺带过来瞄一眼吧。
 

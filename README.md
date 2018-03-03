@@ -126,3 +126,12 @@
 * 理解“synchronied是线程级的而不是方法级的”； “加锁的是对象而不是代码”
 * “同步”和“互斥”有什么区别。同步是只等待同一个资源，使得有先有后，方法就是加**同一把**锁。互斥是指同一时刻只有一个线程能获得，方法是加锁。
 * synchronied叫做监视器锁，理解监视器的概念和实现
+* 梳理JUC包都包含哪些类，尤其是locks子包中都有哪些重要的接口和类
+* AQS提供线程队列的操作，LockSupport提供线程唤醒和阻塞原语。
+* 理解各种锁与AQS之间的关系，为什么说AQS提供了基本同步框架。
+* Lock接口中lock、tryLock、lockInterruptibly三种方法的用法和区别，以及各自的使用场景
+* ReentrantLock如何实现AQS和Lock。
+* 什么是公平锁和非公平锁？ReenrantLock默认是什么锁。
+* 线程同步的意思？ 阻断其他线程
+* ReentrantReadWriteLock性能？读锁和写锁如何工作?适用于什么场景。
+* 三种线程同步辅助类Semaphore、CountDownLatch、CyclicBarrier的作用和使用场景。

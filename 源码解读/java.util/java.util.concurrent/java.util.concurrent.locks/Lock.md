@@ -6,7 +6,7 @@
 
 
 
-###  void lock();
+##  void lock();
 获取锁。
 如果该锁没有被另一个线程保持，则获取该锁并立即返回，将锁的保持计数设置为 1。
 如果当前线程已经保持该锁，则将保持计数加 1，并且该方法立即返回。
@@ -14,7 +14,7 @@
 
 
 
-###  void lockInterruptibly() throws InterruptedException;
+##  void lockInterruptibly() throws InterruptedException;
 
 1. 如果当前线程未被中断，则获取锁。
 2. 如果该锁没有被另一个线程保持，则获取该锁并立即返回，将锁的保持计数器置为1。
@@ -29,10 +29,10 @@
 则抛出`InterruptedException`，并且清除当前线程的已终端状态。
 6. 在此实现中，因为此方法是一个显式中断点，所以要优先考虑响应中断，而不是响应普通锁的获取或冲入获取。
 
-抛出：`InterruptedException` 如果单钱线程已经中断
+抛出：`InterruptedException` 如果单钱线程已经中断。
 
 
-### boolean tryLock();
+## boolean tryLock();
 
 仅在调用时锁未被另一个线程保持的情况下，才获取该锁。
 
@@ -63,7 +63,7 @@ if (lock.tryLock()) {
 ```
 
 
-### boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
+## boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
 ---
 和无参数的`tryLock`方法功能相同。但是允许在指定的时间内尝试，拿不到锁的情况下就等待一段时间，超出时间后再返回结果，比较聪明的做法。`tryLock()`和`tryLock(0, TimeUnit.SECONDS)`是等效的。
@@ -78,12 +78,12 @@ if (lock.tryLock()) {
 1. **线程在sleep或wait或join**，此时如果别的进程调用此进程的`interrupt()`方法，此线程会被唤醒并要求处理`InterruptedException`。具体见`Thread`API。
 2. **如果此线程在运行中**，则不会收到提醒。但是线程的“打扰标志”会被设置，可以通过`isInterrupted()`查看并作出处理。
 
-`lockInterruptibly()`和上面的第一种情况是一样的，线程在请求`lock`并且被阻塞的时候，如果被`interrupt`，则“此线程会被要求处理`InterruptedException`查看并作出处理”
+`lockInterruptibly()`和上面的第一种情况是一样的，线程在请求`lock`并且被阻塞的时候，如果被`interrupt`，则“此线程会被要求处理`InterruptedException`查看并作出处理”。
 
-### void unlock();
+## void unlock();
 释放锁
 
-### Condition newCondition();
+## Condition newCondition();
 返回绑定到此`Lock`实例的新`Condition`实例。
 在等待条件之前，锁必须由当前线程保持。 对`Condition.await（）`的调用将在等待之前将原子地释放锁，并在等待返回之前重新获取锁。
 
