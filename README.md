@@ -135,3 +135,7 @@
 * 线程同步的意思？ 阻断其他线程
 * ReentrantReadWriteLock性能？读锁和写锁如何工作?适用于什么场景。
 * 三种线程同步辅助类Semaphore、CountDownLatch、CyclicBarrier的作用和使用场景。
+* 创建线程的四种方法，哪种比较好。
+* Executor框架主要包含哪些东西？
+* 为什么要使用线程池。
+* Executor和Executors的区别和联系
