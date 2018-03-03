@@ -8,7 +8,7 @@ Class真的很重要啊，年少无知的我听到"反射"一词就很烦躁，�
 ![Class](http://ovn0i3kdg.bkt.clouddn.com/Class_structure_4.png)
 
 
-在阅读源码之前，我们了解下基本概念，`Class`到底是什么？`Class`是一个，跟Java API中定义的诸如`Thread`、`Integer`没有什么两样。类是对一类事物的抽象，那么`Class`抽象了什么呢？它的实例又代表了什么呢？
+在阅读源码之前，我们了解下基本概念，`Class`到底是什么？`Class`是一个类，跟Java API中定义的诸如`Thread`、`Integer`没有什么两样。类是对一类事物的抽象，那么`Class`抽象了什么呢？它的实例又代表了什么呢？
 
 在一个运行的程序中，会有许多的类和接口存在。我们用`Class`来表示对这些类和接口的抽象，而`Class`类的每个实例则代表了运行中的一个类。例如，运行的程序有ABC三个类，那么Class类就是对ABC三个类的抽象。所谓抽象，就是提取这些类的一个公共特征，比如这些类都有类名，都有对应的hashcode方法，可以判断类型是属于class、interface、enum还是annotation，这些可以封装成`Class`类的域，另外可以定义一些方法，比如获取某个方法、获取类型名字等等，这样就封装了一个表示类型(type)的类。
 
@@ -19,7 +19,7 @@ Java中，每个类class都有一个相应的Class，也就是说，当我们编
 一般某个类的Class对象被载入内存，它就用来创建这个类的所有对象。
 
 
-### public final class Class<T> implements java.io.Serializable, GenericDeclaration,Type, AnnotatedElement
+## public final class Class<T> implements java.io.Serializable, GenericDeclaration,Type, AnnotatedElement
 
 看到类声明，Class是一个终类，且是一个泛型类。实现了`Serializable`、`GenericDeclaration`、`Type`和`AnnotatedElement`接口。
 后三个接口有点陌生啊，他们都在`java.lang.reflect`子包中，这个包与反射机制密切相关。`GenericDeclaration`可以声明类型变量的实体的公共接口，也就是说，只有实现了该接口才能在对应的实体上声明（定义）类型变量，这些实体目前只有三个：`Class`（类）、`Constructor`(构造器)、`Method`(方法)
@@ -50,7 +50,7 @@ default String getTypeName() {
  }
  ```
 
-###  private Class(ClassLoader loader){...}
+##  private Class(ClassLoader loader){...}
 诶这就怪了，网上看到的大部分说`Class`没有构造方法，不能手动创建，为什么源码里明明就有构造方法啊？
 
 网上的说法不准确，`Class`不能手动创建对象的原因并不是没有构造方法，而是因为构造方法是private，不能调用。准确的说是：“Class类没有公共构造方法”。Class对象是在加载类时由 Java 虚拟机以及通过调用类加载器中的defineClass方法自动构造的。这个私有的构造方法怎么定义的呢？
@@ -121,13 +121,14 @@ public class ClassTest {
 }
 ```
 上面的测试程序可以验证这几点：
+
 ①基本数据类型也对应了各自的类对象，也就是说Class对象实际上描述的只是类型，而这类型未必是类或接口。
 
 ②相同类型的数组对象的类对象是同一个；
 
 ③由于历史原因，数组类型的getName方法会返回奇怪的名字，比如上面的`Ljava.lang.Double`;
 
-### public String getName(){...}
+## public String getName(){...}
 这个方法在前面用到了，方法将以字符串的行驶返回此Class对象所表示的实体(类、接口、数组类、基本类型或void)**完整**名称。方法定义如下:
 ```java
 public String getName() {
@@ -235,7 +236,7 @@ System.out.println(cls2.toString()); //interface java.lang.annotation.Annotation
 ```
 结果很明显啦~
 
-### public ClassLoader getClassLoader(){...}
+## public ClassLoader getClassLoader(){...}
 用来获取该类的类加载器，至于获得了之后干什么，母鸡啊~
 ```Java
 @CallerSensitive
@@ -259,7 +260,7 @@ ClassLoader getClassLoader0() { return classLoader; }
 private final ClassLoader classLoader;
 ```
 
-### 其他一些常用的方法
+## 其他一些常用的方法
 还有一些常用的方法，源码实现就略过了，只是讲下作用和使用示例。
 
 | 方法 | 作用   |  使用示例|
@@ -278,7 +279,7 @@ private final ClassLoader classLoader;
 | public boolean isEnum()   |  判断是否是枚举类型 |   |
 |public native boolean isArray()    |  判断是否是数组类型 |   |
 |public native boolean isPrimitive()   |  判断是否是基本类型 |   |
-|public boolean isAnnotation()    |  判断是否是注解类型 |  xxx |
+|public boolean isAnnotation()    |  判断是否是注解类型 |   |
 
 网上找到一些具体是操作例子可以参考下：
 * http://blog.csdn.net/sd4000784/article/details/7448221

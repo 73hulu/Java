@@ -9,25 +9,25 @@
 * 基本数据类型 -> 八种包装类 -> 包装类源码
 * String 高效编程 ->  String -> StringBuilder - > StringBuffer -> **正则Pattern** -> Java编译技术
 * OOP -> 修饰符 -> 类、抽象类、内部类和接口 -> 设计模式
-* ClassLoader -> 类编译、加载和执行 -> 反射Class -> reflect -> 虚拟机
+* 类编译、加载和执行 -> ClassLoader -> 反射Class -> reflect -> 虚拟机
 * 防御式编程 -> 异常 -> 断言
 * 集合框架 -> Collection| ArrayList |LinkedList | HashSet | LinkedHashSet | TreeSet | HashMap | LinkedHashMap| TreeMap | PriorityQueue| ConcurrentHashMap | Collections | Arrays-> 空间增长原则 -> 数据结构（数组、线性表、栈、队列、树） -> 算法
 * 线程 -> Thread -> ThreadGroup -> ThreadPool -> concurrent包
 
 
 需要注意的点：
-###### Object
+## Object
 * clone方法注意是protected、需要实现cloneable接口，返回值是Object
 * equals -> hashcode
 * Objects对object有哪些改进？
 
-###### 包装类
+## 包装类
 * Integer和Long中计算数字长度的方法
 * toString方法如何实现？
 * hashcode的计算方法
 * 自动装箱和自动拆箱
 
-###### String
+## String
 * getCharts方法的返回值是void，需要将结果保存的字符数组作为参数传入。
 * equals方法和hashcode方法的写法
 * replace(char)方法是字符匹配，replace(String)方法是正则匹配
@@ -37,32 +37,54 @@
 * 常用format方法，百分号转义？
 * 理解intem方法在1.7之前和之后的区别，深刻理解方法区常量池保存堆中的内存
 
-###### StringBuilder
+## StringBuilder
 * 空间增长策略（2x + 2），最大值、初始化长度
 * applend(null)会追加"null"
 * 线程不安全
 
 
-###### StringBuffer
+## StringBuffer
 * 线程安全
 
-###### ClassLoader
-* 双亲委托
+## OOP
+* 面向对象三个重要的特性
+* 9种修饰符的含义
+* 内部类、抽象类、接口
+* 类的编译、加载、执行过程
+* 类加载器的双亲委托
 * 三种loader的默认路径和自定义路径
 * 自定义classloader需要重写findClass方法，在其中调用defineClass方法
 * defineClass方法被调用时生成class对象
-* classLoader工作过程：装载 | 链接（检查、准备、解析） | 初始化
+* ClassLoader工作过程：装载 | 链接（检查、准备、解析） | 初始化
+* 类的初始化顺序
+* JVM运行时的内存分区
+* 内存溢出和内存泄漏
+* GC含义
+* 内存回收算法
+* 内存回收器
 
-###### 反射
+## 反射
 * 反射的意义，为什么用反射？
 * 创建Class对象的三种办法
+* newInstance调用的是类的无参构造方法，且返回的是Object类型的对象
 * 类实例化的三种方法
+* invoke方法返回值是Object方法
 * 触发方法的两种方法
 * declare有无的区别
-* Field中操作属性的方法（get和set）
+* Field中操作属性的方法（get和set），在对private属性进行操作之前需要setAccessible(true)
 * 基本数据类型和void也有class对象、数组也有class对象
+* Array创建数组和操作数组的方法。
+* Array不能实例化，newInstance方法返回值是Object
 
-##### **集合框架和算法**
+## 异常处理机制
+* 异常和断言的区别
+* 异常机制结构，常见的免检异常
+* finally的作用，return语句，资源释放顺序
+* try-with-resources语句的作用
+* 1.7对于catch语句的改进
+* multi-catch
+
+## **集合框架和算法**
 * 框架大概情况
 * iterable和iterator的区别
 * Iterator中remove方法的用法
@@ -92,3 +114,15 @@
   - Arrays中的算法实现
   - 查找算法（7种）：顺序、二分、差值、斐波那契、树表（BST、AVL、B+、B-、B*、红黑树）、分块查找、哈希查找 及各自的效率
   - 排序算法（5类8种）：插入排序（直接插入、希尔）、选择（简单选择、堆排序）、交换（冒泡、快排）、归并、基数排序 及各自的效率
+
+
+## 多线程
+* 背景：CPU、多核处理器、多处理器、多道程序设计、并行、并发
+* 进程和线程的概念、区别
+* 多核心处理器、内核线程、超线程技术
+* 线程竞争状态：**只有对共享区域的数据进行操作的时候才会有这样的问题**，准确来说，是对**方法区**和**堆区**的数据进行操作的时候才有这个问题。对于局部变量啊这种的，不是共享的数据，不会有问题！！！！不能理解线程的原因在这里，清醒一点！！！
+* synchronized关键字获取对象锁和类锁，两者有什么区别？
+* 假设对象可能有很多方法，其中包括很多synchronied方法和非synchronized方法，那么同一时刻，只能有一个synchronized可能被访问，但是！其他非synchronized方法照样能被访问。 房间和钥匙的比喻！！！牢记
+* 理解“synchronied是线程级的而不是方法级的”； “加锁的是对象而不是代码”
+* “同步”和“互斥”有什么区别。同步是只等待同一个资源，使得有先有后，方法就是加**同一把**锁。互斥是指同一时刻只有一个线程能获得，方法是加锁。
+* synchronied叫做监视器锁，理解监视器的概念和实现

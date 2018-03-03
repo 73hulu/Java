@@ -6,10 +6,10 @@
 
 ![Method](http://ovn0i3kdg.bkt.clouddn.com/Method.png)
 
-### public final class Method extends Executable
+## public final class Method extends Executable
 类声明。不可继承，实现`Executable`接口。
 
-### 常用方法
+## 常用方法
 同样有些方法只需要会用就行了，这个方法大都用力获取方法的各类属性，比如返回值类型、参数个数、参数类型等，大致如下：
 
 | 方法 | 说明 |
@@ -29,7 +29,7 @@
 。。。
 常用的大致是以上这些了。可以发现`getXXXType`和`getGenericXXXTypes`这种形式经常成对出现，他们的区别和`Field`中讲解的一样。
 
-### invoke方法
+## invoke方法
 这是最重要的方法，反射取得Method的目的不都是执行么，这个方法就是触发方法执行。定义如下：
 ```java
 public Object invoke(Object obj, Object... args)
@@ -49,7 +49,7 @@ public Object invoke(Object obj, Object... args)
     return ma.invoke(obj, args);
 }
 ```
-方法有两个参数，第一个参数指定方法触发的对象，第二个参数是一个变长参数列表，指定了方法的参数。另外需要注意该方法的返回值是`String`类型，我们需要将执行结果进行类型转换。
+方法有两个参数，第一个参数指定方法触发的对象，第二个参数是一个变长参数列表，指定了方法的参数。另外需要注意该方法的返回值是`Object`类型，我们需要将执行结果进行类型转换。
 
 > 当然，反射中触发方法并不是都调用invoke方法， 可以反射取得一个实例，然后一般的实例方法调用就行。
 

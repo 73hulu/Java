@@ -18,7 +18,7 @@
 为什么要回顾环境变量呢，因为它和类加载流程关系密切。
 
 Java语言系统自带了三个类加载器：
-* `Bootstrap ClassLoader` ：称为启动类加载器，用C++语言写的，在JVM启动后初始化的，Java类加载层次中最顶层的类加载器，负责加载JDK中的核心类库，`%JRE_HOME%\lib`下的`rt.jar`、`resources.jar`、`charsets.jar`和`class`等。另外需要注意的是可以通过启动JVM时指定`-Xbootclasspath`和路径来改变Bootstrap ClassLoader的加载目录。比如`java -Xbootclasspath/a:path`被指定的文件追加到默认的bootstrap路径中。
+* `Bootstrap ClassLoader` ：称为启动类加载器，用C++语言写的，在JVM启动后初始化的，Java类加载层次中最顶层的类加载器，负责加载JDK中的核心类库，`%JRE_HOME%\jre\lib`下的`rt.jar`、`resources.jar`、`charsets.jar`和`class`等。另外需要注意的是可以通过启动JVM时指定`-Xbootclasspath`和路径来改变Bootstrap ClassLoader的加载目录。比如`java -Xbootclasspath/a:path`被指定的文件追加到默认的bootstrap路径中。
 * `Extention ClassLoader`: 扩展的类加载器，Bootstrap ClassLoader加载Extention ClassLoader，并且将Extention ClassLoader的父加载器设置为Bootstrap ClassLoader。Extention ClassLoader是用Java写的，具体来说就是`sun.misc.Launcher$ExtClassLoader`，Extention ClassLoader主要加载`%JAVA_HOME%/jre/lib/ext`此路径下的所有classes目录以及`java.ext.dirs`系统变量指定的路径中类库。
 * ` App ClassLoader`：Bootstrap ClassLoader加载完Extention ClassLoader后，就会加载App ClassLoader，并且将App ClassLoader的父加载器指定为 Extention ClassLoader。App ClassLoader也是用Java写成的，它的实现类是`sun.misc.Launcher$AppClassLoader`，另外我们知道ClassLoader中有个`getSystemClassLoade`r方法,此方法返回的正是`AppclassLoader.AppClassLoader`主要负责加载classpath所指定的位置的类或者是jar文档，它也是Java程序默认的类加载器。
 

@@ -8,9 +8,9 @@
 ![AbstractQueuedSynchronizer](http://ovn0i3kdg.bkt.clouddn.com/AbstractQueuedSynchronized_.png?imageView/2/w/500)
 
 
-### 框架
+## 框架
 该类维护了一个共享资源和一个FIFO线程等待队列（多线程争用资源被阻塞时会进入此队列），下面这个图可以用来描述这个关系：
-![共享资源和等待队列](https://images2015.cnblogs.com/blog/721070/201705/721070-20170504110246211-10684485.png)
+![共享资源和等待队列](http://ovn0i3kdg.bkt.clouddn.com/%E5%85%B1%E4%BA%AB%E8%B5%84%E6%BA%90%E5%92%8C%E7%AD%89%E5%BE%85%E9%98%9F%E5%88%97.png)
 
 如图中所示，该类用一个变量`volatile int state`来表示这个被争用的资源，队头和队尾由两个变量来记录：
 ```java
@@ -52,12 +52,12 @@ AQS是最基础的锁的框架定义，具体的同步争用器实现争用方�
 
 下面就从源码角度来分析一下AQS对于线程等待队列的实现。
 
-### public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable
+## public abstract class AbstractQueuedSynchronizer extends AbstractOwnableSynchronizer implements java.io.Serializable
 类声明，这是一个抽象类，继承的抽象类`AbstractOWnableSynchronizer`类也是JUC中的一个重要的类，从名字就可以看出，“拥有某个锁的同步器”，其实就是排他锁。类结构如下：
 
 ![AbstractOwnableSynchronizer](http://ovn0i3kdg.bkt.clouddn.com/AbstractOwnableSynchronizer.png)
 
-### protected AbstractQueuedSynchronizer() { }
+## protected AbstractQueuedSynchronizer() { }
 只有一个构造方法，且私有。那么如何初始化呢？这种与底层实现息息相关的类，一定不能让开发人员随便构造的，那么JVM总得初始化吧，如果实现？静态初始块。
 
 ```java
@@ -91,7 +91,7 @@ private volatile int state;
 ```
 这里进行了初始化的操作，`Unsafe`这个类封装了`CAS`的操作，是用本地方法实现的，我们不用去管到底如何实现。总之，它获取到了共享资源state、共享队列的头head和共享队列的尾tail，第一个等待节点和其后一个节点的地址，就此完成了初始化工作。
 
-### public final void acquire(int arg){...}
+## public final void acquire(int arg){...}
 这个方法是**独占模式**下，线程获取共享资源的顶层入口，如果线程获取到了锁，那么线程直接返回，否则进入等待队列，直到获取到资源。**整个过程忽略中断的影响**，源码如下：
 ```java
 public final void acquire(int arg) {
@@ -285,7 +285,7 @@ private void unparkSuccessor(Node node) {
 总结一下：`release()`是独占模式下线程释放共享资源的顶层入口。它会释放指定量的资源，如果彻底释放了（即`state=0`）,它会唤醒等待队列里的其他线程来获取资源。
 
 
-### public final void acquireShared(int arg) {...}
+## public final void acquireShared(int arg) {...}
 此方法是共享模式下线程获取共享资源的顶层入口。它会获取指定量的资源，获取成功则直接返回，获取失败则进入等待队列，直到获取到资源为止，整个过程忽略中断。下面是`acquireShared()`的源码：
 ```java
 public final void acquireShared(int arg) {
@@ -354,7 +354,7 @@ private void setHeadAndPropagate(Node node, int propagate) {
 
 其实跟`acquire()`的流程大同小异，只不过多了个自己拿到资源后，还会去唤醒后继队友的操作（这才是共享嘛）。
 
-### public final boolean releaseShared(int arg) {...}
+## public final boolean releaseShared(int arg) {...}
 此方法是共享模式下线程释放共享资源的顶层入口。它会释放指定量的资源，如果成功释放且允许唤醒等待线程，它会唤醒等待队列里的其他线程来获取资源。下面是`releaseShared()`的源码：
 ```java
 public final boolean releaseShared(int arg) {
