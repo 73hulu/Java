@@ -1,6 +1,6 @@
 # Thread
 
-线程很重要！很重要！很重要！重要的话说三遍，然后我一直以来都闹不明白多线程是怎么回事，看了很多仍然是雾里看花，这次能打通任督二脉么？
+线程很重要！很重要！很重要！重要的话说三遍，然后我一直以来都闹不明白多线程是怎么回事，看了很多仍然是雾里看花，不知道这次能不能打通任督二脉。
 
 
 ![Thread](http://ovn0i3kdg.bkt.clouddn.com/Thread_1.png)
@@ -9,7 +9,7 @@
 
 Thread类的结构如上。
 
-### public class Thread implements Runnable
+## public class Thread implements Runnable
 首先是类声明，可以看到`Thread`类实现了`Runnable`接口，这个接口是做什么的呢
 ```java
 @FunctionalInterface
@@ -28,11 +28,11 @@ public interface Runnable {
     public abstract void run();
 }
 ```
-一个实现`Runnable`接口的子类需要重写run方法。但是不能直接调动重写过的run()来实现多线程，那该怎么启动呢？到后面可以看到，`Thread`类有一个构造方法：`public Thread(Runnable targer)`，此构造方法接受`Runnable`的子类实例，也就是说可以通过Thread类来启动Runnable实现的多线程。（start可以协调系统的资源）。
+一个实现`Runnable`接口的子类需要重写run方法。但是不能直接调动重写过的run()来实现多线程，因为对于JVM来说，`run`方法就只是一个普通的方法。那该怎么启动呢？到后面可以看到，`Thread`类有一个构造方法：`public Thread(Runnable targer)`，此构造方法接受`Runnable`的子类实例，也就是说可以通过Thread类来启动Runnable实现的多线程。（start可以协调系统的资源）。
 
 > `@FunctionalInterface`注解表明这是一个函数接口，这是Java 8的新特性，更多内容参见"Java 8新特性/@FunctionalInterface注解"。
 
-### private static native void registerNatives();
+## private static native void registerNatives();
 诶这个就有点熟悉了，在`Object`类中见到过，本地注册方法，怎么调用这个方法呢？跟Object类中一样的处理方式，在静态构造块中调用。
 ```java
 static {
@@ -40,7 +40,7 @@ static {
 }
 ```
 
-### 构造方法
+## 构造方法
 `Thread`类定义了9种构造方法，但是实质都是把形参类别再传递给`init`方法，所以只用看无参构造方法就够了。定义如下：
 ```java
 public Thread() {
@@ -156,7 +156,7 @@ private ThreadGroup group;
 ```
 这个变量标识这个线程是否为“守护线程”，什么是守护线程？
 
-守护线程是指在程序运行的时候再后台提供的一种通用服务的线程，比如垃圾回收线程就是一个很称职的守护者，并且这种线程并不属于程序中不可或缺的部分。因此当所有的守护线程结束时，程序也就结束了，同时会杀死进程中所有的守护线程。反过来说，只有任何非守护线程还在运行，程序就不会中止。
+守护线程是指在程序运行的时候再后台提供的一种通用服务的线程，比如垃圾回收线程就是一个很称职的守护者，并且这种线程并不属于程序中不可或缺的部分。因此当所有的非守护线程结束时，程序也就结束了，同时会杀死进程中所有的守护线程。反过来说，只有任何非守护线程还在运行，程序就不会中止。
 
 > 更多关于守护线程的内容参考"Java基础知识整理/多线程"
 
@@ -243,10 +243,18 @@ debug得到的thread的内容如下：
 
 可以看到name值是“Thread-0”，而tid却是12，为什么？？？不应该是从1开始么？
 
-### void blockedOn(Interruptible b) {...}
+总结一下，创建一个线程的过程中都做了下面这些事：
+1. 命名：Thread-1
+2. 加入ThreadGroup，如果在构造方法中指定线程组，那么就加入以当前父线程所在的线程组。父线程的获取方法是`currentThread()`。
+3. 设定是否是守护线程，新线程与父线程的参数保持一致。即父线程如果是守护线程，那么新线程也是守护线程。
+4. 设定优先级。新线程的优先级将与父线程保持一致，但是不能超过所在线程组的最高优先级。
 
 
-### public synchronized void start(){...}
+
+## void blockedOn(Interruptible b) {...}
+
+
+## public synchronized void start(){...}
 这个方法太重要了，
 ```java
 public synchronized void start() {
@@ -344,7 +352,6 @@ public void run() {
       }
   }
   ```
-
 上面两种方式都可以创建线程，而且结果相差不多，但是最好是第二种，为什么呢？因为现实问题中创建线程的目的是为了让多个线程来执行同一个任务，并且这多个线程还共享同一个资源，这种需求可以使用实现`Runable`接口的方式来实现多线程任务，但是不能通过扩展Thread类是无法实现的。比如下面这个例子：
 ```java
 public class RunableTest {
@@ -378,6 +385,7 @@ class MyThread implements Runnable{
 |缺点   |因为线程类已经继承了Thread类，所以不能再继承其他的父类。   |  编程稍微复杂，如果需要访问当前线程，必须使用Thread.currentThread()方法。 |
 
 3. 实现Callable接口
+`Callable`是JUC中新加入的接口，主要和线程池一起使用。具体的使用方法可以参见博文"多线程"。
 
 > Thread对象可以操纵一个线程，而Runable对象代表一个可被运行的对象。
 
@@ -402,10 +410,10 @@ private void exit() {
 ```
 可以看到把引用全部置为null，还通知所属的线程组结束掉该线程。
 
-### public static native void yield();
-`yield`本身是native方法，实现细节不得而知。那这个方法有什么作用呢？单次"yield"的意思是“屈服、放弃”，`Thread.yield( )`方法经常被翻译成“线程让步”，它会把自己的CPU执行时间让掉，让自己或者其他线程运行。从线程的状态转化角度看，它能够让当前线程从**运行**状态变为**就绪状态**，这时候它就和别的处于就绪状态的线程一样了，下一次能不能被调度完全取决于OS，它并没有什么优势。那么这些线程中优先级高的就有优势么？没有，只是被挑中的概率高一点而已，也有可能是优先级低的抢到了。
+## public static native void yield();
+`yield`本身是native方法，实现细节不得而知。那这个方法有什么作用呢？单词"yield"的意思是“屈服、放弃”，`Thread.yield( )`方法经常被翻译成“线程让步”，它会把自己的CPU执行时间让掉，让自己或者其他线程运行。从线程的状态转化角度看，它能够让当前线程从**运行**状态变为**就绪状态**，这时候它就和别的处于就绪状态的线程一样了，下一次能不能被调度完全取决于OS，它并没有什么优势。那么这些线程中优先级高的就有优势么？没有，只是被挑中的概率高一点而已，也有可能是优先级低的抢到了。
 
-### sleep方法
+## sleep方法
 sleep会导致**当前线程**进入睡眠状态，即阻塞状态。有两个重载的方法。下面是两个参数的sleep方法：
 ```java
 public static void sleep(long millis, int nanos)
@@ -438,7 +446,7 @@ sleep这个方法是静态方法，所以方法调用的形式是`Thread.sleep()
 
 当前线程不会失去任何的锁！！！即如果当前线程持有某个对象锁，在它sleep的这段时间内，锁还是由他保有的，不会被释放掉。
 
-### join方法
+## join方法
 `thread.join`方法把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。什么意思呢？原来A和B线程是交替进行的，此时在B线程中调用的a.join()，那么直到线程A执行完毕之后，才会继续执行B，这样原本并发的线程就串行了。有三个重载方法，核心是下面这个：
 ```java
 public final synchronized void join(long millis)
@@ -466,7 +474,7 @@ public final synchronized void join(long millis)
      }
  }
 ```
-从代码中可以可以看到，如果线程被生成了，但是还没有被启动，即isAlive返回false，此时调用join是没有作用的，将直接继续往下执行。
+从代码中可以可以看到，**如果线程被生成了，但是还没有被启动，即isAlive返回false，此时调用join是没有作用的**，将直接继续往下执行。
 
 还可以看到，join方法实际上是调用了Object的wait方法实现的。当main线程调用t.join的时候，main线程将会获得线程对象t的锁（wait意味着拿到了该对象的锁），调用该对象的wait(等待时间)，直到该对象唤醒main线程。比如退出后，这就意味着main线程调用t.join时，必须能够拿到线程t对象的锁。
 
@@ -703,7 +711,7 @@ joinFinish
 在main方法中 通过`new  ThreadTest(t).start()`实例化 ThreadTest 线程对象， 它通过`synchronized  (thread)` ，获取线程对象t的锁，并`Sleep（9000）`后释放，这就意味着，即使main方法`t.join(1000)`等待一秒钟，它必须等待ThreadTest 线程释放t锁后才能进入wait方法中，它实际等待时间是9000+1000ms。
 
 
-### public void interrupt(){...}
+## public void interrupt(){...}
 
 定义如下：
 ```java
@@ -734,7 +742,7 @@ public void interrupt() {
 
 过程还是看不懂啊，那就先记住结论吧。 `interrupt()`不会中断一个正在运行的线程。这一方法实际上完成的是，在线程受到阻塞时抛出一个中断信号，这样线程就得以退出阻塞的状态。更确切的说，如果线程被`Object.wait`, `Thread.join`和`Thread.sleep`三种方法之一阻塞，那么，它将接收到一个中断异常（InterruptedException），从而提早地终结被阻塞状态；如果线程没有被阻塞，这时调用`interrupt()`将不起作用；否则，线程就将得到异常（该线程必须事先预备好处理此状况），接着逃离阻塞状态。
 
-线程A在执行`sleep`，`wait`,`join`时,线程B调用A的`interrupt`方法，的确这一个时候A会有`InterruptedException`异常抛出来。但这其实是在`sleep`，`wait`，`join`这些方法内部会不断检查中断状态的值,而自己抛出的`InterruptedException`。
+线程A在执行`sleep`，`wait`,`join`时,线程B调用A的 `interrupt`方法，的确这一个时候A会有 `InterruptedException`异常抛出来。但这其实是在`sleep`，`wait`，`join`这些方法内部会不断检查中断状态的值,而自己抛出的`InterruptedException`。
 
 如果线程A正在执行一些指定的操作时如赋值，for，while，if调用方法等，都不会去检查中断状态,所以线程A不会抛出`InterruptedException`,而会一直执行着自己的操作。
 当线程A终于执行到`wait()`，`sleep()`，`join()`时，才马上会抛出`InterruptedException`。若没有调用`sleep()`，`wait()`，`join()`这些方法,或是没有在线程里自己检查中断状态自己抛出`InterruptedException`的话,那`InterruptedException`是不会被抛出来的.
@@ -758,7 +766,7 @@ public void interrupt() {
 
 
 
-### public static boolean interrupted(){...}
+## public static boolean interrupted(){...}
 ```java
 public static boolean interrupted() {
     return currentThread().isInterrupted(true);
@@ -773,18 +781,18 @@ private native boolean isInterrupted(boolean ClearInterrupted);
 
 > 要特别注意静态方法`interrupted`方法和实例方法`isInterrupted`的区别
 
-### public final native boolean isAlive();
+## public final native boolean isAlive();
 用来检测线程时候还活着，只要线程状态处于start和die之间，都是活着的状态。
 
-### public static int activeCount(){...}
-获得当前线程组获得线程数。定义如下：
+## public static int activeCount(){...}
+获得当前线程组中的活跃的线程数。定义如下：
 ```java
 public static int activeCount() {
     return currentThread().getThreadGroup().activeCount();
 }
 ```
 
-### public static int enumerate(Thread tarray[]){...}
+## public static int enumerate(Thread tarray[]){...}
 将活动线程拷贝到一个数组
 ```java
 public static int enumerate(Thread tarray[]) {

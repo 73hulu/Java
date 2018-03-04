@@ -6,7 +6,7 @@
 > 有一些基本的get set方法的实现其实很简单，就不说了。
 
 
-### public class ThreadGroup implements Thread.UncaughtExceptionHandler
+## public class ThreadGroup implements Thread.UncaughtExceptionHandler
 这个类声明，可以看到类实现了`Thread`类的一个内部接口，定义如下：
 ```java
 @FunctionalInterface
@@ -26,9 +26,9 @@ public interface UncaughtExceptionHandler {
 
 源码中对该类做出了解释：线程组代表了线程的集合。一个线程组也可以包含另一个线程组，也就是说**线程组和线程组组成了树，而线程和线程组是元素和集合的关系**。除了初始线程组，每个线程组都有父母。线程组可以访问组内线程的信息，但是组内线程，只允许访问有关自己线程的信息，不允许访问其所在线程组的、父线程组和其他线程组信息。
 
-### 构造方法
+## 构造方法
 一共定义了四种构造方法。
-#### private ThreadGroup(){...}
+### private ThreadGroup(){...}
 无参构造方法，定义如下：
 ```java
 private ThreadGroup() {     // called from C code
@@ -46,7 +46,7 @@ int maxPriority;
 这个方法是C语言调用的，创建的就是前文提到过的"初始线程组"。
 
 
-#### public ThreadGroup(String name){...}
+### public ThreadGroup(String name){...}
 指定了线程组的名称name，定义如下：
 ```java
 public ThreadGroup(String name) {
@@ -56,7 +56,7 @@ public ThreadGroup(String name) {
 可以看到，它取得了当前线程所属的线程组作为其父线程。调用的是另一个重载的方法(就是下一个介绍的)，可能会抛出`SecurityException`异常。
 
 
-#### public ThreadGroup(ThreadGroup parent, String name){...}
+### public ThreadGroup(ThreadGroup parent, String name){...}
 这就是上面提到的重载的构造函数，定义如下：
 ```java
 public ThreadGroup(ThreadGroup parent, String name) {
@@ -81,7 +81,7 @@ public final void checkAccess() {
 ```
 这个方法决定了当前运行的线程是否有修改线程组的权利。该方法可能会抛出`SecurityException`异常。再回到`checkParentAccess`这个方法，注意它的返回值是`Void`,不是`void`。 这个方法是用来可达性的。
 
-#### private ThreadGroup(Void unused, ThreadGroup parent, String name){...}
+### private ThreadGroup(Void unused, ThreadGroup parent, String name){...}
 这个构造方法就是最终的大BOSS了。定义如下：
 ```java
 private ThreadGroup(Void unused, ThreadGroup parent, String name) {
@@ -115,7 +115,7 @@ private final void add(ThreadGroup g){
 ```
 其中`destroyed`就是用来表示线程组的状态的，是不是被销毁了？（诶，线程组被销毁了难道不是真正被销毁了？）如果这个线程组已经是被销毁的状态，那就再不能往里装东西了，抛出异常。如果还没有初始化，即`ThreadGroup groups[]`这个数组还没初始化呢，那就初始化被，可以看到，它首次分配了4个空间，然后再往里面装东西，有一个`ngroups`量来标识其中的个数。被分配的空间都装满了怎么办？扩容。扩多少？两倍！其实`groups`数组和`ngroups`合起来就是一个线性表。
 
-### public final void setMaxPriority(int pri){...}
+## public final void setMaxPriority(int pri){...}
 
 ```java
 public final void setMaxPriority(int pri) {
@@ -143,7 +143,7 @@ public final void setMaxPriority(int pri) {
 
 > 这里有一个问题，为什么要有复制一份`groupsSnapshot`,直接对`groups`操作不是挺好的么？注意，Arrays.copyOf()是浅复制，`groupsSnapshot`和`groups`中相应元素实际上是一样的。
 
-#### public final boolean parentOf(ThreadGroup g){...}
+### public final boolean parentOf(ThreadGroup g){...}
 从方法名字就可以看出来，这个方法用来判断这个线程组是不是参数的父线程组。这里说"父线程组"不太准确，应该说“祖先线程组”。
 ```java
 public final boolean parentOf(ThreadGroup g) {
@@ -158,7 +158,7 @@ public final boolean parentOf(ThreadGroup g) {
 从方法定义就可以看出来，形参一直找寻着其父线程组，直到初始线程。
 
 
-### public int activeCount(){...}
+## public int activeCount(){...}
 返回此线程中活动线程数的估计组及其子组。 递归迭代所有子线程组。需要注意的是，这里返回的是所有活动的**线程**的数量，要和后面`activeGroupCount`方法区分开来。
 ```java
 public int activeCount() {
@@ -187,10 +187,10 @@ public int activeCount() {
 ```
 源码对该方法有一个说明：返回的值只是一个估计，因为数量线程可以动态更改，而此方法遍历内部数据结构，并可能受到某些存在的影响系统线程。 此方法主要用于调试和监测目的。
 
-#### enumerate方法
+## enumerate方法
 这又是一个比较重要的方法，一共有6个重载方法。其中一般的作用是复制当前线程的线程组及其子组中的每一个活动**线程**到指定的数组。另一半的是复制当前线程的线程组及其子组中的每一个活动**线程组**到指定的数组。 由于过程都差不多，这里就看下前一半。
 
-#### public int enumerate(Thread list[]){...}
+### public int enumerate(Thread list[]){...}
 参数list就是制定的数组。最后被复制进去的线程组或活动线程的总个数。
 ```java
 public int enumerate(Thread list[]) {
@@ -199,7 +199,7 @@ public int enumerate(Thread list[]) {
 }
 ```
 
-#### public int enumerate(Thread list[], boolean recurse) {...}
+### public int enumerate(Thread list[], boolean recurse) {...}
 ```java
 public int enumerate(Thread list[], boolean recurse) {
     checkAccess();
@@ -207,7 +207,7 @@ public int enumerate(Thread list[], boolean recurse) {
 }
 ```
 
-#### private int enumerate(Thread list[], int n, boolean recurse){...}
+### private int enumerate(Thread list[], int n, boolean recurse){...}
 这个此时最终的方法。三个参数，第二个参数都被默认为0，第三个参数recurse如果是true，那么将会递归调用这个子线程组下的所有子线程组，如果超出了list的大小，那么多出的部分将被忽略。如果避免这个问题呢？可以首先调用一些`activeCount`方法确定一下大概的属性，然后再用这个大小声明list数组就可以了。
 
 ```java
@@ -245,7 +245,7 @@ private int enumerate(Thread list[], int n, boolean recurse) {
 }
 ```
 
-### public int activeGroupCount(){...}
+## public int activeGroupCount(){...}
 这个方法返回的是这个线程组下所有活动线程组的个数。注意是**线程组**的个数。与上面`activeCount`区分开来。
 ```java
 public int activeGroupCount() {
@@ -270,7 +270,7 @@ public int activeGroupCount() {
 }
 ```
 
-### public final void interrupt(){...}
+## public final void interrupt(){...}
 中断这个线程组中所有的线程。同样采取了递归的方式。
 
 ```java
@@ -295,7 +295,7 @@ public final void interrupt() {
 }
 ```
 
-### private boolean stopOrSuspend(boolean suspend){...}
+## private boolean stopOrSuspend(boolean suspend){...}
 从方法名字可以看出，这个方法来停止或停止当前线程组中的除了当前线程之外的所有线程，那到底是挂起还是停止呢，参数`suspend`如果是true，就表示全部挂起，否则就全部停止。方法返回true当且仅当当前线程属于这个线程组或其子线程组。
 ```java
 @SuppressWarnings("deprecation")
@@ -327,7 +327,7 @@ private boolean stopOrSuspend(boolean suspend) {
 }
 ```
 
-### public final void destroy(){...}
+## public final void destroy(){...}
 用来销毁线程组(除初始线程组)其子线程组，前提条件是该线程组中`thread`必须得空，意思就是如果该线程组中还要运行着的线程，那么这个线程组就不能被销毁。销毁过程就是将各个属性置为null或0。最后将其从父线程组中移除。
 ```java
 public final void destroy() {
@@ -389,7 +389,7 @@ private void remove(ThreadGroup g) {
 }
 ```
 
-### list方法
+## list方法
 打印出线程组中线程的相关信息，这个方法只在debugging的时候有用。有两个重载方法。无参数方法定义如下：
 ```java
 public void list() {
@@ -426,7 +426,7 @@ void list(PrintStream out, int indent) {
 }
 ```
 
-### public void uncaughtException(Thread t, Throwable e){...}
+## public void uncaughtException(Thread t, Throwable e){...}
 设置当前线程组的异常处理器（只对没有异常处理器的线程有效）。
 ```java
 public void uncaughtException(Thread t, Throwable e) {
@@ -446,7 +446,7 @@ public void uncaughtException(Thread t, Throwable e) {
  }
 ```
 
-### public String toString() {...}
+## public String toString() {...}
 打印出线程组信息。
 ```java
 public String toString() {
