@@ -11,7 +11,7 @@
 ![Singleton](http://ovn0i3kdg.bkt.clouddn.com/Singleton.png)
 
 单例模式有很多实现方式。下面就是几种常见的实现：
-1. 懒汉模式
+## 懒汉模式
 为什么起这个名儿呢？因为这个方法很懒，懒到什么程度？只有在被调用的时候才会实例化这唯一的一个实例，如果一直不被调用，那么一直不实例化。实现过程如下：
 ```java
 public class LazySingleton {
@@ -29,7 +29,7 @@ public class LazySingleton {
 ```
 这种写法是线程非安全的。因为如果有两个线程调用`getInstance`方法，它们同时执行到`instance == null`，此时都会判断为true，所以都会分别创建一个实例，违背了单例模式的初衷。
 
-2. 饿汉模式
+## 饿汉模式
 所谓的饿汉，就是等不及别人来调用，自己就先实例化自己，生怕自己饿着了。所以叫饿汉。实现如下：
 ```java
 public class HugerSingleton {
@@ -44,7 +44,7 @@ public class HugerSingleton {
 ```
 这种写法一定是线程安全的，因为`instance`是类变量，在类载入的时候就初始化好了。所以不管多少个线程调用，得到的都是同一个实例。
 这个方法的缺点在不必要获取实例的时，已经产生了开销。
-3. 双重锁模式
+## 双重锁模式
 又想要不过早产生开销，又想要线程安全，所以对“懒汉模式”做出改变。实现如下：
 ```java
 public class SyncSingleton {
