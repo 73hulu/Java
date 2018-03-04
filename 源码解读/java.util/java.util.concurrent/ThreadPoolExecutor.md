@@ -15,7 +15,7 @@
 这个类中提供了很多可调参数和可扩展性的钩子，但是实际上，我们最常使用的是使用`Executors`工厂类中的三种方法：
 * `Executors.newCachedThreadPool()`：创建无界线程池，带自动线程回收。
 * `Executors.newFixedThreadPool（int)`：创建固定大小的线程池。
-* `Executors.newSingleThreadExecutor（）`：创建单例线程池
+* `Executors.newSingleThreadExecutor（）`：创建单线程话线程池。
 
 这些是我们常见的线程池的配置预设，极少情况下才需要我们手动配置和调整。配置和调整什么呢？可以有以下选择（以下内容翻译自[Java 8 doc API](https://docs.oracle.com/javase/8/docs/api/)中`ThreadPoolExecutor`的说明）：
 * 核心和最大池大小

@@ -143,7 +143,7 @@ public final void setMaxPriority(int pri) {
 
 > 这里有一个问题，为什么要有复制一份`groupsSnapshot`,直接对`groups`操作不是挺好的么？注意，Arrays.copyOf()是浅复制，`groupsSnapshot`和`groups`中相应元素实际上是一样的。
 
-### public final boolean parentOf(ThreadGroup g){...}
+## public final boolean parentOf(ThreadGroup g){...}
 从方法名字就可以看出来，这个方法用来判断这个线程组是不是参数的父线程组。这里说"父线程组"不太准确，应该说“祖先线程组”。
 ```java
 public final boolean parentOf(ThreadGroup g) {
@@ -453,3 +453,5 @@ public String toString() {
     return getClass().getName() + "[name=" + getName() + ",maxpri=" + maxPriority + "]";
 }
 ```
+
+> 如何创建一个线程并且加入到一个指定的线程组中？b

@@ -9,7 +9,7 @@
 ![FutureTask](http://ovn0i3kdg.bkt.clouddn.com/FutureTask.png?imageView/2/w/500)
 
 
-### public class FutureTask<V> implements RunnableFuture<V>
+## public class FutureTask<V> implements RunnableFuture<V>
 类声明。前面说到`FutureTask`实现了`Runnable`接口，实际上，并不是直接实现的，是间接实现的。该类直接实现`RunnableFuture`接口，而该接口继承了`Runnable`和`Future`接口：
 ```java
 public interface RunnableFuture<V> extends Runnable, Future<V> {
@@ -22,7 +22,7 @@ public interface RunnableFuture<V> extends Runnable, Future<V> {
 ```
 所以，`FutureTask`需要实现run方法。
 
-### 构造函数
+## 构造函数
 重载了两个构造函数。
 ### public FutureTask(Callable<V> callable){...}
 接受一个`Callable`类型的参数，这里是对callable做了一层包装。定义如下：
@@ -66,7 +66,7 @@ public FutureTask(Runnable runnable, V result) {
 ```
 > java中有很多有"-s"和没有"-s"的非常相似的类，一般来讲，有"-s"的都是没有"-s"的工具类，比如`Objects -  Object`、`Arrays - Array` 、`Collections - Collection`和`Executors -  Executor`。
 
-### public boolean cancel(boolean mayInterruptIfRunning){...}
+## public boolean cancel(boolean mayInterruptIfRunning){...}
 用来取消任务，正如下`Future`接口中所说一样，如果在任务开始前就调用该方法，那么任务根本不会执行。如果任务已经结束，那么方法将返回false。否则将由`mayInterruptIfRunning`参数控制是否取消任务，即true表示取消任务，而false表示不取消。一般来说，调用这个方法都是为了取消任务的吧，谁那么无聊用false作为参数，虚晃一枪。该方法定义如下：
 ```java
 public boolean cancel(boolean mayInterruptIfRunning) {
@@ -119,7 +119,7 @@ private void finishCompletion() {
 ```
 额，没看懂。
 
-### public boolean isCancelled() {...}
+## public boolean isCancelled() {...}
 判断任务是否被取消。定义如下：
 ```java
 public boolean isCancelled() {
@@ -128,7 +128,7 @@ public boolean isCancelled() {
 ```
 注意，这里判断当前任务状态是否大于`CANCELLED`，对照前面的状态常数，如果任务的状态正处于`CANCELLED`、`INTERRUPTING`或`INTERRUPTED`，则方法返回true。原来这个状态常量的设计并不是随便写的。
 
-###  public boolean isDone() {..}
+##  public boolean isDone() {..}
 我理解的`isDone`含义是检查任务是否已经完成，这种完成不定是`NORMAL`，可以是除了`NEW`之外的其他状态。源码定义如下：
 ```java
 public boolean isDone() {
@@ -136,7 +136,7 @@ public boolean isDone() {
 }
 ```
 
-### get方法
+## get方法
 重载了另个`get`方法，区别在于一个会一直等下去或者当前线程在等待状态被中断，而另一个在有限时间内等待，超时了就抛出异常，道理是一样的，我们只需要看前一种计即可。
 ```java
 public V get() throws InterruptedException, ExecutionException {
@@ -187,7 +187,7 @@ private int awaitDone(boolean timed, long nanos)
 ```
 其核心还是自旋。如果当前线程被中断了，则退出等待，并抛出异常。剩下的...有点看不懂了。
 
-###  public void run() {}
+##  public void run() {}
 `FutureTask`间接实现了`Runnable`接口，所以必须是实现`run`方法。定义如下：
 ```java
 public void run() {
@@ -225,7 +225,7 @@ public void run() {
 ```
 本质上执行的仍旧是`Callable`的实例方法的`call`方法。
 
-### 使用`FutureTask`
+## 使用FutureTask
 利用`FutureTask`来获取任务的执行结果的基本流程是： 定义一个 `Callable`或`Runnable`实例（一般用匿名类实现），以此实例构造`FutureTask`的实例（注意不是`Future`的实例），然后以此实例构造`Thread`实例，调用`Thread`对象的`start`方法。
 
 下面是一个`FutureTask`的最基础的使用方法：
