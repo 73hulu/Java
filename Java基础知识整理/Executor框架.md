@@ -10,7 +10,7 @@
 |任务的执行   |包括核心接口`Executor`及其子接口`ExecutorService`，有两个类——`ThreadPoolExecutor`和`ScheduledThreadPollExecutor`实现了`ExecutorService`接口  |
 |异步计算的结果   |  包括接口`Future`及其实现了`FutureTask`|
 
-### 线程池
+## 线程池
 
 首先我们要弄清楚为什么要用线程池？
 
