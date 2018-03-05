@@ -1,6 +1,42 @@
 # Summary
 
 * [Introduction](README.md)
+* Java基础知识整理
+    * [JDK](Java基础知识整理/JDK.md)
+    * 基本数据类型及其包装类
+        * [基本数据类型](Java基础知识整理/基本数据类型.md)
+        * [数值包装类型](Java基础知识整理/数值包装类型.md)
+    * [String高效编程](Java基础知识整理/String高效编程.md)
+    * 面向对象
+        * [OOP](Java基础知识整理/OOP.md)
+        * [修饰符](Java基础知识整理/修饰符.md)
+        * [类、抽象类、内部类、接口](Java基础知识整理/类、抽象类、内部类、接口.md)
+    * 类加载和反射
+        * [类编译、加载和执行](Java基础知识整理/类编译、加载和执行.md)
+        * [Java初始化顺序](Java基础知识整理/Java初始化顺序.md)
+        * [ClassLoader加载机制](Java基础知识整理/ClassLoader加载机制.md)
+        * [反射机制](Java基础知识整理/反射机制.md)
+    * 异常和断言
+        * [防御式编程和契约式编程](Java基础知识整理/防御式编程和契约式编程.md)
+        * [异常处理机制](Java基础知识整理/异常处理机制.md)
+        * [断言](Java基础知识整理/断言.md)
+    * [集合框架](Java基础知识整理/集合框架.md)
+    * 进程和线程
+        * [多线程](Java基础知识整理/多线程.md)
+        * [Executor框架](Java基础知识整理/Executor框架.md)
+        * [锁](Java基础知识整理/锁.md)
+        * [线程通信和进程通信](Java基础知识整理/线程通信和进程通信.md)
+    * IO
+        * [IO](Java基础知识整理/IO.md)
+        * [路径](Java基础知识整理/路径.md)
+        * [编码和编码格式](Java基础知识整理/编码和编码格式.md)
+        * [国际化](Java基础知识整理/国际化.md)
+    * [Java注解](Java基础知识整理/Java注解.md)
+    * [哈希散列](Java基础知识整理/哈希散列.md)
+    * [序列化和反序列化](Java基础知识整理/序列化和反序列化.md)
+    * [泛型](Java基础知识整理/泛型.md)
+    * [空间初始化和增长策略](Java基础知识整理/空间初始化和增长策略.md)
+    * [Java中的语法糖](Java基础知识整理/Java中的语法糖.md)
 * [源码解读](源码解读/introduction.md)
     * [java.lang](源码解读/java.lang/java-lang.md)
         * [Object](源码解读/java.lang/Object.md)
@@ -114,42 +150,6 @@
     * [java.nio](源码解读/java.nio/java-nio.md)
         * [java.Charset](源码解读/java.nio/java.Charset/java-Charset.md)
             * [Charset](源码解读/java.nio/java.Charset/java.Charset/Charset.md)
-* Java基础知识整理
-    * [JDK](Java基础知识整理/JDK.md)
-    * 基本数据类型及其包装类
-        * [基本数据类型](Java基础知识整理/基本数据类型.md)
-        * [数值包装类型](Java基础知识整理/数值包装类型.md)
-    * [String高效编程](Java基础知识整理/String高效编程.md)
-    * 面向对象
-        * [OOP](Java基础知识整理/OOP.md)
-        * [修饰符](Java基础知识整理/修饰符.md)
-        * [类、抽象类、内部类、接口](Java基础知识整理/类、抽象类、内部类、接口.md)
-    * 类加载和反射
-        * [类编译、加载和执行](Java基础知识整理/类编译、加载和执行.md)
-        * [Java初始化顺序](Java基础知识整理/Java初始化顺序.md)
-        * [ClassLoader加载机制](Java基础知识整理/ClassLoader加载机制.md)
-        * [反射机制](Java基础知识整理/反射机制.md)
-    * 异常和断言
-        * [防御式编程和契约式编程](Java基础知识整理/防御式编程和契约式编程.md)
-        * [异常处理机制](Java基础知识整理/异常处理机制.md)
-        * [断言](Java基础知识整理/断言.md)
-    * [集合框架](Java基础知识整理/集合框架.md)
-    * 进程和线程
-        * [多线程](Java基础知识整理/多线程.md)
-        * [Executor框架](Java基础知识整理/Executor框架.md)
-        * [锁](Java基础知识整理/锁.md)
-        * [线程通信和进程通信](Java基础知识整理/线程通信和进程通信.md)
-    * IO
-        * [IO](Java基础知识整理/IO.md)
-        * [路径](Java基础知识整理/路径.md)
-        * [编码和编码格式](Java基础知识整理/编码和编码格式.md)
-        * [国际化](Java基础知识整理/国际化.md)
-    * [Java注解](Java基础知识整理/Java注解.md)
-    * [哈希散列](Java基础知识整理/哈希散列.md)
-    * [序列化和反序列化](Java基础知识整理/序列化和反序列化.md)
-    * [泛型](Java基础知识整理/泛型.md)
-    * [空间初始化和增长策略](Java基础知识整理/空间初始化和增长策略.md)
-    * [Java中的语法糖](Java基础知识整理/Java中的语法糖.md)
 * Java 8 新特性
     * [基于-parameters](Java 8新特性/基于-parameters编译器标志.md)
     * [lambda表达式](Java 8新特性/lambda表达式.md)
@@ -191,4 +191,3 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
 * [资源整理](资源整理.md)
-
