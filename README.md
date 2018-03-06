@@ -26,6 +26,8 @@
 * toString方法如何实现？
 * hashcode的计算方法
 * 自动装箱和自动拆箱
+* Integer中的valueOf方法是如何实现的。
+* Integer中的parseInt方法是如何实现的？
 
 ## String
 * getCharts方法的返回值是void，需要将结果保存的字符数组作为参数传入。

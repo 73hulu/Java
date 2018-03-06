@@ -1,5 +1,6 @@
 # FastJson
 
+## 概览
 Java最快的JSON处理工具，工程首选。
 
 Maven依赖：
@@ -42,8 +43,8 @@ import com.alibaba.fastjson.TypeReference;
 List<VO> list = JSON.parseObject("...", new TypeReference<List<VO>>() {});
 ```
 
-### 定制序列化
-####  `@JSONField`定制序列化
+## 定制序列化
+###  `@JSONField`定制序列化
 注解源码如下：
 ```java
 package com.alibaba.fastjson.annotation;
@@ -129,7 +130,7 @@ public class UserTest {
 3. 1.2.21版本之后，使用`alternateNames`支持反序列化时使用不同的字段名称。详见 https://www.w3cschool.cn/fastjson/fastjson-jsonfield.html
 4. 1.2.21版本之后，新增`jsonDirect`属性，但是这个属性的作用我没有看懂？？？
 
-#### `@JSONType`配置
+### `@JSONType`配置
 定义的位置在类上，源码如下：
 ```java
 @Retention(RetentionPolicy.RUNTIME)
@@ -164,7 +165,7 @@ public @interface JSONType {
 ```
 `@JSONType`的配置会覆盖`@JSONField`
 
-#### `SerializeFilter`定制序列化
+### `SerializeFilter`定制序列化
 有时候我们会在不同的情况下制定不同的序列化策略，这时候用`@JSONType`或`@JSONField`可能都不能满足我们的需求，这时候`SerializeFilter`是最好的选择。它使用扩展编程的方式实现定制序列化，fastjson提供了多种serializer：
 * PropertyPreFilter 根据PropertyName判断是否序列化
   我们一般使用`SimplePropertyPreFilter`类进行设置，例如：
@@ -273,10 +274,10 @@ public abstract class AfterFilter implements SerializeFilter {
 }
 ```
 
-### 定制反序列化
+## 定制反序列化
 `ParseProcess`是编程扩展定制反序列化的接口，内置了两个接口——`ExtraProcessor`和`ExtraTypeProvider`，前者用来处理多余字段，后者用于处理多余字段时提供类型信息
 
-#### `ExtraProcessor`
+### `ExtraProcessor`
 该接口用来处理**多余字段**，如下：
 ```java
 @Getter
@@ -310,7 +311,7 @@ public void extraProcessorTest(){
 ```
 上例中，`id`属性能在`VO`中找到对应的属性，但是`name`属性找不到，所以这里`processor`起了作用，它会将这个属性放到对象的`attributes`中。
 
-#### `ExtraTypeProvider`
+### `ExtraTypeProvider`
 该接口用来处理多余字段的类型信息。这个接口实现需要配合`ExtraProcessor`。如下：
 ```Java
 //`ExtraProcessor`和`ExtraTypeProvider`配合使用

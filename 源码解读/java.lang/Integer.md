@@ -7,7 +7,7 @@
 
 任务很艰巨，还是挑重点来吧，条条都是重点啊！
 
-### public static Integer valueOf(int i) {...} 和 public static Integer valueOf(String s) throws NumberFormatException{..} 和 public static Integer valueOf(String s, int radix) throws NumberFormatException{..}
+## public static Integer valueOf(int i) {...} 和 public static Integer valueOf(String s) throws NumberFormatException{..} 和 public static Integer valueOf(String s, int radix) throws NumberFormatException{..}
 三种valueOf方法，当然还是第一种方法最重要了，其定义如下：
 ```java
 public static Integer valueOf(int i) {
@@ -58,7 +58,7 @@ private static class IntegerCache {
 但是呢，一般来说好像没人这么无聊去设置这个参数，所以一般情况下，Integer的缓存区间还是[-128,127]， 超出这个范围的每次都是返回新new的对象。
 
 
-### toXxxString(..)
+## toXxxString(..)
 这个真的有好几种转换为String的方法，最厉害的也是最基本的是这种：
 ```java
 public static String toString(int i) {
@@ -211,44 +211,51 @@ final static char[] digits = {
 其他的一些方法并不是那么常用，这里也不做介绍了，有兴趣看源码吧。
 
 
-### parseInt
+## parseInt
 有好几种重载的`paraseInt`方法，区别在于进制、有无符号，最重要的是下面这种：
 ```java
-public static int parseInt(String s, int radix)
-                throws NumberFormatException
-{
+public static int parseInt(String s, int radix) throws NumberFormatException {
     /*
      * WARNING: This method may be invoked early during VM initialization
      * before IntegerCache is initialized. Care must be taken to not use
      * the valueOf method.
      */
-
+    // 下面三个判断好理解，其中表示进制的 radix 要在（2~36）范围内  
     if (s == null) {
         throw new NumberFormatException("null");
     }
 
     if (radix < Character.MIN_RADIX) {
-        throw new NumberFormatException("radix " + radix +
-                                        " less than Character.MIN_RADIX");
+        throw new NumberFormatException("radix " + radix + " less than Character.MIN_RADIX");
     }
 
     if (radix > Character.MAX_RADIX) {
-        throw new NumberFormatException("radix " + radix +
-                                        " greater than Character.MAX_RADIX");
+        throw new NumberFormatException("radix " + radix + " greater than Character.MAX_RADIX");
     }
 
+    /**
+    * 表示结果， 在下面的计算中会一直是个负数
+    * 假如说 我们的字符串是一个正数  "7",那么在返回这个值之前result保存的是 -7
+    * 这个可能是为了保持正数和负数在下面计算的一致性
+    */
     int result = 0;
     boolean negative = false;
     int i = 0, len = s.length();
+
+    /**
+    * limit 默认初始化为 最大正整数的 负数 ，假如字符串表示的是正数
+    * 那么result(在返回之前一直是负数形式)就必须和这个最大正数的负数来比较，判断是否溢出
+    */
     int limit = -Integer.MAX_VALUE;
     int multmin;
     int digit;
 
     if (len > 0) {
-        char firstChar = s.charAt(0);
+        char firstChar = s.charAt(0); //首先是对第一个位置判断，是否含有正负号  
         if (firstChar < '0') { // Possible leading "+" or "-"
             if (firstChar == '-') {
                 negative = true;
+                //这里在负号的情况下，判断溢出的值就变成了 整数的 最小负数了
                 limit = Integer.MIN_VALUE;
             } else if (firstChar != '+')
                 throw NumberFormatException.forInputString(s);
@@ -258,20 +265,48 @@ public static int parseInt(String s, int radix)
             i++;
         }
         multmin = limit / radix;
+        /**
+        * len为输入字符串的长度，i为循环len自增变量
+        * result初始值为0，multmin初始值为最大负整数/进制数
+        */
         while (i < len) {
             // Accumulating negatively avoids surprises near MAX_VALUE
+            //根据Character类获取当前对应字符对应进制的数字
             digit = Character.digit(s.charAt(i++),radix);
             if (digit < 0) {
                 throw NumberFormatException.forInputString(s);
             }
+
+            /**
+            * 这里就是上面说的判断溢出，由于result统一用负值来计算，所以用了 小于 号
+            */
             if (result < multmin) {
                 throw NumberFormatException.forInputString(s);
             }
             result *= radix;
+            /**
+            * 这里是为了防止中间过程超出计算范围
+            */
             if (result < limit + digit) {
                 throw NumberFormatException.forInputString(s);
             }
+            // 因为将正数和负数一视同仁，所以这里是用减法
             result -= digit;
+            /**
+            * 再来个假设：一开始输入一个数字字符串为123，那么对应的radix=10(因为是10进制的)，digit = 123 / 10 计算得到的
+            * 第一次result *= radix --> result = 0 ;  result -= digit --> result = -1
+            * 第二次result *= radix --> result = -10; result -= digit --> result = -12
+            * 第三次result *= radix --> result = -12; result -= digit --> result = -123
+            * 此时，negative = false，则返回 -result，即最终结果为：123
+            */
+
+            /**
+            * 再来个假设：一开始输入一个数字字符串为-123，那么对应的radix=10(因为是10进制的)，digit = -123 / 10 计算得到的
+            * 第一次result *= radix --> result = 0 ;  result -= digit --> result = -1
+            * 第二次result *= radix --> result = -10; result -= digit --> result = -12
+            * 第三次result *= radix --> result = -12; result -= digit --> result = -123
+            * 此时，negative = true，则返回 result，即最终结果为：-123
+            */
         }
     } else {
         throw NumberFormatException.forInputString(s);
@@ -279,10 +314,10 @@ public static int parseInt(String s, int radix)
     return negative ? result : -result;
 }
 ```
-具体的暂时看不懂也不想看，过两天再来看吧。
+其实进制转化这个算法是很好写的，但是这个方法的厉害之处就在于它将正数和负数统一处理了，并且考虑到了各种边界条件。这个算法被面试到过，所以要特别注意。另外还需要注意，这个只会抛出`NumberFormatException`异常，没有别的异常抛出。
 
 
-### public static int hashCode(int value){..}
+## public static int hashCode(int value){..}
 定义如下：
 ```java
 public static int hashCode(int value) {
@@ -291,7 +326,7 @@ public static int hashCode(int value) {
 ```
 简单地返回了value的值而已。
 
-### public static int compare(int x, int y){...}
+## public static int compare(int x, int y){...}
 这次不是返回差值了，定义如下：
 ```java
 public static int compare(int x, int y) {
@@ -300,7 +335,7 @@ public static int compare(int x, int y) {
 ```
 主调较小的时候返回-1， 相等时候返回0，主调较大的时候返回1。
 
-### public static Integer decode(String nm) throws NumberFormatException
+## public static Integer decode(String nm) throws NumberFormatException
 作用是解码字符串转化为正数。这个字符串可以是十进制、十六进制和八进制
 ```java
 public static Integer decode(String nm) throws NumberFormatException {

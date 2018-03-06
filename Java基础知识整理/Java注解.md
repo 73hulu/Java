@@ -7,10 +7,12 @@ Annotation的作用包括：
 3. 编译检查：通过代码里标识的元数据让编译器能够实现基本的编译检查【`Override`】
 
 Java api中注解相关的内容都在包`java.lang.annotation`中，其结构如下：
+
 ![java.lang.annotaion](http://ovn0i3kdg.bkt.clouddn.com/java.lang.annotaion.png)
+
 具体内容可以参考源码解读。
 
-### Java元注解
+## Java元注解
 什么是“元注解”呢？就是那些可以用来修饰其他注释的注释，即元注解的`@Target`的value值一定包含`ElementType.ANNOTATION_TYPE`。
 
 Java提供了四种元注解:`@Documented`、`@Target`、`@Retention`和`@Inherited`。具体的作用参考源码解读中相关内容。
@@ -42,7 +44,6 @@ public Class AnnotationnUse{
 
 }
 ```
-
 我们在main方法中测试以下这个类都应用了哪些注解：
 ```java
 package cn.gacl.annotation;
@@ -67,13 +68,11 @@ public class AnnotationUse {
     }
 }
 ```
-程序执行结果是：`@JavaLangJarTest.anotationTest.MyAnotation()
-`
+程序执行结果是：`@JavaLangJarTest.anotationTest.MyAnotation()`。
 
 注解可以看做是特殊的类，既然是类，那么就可以为类添加属性和方法。
 * 添加属性
 语法为：`类型 属性名()`。这个方法跟我们平常定义属性的办法不同，这种写法来看，注解更像是一种特殊的接口，注解中属性的定义和接口中方法的定义一样，而应用了注解的类可以认为是实现了这个特殊的接口。
-
 ```java
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -84,7 +83,6 @@ public @interface MyAnotation {
     // @return
     String color();
 }
-
 @MyAnotation(color = "red") //应用注解，并定义属性，如果定义color，编译会报错，因为属性的值是必须的，有没有办法可以不写呢？可以，指定默认值
 public class AnotationUse {
 
@@ -112,7 +110,6 @@ public @interface MyAnotation {
 }
 @MyAnotation //注解里面指定了默认值，所以这里就不用定义color了
 public class AnotationUse {
-
     public static void main(String[] args) {
         if (AnotationUse.class.isAnnotationPresent(MyAnotation.class)){
 
@@ -129,18 +126,13 @@ public class AnotationUse {
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface MyAnotation {
-
     String color() default "blue";
-
     String value();
 }
-
 @MyAnotation("aaa") //这里可以省略"value = "
 public class AnotationUse {
-
     public static void main(String[] args) {
         if (AnotationUse.class.isAnnotationPresent(MyAnotation.class)){
-
             MyAnotation annotation = (MyAnotation) AnotationUse.class.getAnnotation(MyAnotation.class);
             System.out.println(annotation.value()); //aaa
         }
@@ -157,7 +149,6 @@ public class AnotationUse {
   - 应用枚举类型的属性：`@MyAnnotation(lamp=EumTrafficLamp.GREEN)`
 - 注解类型的属性
 ```java
-
 //MetaAnnotation 注解为元注解
 public @interface MetaAnnotation{
   String value(); //设置有一个唯一的属性value
@@ -168,17 +159,18 @@ public @interface MetaAnnotation{
 综合的例子参考https://www.cnblogs.com/xdp-gacl/p/3622275.html
 
 
-
-### Java内建注解
+## Java内建注解
 Java提供了三种内建注解。
-1. `@Override`：当我们想要复写父类中的方法时，我们需要使用该注解去告知编译器我们想要复写这个方法。这样一来当父类中的方法移除或者发生更改时编译器将提示错误信息。源码如下：
+### @Override
+ 当我们想要复写父类中的方法时，我们需要使用该注解去告知编译器我们想要复写这个方法。这样一来当父类中的方法移除或者发生更改时编译器将提示错误信息。源码如下：
 ```java
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.SOURCE)
 public @interface Override {
 }
 ```
-2. `@Deprecated`：当我们希望编译器知道某一方法不建议使用时，我们应该使用这个注解。Java在javadoc中推荐使用该注解，我们应该提供为什么该方法不推荐使用以及替代的方法。源码如下：
+### @Deprecated
+当我们希望编译器知道某一方法不建议使用时，我们应该使用这个注解。Java在javadoc中推荐使用该注解，我们应该提供为什么该方法不推荐使用以及替代的方法。源码如下：
 ```java
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
@@ -186,7 +178,8 @@ public @interface Override {
 public @interface Deprecated {
 }
 ```
-3. `@SuppressWarnings`：这个仅仅是告诉编译器忽略特定的警告信息，例如在泛型中使用原生数据类型。它的保留策略是SOURCE（译者注：在源文件中有效）并且被编译器丢弃。源码如下：
+### @SuppressWarnings
+这个仅仅是告诉编译器忽略特定的警告信息，例如在泛型中使用原生数据类型。它的保留策略是SOURCE（译者注：在源文件中有效）并且被编译器丢弃。源码如下：
 ```java
 @Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
 @Retention(RetentionPolicy.SOURCE)

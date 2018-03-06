@@ -7,10 +7,10 @@
 ![Enum](http://ovn0i3kdg.bkt.clouddn.com/Enum.png)
 
 
-### public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializable
+## public abstract class Enum<E extends Enum<E>> implements Comparable<E>, Serializable
 类声明，注意到这是一个抽象类，实现了`Comparable`和`Serializable`接口。枚举类型符合通用模式 Class Enum<E extends Enum<E>>，而E表示枚举类型的名称。
 
-### protected Enum(String name, int ordinal){...}
+## protected Enum(String name, int ordinal){...}
 这个类的构造函数，指定了name和ordinal，`name`表示这个类的名称，`ordinal`表示序数。定义如下：
 ```java
 protected Enum(String name, int ordinal) {
@@ -33,14 +33,14 @@ new Enum<EnumTest>("TUE",1);
 new Enum<EnumTest>("WED",2);
 ```
 
-### public final String name(){...}
+## public final String name(){...}
 取得枚举对象的名称，定义如下：
 ```java
 public final String name() {
     return name;
 }
 ```
-### public final int ordinal() {...}
+## public final int ordinal() {...}
 取得枚举对象的序数。
 ```java
 public final int ordinal() {
@@ -48,10 +48,10 @@ public final int ordinal() {
 }
 ```
 
-### public String toString(){...}
+## public String toString(){...}
 取得枚举对象的string值，这里返回的是name字段。
 
-### public final boolean equals(Object other){...}
+## public final boolean equals(Object other){...}
 判断两个枚举对象是不是相等的。定义如下：
 ```java
 public final boolean equals(Object other) {
@@ -60,7 +60,7 @@ public final boolean equals(Object other) {
 ```
 可以看到，内部直接使用了`==`来判断，所以枚举型的相等判断，用`equals`方法和`==`符号是一样的效果。
 
-### public final int hashCode(){...}
+## public final int hashCode(){...}
 重写equals方法一定要重写hashCode方法！实际上并没有做什么改变，返回的父类Object的hashCode方法。定义如下：
 ```java
 public final int hashCode() {
@@ -68,7 +68,7 @@ public final int hashCode() {
 }
 ```
 
-### protected final Object clone() throws CloneNotSupportedException{...}
+## protected final Object clone() throws CloneNotSupportedException{...}
 继承自父类的克隆方法。`Enum`不允许克隆。定义如下：
 ```java
 protected final Object clone() throws CloneNotSupportedException {
@@ -77,7 +77,7 @@ protected final Object clone() throws CloneNotSupportedException {
 ```
 没得商量，直接抛出异常。
 
-### public final int compareTo(E o){...}
+## public final int compareTo(E o){...}
 比较两个枚举对象的值。定义如下：
 ```java
 public final int compareTo(E o) {
@@ -91,7 +91,7 @@ public final int compareTo(E o) {
 ```
 可以看到，在两个枚举对象同类型的情况下，返回两个对象序号的差值（正数/0/负数）。
 
-### public final Class<E> getDeclaringClass(){...}
+## public final Class<E> getDeclaringClass(){...}
 返回与此枚举常量的枚举类型相对应的 Class 对象。定义如下：
 ```java
 @SuppressWarnings("unchecked")
@@ -101,7 +101,7 @@ public final Class<E> getDeclaringClass() {
    return (zuper == Enum.class) ? (Class<E>)clazz : (Class<E>)zuper;
 }
 ```
-### public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name)
+## public static <T extends Enum<T>> T valueOf(Class<T> enumType, String name)
 返回带指定名称的指定枚举类型的枚举常量。定义如下：
 ```java
 public static <T extends Enum<T>> T valueOf(Class<T> enumType,
@@ -160,7 +160,7 @@ toString(): TUE
 ordinal(): 1
 ```
 
-### 枚举对象自定义属性和方法
+## 枚举对象自定义属性和方法
 ```java
 public enum EnumTest {
     MON(1), TUE(2), WED(3), THU(4), FRI(5), SAT(6) {
@@ -203,7 +203,7 @@ EnumTest.SAT 的isSet方法true
 ```
 
 
-### 枚举类的原理分析
+## 枚举类的原理分析
 enum 的语法结构尽管和 class 的语法不一样，但是经过编译器编译之后产生的是一个class文件。该class文件经过反编译可以看到实际上是生成了一个类，该类继承了`java.lang.Enum<E>。EnumTest`经过反编译(`javap com.hmw.test.EnumTest`命令)之后得到的内容如下：
 ```java
 public class com.hmw.test.EnumTest extends java.lang.Enum{

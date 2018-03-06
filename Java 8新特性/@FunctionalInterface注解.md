@@ -50,3 +50,5 @@ public interface Runnable {
     public abstract void run();
 }
 ```
+
+函数式接口是可以使用lambda表达式的，关于lambda表达式可以参见下一篇博文。

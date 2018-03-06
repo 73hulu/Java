@@ -37,6 +37,7 @@
     * [泛型](Java基础知识整理/泛型.md)
     * [空间初始化和增长策略](Java基础知识整理/空间初始化和增长策略.md)
     * [Java中的语法糖](Java基础知识整理/Java中的语法糖.md)
+    * [Java中的引用类型](Java基础知识整理/Java中的引用类型.md)
 * JVM
     * [运行时内存区域](JVM/运行时内存区域.md)
     * [内存泄漏和垃圾回收](JVM/内存泄漏和垃圾回收.md)
@@ -190,13 +191,16 @@
             * [State](设计模式/设计模式/行为型模式/State.md)
             * [Strategy](设计模式/设计模式/行为型模式/Strategy.md)
             * [Visitor](设计模式/设计模式/行为型模式/Visitor.md)
-* Java 8 新特性
-    * [基于-parameters](Java 8新特性/基于-parameters编译器标志.md)
+* [Java 8 新特性](Java 8新特性/Java 8新特性.md)
+    * [基于-parameters编译器标志](Java 8新特性/基于-parameters编译器标志.md)
     * [lambda表达式](Java 8新特性/lambda表达式.md)
     * [接口中可以定义非抽象方法了](Java 8新特性/接口中可以定义非抽象方法了.md)
     * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
     * [Effectively final](Java 8新特性/Effectively final.md)
     * [Predicate](Java 8新特性/Predicate.md)
+    * [HashMap改进](Java 8新特性/HashMap改进.md)
+    * [方法构造和函数引用](Java 8新特性/方法构造和函数引用.md)
+    * [map操作](Java 8新特性/map操作.md)
 * 常用工具
     * [FastJson](常用工具/FastJson.md)
 * 错题集
@@ -204,3 +208,4 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
 * [资源整理](资源整理.md)
+
