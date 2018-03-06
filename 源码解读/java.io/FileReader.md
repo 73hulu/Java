@@ -9,19 +9,19 @@
 只有三个构造方法而已。
 
 
-### public class FileReader extends InputStreamReader
+## public class FileReader extends InputStreamReader
 类声明。该类继承自`InputStreamReader`。
 
-### 构造方法
+## 构造方法
 三个构造方法，其实本质都是使用了文件字节输入流`FileInputStream`.
-#### public FileReader(String fileName) throws FileNotFoundException{...}
+### public FileReader(String fileName) throws FileNotFoundException{...}
 指定文件名字来构造文件读取。所以要承担文件不存在的后果。定义如下：
 ```java
 public FileReader(String fileName) throws FileNotFoundException {
    super(new FileInputStream(fileName));
 }
 ```
-#### public FileReader(File file) throws FileNotFoundException{...}
+### public FileReader(File file) throws FileNotFoundException{...}
 参数是`File`对象。定义如下
 ```java
 public FileReader(File file) throws FileNotFoundException {
@@ -34,7 +34,7 @@ BufferedReader in = new BufferedReader(new FileReader('foo.txt'));
 ```
 
 
-#### public FileReader(FileDescriptor fd){...}
+### public FileReader(FileDescriptor fd){...}
 参数是`FileDescriptor`对象，`FileDescriptor`是一个辅助类，很少用到，所以暂时先不深究了。
 ```java
 public FileReader(FileDescriptor fd) {

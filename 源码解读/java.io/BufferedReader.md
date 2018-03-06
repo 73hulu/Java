@@ -9,12 +9,12 @@ BufferedReader in = new BufferedReader(new FileReader("foo.in"));
 ```
 为什么`FileReader`已经是一个`Reader`了，为什么还要在它外面包裹一层？为了缓冲。为什么需要缓冲呢？原因很简单，效率问题！缓冲中的数据实际上是保存在内存中，而原始数据可能是保存在硬盘或NandFlash中；而我们知道，从内存中读取数据的速度比从硬盘读取数据的速度至少快10倍以上。
 
-那干嘛不干脆一次性将全部数据都读取到缓冲中呢？第一，读取全部的数据所需要的时间可能会很长。第二，内存价格很贵，容量不想硬盘那么大。
+那干嘛不干脆一次性将全部数据都读取到缓冲中呢？第一，读取全部的数据所需要的时间可能会很长。第二，内存价格很贵，容量不像硬盘那么大。
 
 
-### 构造方法
+## 构造方法
 定义了两个构造方法。
-#### public BufferedReader(Reader in, int sz){...}
+### public BufferedReader(Reader in, int sz){...}
 定义了一个字符输入流，指定缓冲区大小。定义如下：
 ```java
 public BufferedReader(Reader in, int sz) {
@@ -28,7 +28,7 @@ public BufferedReader(Reader in, int sz) {
 ```
 首先执行了父类`Reader`的构造方法，即把字符输出缓冲区作为锁。定义了输入流`in`，`cb`是字符数组，是字符缓冲区，`nextChar`是下一个要读取的字符在cb缓冲区中的位置  ，`nChars`是cb缓冲区中字符的总的个数。
 
-#### public BufferedReader(Reader in){..}
+### public BufferedReader(Reader in){..}
 只接受一个输入流作为参数，缓冲区大小默认为8192，即8k，定义如下：
 ```java
 public BufferedReader(Reader in) {
@@ -36,7 +36,7 @@ public BufferedReader(Reader in) {
 }
 ```
 
-#### private void ensureOpen() throws IOException{...}
+### private void ensureOpen() throws IOException{...}
 该方法用来确保流未关闭。定义如下：
 ```java
 private void ensureOpen() throws IOException {
@@ -46,7 +46,7 @@ private void ensureOpen() throws IOException {
 ```
 
 
-#### private void fill() throws IOException{...}
+### private void fill() throws IOException{...}
 该函数用来填充缓冲区，这个函数会在两种情况下被调用：
 1.  缓冲区没有数据时，通过`fill()`可以向缓冲区填充数据。   
 2. 缓冲区数据被读完，需更新时，通过fill()可以更新缓冲区的数据。
@@ -125,7 +125,7 @@ private int readAheadLimit = 0; /* Valid only when markedChar > 0 */
 
 ### read方法
 read方法用来实现从缓存中读取字符，有2个重载方法，其中一个是重写了父类的read的方法，一个实现了父类的抽象方法。
-#### public int read() throws IOException{..}
+### public int read() throws IOException{..}
 该方法重写了父类方法，用来从缓存中读取单个字符，最后以int的形式返回。定义如下：
 ```java
 public int read() throws IOException {
@@ -151,7 +151,7 @@ public int read() throws IOException {
 ```
 该方法线程安全，首先保证流正处理打开状态。如果要读取的位置已经超过了最大字符数，说明缓冲区的数据已经被读完，那么需要调用`fill`方法读入新的数据；如果读完还是大于，那么说明之前就已经到达了input的结尾，所以返回-1。`skipLF`即skip Line Feed，是“是否忽略换行符”标记。若要“忽略换行符”， 则对下一个字符是否是换行符进行处理。最后返回下一个字符。
 
-#### public int read(char cbuf[], int off, int len) throws IOException{...}
+### public int read(char cbuf[], int off, int len) throws IOException{...}
 实现了父抽象类`Reader`的抽象方法，这个方法将缓冲区的数据写入到`cbuf`数组中，其中`off`是数组的偏移量，len是写入的长度。
 ```java
 public int read(char cbuf[], int off, int len) throws IOException {
@@ -209,9 +209,9 @@ private int read1(char[] cbuf, int off, int len) throws IOException {
 首先，比较nextChar和nChars的值，如果前者大于等于或者，说明缓冲区的数据已经被读完，则更新缓冲区数据。如果已经读完仍然大于，说明input已经被读取完了，此时返回-1。如果要“忽略换行符”，则进行相应的处理。之后进行字符串拷贝。
 
 
-#### readLine方法
+## readLine方法
 readLine提供了读取一行的方法。重载了两个方法。
-#### public String readLine() throws IOException{...}
+### public String readLine() throws IOException{...}
 无参构造方法，定义如下：
 ```java
 public String readLine() throws IOException {
@@ -219,7 +219,7 @@ public String readLine() throws IOException {
 }
 ```
 调用的是有参构造方法，默认参数false。
-#### String readLine(boolean ignoreLF) throws IOException{...}
+### String readLine(boolean ignoreLF) throws IOException{...}
 其中的参数`ignoreLF`表示是否忽略换行符。
 ```java
 String readLine(boolean ignoreLF) throws IOException {
@@ -302,7 +302,7 @@ String readLine(boolean ignoreLF) throws IOException {
 ```
 额，有点复杂，还是先不看了。
 
-### public long skip(long n) throws IOException{...}
+## public long skip(long n) throws IOException{...}
 重写覆盖了父类的`skip`方法。定义如下：
 ```java
 public long skip(long n) throws IOException {
@@ -340,7 +340,7 @@ public long skip(long n) throws IOException {
 ```
 过程比较好理解，首先检查了缓冲区是不是已经被读完，是的话重新填充。之后对换行符做处理。之后判断剩余的字符和所要求的字符长度做比较。
 
-### public boolean ready() throws IOException{...}
+## public boolean ready() throws IOException{...}
 用来判断”下一个字符”是否可读。定义如下：
 ```java
 public boolean ready() throws IOException {
@@ -369,10 +369,10 @@ public boolean ready() throws IOException {
 }
 ```
 
-### public boolean markSupported(){...}
+## public boolean markSupported(){...}
 始终返回true，因为BufferedReader支持mark(), reset()。
 
-### public void mark(int readAheadLimit) throws IOException{...}
+## public void mark(int readAheadLimit) throws IOException{...}
 该方法用来标记当前`BufferedReader`的下一个要读取位置。定义如下：
 ```java
 public void mark(int readAheadLimit) throws IOException {
@@ -388,7 +388,7 @@ public void mark(int readAheadLimit) throws IOException {
 }
 ```
 
-### public void reset() throws IOException{...}
+## public void reset() throws IOException{...}
 重置BufferedReader的下一个要读取位置，将其还原到`mark()`中所保存的位置。
 ```java
 public void reset() throws IOException {
@@ -404,7 +404,7 @@ public void reset() throws IOException {
 }
 ```
 
-### public void close() throws IOException{...}
+## public void close() throws IOException{...}
 关闭流，需要关闭其封装的流，并将其中一些引用置为null。定义如下：
 ```java
 public void close() throws IOException {

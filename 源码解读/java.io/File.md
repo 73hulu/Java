@@ -5,10 +5,10 @@
 ![File](http://ovn0i3kdg.bkt.clouddn.com/File_1.png)
 ![File](http://ovn0i3kdg.bkt.clouddn.com/File_2.png)
 
-### public class File implements Serializable, Comparable<File>
+## public class File implements Serializable, Comparable<File>
 类声明，可以看到`File`实现了`Serializable`接口和`Comparable`接口，所以这个类中一定会定义一个`serialVersionUID`。
 
-### 静态构造块
+## 静态构造块
 这个类中有一个静态构造块，定义如下：
 ```java
 static {
@@ -33,10 +33,10 @@ private static final sun.misc.Unsafe UNSAFE;
 ```
 这段代码其实没能看懂具体有什么作用o(╯□╰)o
 
-### 构造方法
+## 构造方法
 `File`类定义了6种构造方法，其中有两种是私有的。
 
-#### public File(String pathname){...}
+## public File(String pathname){...}
 这是一个最常用的公共构造方法。用指定的路径`pathname`创建文件对象。定义如下：
 ```java
 public File(String pathname) {
@@ -89,7 +89,7 @@ File f3 =new File("c:"+File.separator+"abc");
 ```
 
 
-#### public File(String parent, String child){...}
+### public File(String parent, String child){...}
 该方法用于从父路径名字符串和子路径名字符串创建新的File实例。
 ```java
 public File(String parent, String child) {
@@ -115,7 +115,7 @@ public File(String parent, String child) {
 讲了这么多，实际上就是将一个完整的路径分开写了而已。比如调用上一个构造函数创建文件`File f1 =new File("c:\\zuidaima\\1.txt");`如果想要在同一个目录下创建另一个txt文件，那么就可以用`File f2 =new File("c:\\zuidaima","2.txt"); `这种方式。
 
 
-#### public File(File parent, String child){...}
+### public File(File parent, String child){...}
 和上面一个构造函数好像，注意这个方法的第一个参数是`File`类型。
 ```java
 public File(File parent, String child) {
@@ -142,7 +142,7 @@ File f3 =new File("c:"+File.separator+"abc");//separator 跨平台分隔符
 File f4 =new File(f3,"3.txt");  
 ```
 
-#### public File(URI uri){...}
+### public File(URI uri){...}
 将URI 转换为一个抽象路径名来创建一个新的 File 实例。URI 的具体形式与系统有关，因此，由此构造方法执行的转换也与系统有关。定义如下：
 ```java
 public File(URI uri) {
@@ -175,7 +175,7 @@ public File(URI uri) {
 这个方法到现在都没有用到过，所以暂时不知道是什么意思，先不看了。
 
 
-#### private File(String pathname, int prefixLength){...}
+### private File(String pathname, int prefixLength){...}
 这是一个内部的构造方法，用来已经规范化的路径名字符串的内部构造函数。定义如下：
 ```java
 private File(String pathname, int prefixLength) {
@@ -184,7 +184,7 @@ private File(String pathname, int prefixLength) {
 }
 ```
 
-#### private File(String child, File parent){...}
+### private File(String child, File parent){...}
 另一个内部的构造方法，定义如下：
 ```java
 private File(String child, File parent) {
@@ -238,7 +238,7 @@ private File(String child, File parent) {
 
 其中有些方法需要明确概念、适用场景和雷区。
 
-##### `getPath`、`getAbsolutePath`和`getCanonicalPath`的区别
+### `getPath`、`getAbsolutePath`和`getCanonicalPath`的区别
 这三个方法都不管文件是不是真是存在，只要有文件引用就可以了。前两个的区别很好解释：`getPath`输出的是创建的时候用的路径字符串，`getAbsolutePath`输出的是绝对路径。`getCanonicalPath`方法不但输出全路径，而且把一些`..`、`.`这样的符号解析出来了。看下面的例子。
 ```Java
 File file = new File("..\\src\\test1.txt");
@@ -260,7 +260,7 @@ D:\workspace\src\test1.txt
 输出结果可以看到三者明显的不同。另外这篇博文http://www.blogjava.net/dreamstone/archive/2007/08/08/134968.html 中有写一个由windows和linux大小写敏感问题造成结果差异，可以看一下。
 
 
-##### `renameTo`方法的应用
+### `renameTo`方法的应用
 这个方法名字上看就是"重命名"的意思，但是这个方法经常用来拷贝文件。仔细看方法签名，`public boolean renameTo(File dest）`，参数是目标文件，难道重命名参数不应该是String么？而且返回值是`boolean`，所以还存在重命名不成功的时候。看下面这个测试：
 ```Java
 public static void main(String[] args) {
@@ -292,4 +292,4 @@ source rename to dest2 false
 ```
 该程序中首先保证了源文件source一定存在，然后分给renameTo到一个不存在的文件bbb.txt，和一个已存在的文件ccc.txt，结果发现，前者成功而后者不成功，并且最后看文件夹发现有一个bbb.txt和ccc.txt，而原来的aaa.txt不见了。所以可以得出结论：使用renameTo重命名文件，首先要保证源文件存在（这个可以做实验验证一下确实是这样），不管这个源文件是一个“文件”还是一个“目录”。最重要的一点是，要保证参数dest是一个不存在的对象。满足以上两点才能重命名成功。这个方法和linux下的`mv`命令不是一样。
 
-但是这个方法有人做过测试，很不靠谱，参考http://www.iteye.com/topic/149328， 所以拷贝文件还是用`FileUtilsc.opyFileToDirectory(File,File)`比较好。
+但是这个方法有人做过测试，很不靠谱，参考http://www.iteye.com/topic/149328， 所以拷贝文件还是用`FileUtilsc.copyFileToDirectory(File,File)`比较好。
