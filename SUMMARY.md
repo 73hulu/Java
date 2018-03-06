@@ -37,6 +37,10 @@
     * [泛型](Java基础知识整理/泛型.md)
     * [空间初始化和增长策略](Java基础知识整理/空间初始化和增长策略.md)
     * [Java中的语法糖](Java基础知识整理/Java中的语法糖.md)
+* JVM
+    * [运行时内存区域](JVM/运行时内存区域.md)
+    * [内存泄漏和垃圾回收](JVM/内存泄漏和垃圾回收.md)
+    * [内存溢出和参数调优](JVM/内存溢出和参数调优.md)
 * [源码解读](源码解读/introduction.md)
     * [java.lang](源码解读/java.lang/java-lang.md)
         * [Object](源码解读/java.lang/Object.md)
@@ -151,13 +155,6 @@
     * [java.nio](源码解读/java.nio/java-nio.md)
         * [java.Charset](源码解读/java.nio/java.Charset/java-Charset.md)
             * [Charset](源码解读/java.nio/java.Charset/java.Charset/Charset.md)
-* Java 8 新特性
-    * [基于-parameters](Java 8新特性/基于-parameters编译器标志.md)
-    * [lambda表达式](Java 8新特性/lambda表达式.md)
-    * [接口中可以定义非抽象方法了](Java 8新特性/接口中可以定义非抽象方法了.md)
-    * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
-    * [Effectively final](Java 8新特性/Effectively final.md)
-    * [Predicate](Java 8新特性/Predicate.md)
 * 设计模式
     * [六大原则](设计模式/六大原则/六大原则.md)
         * [单一原则](设计模式/六大原则/单一原则.md)
@@ -193,10 +190,13 @@
             * [State](设计模式/设计模式/行为型模式/State.md)
             * [Strategy](设计模式/设计模式/行为型模式/Strategy.md)
             * [Visitor](设计模式/设计模式/行为型模式/Visitor.md)
-* JVM
-    * [内存区域](JVM/内存区域.md)
-    * [内存泄漏和垃圾回收](JVM/内存泄漏和垃圾回收.md)
-    * [内存溢出](JVM/内存溢出.md)
+* Java 8 新特性
+    * [基于-parameters](Java 8新特性/基于-parameters编译器标志.md)
+    * [lambda表达式](Java 8新特性/lambda表达式.md)
+    * [接口中可以定义非抽象方法了](Java 8新特性/接口中可以定义非抽象方法了.md)
+    * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
+    * [Effectively final](Java 8新特性/Effectively final.md)
+    * [Predicate](Java 8新特性/Predicate.md)
 * 常用工具
     * [FastJson](常用工具/FastJson.md)
 * 错题集
@@ -204,4 +204,3 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
 * [资源整理](资源整理.md)
-
