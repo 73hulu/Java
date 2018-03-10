@@ -1,6 +1,6 @@
 # Collections
 `Collections`是一个包装类，里面封装了很多集合框架的操作，注意这个类不能实例化，因为没有公开的构造方法，该类服务于Java的Collection框架。
-> Java中有很多对类与相对应的服务类，例如`Collection`和`Collections`，`Array`和`Arrays`，`Object`和`Objects`。
+> Java中有很多对类与相对应的服务类，例如`Collection`和`Collections`，`Array`和`Arrays`，`Object`和`Objects`、`Executor`和`Executors`。
 
 该类的结构如下：
 
@@ -360,15 +360,15 @@ private static <T> int indexedBinarySearch(List<? extends Comparable<? super T>>
     // 上界  
 
     while (low <= high) {  
-        int mid = (low + high) >>> 1;  
-        Comparable<? super T> midVal = list.get(mid);  
         // 中间值  
-        int cmp = midVal.compareTo(key);  
+        int mid = (low + high) >>> 1;  
         // 指定元素与中间值比较  
+        Comparable<? super T> midVal = list.get(mid);  
+        int cmp = midVal.compareTo(key);  
+        // 重新设置上界和下界  
 
         if (cmp < 0)  
             low = mid + 1;  
-        // 重新设置上界和下界  
         else if (cmp > 0)  
             high = mid - 1;  
         else  
@@ -578,7 +578,11 @@ private static void rotate2(List<?> list, int distance) {
     reverse(list);  
 }  
 ```
-这里特别注意对于链表的操作，非常巧妙！对于[1,2,3,4,5,6]来说，当distance为2时候，`-2%6`的结果是-2，最后取得mid=4，两次reverse过后变成[5,6,1,2,3,4]，最后一次reverse之后变成[5,6,1,2,3,4]，非常神奇！
+这两个方法都非常有启发性。
+
+对于小线性表或者可随机访问到的线性表，使用的是轮换的方法，首先当前下标i设置为0，然后寻找这个下标应该移动到的数组数组中的位置，将该值设置到这个位置，取得这个位置原来的值displace和这个位置的索引i，循环上面步骤，如果发现这个循环已经到了头，即i=cycleStart，那么让cycleStart前进一步，继续下一个循环，这里需要记录下修改的次数，当修改的次数为线性表的长度的时候，表示全部轮换完成。比如对于数组[1,2,3,4,5,6]，首先将index=0的元素1交换到下标为4（因为 0 + 4 = 4 < 6）的位置上，然后将index=4位置上的元素5交换到位置2（因为 4 + 4 = 8 > 6， 则8 - 6 = 2），然后将index= 2上的元素3交换到位置（2 + 4 = 6， 所以6 - 6 =0），此时发现i=cycleStart，所以内层循环结束，让cycleStart增加1，即此时从index= 2，同样进行上述步骤。
+
+对于链表及大数组现象表来说，实现的方法非常巧妙，使用了三次的倒置操作！对于[1,2,3,4,5,6]来说，当distance为2时候，`-2%6`的结果是-2，最后取得mid=4，两次reverse过后变成[4,3,2,1,6,5]，最后一次reverse之后变成[5,6,1,2,3,4]，非常神奇！
 
 ### 拷贝方法（copy）
 这个没什么好解释的，就是遍历赋值。同样对随机存取的数组和链表做了不同的处理。定义如下：

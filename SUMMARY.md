@@ -129,6 +129,7 @@
             * [Executors](源码解读/java.util/java.util.concurrent/Executors.md)
             * [ScheduledThreadPollExecutor](源码解读/java.util/java.util.concurrent/ScheduledThreadPollExecutor.md)
             * [java.util.concurrent.atomic](源码解读/java.util/java.util.concurrent/java.util.concurrent.atomic/java.util.concurrent.atomic.md)
+                * [AtomicReference](源码解读/java.util/java.util.concurrent/java.util.concurrent.atomic/AtomicReference.md)
             * [java.util.concurrent.locks](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/java.util.concurrent.locks.md)
                 * [AbstractQueuedSynchronizer](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/AbstractQueuedSynchronizer.md)
                 * [LockSupport](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/LockSupport.md)
@@ -209,3 +210,4 @@
     * [错题集3](错题集/错题集3.md)
     * [错题集4](错题集/错题集4.md)
 * [资源整理](资源整理.md)
+

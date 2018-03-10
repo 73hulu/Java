@@ -1,5 +1,8 @@
 # AbstractQueuedSynchronizer
 
+> AQS是干什么的？总结成一句话： AQS利用CAS原子操作维护自身的状态，结合LockSupport对线程进行阻塞和唤醒从而实现更为灵活的同步操作。
+
+
 `AbstractQueuedSynchronizer`翻译过来就是“抽象队列同步器”，它定义了一套多线程访问共同资源的同步器框架，之后的很多同步实现类都依赖于它，比如`ReentrantLock`、`ReentrantReadWriteLock`、`Semaphore`、`CountDownLatch`等等。可以说，`AbstractQueuedSynchronizer`，简称`AQS`，是整个`java.util.concurrent`的核心。
 
 其结构如下：
@@ -12,10 +15,99 @@
 该类维护了一个共享资源和一个FIFO线程等待队列（多线程争用资源被阻塞时会进入此队列），下面这个图可以用来描述这个关系：
 ![共享资源和等待队列](http://ovn0i3kdg.bkt.clouddn.com/%E5%85%B1%E4%BA%AB%E8%B5%84%E6%BA%90%E5%92%8C%E7%AD%89%E5%BE%85%E9%98%9F%E5%88%97.png)
 
+> AQS里面的CLH队列是CLH同步锁的一种变形。其主要从两方面进行了改造：节点的结构与节点等待机制。在结构上引入了头结点和尾节点，他们分别指向队列的头和尾，尝试获取锁、入队列、释放锁等实现都与头尾节点相关，并且每个节点都引入前驱节点和后后续节点的引用；在等待机制上由原来的自旋改成阻塞唤醒。其结构如下
+
+
 如图中所示，该类用一个变量`volatile int state`来表示这个被争用的资源，队头和队尾由两个变量来记录：
 ```java
 private transient volatile Node head;
 private transient volatile Node tail;
+```
+
+而其中数据结构`Node`实际上是对`Thread`的一个包装，其定义如下：
+```java
+static final class Node {
+    /** Marker to indicate a node is waiting in shared mode */
+    static final Node SHARED = new Node();
+    /** Marker to indicate a node is waiting in exclusive mode */
+    static final Node EXCLUSIVE = null;
+
+    /** waitStatus value to indicate thread has cancelled */
+    /** 因为超时或者中断，结点会被设置为取消状态，被取消状态的结点不应该去竞争锁，只能保持取消状态不变，不能转换为其他状态。处于这种状态的结点会被踢出队列，被GC回收 */
+    static final int CANCELLED =  1;
+    /** waitStatus value to indicate successor's thread needs unparking */
+    /** 表示这个结点的继任结点被阻塞了，到时需要通知它 */
+    static final int SIGNAL    = -1;
+    /** waitStatus value to indicate thread is waiting on condition */
+    /** 表示这个结点在条件队列中，因为等待某个条件而被阻塞 */
+    static final int CONDITION = -2;
+    /**
+     * waitStatus value to indicate the next acquireShared should
+     * unconditionally propagate
+     */
+     /**使用在共享模式头结点有可能牌处于这种状态，表示锁的下一次获取可以无条件传播*/
+    static final int PROPAGATE = -3;
+
+    /*当前node对象的等待状态，注意该状态并不是描述当前对象而是描述下一个节点的状态，
+     * 从而来决定是否唤醒下一个节点，该节点总共有四个取值：
+     * a. CANCELLED = 1：因为超时或者中断，结点会被设置为取消状态，被取消状态的结点不应该去竞争锁，
+     * 只能保持取消状态不变，不能转换为其他状态。处于这种状态的结点会被踢出队列，被GC回收；
+     * b. SIGNAL = -1：表示这个结点的继任结点被阻塞了，到时需要通知它；
+     * c. CONDITION = -2：表示这个结点在条件队列中，因为等待某个条件而被阻塞；
+     * d. PROPAGATE = -3：使用在共享模式头结点有可能牌处于这种状态，表示锁的下一次获取可以无条件传播；
+     * e. 0： None of the above，新结点会处于这种状态。
+     *
+     * 非负值标识节点不需要被通知（唤醒）。
+    */
+    volatile int waitStatus;
+
+     //当前节点的上一个节点，如果是头节点那么值为null
+    volatile Node prev;
+
+    //当前节点的下一个节点
+    volatile Node next;
+
+    //与Node绑定的线程对象
+    volatile Thread thread;
+
+    //下一个等待条件（Condition）的节点，由于Condition是独占模式，因此这里有一个简单的队列来描述Condition上的线程节点。
+    Node nextWaiter;
+
+    /**
+     * Returns true if node is waiting in shared mode.
+     */
+    final boolean isShared() {
+        return nextWaiter == SHARED;
+    }
+
+    /**
+     * Returns previous node, or throws NullPointerException if null.
+     * Use when predecessor cannot be null.  The null check could
+     * be elided, but is present to help the VM.
+     *
+     * @return the predecessor of this node
+     */
+    final Node predecessor() throws NullPointerException {
+        Node p = prev;
+        if (p == null)
+            throw new NullPointerException();
+        else
+            return p;
+    }
+
+    Node() {    // Used to establish initial head or SHARED marker
+    }
+
+    Node(Thread thread, Node mode) {     // Used by addWaiter
+        this.nextWaiter = mode;
+        this.thread = thread;
+    }
+
+    Node(Thread thread, int waitStatus) { // Used by Condition
+        this.waitStatus = waitStatus;
+        this.thread = thread;
+    }
+}
 ```
 
 另外从图中可以看到，这个队列叫做“CLH队列”。"CLH"即“Craig, Landin, and Hagersten  locks”，即自旋锁，什么是自旋锁？自旋锁采用让当前线程不停地的在循环体内执行实现，当循环的条件被其他线程改变时 才能进入临界区。关于自旋锁的更多内容参见各类锁的辨析。
@@ -119,6 +211,12 @@ protected boolean tryAcquire(int arg) {
 2. addWaiter(Node)
 这个方法是将当前线程加入到等待队伍的队尾，并且返回当前线程所在的节点。
 ```java
+//获取锁失败后，将其包装成节点
+/**
+* addWaiter:
+* 1. 尝试将新节点以最快的方式设置为尾节点，如果CAS设置尾节点成功，返回附加着当前线程的节点。
+* 2. 如果CAS操作失败，则调用enq方法，循环入队直到成功。
+*/
 private Node addWaiter(Node mode) {
     //以给定模式构造结点。mode有两种：EXCLUSIVE（独占）和SHARED（共享）
     Node node = new Node(Thread.currentThread(), mode);
@@ -140,6 +238,7 @@ private Node addWaiter(Node mode) {
 ```
 其中`enq`方法定义如下：
 ```java
+//循环插入队尾直到CAS成功。
 private Node enq(final Node node) {
     //CAS"自旋"，直到成功加入队尾
     for (;;) {
@@ -159,8 +258,13 @@ private Node enq(final Node node) {
 ```
 如果你看过`AtomicInteger.getAndIncrement()`函数源码，那么相信你一眼便看出这段代码的精华。**CAS自旋volatile变量**，是一种很经典的用法。还不太了解的，自己去百度一下吧。
 3. acquireQueued(Node, int)
-OK，通过`tryAcquire()`和`addWaiter()`，该线程获取资源失败，已经被放入等待队列尾部了。那么下一步的工作是：进入等待状态休息，直到其他线程彻底释放资源后唤醒自己，自己再拿到资源，然后就可以去干自己想干的事了。没错，就是这样！是不是跟医院排队拿号有点相似~~`acquireQueued()`就是干这件事：在等待队列中排队拿号（中间没其它事干可以休息），直到拿到号后再返回。这个函数非常关键，还是上源码吧：
+OK，通过`tryAcquire()`和`addWaiter()`，该线程获取资源失败，已经被放入等待队列尾部了，但是节点插入队尾后不会直接挂起，因为可能在插入的时候占有锁的线程已经运行结束了，所以会通过自旋进行锁的竞争。
+
+
+那么下一步的工作是：进入等待状态休息，直到其他线程彻底释放资源后唤醒自己，自己再拿到资源，然后就可以去干自己想干的事了。没错，就是这样！是不是跟医院排队拿号有点相似~~`acquireQueued()`就是干这件事：在等待队列中排队拿号（中间没其它事干可以休息），直到拿到号后再返回。这个函数非常关键，还是上源码吧：
 ```java
+//自旋获取锁，直至异常退出或获取锁成功，但是并不是busy acquire，因为当获取失败后会被挂起，由前驱节点释放锁时将其唤醒。
+//同时由于唤醒的时候可能有其他线程竞争，所以还需要进行尝试获取锁，体现的非公平锁的精髓。
 final boolean acquireQueued(final Node node, int arg) {
     boolean failed = true;//标记是否成功拿到资源
     try {
@@ -170,7 +274,8 @@ final boolean acquireQueued(final Node node, int arg) {
         for (;;) {
             final Node p = node.predecessor();//拿到前驱
             //如果前驱是head，即该结点已成老二，那么便有资格去尝试获取资源（可能是老大释放完资源唤醒自己的，当然也可能被interrupt了）。
-            if (p == head && tryAcquire(arg)) {
+            if (p == head && tryAcquire(arg)) {////如果node的前驱节点是head节点，尝试获取锁，如果获取锁成功，说明head节点已经释放锁了，将node设为head开始运行。
+               setHead(node);
                 setHead(node);//拿到资源后，将head指向该结点。所以head所指的标杆结点，就是当前获取到资源的那个结点或null。
                 p.next = null; // setHead中node.prev已置为null，此处再将head.next置为null，就是为了方便GC回收以前的head结点。也就意味着之前拿完资源的结点出队了！
                 failed = false;
@@ -178,11 +283,11 @@ final boolean acquireQueued(final Node node, int arg) {
             }
 
             //如果自己可以休息了，就进入waiting状态，直到被unpark()
-            if (shouldParkAfterFailedAcquire(p, node) &&
-                parkAndCheckInterrupt())
+            if (shouldParkAfterFailedAcquire(p, node) && //判断当前node在获取锁失败后是否可以挂起，通过pred的状态判断
+                parkAndCheckInterrupt())////挂起线程，等待node的前驱节点唤醒。
                 interrupted = true;//如果等待过程中被中断过，哪怕只有那么一次，就将interrupted标记为true
         }
-    } finally {
+    } finally {//中间出现异常，导致获取锁失败，取消当前锁的自旋尝试获取锁
         if (failed)
             cancelAcquire(node);
     }
@@ -190,10 +295,11 @@ final boolean acquireQueued(final Node node, int arg) {
 ```
 其中`shouldParkAfterFailedAcquire`这个方法主要用于检查状态，看看自己是否真的可以去休息了，即进入waiting状态，源码如下：
 ```java
+//更新前驱节点的状态，是否可以挂起当前获取锁失败的节点。
 private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
     int ws = pred.waitStatus;//拿到前驱的状态
     if (ws == Node.SIGNAL)
-        //如果已经告诉前驱拿完号后通知自己一下，那就可以安心休息了
+    //pred节点的状态为signal，说明node无法获取锁，可以安全挂起。
         return true;
     if (ws > 0) {
         /*
@@ -205,8 +311,8 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
         } while (pred.waitStatus > 0);
         pred.next = node;
     } else {
-         //如果前驱正常，那就把前驱的状态设置成SIGNAL，告诉它拿完号后通知自己一下。有可能失败，人家说不定刚刚释放完呢！
-        compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
+      compareAndSetWaitStatus(pred, ws, Node.SIGNAL);//将前驱节点的状态设置为SIGNAL，代表node需要被运行。
+    //更新可能失败，所以也不能够直接返回true。
     }
     return false;
 }
@@ -214,6 +320,7 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
 整个流程中，如果前驱结点的状态不是`SIGNAL`，那么自己就不能安心去休息，需要去找个安心的休息点，同时可以再尝试下看有没有机会轮到自己拿号。
 另外`parkAndCheckInterrupt()`方法的意思是如果线程找好安全休息点后，那就可以安心去休息了。此方法就是让线程去休息，真正进入等待状态。源码如下：
 ```java
+//挂起线程
 private final boolean parkAndCheckInterrupt() {
      LockSupport.park(this);//调用park()使线程进入waiting状态
      return Thread.interrupted();//如果被唤醒，查看自己是不是被中断的。
@@ -250,7 +357,7 @@ public final boolean release(int arg) {
     return false;
 }
 ```
-逻辑并不复杂。它调用tryRelease()来释放资源。有一点需要注意的是，**它是根据`tryRelease()`的返回值来判断该线程是否已经完成释放掉资源了！所以自定义同步器在设计`tryRelease()`的时候要明确这一点！！**下面同样进行分步讲解：
+逻辑并不复杂。它调用tryRelease()来释放资源。有一点需要注意的是，**它是根据`tryRelease()`的返回值来判断该线程是否已经完成释放掉资源了！所以自定义同步器在设计`tryRelease()`的时候要明确这一点！！** 下面同样进行分步讲解：
 1. tryRelease(int)
 此方法尝试去释放指定量的资源。下面是tryRelease()的源码：
 ```java
@@ -258,17 +365,33 @@ protected boolean tryRelease(int arg) {
     throw new UnsupportedOperationException();
 }
 ```
-和`tryAcquire`一样，`tryRelease`同样需要自定义的同步器去实现，正常来说，`tryRelease()`都会成功的，因为这是独占模式，该线程来释放资源，那么它肯定已经拿到独占资源了，直接减掉相应量的资源即可(`state-=arg`)，也不需要考虑线程安全的问题。但要注意它的返回值，上面已经提到了，**`release()`是根据`tryRelease()`的返回值来判断该线程是否已经完成释放掉资源了！**所以自义定同步器在实现时，如果已经彻底释放资源(state=0)，要返回true，否则返回false。
+和`tryAcquire`一样，`tryRelease`同样需要自定义的同步器去实现，正常来说，`tryRelease()`都会成功的，因为这是独占模式，该线程来释放资源，那么它肯定已经拿到独占资源了，直接减掉相应量的资源即可(`state-=arg`)，也不需要考虑线程安全的问题。但要注意它的返回值，上面已经提到了，** `release()`是根据`tryRelease()`的返回值来判断该线程是否已经完成释放掉资源了！** 所以自义定同步器在实现时，如果已经彻底释放资源(state=0)，要返回true，否则返回false。
 
 2. unparkSuccessor(Node)
 此方法用于唤醒等待队列中下一个线程。下面是源码：
 ```java
 private void unparkSuccessor(Node node) {
-    //这里，node一般为当前线程所在的结点。
+  /*
+   * If status is negative (i.e., possibly needing signal) try
+   * to clear in anticipation of signalling.  It is OK if this
+   * fails or if status is changed by waiting thread.
+   *
+   * 如果waitStatus小于0，那么将下一个节点设置成头节点
+   */
     int ws = node.waitStatus;
     if (ws < 0)//置零当前线程所在的结点状态，允许失败。
         compareAndSetWaitStatus(node, ws, 0);
 
+  /*
+   * Thread to unpark is held in successor, which is normally
+   * just the next node.  But if cancelled or apparently null,
+   * traverse backwards from tail to find the actual
+   * non-cancelled successor.
+   *
+   * 如果waitStatus大于0，或者下一个节点为null，那么从后往前找
+   * 之前与同学讨论的时候不是很明白为什么要从后往前找，现在看了下doc瞬间明白了：
+   * 下一个节点有可能因为任务被取消了，节点有可能变为null
+   */
     Node s = node.next;//找到下一个需要唤醒的结点s
     if (s == null || s.waitStatus > 0) {//如果为空或已取消
         s = null;
@@ -394,3 +517,6 @@ private void doReleaseShared() {
 参考
 * [java锁的种类以及辨析（一）：自旋锁](http://ifeve.com/java_lock_see1/)
 * [Java并发之AQS详解](https://www.cnblogs.com/waterystone/p/4920797.html)
+* [关于AQS的一点总结](http://blog.csdn.net/mian_CSDN/article/details/61913200)
+* [AbstractQueuedSynchronizer-源码走读](https://zhuanlan.zhihu.com/p/28843912)
+* [40个Java多线程问题总结](https://zhuanlan.zhihu.com/p/26441926)

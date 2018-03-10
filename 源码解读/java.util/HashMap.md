@@ -69,6 +69,9 @@ static final int tableSizeFor(int cap) {
 ```
 首先对传入的参数范围作了检查，`loadFactor`是常量，一旦赋值就不能改变。而变量`threshold`是下一次扩容的临界值，用于判断是否需要调整`HashMap`的容量（threshold = 容量*加载因子） ，调用的`tableSizeFor`方法写的很奇怪，找到下一个最小的比参数大的2的高次幂。具体的可以参考https://zhidao.baidu.com/question/291266003.html。 这里保证了该值是一个2的倍数，比如你设置的是5，而实际上空间大小为8。
 
+>` n |= n >>>4` 就等于 `n = n | n >>> 4`，`>>>`是无符号右移，右移几位就是将从左到右的第几位置为1。所以对于65(1000000)，来说，经过上面的处理，最后变成1111111，然后加上1之后，就变成了2的倍数。
+
+
 ### public HashMap(int initialCapacity) {...}
 指定初始化容量。
 ```java

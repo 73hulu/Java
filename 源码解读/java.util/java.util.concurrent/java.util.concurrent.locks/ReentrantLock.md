@@ -1,5 +1,7 @@
 # ReentrantLock
 
+> 这篇文章讲的最明白： http://blog.csdn.net/pengdandezhi/article/details/67082171
+
 `Reentrant`这个单词的意思是“可重入”，所以`ReentrantLock`的意思就是"可重入锁"。它允许把锁的实现作为Java类，而不是作为语言的特性来实现。它除了在扩展性上与同步方法和声明的隐式监控锁不同外，在基本行为和语义上都相同。还支持取锁的公平与不公平的选择。
 
 > 这里提到了两个陌生的概念。
@@ -10,7 +12,7 @@
 
 ![ReentrantLock](http://ovn0i3kdg.bkt.clouddn.com/ReenrantLock.png)
 
-
+![ReenrantLock](http://img.blog.csdn.net/20170327231424901?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGVuZ2RhbmRlemhp/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 一个拥有可重入锁的线程最后成功锁定，但尚未解锁它。当这个锁并没有被其他线程拥有时，一个线程调用锁，将成功的返回请求的这个锁。如果当前线程已经拥有该锁了，该方法会立刻返回。这可以通过`isHeldByCurrentThread()`和`getHoldCount()`两个方法检查。
 

@@ -4,7 +4,7 @@
 
 `Arrays`类是Java集合框架的一部分，提供了对数组的处理方法。注意，`Arrays`是java.util中的一个工具类，在java.lang.reflect中，有一个`Array`类，这两种的关系，与`Objects`和`Object`、`Collections`和`Collection`非常类似。`Arrays`是一个工具类，提供了对数组的操作，比如排序、查找、与线性表的转化，而`Array`则**定义**和操作数组，可以用`Array.newInstance`来创建数组（虽然我们平常不使用这种方法来创建数组），操作数组当然是通过`get`和`set`方法。
 
-> Arrays 无公共的构造方法，且方法体为空。
+> Arrays 无公共的构造方法，私有构造方法的方法体为空。
 
 `Arrays`中提供了众多的数组操作方法，大部分是已经类型的重载，太多了所以就不截图了，主要提供了一下类别的方法：
 1. 查找方法
@@ -62,7 +62,7 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex,
 ```
 如果找到则返回元素下标，如果没有找到则返回元素应该插入的位置下标。注意到该方法在取mid位置的时候并可能会存在整数溢出问题！而`Collections`中的`binarySearch`则考虑到这个问题，所以更好的取mid的方法是：
 ```Java
-int mid = left + (right - left) >>> 2 ;
+int mid = left + (right - left) >>> 1 ;
 ```
 
 ## 排序方法
@@ -159,7 +159,7 @@ private static void mergeSort(Object[] src,
     }
 }
 ```
-然而事实上，这里实际上并不是严格意义上的”归并排序”，当待排序的对象数组很小（长度小于7）的时候要进行插入排序。其他情况采取归并排序，并且这个过程也做了优化。我们知道归并排序是将先细分再合并，当原数组拆分为两个数组，并各自进行排序，然后将两个有序数组进行合并。这里做出的优化是，先看下这个数组是不是已经有序了，依据是左边最大值和右边最小值是否有序，即src[mid-2]小于src[mid]，如果是的话，我们就可以直接将src复制拷贝到desc中，这里用的是`System.arraycopy`方法，而不用在进行遍历赋值。这种情况对轻微乱序的数组比较高效。如果没有有序，那就合并，合并的原理也很简单，就是将两个数组的依次比较，然后按照大小依次赋值到desc数组中。
+然而事实上，这里实际上并不是严格意义上的”归并排序”，当待排序的对象数组很小（长度小于7）的时候要进行插入排序。其他情况采取归并排序，并且这个过程也做了优化。我们知道归并排序是将先细分再合并，当原数组拆分为两个数组，并各自进行排序，然后将两个有序数组进行合并。这里做出的优化是，先看下这个数组是不是已经有序了，依据是左边最大值和右边最小值是否有序，即src[mid-1]小于src[mid]，如果是的话，我们就可以直接将src复制拷贝到desc中，这里用的是`System.arraycopy`方法，而不用在进行遍历赋值。这种情况对轻微乱序的数组比较高效。如果没有有序，那就合并，合并的原理也很简单，就是将两个数组的依次比较，然后按照大小依次赋值到desc数组中。
 
 ### parallelSort
 意思是“并行排序”，暂时不知道有何用，先不看了。
@@ -516,4 +516,111 @@ public static void main(String[] args) {
 List<Integer> list1 = Arrays.asList(new int[]{1,2,3}); //错误
 List<Integer> list2 = Arrays.asList(1, 2, 3); //正确
 ```
-那么如何逆操作呢？即将现象表转为数组？调用现象表的`toArray`方法！
+
+BUT! `ArrayList.asList()`返回的结果并不是`java.util.ArrayList`的实例，而是`java.util.Arrays.ArrayList`的实例，这个内部类的定义如下：
+```java
+private static class ArrayList<E> extends AbstractList<E>
+        implements RandomAccess, java.io.Serializable
+{
+    private static final long serialVersionUID = -2764017481108945198L;
+    private final E[] a;
+
+    ArrayList(E[] array) {
+        a = Objects.requireNonNull(array);
+    }
+
+    @Override
+    public int size() {
+        return a.length;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return a.clone();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T[] toArray(T[] a) {
+        int size = size();
+        if (a.length < size)
+            return Arrays.copyOf(this.a, size,
+                                 (Class<? extends T[]>) a.getClass());
+        System.arraycopy(this.a, 0, a, 0, size);
+        if (a.length > size)
+            a[size] = null;
+        return a;
+    }
+
+    @Override
+    public E get(int index) {
+        return a[index];
+    }
+
+    @Override
+    public E set(int index, E element) {
+        E oldValue = a[index];
+        a[index] = element;
+        return oldValue;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        E[] a = this.a;
+        if (o == null) {
+            for (int i = 0; i < a.length; i++)
+                if (a[i] == null)
+                    return i;
+        } else {
+            for (int i = 0; i < a.length; i++)
+                if (o.equals(a[i]))
+                    return i;
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;
+    }
+
+    @Override
+    public Spliterator<E> spliterator() {
+        return Spliterators.spliterator(a, Spliterator.ORDERED);
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> action) {
+        Objects.requireNonNull(action);
+        for (E e : a) {
+            action.accept(e);
+        }
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator<E> operator) {
+        Objects.requireNonNull(operator);
+        E[] a = this.a;
+        for (int i = 0; i < a.length; i++) {
+            a[i] = operator.apply(a[i]);
+        }
+    }
+
+    @Override
+    public void sort(Comparator<? super E> c) {
+        Arrays.sort(a, c);
+    }
+}
+```
+可以看到，这个类的实例只有一些面向位置和判断的操作，但是没有`add`、`remove`等修改线性表的方法，所以，我们用上面的方法得到的实际上并不是我们想要的。那么如何取得`java.util.ArrayList`的实例呢。首先想到的方法就是用`Arrays.asList`的结果作为`ArrayList`的构造参数，如下：
+```java
+ArrayList<String> list = new ArrayList(Arrays.asList("a", "b", "c"));
+```
+实际上一个更加高效的代码是：
+```java
+String[] array = new String[]{"a", "b", "c"};
+ArrayList<String> list = new ArrayList<String>(array.length);
+Collections.addAll(list, Arrays.asList(array));
+```
+
+以上是数组转化为线性表的方法，那么如何逆操作呢？即将线性表转为数组？调用线性表的`toArray`方法！
