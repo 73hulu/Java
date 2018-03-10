@@ -3,13 +3,13 @@
 
 ![LinkedHashMap](http://ovn0i3kdg.bkt.clouddn.com/LinkedHashMap.png)
 
-### public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
+## public class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>
 类声明，继承自`HashMap`。
 
 > HashMap的数据结构为： 数组 + 单向链表 + 红黑树
 > LinkedHashMap的数据结构为: 数组 + 单向链表 + 红黑树 + 双向链表
 
-### 构造方法
+## 构造方法
 重载了5种构造方法。所有方法的第一步都是使用`super`来初始化容量和装载因子。第二部分是给`accessOrder`赋值。这是一个`boolean`量，其作用是定义`LinkedHashMap`的顺序：
 * true : 基于访问的顺序，即遍历的时候按照LUR的顺序
 * false : 基于插入的顺序，即遍历的时候按照FIFO的顺序

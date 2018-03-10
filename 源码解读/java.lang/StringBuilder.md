@@ -10,30 +10,30 @@
 ![AbstractStringBuilder_1](http://ovn0i3kdg.bkt.clouddn.com/AbstractStringBuilder_structure_1.png?imageView/2/w/400/q/90)
 ![AbstractStringBuilder_2](http://ovn0i3kdg.bkt.clouddn.com/AbstractStringBuilder_structure_2.png?imageView/2/w/400/q/90)
 
-### abstract class AbstractStringBuilder implements Appendable, CharSequence
+## abstract class AbstractStringBuilder implements Appendable, CharSequence
 `AbstractStringBuilder`是一个抽象类，实现了`Appendable`接口和`CharSequence`接口。
 
-### private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+## private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 定义了能接受的最大字符数目。
 
-### char[] value;
+## char[] value;
 这个是真正用来存储字符的地方，一开始没有分配存储空间。
 
-### int count;
+## int count;
 用来计数，计算当前已经存储了多少个字符。
 
-### AbstractStringBuilder(){...} 和 AbstractStringBuilder(int capacity){...}
+## AbstractStringBuilder(){...} 和 AbstractStringBuilder(int capacity){...}
 两个重载的构造方法，前者方法体是空的，后者接受参数指定初始化空间大小，定义如下：
 ```java
 AbstractStringBuilder(int capacity) {
     value = new char[capacity];
 }
 ```
-### public int length(){...}
+## public int length(){...}
 用来返回字符长度，直接返回count值就可以了。
 > 才注意到，`value`和`count`都没有修饰符，包内访问。
 
-###  public int capacity() {...}
+##  public int capacity() {...}
 返回的是空间总长度，定义如下：
 ```java
 public int capacity() {
@@ -43,7 +43,7 @@ public int capacity() {
 这个时候要搞清楚`count`和`value.length`的区别了，前者是真正存储的字符的个数，后者是分配的总空间大小。
 
 
-### public void ensureCapacity(int minimumCapacity){...}
+## public void ensureCapacity(int minimumCapacity){...}
 这个方法确保容量至少等于指定的最小值。定义如下：
 ```java
 public void ensureCapacity(int minimumCapacity) {
@@ -86,7 +86,7 @@ private int hugeCapacity(int minCapacity) {
 ```
 什么作用？前面说道，value的最大空间大小不能超过MAX_ARRAY_SIZE的大小。
 
-### public void trimToSize() {...}
+## public void trimToSize() {...}
 用于该字符序列的方法尝试减少存储。如果缓冲区大于必要保持其当前的字符序列，那么它可能会调整大小，以成为更有效的空间。
 简单来说，就是讲value.length的值变成count，怎么变？拷贝一个副本赋值给value就行，定义如下：
 ```java
@@ -97,7 +97,7 @@ public void trimToSize() {
 }
 ```
 
-### public void setLength(int newLength) {...}
+## public void setLength(int newLength) {...}
 设置的字符序列的长度。该序列被改变到一个新的字符序列的参数所指定的长度。定义如下：
 ```java
 public void setLength(int newLength) {
@@ -114,10 +114,10 @@ public void setLength(int newLength) {
 ```
 这里调用了前面介绍的`ensureCapacityInternal`方法，扩充之后，用'\0'填充字符数组，然后将count置为新长度。
 
-### public void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin){...} 和 public void setCharAt(int index, char ch) {...}
+## public void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin){...} 和 public void setCharAt(int index, char ch) {...}
 这两个方法和String的就很像了，都是在进行越界检查后把字符数组中的某位返回或置位。方法略。
 
-### append方法
+## append方法
 重载太多了，最重要的是下面这种:
 ```java
 public AbstractStringBuilder append(String str) {
@@ -150,7 +150,7 @@ private AbstractStringBuilder appendNull() {
 
 append重载的方法太多了，套路都是一个：改变长度，保障长度，数组拷贝赋值。不一一列出了。
 
-### public AbstractStringBuilder deleteCharAt(int index){...}
+## public AbstractStringBuilder deleteCharAt(int index){...}
 方法用于删除某个位置上的字符，定义如下：
 ```java
 public AbstractStringBuilder deleteCharAt(int index) {
@@ -163,7 +163,7 @@ public AbstractStringBuilder deleteCharAt(int index) {
 ```
 可以看到`arraycopy`方法的源数组和目的数组都是value本身，厉害了。贪吃蛇式的赋值。
 
-### public AbstractStringBuilder replace(int start, int end, String str) {...}
+## public AbstractStringBuilder replace(int start, int end, String str) {...}
 替换某段位置上的字符，定义如下：
 ```java
 public AbstractStringBuilder replace(int start, int end, String str) {
@@ -190,7 +190,7 @@ public AbstractStringBuilder replace(int start, int end, String str) {
 `System.arraycopy(value, 4，value, 1 + 2, 1)`;结果value变成['h', 'e', 'l', 'o', 'o']; 接着执行`str.getChars(value, 1)`,就是讲str复制到value数组中1开始的位置，最后变成['h', 'm', 'e', o, 'o']， 接着count值就变成 5 + 2 - （4 - 1） = 4，只取字符数组前4个就行。这样避免了数组元素的移动，很奇妙。
 
 
-### public String substring(int start, int end){...}
+## public String substring(int start, int end){...}
 以字符串形式返回部分字符数组的内容，定义如下：
 ```java
 public String substring(int start, int end) {
@@ -204,7 +204,7 @@ public String substring(int start, int end) {
 }
 ```
 
-### insert方法
+## insert方法
 往字符数组中插入字符，重载的方法很多，大都是转为String类型后调用下面这个方法的：
 ```java
 public AbstractStringBuilder insert(int offset, String str) {
@@ -222,10 +222,10 @@ public AbstractStringBuilder insert(int offset, String str) {
 ```
 这里同样学习下`arraycopy`和`getChars`两者配合使用的奇妙之处。
 
-### indexOf 和 lastIndexOf
+## indexOf 和 lastIndexOf
 方法本质上和String中的同名方法一样，不细说了。
 
-###  public AbstractStringBuilder reverse(){...}
+##  public AbstractStringBuilder reverse(){...}
 这应该是非常有用的方法了：倒置。 实现如下：（不知道那个版本的，反正不是1.8）
 ```java
 public AbstractStringBuilder reverse() {
@@ -268,11 +268,11 @@ public AbstractStringBuilder reverse() {
 ```
 平常也有经常遇到倒置的问题，从这个源码中希望可以获得启发。
 
-### public abstract String toString();
+## public abstract String toString();
 没有方法体。
 
 
-### final char[] getValue(){...}
+## final char[] getValue(){...}
 返回字符数组value就行。略。
 
 
@@ -281,12 +281,12 @@ public AbstractStringBuilder reverse() {
 StringBuilder除了构造方法和不常用的两个方法(writeObject和readObject)外，其他方法都是覆盖了`AbstractStringBuilder`，并且实现很简单，多是调用父类方法。这里只介绍下构造方法就行。
 
 
-### public final class StringBuilder extends AbstractStringBuilder implements java.io.Serializable, CharSequence
+## public final class StringBuilder extends AbstractStringBuilder implements java.io.Serializable, CharSequence
 还是从类声明开始，类被final修饰，表示不能被继承。类继承了`AbstractStringBuilder`抽象类，实现了`Serializable`接口和`CharSequence`接口。
 
-### 构造方法
+## 构造方法
 `StringBuilder`定义了四种构造方法，
-##### public StringBuilder() {..}
+### public StringBuilder() {..}
 无参数构造方法，定义如下：
 ```java
 public StringBuilder() {
@@ -297,7 +297,7 @@ public StringBuilder() {
 
 > 为什么用16这个数字呢？
 
-##### public StringBuilder(int capacity){...}
+### public StringBuilder(int capacity){...}
 接收指定空间大小初始化，定义如下：
 ```java
 public StringBuilder(int capacity) {
@@ -305,7 +305,7 @@ public StringBuilder(int capacity) {
 }
 ```
 
-##### public StringBuilder(String str) {...}
+### public StringBuilder(String str) {...}
 接收字符串为参数，定义如下：
 ```java
 public StringBuilder(String str) {
@@ -315,5 +315,5 @@ public StringBuilder(String str) {
 ```
 将初始化的空间大小定位字符串的长度再加上16。
 
-##### public StringBuilder(CharSequence seq) {...}
+### public StringBuilder(CharSequence seq) {...}
 接收`CharSequence`对象作为参数，定义与上面的方法类似，不多说了。

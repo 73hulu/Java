@@ -5,20 +5,20 @@
 
 方法虽然多，但是大部分都是重载。
 
-### public final class String implements java.io.Serializable, Comparable<String>, CharSequence
+## public final class String implements java.io.Serializable, Comparable<String>, CharSequence
 首先看这个类声明，`String`类被`final`修饰，不可继承。类实现了`Serializable`、`Comparable`接口和`CharSequence`接口，最后这接口的结构如下
 
 ![CharSequence](http://ovn0i3kdg.bkt.clouddn.com/CharSequence_structure.png)
 
 之后我们会在String中看到接口方法的实现。
 
-###  private final char value[];
+##  private final char value[];
 字符数组用来存储字符串中的字符，这就是String内部的实现。特别需要注意的是，这里用`final`修饰，也就是说，一旦String的实例被创建，即value被填充，那么不可再更改，如果需要更改，那将是创建一个新对象，用新的内容赋值。这就是所谓的**字符串永久性**。
 
 ### private int hash;
 String和之前遇到的类不同的一点在于，对象属性保存了其哈希值，默认为0。
 
-### private static final ObjectStreamField[] serialPersistentFields
+## private static final ObjectStreamField[] serialPersistentFields
 ```java
 private static final ObjectStreamField[] serialPersistentFields =
         new ObjectStreamField[0];
@@ -26,7 +26,7 @@ private static final ObjectStreamField[] serialPersistentFields =
 
 String类中还定义了一个属性，从名字上看起来跟序列化有关吧，可能比`serialVersionUID`有更多的用处，这里不做过多了解了，更详细的情况参考：http://www.infoq.com/cn/articles/cf-java-object-serialization-rmi/
 
-### public static final Comparator&lt;String&gt; CASE_INSENSITIVE_ORDER
+## public static final Comparator&lt;String&gt; CASE_INSENSITIVE_ORDER
 这个静态常量CASE_INSENSITIVE_ORDER是一个比较器，定义如下：
 ```java
 public static final Comparator<String> CASE_INSENSITIVE_ORDER
@@ -67,10 +67,10 @@ private static class CaseInsensitiveComparator
 
 > 看到这个发现一个有趣的现象，StringL类本身被final，属性中除了`hash`外都被final修饰，真的是一旦建立就无法改变啊。
 
-### 构造函数
+## 构造函数
 `String`最多的就是构造函数，数了一下有16个，其中两个已经废弃了。那就按照顺序一个个来学习下吧。
 
-#####  public String() {..}
+###  public String() {..}
 空参数表，定义如下：
 ```java
   public String() {
@@ -79,7 +79,7 @@ private static class CaseInsensitiveComparator
 ```
 把空字符串的值赋值给当前的value。 有一个问题，这个空字符串是存放在哪里么？是堆中还是常量池？学习到后面会知道，用双引号创建的字符串对象是存放在常量池中的。
 
-##### public String(String original){...}
+### public String(String original){...}
 接收String类型的参数用来构造另一个String对象，定义如下：
 ```java
 public String(String original) {
@@ -88,14 +88,14 @@ public String(String original) {
 }
 ```
 
-有一道面试题是这样的：String str = new String（"hello world"）； 一共创建了几个对象？
+有一道面试题是这样的：`String str = new String（"hello world"）；` 一共创建了几个对象？
 
 答案是2个对象，"hello world"用双引号的方式创建了一个对象，然后以这个对象为参数，又new了一个对象。
 
 > String 用双引号就可以创建对象，背后的原理就是常量池了，具体的在`intern`方法中有说明。
 
 
-##### public String(char value[]){...}
+### public String(char value[]){...}
 接收一个字符数组作为参数，定义如下：
 ```java
 public String(char value[]) {
@@ -157,7 +157,7 @@ public static char[] copyOfRange(char[] original, int from, int to) {
 ```
 和上面的copyOf差不多过程，多了参数检查。
 
-##### public String(byte bytes[], int offset, int length, String charsetName) throws UnsupportedEncodingException{...}
+### public String(byte bytes[], int offset, int length, String charsetName) throws UnsupportedEncodingException{...}
 接收四个参数，第一个是byte数组，最后一个指定编码格式，定义如下：
 ```java
 public String(byte bytes[], int offset, int length, String charsetName)
@@ -180,7 +180,7 @@ private static void checkBounds(byte[] bytes, int offset, int length) {
 }
 ```
 
-##### public String(byte bytes[], int offset, int length, Charset charset) {...}
+### public String(byte bytes[], int offset, int length, Charset charset) {...}
 这个方法和上面的方法差不多，但是最后一个参数是`Charset`类型，这样就避免了抛出`UnsupportedEncodingException`异常，定义如下：
 ```java
 public String(byte bytes[], int offset, int length, Charset charset){
@@ -191,7 +191,7 @@ public String(byte bytes[], int offset, int length, Charset charset){
 }
 ```
 
-##### public String(byte bytes[], String charsetName){..}
+### public String(byte bytes[], String charsetName){..}
 这个函数省去了offset和length，实际上是默认了拷贝这个bytes数组，定义如下：
 ```java
 public String(byte bytes[], String charsetName)
@@ -200,7 +200,7 @@ public String(byte bytes[], String charsetName)
 }
 ```
 
-##### public String(byte bytes[], Charset charset) {..}
+### public String(byte bytes[], Charset charset) {..}
 同样的，默认拷贝整个bytes数组，定义如下：
 ```java
 public String(byte bytes[], Charset charset) {
@@ -208,7 +208,7 @@ public String(byte bytes[], Charset charset) {
 }
 ```
 
-##### public String(byte bytes[], int offset, int length) {..}
+### public String(byte bytes[], int offset, int length) {..}
 这个方法没有接受指定编码格式的参数，就按照默认的“ISO-8859-1”格式进行编码。
 ```java
 public String(byte bytes[], int offset, int length){
@@ -216,14 +216,14 @@ public String(byte bytes[], int offset, int length){
   this.value = StringCoding.decode(bytes, offset, length);
 }
 ```
-##### public String(byte bytes[]) {..}
+### public String(byte bytes[]) {..}
 使用默认字符编码，拷贝整个bytes数组，定义如下：
 ```java
 public String(byte bytes[]) {
     this(bytes, 0, bytes.length);
 }
 ```
-##### public String(StringBuffer buffer){...}和 public String(StringBuilder builder){...}
+### public String(StringBuffer buffer){...}和 public String(StringBuilder builder){...}
 `StringBuffer`和`StringBuilder`本身非常相似，区别在于前者是线程安全的，而后者不是。这一点在上面两个方法的定义中也可以体现：
 ```java
 public String(StringBuffer buffer) {
@@ -240,7 +240,7 @@ public String(StringBuilder builder) {
 ```
 可以看到，前者使用了`synchronized`关键词，是线程安全的，而后者并没有。
 
-##### String(char[] value, boolean share){...}
+### String(char[] value, boolean share){...}
 这里第二个参数的总是接受true，注意到之前同样有一个单接受字符数组的构造函数，但是不同的是，那个构造函数重新拷贝了一份数组再对value进行赋值，此时实例变量value和形参value指向的就是不同的两个地址，而在这个方法中，直接将形参的值赋值给实例变量，即两者的指向是相同的，这就是所谓的"share"。
 ```java
 String(char[] value, boolean share) {
@@ -249,14 +249,14 @@ String(char[] value, boolean share) {
 }
 ```
 
-### public int length() {...}
+## public int length() {...}
 方法用于得到String的长度，实现很简单，返回字符数组的长度即可：
 ```java
 public int length() {
     return value.length;
 }
 ```
-### public boolean isEmpty() {...}
+## public boolean isEmpty() {...}
 用于判断字符串是否为空，实现如下：
 ```java
 public boolean isEmpty() {
@@ -264,7 +264,7 @@ public boolean isEmpty() {
 }
 ```
 
-### public char charAt(int index){...}
+## public char charAt(int index){...}
 得到索引index上的字符，先要进行越界判断，然后返回字符数组下标为index上的字符，index的大小范围是[0, value.length - 1]，实现如下：
 ```java
 public char charAt(int index) {
@@ -276,7 +276,7 @@ public char charAt(int index) {
 ```
 > 和`charAt`方法类似的还有`codePointAt(..)`、`codePointBefore(...)`、`codePointCount(...)`之类的，很少用到，先不看了。
 
-### void getChars(char dst[], int dstBegin){...}
+## void getChars(char dst[], int dstBegin){...}
 给定的这个方法用来拷贝字符数组的一部分，指定起点。实现如下：
 ```java
 
@@ -285,7 +285,7 @@ void getChars(char dst[], int dstBegin) {
 }
 ```
 
-### public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin){...}
+## public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin){...}
 这个就厉害了，不光可以指定原字符数组的起点和终点，还可以指定目的字符数组的起点。当然给定这么多的参数，方法一开始先要做参数检查：
 ```java
 public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
@@ -302,10 +302,10 @@ public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
 }
 ```
 
-### public byte[] getBytes(String charsetName)throws UnsupportedEncodingException {...} 和 public byte[] getBytes(Charset charset) {...} 和  public byte[] getBytes(){...}
+## public byte[] getBytes(String charsetName)throws UnsupportedEncodingException {...} 和 public byte[] getBytes(Charset charset) {...} 和  public byte[] getBytes(){...}
 三个方法目的都是拷贝出byte数组。参数决定编码而已，很简单不具体说了。
 
-### public boolean equals(Object anObject){...}
+## public boolean equals(Object anObject){...}
 有朋友面试的时候被问过手写String的equals方法，所以好好看一眼吧。
 
 ```java
@@ -333,7 +333,7 @@ public boolean equals(Object anObject) {
 ```
 这里套路是这么走的：先判断是不是同一个引用，然后判断是不是String类型的实例【记住了，继承Object类的equals方法的参数是Object类型】，都OK了之后就应该判断内容是不是一致了。怎么判断呢？先判断长度，然后从前往后逐个字符比较，一旦不容就返回false。很简单，可以注意下这个比较的顺序安排，越轻松不费事的判断越要放到前面。
 
-### public int hashCode(){...}
+## public int hashCode(){...}
 重申那句话：**重写equals方法一定也要重写hashCode方法**，看看String是怎么定义`hashCode`方法的：
 ```java
 public int hashCode() {
@@ -353,7 +353,7 @@ public int hashCode() {
 
 > 这个有一个问题，字符串在创建的时候，其属性`hash`默认为0，之后也没有看到什么地方给赋值了，只有在这个`hashCode`方法中给hash属性赋值了，难道这个方法如果一直不调用，hash属性就一直等于0? 在源码中打断点试验了以下，确实是这样的。没调用`hashCode`方法之前`hash`属性一直是0。
 
-### public int compareTo(String anotherString){..}
+## public int compareTo(String anotherString){..}
 两个字符串的比较，要么返回开始不相同的位置上的字符的差值，要么返回两者的长度差值，定义如下：
 ```java
 public int compareTo(String anotherString) {
@@ -375,14 +375,14 @@ public int compareTo(String anotherString) {
    return len1 - len2;
 }
 ```
-### public int compareToIgnoreCase(String str){...}
+## public int compareToIgnoreCase(String str){...}
 也是字符串的比较，但是这次忽略了两个字符串的大小写，怎么实现呢？用到了前面说的比较器
 ```java
 public int compareToIgnoreCase(String str) {
     return CASE_INSENSITIVE_ORDER.compare(this, str);
 }
 ```
-### public boolean regionMatches(int toffset, String other, int ooffset,int len) {...} 和  public boolean regionMatches(boolean ignoreCase, int toffset, String other, int ooffset, int len)
+## regionMatches方法
 用来比较两个字符串部分区域是否一样，实现思路很简单，逐字符比较。后面的方法比前面多一个参数，意思是是否选择忽略大小写，如果不忽略，和前面的方法效果是一样的，两个函数的实现过程如下：
 ```java
 public boolean regionMatches(int toffset, String other, int ooffset,
@@ -448,7 +448,7 @@ public boolean regionMatches(boolean ignoreCase, int toffset,
 }
 ```
 
-### public boolean startsWith(String prefix, int toffset){...} 和  public boolean startsWith(String prefix){...}
+## startsWith方法
 用来判断字符串是不是以特定的字符串开头，后者调用前者。注意这里"开头"的意思可不一定是从0开始的，前者offset指定了偏移位置，后者则默认从0开始，前者的定义如下：
 ```java
 public boolean startsWith(String prefix, int toffset) {
@@ -470,10 +470,10 @@ public boolean startsWith(String prefix, int toffset) {
 }
 ```
 
-### public boolean endsWith(String suffix){...}
+## public boolean endsWith(String suffix){...}
 聪明的我已经猜到了，这个肯定是调用了有两个参数的`startsWith`方法，事实上就是这么做的。不多说了。
 
-### public int indexOf(int ch){...} 和  public int indexOf(int ch, int fromIndex) {...} 和 public int lastIndexOf(int ch){...} 和 public int lastIndexOf(int ch, int fromIndex){...}
+## indexOf 和 lastIndexOf方法
 套路差不多的四个函数，重载的方法之间，单个参数的调用了两个参数的方法。所以只选择一个来看下：
 ```java
 public int indexOf(int ch, int fromIndex) {
@@ -504,8 +504,7 @@ public int indexOf(int ch, int fromIndex) {
 
 `lastIndexOf`方法差不多，不同的地方就是从后往前比较。
 
-### public int indexOf(String str){...} 和 public int indexOf(String str, int fromIndex){...} 和 static int indexOf(char[] source, int sourceOffset, int sourceCount, String target, int fromIndex){...} 和 static int indexOf(char[] source, int sourceOffset, int sourceCount, char[] target, int targetOffset, int targetCount, int fromIndex) {...} 以及相应的lastIndexOf
-
+## indexOf和LastIndexOf方法
 重载了一堆，参数最复杂的往往是最重要最根本的方法，就你了：
 ```java
 static int indexOf(char[] source, int sourceOffset, int sourceCount,
@@ -548,7 +547,7 @@ static int indexOf(char[] source, int sourceOffset, int sourceCount,
 ```
 实现过程很简单，不多说了。
 
-### public String substring(int beginIndex){...} 和 public String substring(int beginIndex, int endIndex){...} 和 public CharSequence subSequence(int beginIndex, int endIndex){...}
+## substring方法
 
 取得子串，最后一个方法是实现了`CharSequence`接口的方法，直接调用了第二个方法。实际上第一个也是调用了第二个方法，所以来看第二个方法的定义：
 ```java
@@ -570,7 +569,7 @@ public String substring(int beginIndex, int endIndex) {
 注意看的是在一些列边界检查之后，最后为了优化效果，做了一个判断，当取得的子串就是字符串本身的时候直接返回了本身的引用，而不是再去new一个新的字符串。这种优化可以学习下。
 
 
-###  public String concat(String str){...}
+##  public String concat(String str){...}
 在本身后面再拼接字符串，之前说过本身的属性value被final修饰，是不可改变的，所以本身不能拼接，只能往一个新的字符串数组中赋值，之后再new一个新的String。定义如下：
 ```java
 public String concat(String str) {
@@ -584,7 +583,7 @@ public String concat(String str) {
    return new String(buf, true);
 }
 ```
-### public String replace(char oldChar, char newChar){...}
+## public String replace(char oldChar, char newChar){...}
 用newChar替换字符串中的oldChar，实现如下：
 ```java
 public String replace(char oldChar, char newChar) {
@@ -614,9 +613,9 @@ public String replace(char oldChar, char newChar) {
     return this;
 }
 ```
-由过程很容易看到，原来字符串本身不会有变化，方法将会放回一个替换了之后的字符串数组的副本。还可以看到，这种替换是全局的。
+由过程很容易看到，原来字符串本身不会有变化，方法将会返回一个替换了之后的字符串数组的副本。还可以看到，这种替换是全局的。
 
-#### public boolean matches(String regex){...}
+## public boolean matches(String regex){...}
 参数是正则表达式，判断字符串中是否有满足正则表达式的子串。实现如下：
 ```java
 public boolean matches(String regex) {
@@ -625,11 +624,10 @@ public boolean matches(String regex) {
 ```
 这里直接调用的是`Pattern`的静态方法`matches`，等看到这个类再说吧。
 
-####  public boolean contains(CharSequence s){...}
+##  public boolean contains(CharSequence s){...}
 判断字符串是不是含有某个子串，那好办，前面不是有indexOf方法么， 有就返回开始位置，没有就返回-1。这里只需要判断返回值是不是大于-1就行。不多说了。
 
-### public String replaceFirst(String regex, String replacement){...} 和 public String replaceAll(String regex, String replacement){...} 和 public String replace(CharSequence target, CharSequence replacement){...}
-三个方法都是用来字符串来替换的，而且都调用的`Pattern`中的方法，学到再说，各自定义如下：
+## replaceFirst、replaceAll和replace方法
 ```java
 public String replaceFirst(String regex, String replacement) {
    return Pattern.compile(regex).matcher(this).replaceFirst(replacement);
@@ -651,7 +649,7 @@ public String replace(CharSequence target, CharSequence replacement) {
 
 需要注意的是，这个方法的第一个参数是正则表达式，而不是字符串，有道笔试题就是用`.`作为第一个参数，问你结果是什么？`.`在正则中表示任何字符，所以当然是全部替换啦。
 
-### public String[] split(String regex, int limit){...} 和  public String[] split(String regex){...}
+## split方法
 
 后者调用前者，设置第二个参数为0。前者方法中第二个参数的含义是，定义如下：
 ```java
@@ -760,7 +758,7 @@ public static void main(String[] args) {
 有了上面的例子，就很能理解官方解释的那段话是什么意思了，不用背下来啊，对源码有个印象就行。
 
 
-###  public static String join(CharSequence delimiter, CharSequence... elements){...} 和  public static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
+##  join 方法
 这个方法用来将多个字符串用特定的分隔符拼接起来，比如`String message = String.join("-", "Java", "is", "cool");`得到的message是“Java-is-cool”。
 前者接受一个不定长参数，定义如下：
 ```Java
@@ -792,10 +790,10 @@ public static String join(CharSequence delimiter,
 ```
 过程一模一样，不说了。
 
-###  public String toLowerCase(Locale locale){..} 和 public String toLowerCase({..} 和 public String toUpperCase(Locale locale){..} 和 public String toUpperCase() {..}
+##  toLowerCase 和 toUpperCase 方法
 用来转换大小写的，源码实现不太重要，先不看了。
 
-### public String trim(){...}
+## public String trim(){...}
 这个方法返回一个去掉头尾空白格的副本字符串，实现过程很简单：
 ```java
 public String trim() {
@@ -814,11 +812,11 @@ public String trim() {
 ```
 这里说去掉的是“空格”好像不太严谨，源码告诉我们，去掉的字符实际上是ascii码小于等空格的字符，那哪些字符是小于这个空格的呢？参考http://www.asciima.com/， 发现是一些行开始符、换行符这种的。所以严格来说，`trim`方法是不仅仅去掉空格（空白的ascii码是32），而是一些看不见的字符。
 
-### public String toString(){..}
+## public String toString(){..}
 
 当然返回this就行了啊~
 
-### public char[] toCharArray(){...}
+## public char[] toCharArray(){...}
 返回一个字符数组，诶，String类不是有一个字符数组的属性么？返回这个属性？当然不行，属性私有的，况且不可操作，当然是用`System.arraycopy`来复制一个副本啊。定义如下：
 ```java
 public char[] toCharArray() {
@@ -829,7 +827,7 @@ public char[] toCharArray() {
 }
 ```
 
-###  public static String format(String format, Object... args){...} 和 public static String format(Locale l, String format, Object... args) {...}
+##   format
 格式化，都是调用了`java.util.Format`中的方法，各自定义如下：
 ```java
 public static String format(String format, Object... args) {
@@ -842,9 +840,9 @@ public static String format(Locale l, String format, Object... args) {
     return new Formatter(l).format(format, args).toString();
 }
 ```
-还是学到这个类再说吧。
+就是用“%s”作为占位符，然后在第二个参数中指定参数。注意，由于占位符是用百分号写的，所以如果这个字符串中本来就有百分号的话怎么办呢？用转义，即"%%"。
 
-### valueOf方法
+## valueOf方法
 这个方法重载太多了并且实现很简单，所以就放到一起说了.
 
 | 方法参数  | 内容    |
@@ -860,7 +858,7 @@ public static String format(Locale l, String format, Object... args) {
 |double d   |  return Double.toString(d); |
 
 
-### public native String intern();
+## public native String intern();
 最厉害的来了！无数题的考点啊！【敲黑板！！！】而且是native方法，不追踪了，有精力可以参考http://www.importnew.com/14142.html 研究下。
 
 这个方法有一段注释我觉得有必要贴上来：

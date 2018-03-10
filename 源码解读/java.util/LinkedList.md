@@ -5,14 +5,14 @@
 ![LinkedList](http://ovn0i3kdg.bkt.clouddn.com/LinkedList_1.png)
 
 
-### public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+## public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, java.io.Serializable
 类声明，`LinkedList`继承自抽象父类`AbstractSequentialList`，实现`List`、`Deque`、`Cloneable`和`Serializable`接口。其中`Deque`是双向队列，所以可以在这个类中看到该类对双向队列的实现。
 
 另外一点需要说明的是，`LinkedList`没有继承`RandomAccess`，虽然`LinkedList`也通过内置迭代器类实现了迭代器，但是最好不要用迭代器遍历。
 
-### 构造函数
+## 构造函数
 重载了两个构造函数。
-#### public LinkedList(){...}
+### public LinkedList(){...}
 默认的公共构造函数，方法体为空。
 
 ### public LinkedList(Collection<? extends E> c) {...}
@@ -107,7 +107,7 @@ transient Node<E> last;
 
 addAll方法调用成功后会返回布尔量表示操作是否成功。
 
-### public E getFirst(){...} 和 public E getLast() {...}
+## public E getFirst(){...} 和 public E getLast() {...}
 获取链表的首个节点的数据和取得链表的最后一个数据节点。定义如下：
 ```Java
 public E getFirst() {
@@ -126,7 +126,7 @@ public E getLast() {
 ```
 很好理解，不用多解释。
 
-### public E removeFirst() {...}和public E removeLast(){...}
+## public E removeFirst() {...}和public E removeLast(){...}
 移除首个节点和移除最后一个节点。定义如下：
 ```java
 public E removeFirst() {
@@ -177,7 +177,7 @@ private E unlinkLast(Node<E> l) {
 ```
 注意到删除元素的时候，不仅要将被删除的元素置为null，还要更新后继/前驱节点的相应指针，注意对首尾节点的处理。方法最后返回的是被删除的节点的值。
 
-### public void addFirst(E e){...}和public void addLast(E e) {...}
+## public void addFirst(E e){...}和public void addLast(E e) {...}
 向链表头添加元素和向链表为添加元素。
 ```Java
 public void addFirst(E e) {
@@ -211,10 +211,10 @@ void linkLast(E e) {
     modCount++;
 }
 ```
-### public int size(){...}
+## public int size(){...}
 取得链表的长度，直接返回成员变量size即可。
 
-### public boolean contains(Object o){...}
+## public boolean contains(Object o){...}
 查看链表是否包含某一个指定的元素，借助的是`indexOf`方法，该方法如果未查找到元素，则返回-1.否则返回该元素所在的位置索引。
 ```Java
 public boolean contains(Object o) {
@@ -222,7 +222,7 @@ public boolean contains(Object o) {
 }
 ```
 
-### public int indexOf(Object o){...}
+## public int indexOf(Object o){...}
 从前往后，查看指定元素在链表中的位置，如果链表中无该元素，则返回-1，注意到参数类型是Object，而不是泛型。定义如下：
 ```Java
 public int indexOf(Object o) {
@@ -245,7 +245,7 @@ public int indexOf(Object o) {
 ```
 注意到对指定的元素为null时的特殊处理。这点在`ArrayList`的学习中出现过，这样处理的目的是为了防止出现空指针异常。
 
-### public int lastIndexOf(Object o){...}
+## public int lastIndexOf(Object o){...}
 从后往前，查看指定元素在链表中的位置，如果无该元素，则返回-1，同样元素类型是Object而不是泛型。定义如下：
 ```Java
 public int lastIndexOf(Object o) {
@@ -267,7 +267,7 @@ public int lastIndexOf(Object o) {
 }
 ```
 由于`LinkedList`是双向链表的实现，所以从后往前查找十分方便，使用`prev`指针遍历就行。
-### public boolean add(E e){...}
+## public boolean add(E e){...}
 向链表中追加一个元素，相当于`addLast(e)`，永远返回true。定义如下：
 ```Java
 public boolean add(E e) {
@@ -275,7 +275,7 @@ public boolean add(E e) {
     return true;
 }
 ```
-### public boolean remove(Object o){...}
+## public boolean remove(Object o){...}
 移除第一个指定的元素o，注意参数类型是Object而不是泛型。定义如下：
 ```Java
 public boolean remove(Object o) {
@@ -298,7 +298,7 @@ public boolean remove(Object o) {
 }
 ```
 
-### public void clear(){...}
+## public void clear(){...}
 将链表中的所有元素移除，注意不单单是让fist = last = null，这么简单，需要释放每一个节点中的数据域和指针域。最后长度置为0.定义如下：
 ```Java
 public void clear() {
@@ -319,7 +319,7 @@ public void clear() {
 }
 ```
 
-### get和set方法
+## get和set方法
 get方法用来取得第index索引位置的节点数据，set方法用来设置第index索引位置的节点数据。
 ```Java
 public E get(int index) {
@@ -336,7 +336,7 @@ public E set(int index, E element) {
 ```
 需要注意的是`set`方法有返回值，返回的是替换之前的元素的数据值。
 
-### public void add(int index, E element){...}
+## public void add(int index, E element){...}
 在index位置上添加一个元素节点。
 ```Java
 public void add(int index, E element) {
@@ -364,7 +364,7 @@ void linkBefore(E e, Node<E> succ) {
 }
 ```
 
-### public E remove(int index){...}
+## public E remove(int index){...}
 移除指定位置上的元素。
 ```Java
 public E remove(int index) {
@@ -373,9 +373,9 @@ public E remove(int index) {
 }
 ```
 
-### 单向队列（Queue）
+## 单向队列（Queue）
 Java中`LinkedList`实现了单向队列的功能，单向队列规定队首只能出队，队尾只能入队。下面这些方法就是针对队列设计的功能。
-#### public E peek(){...} 和 public E element(){...}
+### public E peek(){...} 和 public E element(){...}
 两个方法都是获取到队首的元素，但是不出队。两者有细微的差别：`peek`方法在遇到空链表的时候会返回null，而`element`方法在遇到空链表的时候会抛出异常。
 ```Java
 public E peek() {
@@ -396,7 +396,7 @@ public E getFirst() {
 ```
 
 
-#### public E poll(){...} 和 public E remove(){...}
+### public E poll(){...} 和 public E remove(){...}
 真正的出队操作。两者的差别在于前者在遇到空链表的时候返回null，后者抛出异常。
 ```Java
 public E poll() {
@@ -416,7 +416,7 @@ public E removeFirst() {
 }
 ```
 
-#### public boolean offer(E e){...}
+### public boolean offer(E e){...}
 入队操作。即追加元素到链表末尾。定义如下：
 ```Java
 public boolean offer(E e) {
@@ -424,10 +424,10 @@ public boolean offer(E e) {
 }
 ```
 
-### 双向队列（Deque）
+## 双向队列（Deque）
 `LinkedList`同样实现了双向队列。即队首和队尾都可以实现出队和入队。
 
-#### public boolean offerFirst(E e)
+### public boolean offerFirst(E e)
 队首入队。
 ```java
 public boolean offerFirst(E e) {
@@ -435,7 +435,7 @@ public boolean offerFirst(E e) {
     return true;
 }
 ```
-#### public boolean offerLast(E e){...}
+### public boolean offerLast(E e){...}
 队尾入队。
 ```java
 public boolean offerLast(E e) {
@@ -443,7 +443,7 @@ public boolean offerLast(E e) {
     return true;
 }
 ```
-#### public E peekFirst() {...}
+### public E peekFirst() {...}
 获取队首元素，但是不出队。
 ```java
 public E peekFirst() {
@@ -451,7 +451,7 @@ public E peekFirst() {
   return (f == null) ? null : f.item;
 }
 ```
-#### public E peekLast() {...}
+### public E peekLast() {...}
 获取队尾元素，但是不出队。
 ```java
 public E peekLast() {
@@ -460,7 +460,7 @@ public E peekLast() {
 }
 ```
 
-#### public E pollFirst() {...}
+### public E pollFirst() {...}
 队首元素出队。
 ```java
 public E pollFirst() {
@@ -468,7 +468,7 @@ public E pollFirst() {
    return (f == null) ? null : unlinkFirst(f);
 }
 ```
-#### public E pollLast() {...}
+### public E pollLast() {...}
 队尾元素出队。
 ```java
 public E pollLast() {
@@ -478,17 +478,17 @@ public E pollLast() {
 ```
 
 
-### 栈
+## 栈
 `LinkedList`同样实现了栈的操作，主要是出栈`pop`操作和入栈`push`操作。
 
-#### public void push(E e) {...}
+### public void push(E e) {...}
 入栈操作。
 ```java
 public void push(E e) {
     addFirst(e);
 }
 ```
-####   public E pop(){...}
+### public E pop(){...}
 出栈操作。
 ```java
 public E pop() {
@@ -496,7 +496,7 @@ public E pop() {
 }
 ```
 
-### public Object clone(){...}
+## public Object clone(){...}
 浅复制方法。
 ```java
 public Object clone() {
@@ -524,7 +524,7 @@ private LinkedList<E> superClone() {
 }
 ```
 
-### public Object[] toArray(){...}
+## public Object[] toArray(){...}
 将链表转化称为数组。很简单，就是构造一个size长度的对象数组，遍历赋值即可。
 ```java
 public Object[] toArray() {
@@ -553,7 +553,7 @@ for (int i=0; i<size; i++) {
     list.get(i);        
 }
 ```
-3. 通过for循环
+3. 通过for-each循环
 ```java
 for (Integer integ:list)
     ;

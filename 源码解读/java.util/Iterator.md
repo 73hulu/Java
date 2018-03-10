@@ -9,10 +9,10 @@
 
 ![Iterator](http://ovn0i3kdg.bkt.clouddn.com/Iterator.png)
 
-####  boolean hasNext();
+##  boolean hasNext();
 如果迭代器有更多的元素，则返回true。
 
-### E next();
+## E next();
 用来返回迭代中的下一个元素，迭代出的元素是集合中元素的拷贝。特别需要注意的是，在返回下一个元素的时候，同时，**迭代游标cursor后移**。
 所以看下面这段代码：
 
@@ -43,7 +43,7 @@ for (Suit suit : suits  ) {
 }
 ```
 
-###  default void remove(){...}
+##  default void remove(){...}
 用来删除最近一次已经迭代出去的那个元素。定义如下：
 ```java
 default void remove() {
@@ -120,7 +120,7 @@ class Person {
 
 
 
-### 实现自己的迭代器类
+## 实现自己的迭代器类
 ```java
 public interface IteratorTest {
 

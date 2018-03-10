@@ -63,13 +63,12 @@ private byte[]              annotations;
 | 方法 | 说明 |
 | :------------- | :------------- |
 | Class<?> getDeclaringClass | 获取所属类的全称    |
-| Class<?> getType()  |获取属性声明类型，返回Class独享   |
+| Class<?> getType()  |获取属性声明类型，返回Class对象  |
 |Type getGenericType()|获取属性类型，返回的是Type类型 |
 |String getName   |  获取属性声明时的名字  |
 |boolean isEnumConstant   | 判断该属性是否为枚举型  |
 |int getModifiers   |  获取属性对象的修饰符 |
 |boolean isSynthetic   |  判断这个域是否是人工合成的域？？？ 什么是人工合成域 |
-| Class<?> getType()  |获取属性类型   |
 |getAnnotations()    |   获得这个属性上所有的注释 |
 
 。。。。

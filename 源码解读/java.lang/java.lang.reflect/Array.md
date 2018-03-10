@@ -48,4 +48,4 @@ public class ArrayTest {
 
 学到这里我们可能会想另外一个和数组有关的类`Arrays`，这个类也提供了对数组的操作，比如排序啊，查找啊这种，有什么区别。
 
-`Array`和`Arrays`的关系就像是`Object`和`Objects`、`Collection`和`Collections`的关系，那就是后者都是一个工具类，前者才是正主！。`Array`所在包是`java.lang.reflect`，而`Arrays`所在包是`java.util`，前者可以通过反射来创建数组并操作数组，后者只能用来操纵数组。
+`Array`和`Arrays`的关系就像是`Object`和`Objects`、`Executor`和`Executors`、`Collection`和`Collections`的关系，那就是后者都是一个工具类，前者才是正主！。`Array`所在包是`java.lang.reflect`，而`Arrays`所在包是`java.util`，前者可以通过反射来创建数组并操作数组，后者只能用来操纵数组。

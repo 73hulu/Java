@@ -12,7 +12,7 @@
 
 一般来说，这个负载因子取值为0.75，这个数提供了时间和空间成本之间的良好折衷。如果过大，可以减少空间开销但是会增加查找成本，反映在大部分的HashMap类的操作中，包括get和put操作。在设置初始容量的时候，应该考虑映射中条目数量及其负载因子，以尽量减少重新操作的次数。如果初始容量大于最大入口数量除以负载因子，则不会发生重新刷新的操作。
 
-**HashMap是非线程安全的。**如果多个线程同时访问哈希映射，并且至少一个线程在结构上做了修改，则必须进行外部同步。这种同步通常是通过封装映射的某个对象完成的，如果不存在这样的对象，就应该使用`Collections.synchronizedMap`方法“映射”该映射，这最好在创建的时候完成，以防止意外的不同步访问地图，写法如下：
+**HashMap是非线程安全的。** 如果多个线程同时访问哈希映射，并且至少一个线程在结构上做了修改，则必须进行外部同步。这种同步通常是通过封装映射的某个对象完成的，如果不存在这样的对象，就应该使用`Collections.synchronizedMap`方法“映射”该映射，这最好在创建的时候完成，以防止意外的不同步访问地图，写法如下：
 ```java
 Map map = Collections.synchronizedMap(new HashMap(...))
 ```
@@ -22,7 +22,7 @@ Map map = Collections.synchronizedMap(new HashMap(...))
 ![HashMap](http://ovn0i3kdg.bkt.clouddn.com/HashMap.png)
 
 
-### public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable
+## public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable
 类声明，`HashMap`继承`AbstractMap`，实现`Map`接口、`Cloneable`接口和`Serializable`接口。
 
 源码对该类的实现有这样的说明：
@@ -69,7 +69,7 @@ static final int tableSizeFor(int cap) {
 ```
 首先对传入的参数范围作了检查，`loadFactor`是常量，一旦赋值就不能改变。而变量`threshold`是下一次扩容的临界值，用于判断是否需要调整`HashMap`的容量（threshold = 容量*加载因子） ，调用的`tableSizeFor`方法写的很奇怪，找到下一个最小的比参数大的2的高次幂。具体的可以参考https://zhidao.baidu.com/question/291266003.html。 这里保证了该值是一个2的倍数，比如你设置的是5，而实际上空间大小为8。
 
-#### public HashMap(int initialCapacity) {...}
+### public HashMap(int initialCapacity) {...}
 指定初始化容量。
 ```java
 public HashMap(int initialCapacity) {
@@ -356,7 +356,7 @@ static final int hash(Object key) {
 
 
 
-###  public V get(Object key){...}
+##  public V get(Object key){...}
 取得指定key的value值。定义如下：
 ```java
 public V get(Object key) {
@@ -387,7 +387,7 @@ final Node<K,V> getNode(int hash, Object key) {
 方法将返回key值对应的value值，如果不存在则返回null。`getNode`方法每次都是检查first节点，否则的话，检查剩余的节点，需要考虑剩下的节点是红黑树节点还是链表。
 
 
-### public V put(K key, V value) {...}
+## public V put(K key, V value) {...}
 添加一组映射关系。定义如下：
 ```java
 public V put(K key, V value) {
@@ -396,7 +396,7 @@ public V put(K key, V value) {
 ```
 调用的是`putVal`方法，上文已经讲解过。
 
-### public boolean containsKey(Object key) {...}
+## public boolean containsKey(Object key) {...}
 判断是否存在key为某个值的映射关系。定义如下：
 ```java
 public boolean containsKey(Object key) {
@@ -405,7 +405,7 @@ public boolean containsKey(Object key) {
 ```
 调用`getNode`方法，该方法没有找到该节点的时候将返回`null`。
 
-### public void putAll(Map<? extends K, ? extends V> m) {...}
+## public void putAll(Map<? extends K, ? extends V> m) {...}
 将旧映射中的映射添加到新映射中，同理还是调用了`putMapEntries`方法，与`HashMap`调用时不一样的地方在于，这里第二个参数为true。
 ```java
 public void putAll(Map<? extends K, ? extends V> m) {
@@ -413,7 +413,7 @@ public void putAll(Map<? extends K, ? extends V> m) {
 }
 ```
 
-### public V remove(Object key){...}
+## public V remove(Object key){...}
 移除指定key的映射关系，如果移除成功就返回被移除的映射，否则返回null。
 ```java
 public V remove(Object key) {
@@ -465,7 +465,7 @@ final Node<K,V> removeNode(int hash, Object key, Object value,
 `removeNode`和`putVal`是刚好相反的操作，过程差不多。需要注意的是`removeNode`方法有一个`matchValue`的布尔型参数，这个参数的意义在于考虑在匹配的时候是否考虑匹配参数中的value值，为什么有这种设计呢？因为后面还有一个`remove`方法，该方法指定了特定的key和value，同样调用`removeNode`方法，这时候，我们就需要匹配value值了。而对于只有一个参数的`remove`方法，为了能复用`removeNode`方法，参数value是指定为null的，这时候我们就不用匹配这个value值。
 
 
-### public boolean remove(Object key, Object value){...}
+## public boolean remove(Object key, Object value){...}
 与上一个remove不同的是，这个`remove`方法删除的是一个指定的映射。定义如下：
 ```java
 public boolean remove(Object key, Object value) {
@@ -475,7 +475,7 @@ public boolean remove(Object key, Object value) {
 
 > 实际上，对于存在于map中的一条映射key-value，调用`remove(key)`和`remove(key, value)`的效果是一样的，因为key和key-value都是唯一的，不会重复，所以当存在这种映射的时候，两个方法找到的节点是同一个，所以执行结果是一样的。
 
-###  public void clear() {...}
+##  public void clear() {...}
 清空映射。定义如下：
 ```java
 public void clear() {
@@ -490,7 +490,7 @@ public void clear() {
 ```
 可以是将多有的哈希桶置为null。那么丢掉的链表/红黑树节点怎么办呢？不是应该一个个释放掉以帮助gc么？？？
 
-### public boolean containsValue(Object value) {...}
+## public boolean containsValue(Object value) {...}
 如果映射关系中存在一个或多个value等于指定值的映射，就返回true。
 ```java
 public boolean containsValue(Object value) {
@@ -509,7 +509,7 @@ public boolean containsValue(Object value) {
 ```
 可以看到这里实际上用到的是for双重循环，外层遍历了哈希桶数组，内容遍历了链表。这里有一个问题，为什么此时部分为链表或红黑树的情况？？？
 
-### public Set<K> keySet(){...}
+## public Set<K> keySet(){...}
 将返回该映射的所有key值集合。注意的是，如果对该key值做修改，这种修改将会反映到map中，反之亦然。为什么呢？因为它实现的本质是迭代器(Iterator)！！！定义如下：
 ```java
 public Set<K> keySet() {
@@ -584,7 +584,7 @@ public static void main(String[] args) {
 ```
 那么我第二次取得`keySet`的时候，是否可以取出"test4"呢？经过实验是可以的，在进行`Set<K> ks = keySet;`这一步骤时，就可以观察到此时`keyset`包含了该值，但是我记得在之前`putVal`的时候，并没有对keyset有过什么处理，那么`keySet`到底是什么时候产生变化的呢？？？
 
-### public Collection<V> values() {...}
+## public Collection<V> values() {...}
 该方法返回映射关系中值的集合。定义如下：
 ```java
 public Collection<V> values() {
@@ -624,7 +624,7 @@ final class Values extends AbstractCollection<V> {
 ```
 和`keyset`一样，`values`的修改同样基于迭代器的实现，所以对`values`的修改会反映到map中。
 
-### public Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet() {...}
+## public Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet() {...}
 这个方法将会返回映射中的所有映射关系，定义如下：
 ```java
 public Set<Map.Entry<K,V>> entrySet() {
@@ -710,7 +710,7 @@ public static void main(String[] args) {
 ```
 可以看到这三种遍历方式的特点，以及注意到`HashMap`不能保证元素的顺序的特点。
 
-### public V getOrDefault(Object key, V defaultValue){...}
+## public V getOrDefault(Object key, V defaultValue){...}
 这个方法与`get`方法不同的地方在于：如果找不到指定key对应的value值，就返回参数指定的默认value。实现和`get`方法几乎一样，就是将null换成`defaultValue`而已。
 ```java
 @Override
@@ -719,7 +719,7 @@ public V getOrDefault(Object key, V defaultValue) {
    return (e = getNode(hash(key), key)) == null ? defaultValue : e.value;
 }
 ```
-### public V putIfAbsent(K key, V value) {...}
+## public V putIfAbsent(K key, V value) {...}
 从名字就可以看出来，进行非覆盖型的put，还记得我们之前`putVal`有一个参数用来控制覆盖还是非覆盖么？之前的`put`和`HashMap(Map<? extends K, ? extends V>)`调用`putVal`的时候，该参数一直是false，而该方法的参数使用true即可。
 
 

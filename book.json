@@ -1,6 +1,6 @@
 {
-	"title": "Linux",
-	"description": "Linux学习比较",
+	"title": "Java Foundation",
+	"description": "Java Foundation",
 	"author": "xiaofang.bao",
 	"output.name": "site",
 	"language": "zh-hans",
@@ -17,7 +17,6 @@
 		"-livereload",
 		"search-plus@^0.0.11",
 		"github@^2.0.0",
-		"edit-link@^2.0.2",
 		"disqus@^0.1.0",
 		"advanced-emoji@^0.2.1",
 		"anchors@^0.7.1",
@@ -80,10 +79,6 @@
 			"copyright": "Copyright © baoxiaofang.com 2017",
 			"modify_label": "该文件修订时间：",
 			"modify_format": "YYYY-MM-DD HH:mm:ss"
-		},
-		"edit-link": {
-			"base": "https://github.com/guhuaijin/Java/edit/master",
-			"label": "Edit This Page"
 		},
 		"sitemap-general": {
 			"prefix": "https://www.gitbook.com"

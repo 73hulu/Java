@@ -13,7 +13,7 @@ Object类的结果如下：
 > 当然，并不是所有的类都是以这种方法去构建的，也并不是所有的类构造函数都是public的。
 
 
-### private static native void registerNatives()；
+## private static native void registerNatives()；
 
   `registerNatives`含义是本地注册的意思，方法被`static`和`navtive`两个关键词修饰。被`static`修饰的方法是静态方法。`native`关键词修饰的函数表明该方法的实现并不是在Java中完成，而是由C/C++去完成，并被编译了`.dll`，由Java调用。方法的具体实现体在`.dll`文件中，对于不同的平台，其具体的使用应该有所不同。用`native`修饰，即表示操作系统，需要提此方法，Java本身需使用。具体到`registerNatives()`方法本身，其主要作用是将C/C++中的方法映射到Java中的native方法，实现方法命名的解耦。
 
@@ -29,7 +29,7 @@ Object类的结果如下：
   ```
   根据Java初始化的加载顺序：静态代码块在类**被加载**的时候执行且仅执行一次，一般用来初始化静态变量和调用静态方法。在这里，Object在被构造之前先执行了静态代码块，其中调用的registerNatives方法。
 
-### public final native Class<?> getClass()；
+## public final native Class<?> getClass()；
 
   `getClass`也是一个由 `native`修饰的方法，由`final`修饰表示不能被继承。返回的是此Object对象的类对象/运行时类对象Class<?>，效果与Object.class相同。
 
@@ -37,7 +37,7 @@ Object类的结果如下：
 
   这个方法常常与“反射”联系到一起，至于反射的相关知识点会有一个专题去学习，在此不做记录。
 
-### public boolean equals(Object obj){...}
+## public boolean equals(Object obj){...}
 
    用来判断两个对象是否相等，需要注意的是，这个方法的参数是`Object`类的对象，在其子类重写该方法时候，别忘记了这个点！有面试的时候让手写过。
 
@@ -53,7 +53,7 @@ Object类的结果如下：
 
   提到`equals()`方法，有一句话需要谨记：**重新equals()方法必须重写hashCode()方法！！！**。
 
-### public native int hashCode();
+## public native int hashCode();
 `hashCode()`返回一个整型数值，表示该对象的哈希码值。源码中对该方法做了如下约定：
  1. 在Java应用程序执行期间，对于同一个对象多次调用`hashCode()`方法，其返回值是相同的，前提是将对象进行`equals`比较时候所用的标尺信息未做修改。在Java应用程序的一次执行到另一次执行，同一个对象的`hashCode()`返回的哈希码无须保持一致。
  2. 如果两个对象相等（依据：调用equals()方法），那么这两个对象调用`hashCode()`返回的哈希码也必须相等。
@@ -146,7 +146,7 @@ public class User {
 ```
 注：上述hashCode()的重写中出现了`result * 31`，是因为`result * 31 = (result<<5) - result`。之所以选择31，是因为**左移运算和减运算计算效率远大于乘法运算**。当然，也可以选择其他数字。
 
-### protected native Object clone() throws CloneNotSupportedException;
+## protected native Object clone() throws CloneNotSupportedException;
 
 `clone()`方法返回一个引用，指向的是新的clone出来的对象，此对象和原来对象占据了不同的堆空间。既然这样，我就可以写出下面这段程序了:
 ```java
@@ -204,7 +204,7 @@ public class ObjectCloneTest  implements Cloneable{
 }
 ```
 
-### public String toString(){...}
+## public String toString(){...}
 Object中的`toString()`方法定义如下：
 ```java
 public String toString() {
@@ -213,7 +213,7 @@ public String toString() {
 ```
 返回了一个字符串，构成是“对象所属类名@哈希值的十六进制”。 `toString()`经常被用到，但是很多时候不是显式调用，比如`System.out.println(obj)`时，其内部也是通过toString()来实现的。
 
-### protected void finalize() throws Throwable{}
+## protected void finalize() throws Throwable{}
 
 `finalize()`方法主要和垃圾回收机制有关，在Object类中该方法的定义如下：
 ```java
@@ -239,7 +239,7 @@ public class ObjectFinalizeTest {
 ```
 上面这个例子重写了`finalize()`方法，之后在main方法中，先得到一个实例，在将null赋值给它，目的是为了让他在下一轮的垃圾回收过程中被回收，`System.gc()`主动触发垃圾回收机制【注意，触发之后并不是立即执行垃圾回收，什么时候回收是由JVM决定的】。程序运行之后将会打印出"This is from finalize method"。
 
-###  wait | notify | notifyAll    
+##  wait | notify | notifyAll    
 这三种方法用于Java多线程之间的协作。Object中一共重载了三种wait方法，一种notify方法，一种notifyAll方法。各自的定义和含义如下：
 
 * public final void wait() throws InterruptedException
@@ -371,12 +371,12 @@ public class ObjectFinalizeTest {
 
   既然是作用于多线程中，为什么却是Object这个基类所具有的方法？原因在于理论上任何对象都可以视为线程同步中的监听器，且wait(...)/notify()|notifyAll()方法只能在同步代码块中才能使用。
   从上述例子的输出结果中可以得出如下结论：
-  1. `wait(...)`方法调用后当前线程将立即阻塞，且适当其所持有的同步代码块中的锁，直到被唤醒或超时或打断后且重新获取到锁后才能继续执行；
+  1. `wait(...)`方法调用后当前线程将立即阻塞，且释放其所持有的同步代码块中的锁，直到被唤醒或超时或打断后且重新获取到锁后才能继续执行；
   2. `notify()/notifyAll()`方法调用后，其所在线程不会立即释放所持有的锁，直到其所在同步代码块中的代码执行完毕，此时释放锁，因此，如果其同步代码块后还有代码，其执行则依赖于JVM的线程调度。
 
 
   多线程是一块很难啃的骨头，具体的还是在以后的专题中整理吧。
 
 
-  ##### 参考：
+  参考：
   * [Java总结篇系列：java.lang.Object](http://www.cnblogs.com/lwbqqyumidi/p/3693015.html)

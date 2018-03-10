@@ -8,7 +8,7 @@
 
 ArrayList是List接口的可调整大小的实现。可以存储所有的值，包括null。这个类大致等于`Vector`，除了它是不同步的。
 
-### public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+## public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 类声明。直接继承`AbstractList`抽象类，实现List接口、RandomAccess接口、Cloneable接口、Serializable接口。
 其中`RandomAccess`接口中没有任何方法，即这是一个标记接口。用来表明其支持快速（通常是固定时间）随机访问。此接口的主要目的是允许一般的算法更改其行为，从而在其应用到随机或连续访问列表时提供更好的性能。
 
@@ -29,9 +29,9 @@ if (list instance of RandomAccess) {
 另外注意到，`ArrayList`使用了泛型。
 
 
-### 构造方法
+## 构造方法
 `ArrayList`重载了3个构造方法。
-#### public ArrayList(int initialCapacity){...}
+### public ArrayList(int initialCapacity){...}
 指定缓存区初始大小。
 ```java
 public ArrayList(int initialCapacity) {
@@ -59,7 +59,7 @@ private static final Object[] EMPTY_ELEMENTDATA = {};
 ```
 注意到，这是一个静态常量空数组，用于空实例的共享空数组。即数组缓存被初始化为空数组。
 
-####  public ArrayList() {}
+###  public ArrayList() {}
 无参构造方法。定义如下：
 ```java
 public ArrayList() {
@@ -91,7 +91,7 @@ public ArrayList(Collection<? extends E> c) {
 ```
 这里首先用到了`Collection.toArray()`方法进行数组转换，将自己的缓存指向了这个转化得到数组。这里有一个确认对象类型的检验，如果集合中的对象不是Object类型，利用`Arrays.copyOf`方法进行数组的拷贝。这里有一个问题，为什么“集合中的数组不是Object类型”？注释给出的解释是:`c.toArray`方法有可能导致的问题，这个bugID是6260652。当转化得到的数组为空时，ArrayList并没有使用这个数组，而是仍然能使用自己构造的空数组。
 
-### public int size(){...}
+## public int size(){...}
 用来获取`ArrayList`中真正元素的个数。定义如下：
 ```java
 public int size() {
@@ -100,15 +100,15 @@ public int size() {
 ```
 `size`就是一个私有变量，默认为0，之后往里添加元素的时候就增加，删除元素的时候就减小。注意和缓存空间大小的区别！！！
 
-### public boolean isEmpty(){...}
+## public boolean isEmpty(){...}
 查看是否存在元素。怎么判断，很简单，还是看size的大小，为0就是无元素，否则就是有元素。定义略。
 
 
 
 
-### add方法
+## add方法
 往`ArrayList`中添加元素，这是最常使用的方法。重载了两种add方法。
-#### public boolean add(E e){...}
+### public boolean add(E e){...}
 只指定了元素，那么就是**追加**元素。定义如下：
 ```java
 public boolean add(E e) {
@@ -174,7 +174,7 @@ private static int hugeCapacity(int minCapacity) {
 
 **从ArrayList的扩容过程可以看出，ArrayList并不是无限大的，它指定了一个最大容量是Integer.MAX_VALUE - 8，而实际的最大只能是Integer.MAX_VALUE这个值了。**
 
-#### public void add(int index, E element){...}
+### public void add(int index, E element){...}
 指定位置和指定元素。定义如下：
 ```java
 public void add(int index, E element) {
@@ -195,9 +195,9 @@ private void rangeCheckForAdd(int index) {
 首先检查了位置参数index是否合法。接着同样进行是否扩容的判断。接着用调用`System.arraycopy`方法将index上及之后的元素后移移位，这是一个本地方法，看不到源码。最后给index上的元素赋值，size增加1。注意这个方法的返回类型是`void`而不是`boolean`。
 
 
-### remove方法
+## remove方法
 从线性表中删除元素。重载了两个方法。
-#### public E remove(int index) {...}
+### public E remove(int index) {...}
 指定元素删除的位置，返回的是被删除的元素。定义如下：
 ```java
 public E remove(int index) {
@@ -231,7 +231,7 @@ E elementData(int index) {
 
 > 读到这里，我有一个启发，就是数组的移动操作可以用`System.arraycopy()`方法代替我们自己写的遍历赋值的移动方法，虽然前者的底层实现原理就是遍历赋值，但是由于前者是native方法，效率更高。这点在`String`类的设计中可以看到实际的应用。
 
-#### public boolean remove(Object o){...}
+### public boolean remove(Object o){...}
 移除`ArrayList`中**第一个**指定的对象o。如果删除成功就返回true，否则返回false。定义如下：
 ```java
 public boolean remove(Object o) {
@@ -263,7 +263,7 @@ private void fastRemove(int index) {
 这里可以看到，首先要判断指定的对象是不是null，为什么要区别？因为`o.equals(elementData[index]`可能会引起空指针异常。除此之外操作过程都相同，主要调用的是`fastRemove`方法，这个方法实际上就是`remove(int index)`的后半段代码，那句很奇怪了，为什么`remove(int index)`不直接调用这个方法呢？
 
 
-### public void clear() {...}
+## public void clear() {...}
 清除元素。该方法被调用后，`ArrayList`缓冲区中不再有元素，定义如下：
 ```java
 public void clear() {
@@ -278,9 +278,9 @@ public void clear() {
 ```
 将所有元素都置为null，再将size置为0。
 
-### addAll方法
+## addAll方法
 `add`方法是向线性表中添加单个元素，而`addAll`方法是想向线性表添加一个集合中的所有元素，同样重载了两个方法。
-#### public boolean addAll(Collection<? extends E> c){...}
+### public boolean addAll(Collection<? extends E> c){...}
 向线性表追加元素。
 ```java
 public boolean addAll(Collection<? extends E> c) {
@@ -294,7 +294,7 @@ public boolean addAll(Collection<? extends E> c) {
 ```
 追加的很简单，将集合转为数组、扩容、移动赋值、更新size，最后返回是否添加成功的boolean变量，实际上一系列过程都是正确执行的，所以该方法是不是返回true取决于指定的这个集合是不是空集合，是空集合的话那还添加个啥，返回false，否则返回true(因为这种情况一定添加成功)。
 
-#### public boolean addAll(int index, Collection<? extends E> c){...}
+### public boolean addAll(int index, Collection<? extends E> c){...}
 指定元素集合和添加的位置。定义如下：
 ```java
 public boolean addAll(int index, Collection<? extends E> c) {
@@ -318,7 +318,7 @@ public boolean addAll(int index, Collection<? extends E> c) {
 
 另外还需要注意的是，这个方法返回的类型是boolean，而添加单个元素`add(int index, E o)`方法的返回值是void。
 
-#### public boolean removeAll(Collection<?> c) {...}
+## public boolean removeAll(Collection<?> c) {...}
 这是JDK1.7的新方法。`removeAll`就没有重载方法了，就一个移除指定集合中的所有元素。定义如下：
 ```java
 public boolean removeAll(Collection<?> c) {
@@ -368,7 +368,7 @@ private boolean batchRemove(Collection<?> c, boolean complement) {
 
 > 这个的方法很巧妙，要眼熟它。
 
-### public boolean retainAll(Collection<?> c){...}
+## public boolean retainAll(Collection<?> c){...}
 `retain`的意思是“保留”，所以`retainAll`方法用于从列表中移除未包含在collection中的所有元素。如果list集合对象由于调用该方法而发生改变，则返回true。
 
 > 原来我很纳闷，“只保留集合中的所有元素”，那最后不就是得到一个与collection相同的集合呢，为什么不知道让elementData = c，转念一想，太傻了我，根本不能赋值啊，首先父类不能赋值给子类，再者就算是转化为list类型，顺序也不一致了，所以这个想法太蠢了。
@@ -382,7 +382,7 @@ public boolean retainAll(Collection<?> c) {
 ```
 仍旧调用的`batchRemove`方法，但是第二个参数是true，表示留下的而是存在集合c中的那些元素。
 
-### public void sort(Comparator<? super E> c){...}
+## public void sort(Comparator<? super E> c){...}
 使用规则c对线性表进行排序，调用的是`Arrays.sort`方法。定义如下：
 ```java
 @Override
@@ -397,7 +397,7 @@ public void sort(Comparator<? super E> c) {
 }
 ```
 
-### public int indexOf(Object o){...}
+## public int indexOf(Object o){...}
 从头开始，查找指定元素的第一个索引，如果没有该元素就返回-1。
 ```java
 public int indexOf(Object o) {
@@ -414,7 +414,7 @@ public int indexOf(Object o) {
 }
 ```
 
-### public int lastIndexOf(Object o){...}
+## public int lastIndexOf(Object o){...}
 从尾开始，查找指定元素的第一个索引，如果没有该元素就返回-1。
 ```java
 public int lastIndexOf(Object o) {
@@ -430,7 +430,7 @@ public int lastIndexOf(Object o) {
     return -1;
 }
 ```
-### public Object clone(){...}
+## public Object clone(){...}
 重写了Object类的拷贝方法，注意`ArrayList`的拷贝方法是**浅拷贝**。
 ```java
 public Object clone() {
@@ -448,7 +448,7 @@ public Object clone() {
 > 浅拷贝是说对于对象的拷贝，实际上只拷贝了对象的地址，源对象和经过拷贝得到的对象指向的是同一个对象。而深拷贝是指经过new 对象得到的拷贝结果。
 >参考 http://www.jb51.net/article/48201.htm
 
-####  public Object[] toArray(){...}
+###  public Object[] toArray(){...}
 得到对象数组。注意可不能直接返回`ArrayList`中的缓存，得返回其副本。
 ```java
 public Object[] toArray() {
@@ -458,7 +458,7 @@ public Object[] toArray() {
 
 注意该方法的返回值是 `Object`类型的数组，我们无法用强制类型转化的方法得到想要的对象数组。比如某个`list`存储`String`类型，使用语句`(String[]) list.toArray()`会报错，该语句不正确，正确的写法是`list.toArray(new String[list.size()])`。
 
-### public E get(int index){...}
+## public E get(int index){...}
 取得某个位置上的元素值。
 ```java
 public E get(int index) {
@@ -468,7 +468,7 @@ public E get(int index) {
 }
 ```
 
-### public E set(int index, E element){...}
+## public E set(int index, E element){...}
 更改某个位置上的元素的值。
 ```java
 public E set(int index, E element) {
@@ -489,7 +489,7 @@ public E set(int index, E element) {
 
 
 
-### 迭代器
+## 迭代器
 `ArrayList`通过内部类`Itr`实现了 `Iterator`接口，注意其类本身没有实现`Iterator`接口。
 这个内部类的定义如下：
 ```java
@@ -631,21 +631,21 @@ private class ListItr extends Itr implements ListIterator<E> {
 可以看到，这个迭代器继承自`Itr`，可以双向迭代，还能进行`add`和`set`操作【实际上其本质还是调用的外部类`ArrayList`的`add`和`set`方法】。
 
 `ArrayList`类提供了对迭代器的获取，一共有三个方法：
-##### public Iterator<E> iterator(){...}
+#### public Iterator<E> iterator(){...}
 获取一个基本的`Itr`类型的迭代器。定义如下：
 ```java
 public Iterator<E> iterator() {
     return new Itr();
 }
 ```
-#####  public ListIterator<E> listIterator(){...}
+###  public ListIterator<E> listIterator(){...}
 获取一个`ListItr`类型的迭代器，默认游标的位置是0。定义如下：
 ```java
 public ListIterator<E> listIterator() {
    return new ListItr(0);
 }
 ```
-##### public ListIterator<E> listIterator(int index){...}
+### public ListIterator<E> listIterator(int index){...}
 获取一个`ListItr`类型的迭代器，指定游标的初始位置。
 ```java
 public ListIterator<E> listIterator(int index) {

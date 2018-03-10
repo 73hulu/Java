@@ -13,10 +13,10 @@
 2. 提供了若干简单而又有用的算法，比如二分查找、求最大值或最小值。
 
 下面就这两类方法做源码解读：
-### 集合包装方法
+## 集合包装方法
 在`Collections`类结构中，我们可以看到非常多的内部类，他们的名字具有有这样的特点：分别前缀(Unmodified-、Synchronized-、Checked-、Empty-、Singleton-)和后缀（`Collection`框架中的接口或类），分别对应了不可变集合、线程安全集合、类型安全集合、空集合类、单元素集合类、。
 
-#### 不可变集合
+### 不可变集合
 首先是不可变集合，名字统一为`UnmodifiedXXX`，顾名思义，当集合被包装成不可变集合的时候，如果对集合进行操作，将抛出`UnsupportedOperationException`。例如下面这个例子：
 ```java
 public static void main(String[] args) {
@@ -153,7 +153,7 @@ public static <T> List<T> unmodifiableList(List<? extends T> list) {
 * unmodifiableSortedMap
 * unmodifiableSortedSet
 
-#### 线程安全集合
+### 线程安全集合
 阅读源码我们可以知道，`Collections`中我们常用的一些容器类是非线程安全的，有些线程安全类比如`HashTable`我们又不常用，所以`Collections`就将非线程安全的容器类包装成线程安全类。他们的命名是"SynchronizedXXX"。以`SynchronizedList`内部类为例，源码如下：
 ```Java
 static class SynchronizedList<E>
@@ -262,7 +262,7 @@ static class SynchronizedList<E>
 * synchronizedSortedMap
 * synchronizedNavigableMap
 
-#### 类型安全集合
+### 类型安全集合
 什么叫做类型安全？就是在插入元素的时候会检查元素类型？比如元素被定义为String类型，当插入的元素是其他类型的时候就会抛出`ClassCastExceptions`异常。
 >  难道泛型的使用没有解决这个问题么？
 
@@ -274,7 +274,7 @@ static class SynchronizedList<E>
 * checkedSortedMap
 * checkedSortedSet
 
-#### 空集合
+### 空集合
 空集合是没有元素在这些集合中，特别需要主要的是返回的集合都是**只读**的。只要更改值就会抛出UnsupportedOperationException异常。
 > 集合为空且只读？那要它何用？
 
@@ -290,7 +290,7 @@ public static final Set EMPTY_SET = new EmptySet<>();
 * `Collections.emptySet()`——返回只读的空SET集合
 
 
-##### 单元素集合
+### 单元素集合
 `Collections`中的单元素集合指的是集合只有一个元素而且集合只读。内部类命名是`SingletonXXX`。内部类和对应的创建方法如下：
 
 | 内部类名称 | 获取方法  |
@@ -303,7 +303,7 @@ public static final Set EMPTY_SET = new EmptySet<>();
 > 这个有什么用呢?
 
 
-### 简单算法
+## 简单算法
 `Collections`类在开头定义了这样几个常量：
 ```java
 private static final int BINARYSEARCH_THRESHOLD   = 5000;
@@ -317,7 +317,7 @@ private static final int INDEXOFSUBLIST_THRESHOLD =   35;
 ```
 虽然暂时不懂这些数字有什么用（名字听起来好像是算法的阈值），但是至少这些命名告诉我们`Collections`工具类提供了哪些算法。下面我们就看看这些算法的实现。
 
-#### 二分查找(binarySearch)
+### 二分查找(binarySearch)
 这是查找算法的最简单有效的算法，二分查找必须要求list是有序的，在无需的集合中进行二分查找没有任何意义。如果list中有多个key，不能保证哪个key被找到。
 在`Collections`中重载了两个`binarySearch`方法：
 ```Java
@@ -415,7 +415,7 @@ private static <T> T get(ListIterator<? extends T> i, int index) {
 ```
 可以看到两个方法的之处在于如何取得位于mid位置的元素，数组本身就是一个索引，所以使用下标访问实现随机存取。而对于链表来说，如果从链表头开始遍历，那么会非常耗时，所以借助迭代器进行遍历。这里的迭代器是双向迭代器，能很快找到对应位置上的元素。
 
-#### 反转(reverse)
+### 反转(reverse)
 反转即将集合的顺序逆置。
 ```Java
 public static void reverse(List<?> list) {  
@@ -447,7 +447,7 @@ public static void swap(List<?> list, int i, int j) {
 ```
 可见，反转的思想是交换。对于随机访问列表比较好理解，对于链表而言，我们以迭代器的来实现交换。注意的是迭代器在取得值的同时，会修改图标，所以我们不用认为控制，但是需要控制停下来的时候，以免走过头。
 
-#### 混排（shuffle）
+### 混排（shuffle）
 混排的意思就是随意排列，如果随机源是公平的，那么随便哪种顺序都是有可能的。这种算法在碰运气或洗牌的程序中比较有用。`Collections`定义了两个重载的`shuffle`，区别在于是否任务定义随机源：
 ```Java
 /**
@@ -519,7 +519,7 @@ public static <T> void fill(List<? super T> list, T obj) {
 ```
 思想就是遍历赋值。
 
-#### 轮换（rotate）
+### 轮换（rotate）
 轮换的意思是根据指定的距离轮转指定列表中的元素。比如类似于`[t, a, n, k, s , w] `指定长度为2或者-4的轮换之后，将变成`[s, w, t, a, n , k]`。这个算法经常被考到。
 ```Java
 /**
@@ -580,7 +580,7 @@ private static void rotate2(List<?> list, int distance) {
 ```
 这里特别注意对于链表的操作，非常巧妙！对于[1,2,3,4,5,6]来说，当distance为2时候，`-2%6`的结果是-2，最后取得mid=4，两次reverse过后变成[5,6,1,2,3,4]，最后一次reverse之后变成[5,6,1,2,3,4]，非常神奇！
 
-#### 拷贝方法（copy）
+### 拷贝方法（copy）
 这个没什么好解释的，就是遍历赋值。同样对随机存取的数组和链表做了不同的处理。定义如下：
 ```Java
 /**
@@ -607,7 +607,7 @@ public static <T> void copy(List<? super T> dest, List<? extends T> src) {
 }
 ```
 
-#### 替代方法（replaceAll）
+### 替代方法（replaceAll）
 把指定集合中所有与oladVal相等的元素替换成newVal 只要list发生了改变就返回true。定义如下：
 ```Java
 public static <T> boolean replaceAll(List<T> list, T oldVal, T newVal) {  
@@ -652,7 +652,7 @@ public static <T> boolean replaceAll(List<T> list, T oldVal, T newVal) {
 ```
 遍历比较，匹配则赋值。非常好理解。
 
-#### 子串匹配（indexOfSubList和lastIndexOfSubList）
+### 子串匹配（indexOfSubList和lastIndexOfSubList）
 `indexOfSubList`用来返回指定源列表中第一次出现指定目标列表的起始位置，如果没有出现这样的列表，则返回-1；`lastIndexOfSubList`用来返回指定源列表中最后一次出现指定目标列表的起始位置，如果没有出现这样的列表，则返回-1。
 ```Java
 /**
@@ -733,7 +733,7 @@ public static int lastIndexOfSubList(List<?> source, List<?> target) {
 }
 ```
 
-#### 排序（Sort）
+### 排序（Sort）
 `sort`方法实现对集合的排序。定义如下
 ```Java
 public static <T extends Comparable<? super T>> void sort(List<T> list) {
@@ -755,7 +755,7 @@ default void sort(Comparator<? super E> c) {
 ```
 可见，底层实现的时候是调用的`Arrays`的`Sort`方法，然后在将排好序的数组重新赋值。
 
-#### 最大(max)和最小(min)
+### 最大(max)和最小(min)
 求出集合中的最大元素和最小元素，方法很简单，就是用一个变量保存当前最小或最大值，然后遍历集合，更新该值，最后返回这个值即可。定义如下：
 ```Java
 /**

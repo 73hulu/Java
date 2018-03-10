@@ -6,14 +6,14 @@
 
 从结构可以看出来`StringBuffer`和`StringBuilder`确实师承一脉，那么两者的区别在什么地方。
 
-###  public final class StringBuffer extends AbstractStringBuilder implements java.io.Serializable, CharSequence
+##  public final class StringBuffer extends AbstractStringBuilder implements java.io.Serializable, CharSequence
 
 和`StringBuilder` 一样，继承`AbstractStringBuilder`，实现`Serializable`和`CharSequence`接口。
 
-### 构造函数
+## 构造函数
 三个构造函数，分别接受无参、初始容量和`String`类型参数，默认的初始容量是16。
 
-###  private transient char[] toStringCache;
+##  private transient char[] toStringCache;
 注意到`StringBuffer`中的这个成员变量，在`StringBuilder`中并没有，那么这个变量的作用是什么？官方解释是：由toString返回的最后一个值得缓存。每当StringBuffer被修改的时候清空。
 
 从哪里体现呢？看看`toString`方法的定义：
@@ -38,7 +38,7 @@ public synchronized void setCharAt(int index, char ch) {
 }
 ```
 
-### 线程安全
+## 线程安全
 
 `StringBuffer`和`StringBuilder`最重要的区别在什么地方？常听到这样的回答：
 

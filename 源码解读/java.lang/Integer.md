@@ -7,7 +7,7 @@
 
 任务很艰巨，还是挑重点来吧，条条都是重点啊！
 
-## public static Integer valueOf(int i) {...} 和 public static Integer valueOf(String s) throws NumberFormatException{..} 和 public static Integer valueOf(String s, int radix) throws NumberFormatException{..}
+## valueOf方法
 三种valueOf方法，当然还是第一种方法最重要了，其定义如下：
 ```java
 public static Integer valueOf(int i) {

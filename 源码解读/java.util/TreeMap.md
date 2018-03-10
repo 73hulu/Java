@@ -7,11 +7,11 @@
 ![TreeMap_1](http://ovn0i3kdg.bkt.clouddn.com/%08TreeMap_1.png)
 ![TreeMap_2](http://ovn0i3kdg.bkt.clouddn.com/TreeMap_2.png)
 
-### public class TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V>, Cloneable, java.io.Serializable
+## public class TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V>, Cloneable, java.io.Serializable
 类声明，继承自`AbstractMap`，实现`NavigableMap`、`Cloneable`、`Serializable`三个接口。其中`AbstractMap`表明TreeMap为一个Map即支持key-value的集合， `NavigableMap`（更多）则意味着它支持一系列的导航方法，具备针对给定搜索目标返回最接近匹配项的导航方法 。
 
 
-### 映射关系Entry
+## 映射关系Entry
 `TreeMap`继承了抽象了`AbstractMap`，重写了映射关系的数据结构，定义如下：
 ```java
 static final class Entry<K,V> implements Map.Entry<K,V> {
@@ -88,7 +88,7 @@ static final class Entry<K,V> implements Map.Entry<K,V> {
  private transient Entry<K,V> root;
 ```
 
-### 构造方法
+## 构造方法
 定义了四种构造方法。
 ```java
 public TreeMap() {
@@ -124,7 +124,7 @@ private final Comparator<? super K> comparator;
 
 红黑树的核心在于节点插入和删除操作，分别对应`TreeMap`的`put`和`delete`方法。下面就着重将这两个方法的实现。
 
-### public V put(K key, V value)
+## public V put(K key, V value)
 这个方法用来插入一个节点到红黑树中，如果红黑树中已经包含该key节点，则将原value值将被覆盖。
 在看这个方法之前，先复习一下红黑树的插入算法。
 
@@ -362,6 +362,7 @@ private void rotateLeft(Entry<K,V> p) {
 }
 ```
 过程与左旋转类似，不再赘述过程，其动画如下：
+
 ![右旋](http://img.blog.csdn.net/20140523091755703?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2hlbnNzeQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 除此之外还有红黑树节点的着色方法`setColor`，就是将变更节点颜色，定义如下：
@@ -374,7 +375,7 @@ private static <K,V> void setColor(Entry<K,V> p, boolean c) {
 至此，红黑树的插入操作完成。
 
 
-### public V remove(Object key)
+## public V remove(Object key)
 这个方法用来寻找key值对应的树节点，找到后删除该节点。同样，在分析代码之前，我们先回顾下红黑树的删除操作：
 
 红黑树的删除算法可以分为下面几个步骤：
