@@ -20,7 +20,7 @@ API说明如下：
 | void await() throws InterruptedException |当前线程进入等待状态，直到被通知（signal）或者被中断时，当前线程进入运行状态，从await()返回；       |
 |void awaitUninterruptibly()   |  当前线程进入等待状态，直到被通知，对中断不做响应；|
 |long awaitNanos(long nanosTimeout) throws InterruptedException  |   在接口1的返回条件基础上增加了超时响应，返回值表示当前剩余的时间，如果在nanosTimeout之前被唤醒，返回值 = nanosTimeout - 实际消耗的时间，返回值 <= 0表示超时；|
-|boolean await(long time, TimeUnit unit) throws InterruptedException   |  同样是在接口1的返回条件基础上增加了超时响应，与接口3不同的是：①可以自定义超时时间单位；②返回值返回true/false，在time之前被唤醒，返回true，超时返回false。|
+|boolean await(long time, TimeUnit unit) throws InterruptedException   |  同样是在接口1的返回条件基础上增加了超时响应，与接口3不同的是：①可以自定义超时时间单位；②返回值返回true/false，在time之前被唤醒，返回true，超时返回false。|Â
 |  boolean awaitUntil(Date deadline) throws InterruptedException|  当前线程进入等待状态直到将来的指定时间被通知，如果没有到指定时间被通知返回true，否则，到达指定时间，返回false； |
 |   void signal()|  唤醒一个等待在Condition上的线程； |
 |void signalAll()   |   唤醒等待在Condition上所有的线程。|
