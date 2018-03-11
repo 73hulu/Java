@@ -212,15 +212,11 @@ protected boolean tryAcquire(int arg) {
 这个方法是将当前线程加入到等待队伍的队尾，并且返回当前线程所在的节点。
 ```java
 //获取锁失败后，将其包装成节点
-/**
-* addWaiter:
-* 1. 尝试将新节点以最快的方式设置为尾节点，如果CAS设置尾节点成功，返回附加着当前线程的节点。
-* 2. 如果CAS操作失败，则调用enq方法，循环入队直到成功。
-*/
+//1. 尝试将新节点以最快的方式设置为尾节点，如果CAS设置尾节点成功，返回附加着当前线程的节点。
+// 2. 如果CAS操作失败，则调用enq方法，循环入队直到成功。
 private Node addWaiter(Node mode) {
     //以给定模式构造结点。mode有两种：EXCLUSIVE（独占）和SHARED（共享）
     Node node = new Node(Thread.currentThread(), mode);
-
     //尝试快速方式直接放到队尾。
     Node pred = tail;
     if (pred != null) {
@@ -230,7 +226,6 @@ private Node addWaiter(Node mode) {
             return node;
         }
     }
-
     //上一步失败则通过enq入队。
     enq(node);
     return node;
@@ -259,8 +254,6 @@ private Node enq(final Node node) {
 如果你看过`AtomicInteger.getAndIncrement()`函数源码，那么相信你一眼便看出这段代码的精华。**CAS自旋volatile变量**，是一种很经典的用法。还不太了解的，自己去百度一下吧。
 3. acquireQueued(Node, int)
 OK，通过`tryAcquire()`和`addWaiter()`，该线程获取资源失败，已经被放入等待队列尾部了，但是节点插入队尾后不会直接挂起，因为可能在插入的时候占有锁的线程已经运行结束了，所以会通过自旋进行锁的竞争。
-
-
 那么下一步的工作是：进入等待状态休息，直到其他线程彻底释放资源后唤醒自己，自己再拿到资源，然后就可以去干自己想干的事了。没错，就是这样！是不是跟医院排队拿号有点相似~~`acquireQueued()`就是干这件事：在等待队列中排队拿号（中间没其它事干可以休息），直到拿到号后再返回。这个函数非常关键，还是上源码吧：
 ```java
 //自旋获取锁，直至异常退出或获取锁成功，但是并不是busy acquire，因为当获取失败后会被挂起，由前驱节点释放锁时将其唤醒。

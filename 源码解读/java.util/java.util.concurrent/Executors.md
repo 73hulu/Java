@@ -351,6 +351,7 @@ public static ExecutorService newWorkStealingPool() {
 计算示例可以参考 https://www.cnblogs.com/waytobestcoder/p/5323130.html
 * 在控制线程池大小的基础上，尽量使用有界队列并且设置大小，避免OOM。
 * 设置合理的驳回策略，适用于你的业务。
+
 ## 关于ThreadFactory的支持
 
 `ThreadFactory`是函数式接口，顾名思义，是“线程工厂”，使用了工厂创建的设计模式，一般配合线程池使用。**主要用来控制创建新线程时的一些行为，比如设置线程的优先级，名字等等。** 接口定义如下：

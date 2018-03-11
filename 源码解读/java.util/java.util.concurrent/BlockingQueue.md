@@ -34,8 +34,8 @@
 这四类方法的特点是：
 1. ThrowsException：如果操作不能马上进行，则抛出异常
 2. SpecialValue：如果操作不能马上进行，将会返回一个特殊的值，一般是true或者false
-3. Blocks:如果操作不能马上进行，操作会被阻塞
-4. TimesOut:如果操作不能马上进行，操作会被阻塞指定的时间，如果指定时间没执行，则返回一个特殊值，一般是true或者false
+3. Blocks：如果操作不能马上进行，操作会被阻塞
+4. TimesOut：如果操作不能马上进行，操作会被阻塞指定的时间，如果指定时间没执行，则返回一个特殊值，一般是true或者false
 
 `BlockingQueue`的实现主要有这么几类：
 1. ArrayBlockingQueue

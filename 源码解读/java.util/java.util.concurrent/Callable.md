@@ -7,7 +7,6 @@
 整个接口定义如下：
 
 ```java
-
 @FunctionalInterface
 public interface Callable<V> {
     /**

@@ -65,9 +65,9 @@ if (lock.tryLock()) {
 
 ## boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
 
----
 和无参数的`tryLock`方法功能相同。但是允许在指定的时间内尝试，拿不到锁的情况下就等待一段时间，超出时间后再返回结果，比较聪明的做法。`tryLock()`和`tryLock(0, TimeUnit.SECONDS)`是等效的。
 
+## lock、tryLock和lockInterruptibly方法的区别
 上面讲了三种`Lock`接口中获取锁的方式：`lock()`、`lockInterruptibly`和`tryLock`，有什么不同？
 
 * `lock()`：调用后一直阻塞到获得锁，拿不到锁誓不罢休。忽略`interrupt`。
