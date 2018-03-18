@@ -229,7 +229,7 @@ public static class CallerRunsPolicy implements RejectedExecutionHandler {
 }
 ```
 
-### DiscardPolicy
+#### DiscardPolicy
 对拒绝任务直接无声抛弃，没有异常信息。
 ```java
 /**
@@ -252,7 +252,7 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
     }
 }
 ```
-### DiscardOldestPolicy
+#### DiscardOldestPolicy
 对拒绝任务不抛弃，而是抛弃队列里面等待最久的一个线程，然后把拒绝任务加到队列。
 ```java
 /**

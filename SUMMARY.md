@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [资源整理](资源整理.md)
 * Java基础知识整理
     * [JDK](Java基础知识整理/JDK.md)
     * 基本数据类型及其包装类
@@ -25,7 +26,9 @@
         * [多线程](Java基础知识整理/多线程.md)
         * [Executor框架](Java基础知识整理/Executor框架.md)
         * [锁](Java基础知识整理/锁.md)
+        * [生产者消费者模型](Java基础知识整理/生产者消费者模型.md)
         * [线程通信和进程通信](Java基础知识整理/线程通信和进程通信.md)
+        * [协程、孤儿线程、僵尸线程、守护线程](Java基础知识整理/协程、孤儿线程、僵尸线程、守护线程.md)
     * IO
         * [标准IO](Java基础知识整理/标准IO.md)
         * [NIO](Java基础知识整理/NIO.md)
@@ -117,7 +120,7 @@
         * [Spliterator](源码解读/java.util/Spliterator.md)
         * [Objects](源码解读/java.util/Objects.md)
         * [java.util.concurrent](源码解读/java.util/java.util.concurrent/java.util.concurrent.md)
-            * [Callable](源码解读/java.util/java.util.concurrent/java.util.concurrent.locks/Callable.md)
+            * [Callable](源码解读/java.util/java.util.concurrent/Callable.md)
             * [Future](源码解读/java.util/java.util.concurrent/Future.md)
             * [FutureTask](源码解读/java.util/java.util.concurrent/FutureTask.md)
             * [ConcurrentHashMap](源码解读/java.util/java.util.concurrent/ConcurrentHashMap.md)
@@ -227,4 +230,4 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
     * [错题集4](错题集/错题集4.md)
-* [资源整理](资源整理.md)
+
