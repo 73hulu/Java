@@ -14,7 +14,7 @@
 protected FileChannel() { }
 ```
 
-那么我们如何取得实例呢，那只能靠这个抽象类的实现类了。比如`FileSystemImpl`，我们可以利用`RandomAccessFile`的`getChannel()`方法来取得一个该抽象类的实例。
+那么我们如何取得实例呢，那只能靠这个抽象类的实现类了。比如`FileSystemImpl`，我们可以利用`RandomAccessFile`或者`FileInputStream`的`getChannel()`方法来取得一个该抽象类的实例。
 
 ## open方法
 重载了两个open方法。
@@ -127,5 +127,64 @@ public static void method2(){
     }
   }
 }
-
 ```
+
+再来看一个复制文件的例子:
+```java
+public class CopyFileTest {
+
+    /**
+     * 使用BIO中的FileInputStream和FileOutInput来复制文件
+     * @param fromPath 源文件地址
+     * @param toPath 目标文件地址
+     */
+    public static void fileCopyWithBIO(String fromPath, String toPath) throws IOException{
+
+        File formFile = new File(fromPath);
+        if (!formFile.exist()) throw new IOException("origin file is not exist");
+        File toFile = new File(toPath);
+        if (!toFile.exists()){
+            toFile.createNewFile();
+        }
+
+        try (InputStream in = new BufferedInputStream(new FileInputStream(fromPath));
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(toFile))){
+
+            byte[] buf = new byte[1024];
+            int byteRead;
+            while ((byteRead = in.read(buf)) != -1){
+                out.write(buf, 0, byteRead);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+    /**
+     * 利用NIO中的FileChannle来复制文件
+     * @param fromPath
+     * @param toPath
+     */
+    public static void fileCopyWithFileChannel(String fromPath, String toPath) throws IOException{
+        File fromFile = new File(fromPath);
+        if (fromFile == null) throw new IOException("origin file is not exist");
+        File toFile = new File(toPath);
+        if (!toFile.exists()){
+            toFile.createNewFile();
+        }
+
+        try (FileInputStream in = new FileInputStream(fromFile);
+        FileOutputStream out = new FileOutputStream(toFile);
+             FileChannel fileChannelInput = in.getChannel();
+             FileChannel fileChannelOutput = out.getChannel()){
+
+            // 两个channel之间通信
+            fileChannelInput.transferTo(0, fileChannelInput.size(), fileChannelOutput);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+}
+```
+分别使用了BIO和NIO中来实现文件的拷贝。

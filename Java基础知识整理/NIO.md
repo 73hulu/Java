@@ -90,34 +90,72 @@ BIO的服务器实现模式为一个连接一个线程，NIO服务器实现模�
 ### Java NIO
 ![NIO](http://ovn0i3kdg.bkt.clouddn.com/Java%20NIO.jpg)
 
-## Channel
-翻译成“通道”，`Channel`和IO中的`Stream`(流)是差不多一个等级的。只不过Stream是单向的，譬如：`InputStream`, `OutputStream`，要么读，要么写。而`Channel`是双向的，既可读又可以写。
+其中有三个重要的概念：Channel、Buffer和Selector。
+channel翻译为“通道”，和标准IO中的"Stream"是差不多一个等级的，区别在于stream是单向的，比如`InputStream`、`OutputStream`，要么只能读，要么只能写。但是`Channel`是双向的，既可以读又可以写。java.nio.Channels包中提供了四种类型的channle，
 
-一共有四个Channel类：
-* FileChannel
-* DatagramChannel
-* SocketChannel
-* ServerSocketChannel
+`FileChannel`提供了对于文件的读写通道，我们经常使用`RandowmAccesFile`的实例方法`getChannel`来获取实例。其中`write`和`read`分别用来表示读和写。
 
-从名字就可以看出来，涵盖了UDP和TCP网络IO，以及文件IO。
+`DatagramChannel`是UDP的的读写通道。我们使用`DatagramChannel`的静态方法`open`来获取实例，`write`和`read`分别用来表示读和写。
+
+`SocketChannel`和`ServerSocketChannel`是TCP的读写通道，前者的`write`和`read`方法用来读和写，后者可以监听新的`SocketChannel`。
+
+需要注意的，**应用程序不能和channel直接相连**, 他们只能从buffer中读取数据，再写入buffer，所以他们之间的关系如下：
+
+![Channel和Buffer](http://img.blog.csdn.net/20160519212332738)
+
+buffer意为“缓冲区”，java.nio中定义了7种基本数据类型（除了BooleanBuffer），这些都是抽象类，真正的实现类有`MappedByteBuffer`、`HeapByteBuffer`、`DirectByteBuffer`等。缓冲区既可以被读，也可以被写，这两种操作的主体都是channel。实现读写的原理是buffer由四个参数控制，mark、position、limit和capacity，有很多方法来控制缓冲区的读写，比如`clear`就是情况缓冲区，等待写入。`flip`就是将写入模式转化成读取模式，`compact`和`clear`类似，但是会将一些剩余的数据复制到0-position的位置。需要注意的是，不管是clear还是compact方法，都没有将数据清除，它们只是调整了指针，下次数据再输入的时候，将会覆盖旧值。
+
+前面说到channel必须和buffer配合使用，下面就是一个`FileChannel`的使用例子：
+```java
+public class FileChannelTest{
+  private String path = "src/nio_test.txt";
+
+  public void readFileViaNIO(){
+    try(RandowmAccesFile aFile = new RandowmAccesFile(path);
+      FileChannel channel = aFile.getChannel()){
+      ByteBuffer buf = ByteBuffer.allocation(1024);
+
+      int byteRead = channel.read(buf);
+      while(byteRead != -1){
+        //将buf由写入模式转为读取模式
+        buf.flip();
+        while(buf.hasRemaining()){
+          System.out.print((char)buf.get() + " ");
+        }
+        buf.compact();
+        byteRead = channel.read(buf);
+      }
+    }catch(IOException e){
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+两个channel之间如何通信呢？用`transferTo`方法。
+例如下面这个两个文件拷贝的例子：
+```java
+
+public void copyFileViaNIO(String fromPath, String toPath) thrws IOException{
+  File from = new File(fromPath);
+  File to = new File(toPath);
+  if (!form.exist()) {
+    throw new IOException("from file is not exist");
+  }
+  if (to.exist()) {
+    to.createFile();
+  }
+
+  try(FileChannel in = new FileInputStream(from);
+      FileChannel out = new FileInputStream(to);){
+    in.transferTo(0, in.size(), out);
+  }catch(IOException e){
+    e.printStackTrace();
+  }
+}
+```
 
 
-
-
-### FileChannel
-### DatagramChannel
-### SocketChannel
-### ServerSocketChannel
-
-## Buffer
-对应了7种基本数据类型（为什么没有BooleanBuffer？），另外还有`MappedByteBuffer`, `HeapByteBuffer`, `DirectByteBuffer`。
-### ByteBuffer
-### ShortBuffer
-### IntBuffer
-### LongBuffer
-### FloatBuffer
-### DoubleBuffer
-### CharBuffer
 
 
 ## Selector
@@ -126,3 +164,4 @@ Selector运行单线程处理多个Channel，如果你的应用打开了多个�
 
 参考
 * [Java NIO 与 IO之间的区别](http://blog.csdn.net/evan_man/article/details/50910542)
+* [通俗编程——白话NIO之Selector](https://blog.csdn.net/dd864140130/article/details/50299687)
