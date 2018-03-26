@@ -171,7 +171,7 @@
             * [DatagramChannel](源码解读/java.nio/java.nio.Channels/DatagramChannel.md)
             * [SocketChannel](源码解读/java.nio/java.nio.Channels/SocketChannel.md)
             * [ServerSocketChannel](源码解读/java.nio/java.nio.Channels/ServerSocketChannel.md)
-        * [ByteBuffer](源码解读/java.nio/ServerSocketChannel.md)
+        * [ByteBuffer](源码解读/java.nio/ByteBuffer.md)
         * [ShortBuffer](源码解读/java.nio/ShortBuffer.md)
         * [IntBuffer](源码解读/java.nio/IntBuffer.md)
         * [LongBuffer](源码解读/java.nio/LongBuffer.md)
