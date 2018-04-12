@@ -115,6 +115,21 @@ public void test();
 从上面代码的注释部分可以看出确实是用`StringBuilder`实现的，虽然编译器帮我们做了这些事，但是在实际编码的时候，建议还是使用`StringBuilder`，毕竟这样可以加深你对性能的理解，而且不依赖特定的编译器优化。
 
 
+### String为什么要设计成不可变的
+String是不可变类(immutable)，因为被final。但是，final只能让指向不可变，但是并不能保证内容不可变，所以我们还是有办法改变final对象的内容的，能用这种办法改变String的内容么？
+
+不能，因为String并未提供对内容修改的公共方法，外部根本无法对内部进行修改。
+
+明白了不可变的实现原理，现在来想一想原因，为什么要将String设计成不可变的。这个问题在知乎https://www.zhihu.com/question/31345592 进行了讨论。
+
+不可变的好处，首先是安全。安全可以体现在很多方面。
+1. String是常用的类，我们可能经常用于HashMap和HashSet，作为键值。如果是可变的，我们任意去修改值，破坏了HashSet键值的唯一性。所以千万不要用可变类型做HashMap和HashSet键值。
+2. 在并发场景下，多个线程同时读一个资源，是不会引发竞态条件的。只有对资源做写操作才有危险。不可变对象不能被写，所以线程安全。
+
+
+String是几乎每个类都会使用的类，特别是作为Hashmap之类的集合的key值时候，mutable的String有非常大的风险。而且一旦发生，非常难发现。
+
+
 参考
 * [String高效编程优化（Java）](http://blog.csdn.net/bianlians/article/details/51644592)
 * [Java编程优化之旅（二） String类型知多少](http://blog.csdn.net/guodongxiaren/article/details/22511427)
