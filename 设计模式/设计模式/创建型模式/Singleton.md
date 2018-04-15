@@ -73,7 +73,7 @@ public class LazyInitHolderSingleton {
         private LazyInitHolderSingleton() {  
         }  
 
-        private static class SingletonHolder k{  
+        private static class SingletonHolder {  
                 private static final LazyInitHolderSingleton INSTANCE = new LazyInitHolderSingleton();  
         }  
 
