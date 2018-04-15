@@ -66,6 +66,24 @@ public class SyncSingleton {
 
 > 也有人说可以将`synchronized`加到`getInstance`方法上，让它成为一个线程同步方法，这种做法同样可以实现功能，但是同步方法被频繁调用，内存占用大，效率低。而采用同步块的方法，由于第一重锁的存在，同步块实际上只被执行了一次，效率高。所以双重锁模式是单例的最佳实现。
 
+### 应对指令重排
+```java
+public class SyncSingleton {
+    private static SyncSingleton instance;
+
+    private SyncSingleton(){}
+
+    public static SyncSingleton getInstance(){
+        if (instance == null){
+            synchronized (SyncSingleton.class){
+                instance = new SyncSingleton();
+            }
+        }
+        return instance;
+    }
+}
+
+```
 
 ## 占位方式
 ```java
@@ -73,7 +91,7 @@ public class LazyInitHolderSingleton {
         private LazyInitHolderSingleton() {  
         }  
 
-        private static class SingletonHolder k{  
+        private static class SingletonHolder {  
                 private static final LazyInitHolderSingleton INSTANCE = new LazyInitHolderSingleton();  
         }  
 
@@ -82,6 +100,7 @@ public class LazyInitHolderSingleton {
         }  
 }  
 ```
+第一次使用的时候才初始化内部类`SingletonHolder`类。
 
 ## 枚举型
 ```java

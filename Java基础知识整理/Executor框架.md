@@ -66,7 +66,7 @@ Java在JUC中提供了`Executor`框架，框架中重要类的继承树如下：
 |corePoolSize   |  自定义 | 0| 1|
 |maximumPoolSize   |  自定义，与corePoolSize保持一致 |  Integer.MAX_VALUE| 1|
 |keepAliveTime   |  0 |  60分钟| 0|
-|workQueue类型   |   ListedBlockingQueue| SynchronousQueue|  LinkedBlockingQueue|
+|workQueue类型   |   LinkedBlockingQueue| SynchronousQueue|  LinkedBlockingQueue|
 |threadFactory   | DefaultThreadFactory  |  DefaultThreadFactory |  DefaultThreadFactory |
 |handler   | AbortPolicy  |AbortPolicy| AbortPolicy|
 |备注   |   |   |  使用`FinalizableDelegatedExecutorService`对`ThreadPoolExecutor`进行包装 |

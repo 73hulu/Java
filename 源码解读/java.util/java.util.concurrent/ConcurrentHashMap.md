@@ -7,3 +7,8 @@
 ![ConcurrentHashMap](http://ovn0i3kdg.bkt.clouddn.com/ConcurrentHashMap_3.png?imageView/2/w/300)
 ![ConcurrentHashMap](http://ovn0i3kdg.bkt.clouddn.com/ConcurrentHashMap_4.png?imageView/2/w/300)
 ![ConcurrentHashMap](http://ovn0i3kdg.bkt.clouddn.com/ConcurrentHashMap_5.png?imageView/2/w/300)
+
+
+参考
+* [ConcurrentHashMap能完全替代HashTable吗？](https://my.oschina.net/hosee/blog/675423)
+* [ConcurrentHashMap总结](http://www.importnew.com/22007.html)
