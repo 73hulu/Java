@@ -216,7 +216,8 @@
             * [Visitor](设计模式/设计模式/行为型模式/Visitor.md)
 * [Java 8 新特性](Java 8新特性/Java 8新特性.md)
     * [基于-parameters编译器标志](Java 8新特性/基于-parameters编译器标志.md)
-    * [lambda表达式](Java 8新特性/lambda表达式.md)
+    * [流](Java 8新特性/流.md)
+    * [行为参数化——lambda表达式](Java 8新特性/行为参数化——lambda表达式.md)
     * [接口中可以定义非抽象方法了](Java 8新特性/接口中可以定义非抽象方法了.md)
     * [@FunctionalInterface注解](Java 8新特性/@FunctionalInterface注解.md)
     * [Effectively final](Java 8新特性/Effectively final.md)
@@ -231,4 +232,3 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
     * [错题集4](错题集/错题集4.md)
-
