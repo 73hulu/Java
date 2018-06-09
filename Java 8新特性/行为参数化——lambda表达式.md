@@ -73,8 +73,6 @@ CheckAndExecute(guiltyPersons,
                 p -> p.getLastName().startWith("Z"),
                 P -> System.out.println(p.getFirstName()));
 ```
-
-
 下一个步骤是在`CheckAndExecute`中，有点繁琐，我们可以用forEach循环代替for循环，因为forEach循环可以接受一个`Consumer<T>`类型的变量：
 ```
 public static void CheckAndExecute(List<Person> personList,
@@ -90,29 +88,25 @@ CheckAndExecute(guiltyPersons,
                 p -> p.getLastName().startWith("Z"),
                 P -> System.out.println(p.getFirstName()));
 ```
-
 下一步，由于静态函数其实设置对list进行了一通操作，这里我们可以甩掉静态函数，直接使用stream()特性来完成。`stream()`的几个方法都接受`Predicate<T>`、`Consumer<T>`等参数（参考java.util.Stream）包：
 ```java
-
 personList.stream()
 .filter(p -> p.getLastName().startWith("z"))
 .foreach(p->System.out.println(p.getFirstName()));
 ```
-
 至此已经非常简练了，但是我们改变一下需求，这里要求打印全部信息，那么可以用`Method reference`来简化。`Method reference`, 就是用已经写好的别的Object/Class的method来代替Lambda expression，格式如下：
 
-![Method reference](https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzRaYImmLaVBWT0YMtDeQtlX5zfnmdMSsYLbXqwt6FQ924dfBUcShB6w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+  ![Method reference](https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzRaYImmLaVBWT0YMtDeQtlX5zfnmdMSsYLbXqwt6FQ924dfBUcShB6w/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
 
-所以上面的代码可以变成这样：
-```
-personList.stream()
-.filter(p -> p.getLastName().startWith("Z"))
-.forEach(System.out::println)
-```
-这基本上就是能写的最简洁的版本了。
+  所以上面的代码可以变成这样：
+  ```
+  personList.stream()
+  .filter(p -> p.getLastName().startWith("Z"))
+  .forEach(System.out::println)
+  ```
 
+  这基本上就是能写的最简洁的版本了。
 另外，lambda还可以配合`Optional<T>`可以使Java对于null的处理变的异常优雅.
-
 这里假设我们有一个person object，以及一个person object的Optional wrapper:
 ```java
 Person person = foAndGetAFunckingPerson();
@@ -120,14 +114,103 @@ Optional<Person> personOpt = Optional.ofNull(person);
 ```
 如果不是用`Optional<T>`，将写成下面这种也别繁琐的写法
 
-![Without Optional<T>](https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzqtSIbs0TY1U8BXANy4mzeSBIOrHJokILQD1xqNurBgMWKJH5GZGG3A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+  ![Without Optional<T>](https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzqtSIbs0TY1U8BXANy4mzeSBIOrHJokILQD1xqNurBgMWKJH5GZGG3A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+
+  lambda + Optional的其他对于null值的检查如下：
+
+  ![lambda + Optional](https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzqtSIbs0TY1U8BXANy4mzeSBIOrHJokILQD1xqNurBgMWKJH5GZGG3A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
 
 
-lambda + Optional的其他对于null值的检查如下：
 
-![lambda + Optional] (https://mmbiz.qpic.cn/mmbiz_jpg/KyXfCrME6UK27qRPAv9NJFPsU1I9dDdzqtSIbs0TY1U8BXANy4mzeSBIOrHJokILQD1xqNurBgMWKJH5GZGG3A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+## Lambda的基本语法
+Lambda的基本语法如下：
+```Java
+(params) -> expression
+```
+或
+```Java
+(params) -> { statements; }
+```
+注意“表达式(expression)”和“语句(statements)”的区别
 
+函数式接口：只定义一个抽象方法的接口，注意，这里是指只含有一个本身特有的抽象方法，不包含从父接口继承得到的。
 
+## 方法引用
+方法引用就是用已经实现的方法实现来创建lambda表达式，其本质上还是lambda表达式， 只是一种lambda的快捷写法。
+
+注意，这里的方法是“引用”，而不是“调用”，所以只用说明而已。比如`Apple::getWeight`就是在“引用”`Apple`中的`getWeight`方法，但并不是在调用，所以不用加括号。它实际是`(Apple a) -> a.getWeight()`的简略写法。
+
+有三种方法可以作为方法引用：
+1. 指向静态方法的方法引用。如Integer的parseInt可以写成Integer::parseInt
+2. 指向任意类型实例方法的方法引用。如`String::length()`
+3. 指向现有对象的实例方法。如有一个对象`transaction`，它是`Transaction`类型的对象，支持实例方法`getValue`，那么就可以写成`transaction::getValue`
+
+特别的，对于构造函数，可以使用`ClassName::new`，假如一个构造函数没有参数，那么它适合做`Supplier`签名`() -> Apple`：
+```Java
+Supplier<Apple> c1 = Apple::new; // 相当于Supplier<Apple> c1 = () -> new Apple()
+Apple a = c1.get();
+```
+如果构造函数有参数，那么函数签名就适合于`Function<Integer, Apple>`：
+```Java
+Function<Integer, Apple> c2 = Apple::new; // 相当于Function<Integer, Apple> c2 = (weight) -> new Apple(weight)
+Apple a = c2.apply(100);
+```
+
+如果有两个参数，那么函数签名就适合于`BiFunction`：
+```Java
+BiFunction<Integer, String, Apple> c3 = Apple::new;
+Apple a3 = c3.apple(110, "red");
+```
+
+注意到，**不将构造函数实例化却能够引用它**，这个特性我们可以引用于“工厂方法”模式中：
+```Java
+public interface Builder {
+  void add(WeaponType name, Supplier<Weapon> supplier);
+}
+
+public interface WeaponFactory {
+
+  /**
+   * Creates an instance of the given type.
+   * @param name representing enum of an object type to be created.
+   * @return new instance of a requested class implementing {@link Weapon} interface.
+   */
+  Weapon create(WeaponType name);
+
+  /**
+   * Creates factory - placeholder for specified {@link Builder}s.
+   * @param consumer for the new builder to the factory.
+   * @return factory with specified {@link Builder}s
+   */
+  static WeaponFactory factory(Consumer<Builder> consumer) {
+    Map<WeaponType, Supplier<Weapon>> map = new HashMap<>();
+    consumer.accept(map::put);
+    return name -> map.get(name).get();
+  }
+}
+
+public class App{
+  public static void main(String[] args) {
+    WeaponFactory factory = WeaponFactory.factory(builder -> {
+      builder.add(WeaponType.SWORD, Sword::new);
+      builder.add(WeaponType.AXE, Axe::new);
+      builder.add(WeaponType.SPEAR, Spear::new);
+      builder.add(WeaponType.BOW, Bow::new);
+    });
+    Weapon axe = factory.create(WeaponType.AXE);
+    LOGGER.info(axe.toString());
+  }
+}
+```
+
+## 函数式接口
+Java8中提供了很多内置的函数式接口，例如
+* 断言型接口`Predicate`
+* 函数型接口`Function`
+* 消费型接口`Consumer`
+* 供应型接口`Supplier`
+* 比较型接口`Comparator`
+* 流接口`Stream`： 其中包含了很多子函数是接口
 
 
 参考
