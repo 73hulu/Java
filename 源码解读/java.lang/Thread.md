@@ -780,6 +780,50 @@ private native boolean isInterrupted(boolean ClearInterrupted);
 该方法用来测试线程是否已经中断。线程的中断状态 不受该方法的影响。 如果该线程已经中断，则返回 true；否则返回 false。和`interrupted`方法不同的是，这个方法不具有清除状态的功能。
 
 > 要特别注意静态方法`interrupted`方法和实例方法`isInterrupted`的区别
+> 比如下面这个例子：
+> ```
+public static void main(String[] args) {
+      /**
+       * 这种方式中断线程，因为isInterrupted方法并没有中断线程的功能，
+       * 所以当发生中断的时候，日志会输出异常信息，然后while循环退出，
+       */
+      new Thread(new Runnable() {
+          @Override
+          public void run() {
+              while (!Thread.currentThread().isInterrupted()) {
+                  try {
+                      TimeUnit.SECONDS.sleep(5);
+                  } catch (InterruptedException e) {
+                      log.error("error", e);
+                  }
+              }
+              System.out.println("子线被打断执行");
+          }
+      }).start();
+}
+```
+而正确的做法是：
+```
+public static void main(String[] args) {
+Thread thread = new Thread(new Runnable() {
+           @Override
+           public void run() {
+               while (!Thread.currentThread().isInterrupted()){
+                   try {
+                       TimeUnit.SECONDS.sleep(5);
+                   }catch (InterruptedException e){
+                       log.error("error", e);
+                   }
+               }
+               System.out.println("子线程被打断执行");
+           }
+       });
+       thread.start();
+       thread.interrupt();
+   }
+}
+```
+
 
 ## public final native boolean isAlive();
 用来检测线程时候还活着，只要线程状态处于start和die之间，都是活着的状态。

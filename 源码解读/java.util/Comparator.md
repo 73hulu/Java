@@ -56,5 +56,5 @@ public static <T> Comparator<T> nullsLast(Comparator<? super T> comparator) {
 }
 ```
 
-## 链式操作
+## 比较器复合
 `thenComparing`和`comparingXXX`方法提供了链式操作的契机。

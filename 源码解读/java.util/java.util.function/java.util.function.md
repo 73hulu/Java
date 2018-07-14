@@ -10,7 +10,7 @@ java8 开始Java支持函数式编程，在子包java.util.function中包含了�
 ## 断言型接口——Predicate【T -> boolean】
 获取判断的结果。基础接口为`Predicate`，接口抽象方法为`boolean test(T t);`，接受一个T对象，返回boolean，函数描述符为`T -> boolean`。
 
-`Predicate`本身又提供了`and `、`or`和`negative`逻辑，利用这些逻辑，我们可以进行断言的链式操作。
+`Predicate`本身又提供了`and `、`or`和`negative`逻辑，利用这些逻辑，可以进行谓词复合。
 
 `BiPredict`提供了两个参数的断言支持，接口抽象方法为`boolean test(T, U);`，接受两个对象，返回boolean，函数描述符为`(T, U) -> boolean`。同样提供了`and `、`or`和`negative`逻辑。
 
@@ -25,7 +25,7 @@ java8 开始Java支持函数式编程，在子包java.util.function中包含了�
 ## 函数型接口——Function 【T -> R】
 用来进行数据转换。基础接口为`Function`。接口抽象方法为`R apply(T t)`， 接受一个T类型对象，返回一个R类型对象，函数描述符为`T -> R`。
 
-`Function`本身提供了一些接口方法，比如前置操作`compose`、后置操作`andThen`和本身操作`identity`。
+`Function`本身提供了一些接口方法，比如前置操作`compose`、后置操作`andThen`和本身操作`identity`，可以进行函数复合，构成一条流程水的操作。
 
 `BiFunction`是两个参数版本的`Function`操作，抽象方法为`R apply(T t, U u)`，接受两个对象，返回一个R类型的对象，函数描述符为`(T, U) -> R`。另外，除了`apply`方法，它还剩下一个方法`andThen`，用来设定后置操作。
 

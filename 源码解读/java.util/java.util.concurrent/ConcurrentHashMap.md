@@ -9,6 +9,34 @@
 ![ConcurrentHashMap](http://ovn0i3kdg.bkt.clouddn.com/ConcurrentHashMap_5.png?imageView/2/w/300)
 
 
+```java
+/**
+ * 写一段程序：多线程往map中put元素，要求每个元素只能被put一次
+ * 思路： 利用concurrentHashMap中的putIfAbsent方法
+ */
+public class OnceOnlyMap {
+    public static void main(String[] args) {
+        String key = "key";
+        String value1 = "value1";
+        String value2 = "value2";
+        ConcurrentHashMap<String, String> threadSafeMap = new ConcurrentHashMap<String, String>();
+
+        new Thread(() -> {
+            String ifAbsent = threadSafeMap.putIfAbsent(key, value1);
+            if (Objects.equals(ifAbsent, null)) System.out.println("Successfully put the element into Map!");
+            else System.out.println("The element is existing! The previous value is: " + ifAbsent);
+        }).start();
+
+        new Thread(() -> {
+            String ifAbsent = threadSafeMap.putIfAbsent(key, value2);
+            if (Objects.equals(ifAbsent, null)) System.out.println("Successfully put the element into Map!");
+            else System.out.println("The element is existing! The previous value is: " + ifAbsent);
+        }).start();
+    }
+}
+
+```
+
 参考
 * [ConcurrentHashMap能完全替代HashTable吗？](https://my.oschina.net/hosee/blog/675423)
 * [ConcurrentHashMap总结](http://www.importnew.com/22007.html)
