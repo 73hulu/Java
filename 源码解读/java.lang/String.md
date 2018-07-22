@@ -15,7 +15,7 @@
 ##  private final char value[];
 字符数组用来存储字符串中的字符，这就是String内部的实现。特别需要注意的是，这里用`final`修饰，也就是说，一旦String的实例被创建，即value被填充，那么不可再更改，如果需要更改，那将是创建一个新对象，用新的内容赋值。这就是所谓的**字符串永久性**。
 
-### private int hash;
+## private int hash;
 String和之前遇到的类不同的一点在于，对象属性保存了其哈希值，默认为0。
 
 ## private static final ObjectStreamField[] serialPersistentFields
@@ -65,7 +65,7 @@ private static class CaseInsensitiveComparator
 
 刚看到这个源码的时候我很困惑，为什么要分别进行大小写两次转换呢？看到后面才明白这个方法被应用于比较方法`compareToIgnoreCase`中，意思就是忽略大小写的比较。
 
-> 看到这个发现一个有趣的现象，StringL类本身被final，属性中除了`hash`外都被final修饰，真的是一旦建立就无法改变啊。
+> 看到这个发现一个有趣的现象，String类本身被final，属性中除了`hash`外都被final修饰，真的是一旦建立就无法改变。
 
 ## 构造函数
 `String`最多的就是构造函数，数了一下有16个，其中两个已经废弃了。那就按照顺序一个个来学习下吧。
@@ -504,8 +504,8 @@ public int indexOf(int ch, int fromIndex) {
 
 `lastIndexOf`方法差不多，不同的地方就是从后往前比较。
 
-## indexOf和LastIndexOf方法
-重载了一堆，参数最复杂的往往是最重要最根本的方法，就你了：
+## indexOf和lastIndexOf方法
+重载了一堆，最终调用的是它：
 ```java
 static int indexOf(char[] source, int sourceOffset, int sourceCount,
             char[] target, int targetOffset, int targetCount,
@@ -887,7 +887,7 @@ public static String format(Locale l, String format, Object... args) {
  *          guaranteed to be from a pool of unique strings.
  */
 ```
-讲的很明白了，String维护这一个常量池，最开始是空的。当`intern`方法被触发的时候，会先常量池中根据`equals`方法先寻找是不是存在当前字符串, 就会直接返回当前字符串. 如果常量池中没有此字符串, 会将此字符串放入常量池中后, 再返回”。那什么时候创建的对象放到常量池中，什么时候创建的对象放到堆中呢？
+讲的很明白了，String维护这一个常量池，最开始是空的。当`intern`方法被触发的时候，会先常量池中根据`equals`方法先寻找是不是存在当前字符串, 就会直接返回当前字符串. 如果常量池中没有此字符串, 会将此字符串放入常量池中后, 再返回。那什么时候创建的对象放到常量池中，什么时候创建的对象放到堆中呢？
 
 以下两种情况创建的字符串对象会放到常量池中：
 1. 直接使用双引号声明出来的String对象会直接存储在常量池中。

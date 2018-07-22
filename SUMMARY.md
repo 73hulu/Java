@@ -8,6 +8,7 @@
         * [基本数据类型](Java基础知识整理/基本数据类型.md)
         * [数值包装类型](Java基础知识整理/数值包装类型.md)
     * [String高效编程](Java基础知识整理/String高效编程.md)
+    * [正则表达式](Java基础知识整理/正则表达式.md)
     * 面向对象
         * [OOP](Java基础知识整理/OOP.md)
         * [修饰符](Java基础知识整理/修饰符.md)
@@ -37,7 +38,6 @@
         * [国际化](Java基础知识整理/国际化.md)
     * [Java注解](Java基础知识整理/Java注解.md)
     * [哈希散列](Java基础知识整理/哈希散列.md)
-    * [正则表达式](Java基础知识整理/正则表达式.md)
     * [序列化和反序列化](Java基础知识整理/序列化和反序列化.md)
     * [泛型](Java基础知识整理/泛型.md)
     * [空间初始化和增长策略](Java基础知识整理/空间初始化和增长策略.md)
@@ -45,6 +45,7 @@
     * [Java中的引用类型](Java基础知识整理/Java中的引用类型.md)
 * JVM
     * [运行时内存区域](JVM/运行时内存区域.md)
+    * [内存模型、指令重排和内存屏障](JVM/内存模型、指令重排和内存屏障.md)
     * [内存泄漏和垃圾回收](JVM/内存泄漏和垃圾回收.md)
     * [内存溢出和参数调优](JVM/内存溢出和参数调优.md)
 * [源码解读](源码解读/introduction.md)
@@ -74,6 +75,7 @@
         * [System](源码解读/java.lang/System.md)
         * [Iterable](源码解读/java.lang/Iterable.md)
         * [Runnable](源码解读/java.lang/Runnable.md)
+        * [Runtime](源码解读/java.lang/Runtime.md)
         * [ThreadLocal](源码解读/java.lang/ThreadLocal.md)
         * [java.lang.reflect](源码解读/java.lang/java.lang.reflect/java.lang.reflect.md)
             * [Field](源码解读/java.lang/java.lang.reflect/Field.md)
@@ -121,7 +123,10 @@
         * [Objects](源码解读/java.util/Objects.md)
         * [Comparator](源码解读/java.util/Comparator.md)
         * [Optional](源码解读/java.util/Optional.md)
-        * [java.util.Stream](源码解读/java.util/java.util.Stream/java.util.Stream.md)
+        * [java.util.regex](源码解读/java.util/java.util.regex/java.util.regex.md)
+            * [Pattern](源码解读/java.util/java.util.regex/Pattern.md)
+            * [Matcher](源码解读/java.util/java.util.regex/Matcher.md)
+        * [java.util.stream](源码解读/java.util/java.util.Stream/java.util.stream.md)
             * [Stream](源码解读/java.util/java.util.Stream/Stream.md)
             * [IntStream/LongStream/DoubleStream](源码解读/java.util/java.util.Stream/IntStream.md)
             * [Collector](源码解读/java.util/java.util.Stream/Collector.md)
@@ -257,4 +262,3 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
     * [错题集4](错题集/错题集4.md)
-

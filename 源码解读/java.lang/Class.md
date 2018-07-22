@@ -129,7 +129,7 @@ public class ClassTest {
 ③由于历史原因，数组类型的getName方法会返回奇怪的名字，比如上面的`Ljava.lang.Double`;
 
 ## public String getName(){...}
-这个方法在前面用到了，方法将以字符串的行驶返回此Class对象所表示的实体(类、接口、数组类、基本类型或void)**完整**名称。方法定义如下:
+这个方法在前面用到了，方法将以字符串的行驶返回此Class对象所表示的实体(类、接口、数组类、基本类型或void)**完整** 名称。方法定义如下:
 ```java
 public String getName() {
    String name = this.name;
@@ -151,7 +151,7 @@ private native String getName0();
 > 记住Enum是类，而Annotation是接口。
 
 ### public T newInstance() throws InstantiationException, IllegalAccessException{...}
-这个方法就常用了，使用类对象来创建对象，←_←嗯 好像是没有说错。定义如下：
+这个方法就常用了，使用类对象来创建对象，←_← 嗯 好像是没有说错。定义如下：
 ```java
 @CallerSensitive
    public T newInstance()
@@ -214,7 +214,7 @@ private native String getName0();
    private volatile transient Class<?>       newInstanceCallerCache;
 
 ```
-哎好长好烦躁，总之这个方法是调用了**默认构造器（无参数）构造器**初始化新建对象。这里需要注意两点：① 如果类本身没有定义无参构造方法但是定义的有参构造方法，这时候是无法默认产生无参构造方法的，所以这时候用`newInstance`方式来创建对象的话，会抛出`InstantiationException`异常。②`newInstance`方法返回的是Object对象，需要进行类型转换。
+哎好长好烦躁，总之这个方法是调用了**默认构造器（无参数）构造器**初始化新建对象。这里需要注意两点：① 如果类本身没有定义无参构造方法但是定义的有参构造方法，这时候是无法默认产生无参构造方法的，所以这时候用`newInstance`方式来创建对象的话，会抛出`InstantiationException`异常。所所以一个好的编程习惯是给类手动定义一个无参的构造方法。②`newInstance`方法返回的是Object对象，需要进行类型转换。
 
 
 ###  public String toString() {...}

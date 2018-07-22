@@ -362,7 +362,7 @@ public class DiskClassLoader extends ClassLoader {
 
 }
 ```
-> 这里有个疑问，为什么父类这么多的方法，偏偏只用重写findClass方法呢？因为JDK已经在loadClass方法中帮我们实现了ClassLoader搜索类的算法。当在loadClass方法中所有到类的时候，就会调动findClass方法，所以我们只需要调用这个方法而已，如果没有特殊要求，一般不建议重写loadClass搜索类的方法。
+> 这里有个疑问，为什么父类这么多的方法，偏偏只用重写findClass方法呢？因为JDK已经在loadClass方法中帮我们实现了ClassLoader搜索类的算法。当在loadClass方法中没有找到类的时候，就会调动findClass方法，所以我们只需要调用这个方法而已，如果没有特殊要求，一般不建议重写loadClass搜索类的方法。
 
 我们在`findClass()`方法中定义了查找class的方法，然后数据通过`defineClass()`生成了Class对象。
 
