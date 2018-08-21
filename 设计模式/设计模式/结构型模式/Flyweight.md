@@ -3,7 +3,7 @@
 Flyweight模式翻译过来是“享元模式”，名字有点怪，但是我们实际上一直在用这种模式，只是不知道这叫做享元模式。
 
 > Flyweight是拳击比赛中的特有名词，意思是“较轻量级”。
->
+
 
 
 享元技模式是池技术的重要实现方式，其定义如下：使用**共享对象**可有效得支持大量**细粒度的对象**。
@@ -46,7 +46,7 @@ public class ConnectionPool {
     }  
 
     /* 返回连接到连接池 */  
-    public synchronized void release() {  
+    public synchronized void release(conn) {  
         pool.add(conn);  
     }  
 

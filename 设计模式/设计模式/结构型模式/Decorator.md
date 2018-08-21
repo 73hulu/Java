@@ -149,3 +149,4 @@ String line = reader.readLine();
 参考
 * [设计模式（5）装饰器模式（讲解+应用）](https://segmentfault.com/a/1190000003796704)
 * [ 设计模式 —— 装饰器模式（Decorator Pattern）](http://blog.csdn.net/wwh578867817/article/details/51480441)
+* [JAVA 设计模式 装饰者模式](http://www.cnblogs.com/jingmoxukong/p/4226237.html)
