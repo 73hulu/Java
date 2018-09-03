@@ -1,0 +1,5091 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>ThreadPoolExecutor · Java Foundation</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="xiaofang.bao">
+        
+        
+    
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-ace/ace.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-emphasize/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-terminal/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="BlockingQueue.html" />
+    
+    
+    <link rel="prev" href="ExecutorService.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../../favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../../favicon.ico' type="image/x-icon">
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="http://www.guhuaijin.com" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../../资源整理.html">
+            
+                <a href="../../../资源整理.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    资源整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                        <b>1.3.</b>
+                    
+                    Java基础知识整理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../../Java基础知识整理/JDK.html">
+            
+                <a href="../../../Java基础知识整理/JDK.html">
+            
+                    
+                        <b>1.3.1.</b>
+                    
+                    JDK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" >
+            
+                <span>
+            
+                    
+                        <b>1.3.2.</b>
+                    
+                    基本数据类型及其包装类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../../../Java基础知识整理/基本数据类型.html">
+            
+                <a href="../../../Java基础知识整理/基本数据类型.html">
+            
+                    
+                        <b>1.3.2.1.</b>
+                    
+                    基本数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../../../Java基础知识整理/数值包装类型.html">
+            
+                <a href="../../../Java基础知识整理/数值包装类型.html">
+            
+                    
+                        <b>1.3.2.2.</b>
+                    
+                    数值包装类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../../Java基础知识整理/String高效编程.html">
+            
+                <a href="../../../Java基础知识整理/String高效编程.html">
+            
+                    
+                        <b>1.3.3.</b>
+                    
+                    String高效编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../../Java基础知识整理/正则表达式.html">
+            
+                <a href="../../../Java基础知识整理/正则表达式.html">
+            
+                    
+                        <b>1.3.4.</b>
+                    
+                    正则表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" >
+            
+                <span>
+            
+                    
+                        <b>1.3.5.</b>
+                    
+                    面向对象
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../../../Java基础知识整理/OOP.html">
+            
+                <a href="../../../Java基础知识整理/OOP.html">
+            
+                    
+                        <b>1.3.5.1.</b>
+                    
+                    OOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../../../Java基础知识整理/修饰符.html">
+            
+                <a href="../../../Java基础知识整理/修饰符.html">
+            
+                    
+                        <b>1.3.5.2.</b>
+                    
+                    修饰符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../../../Java基础知识整理/类、抽象类、内部类、接口.html">
+            
+                <a href="../../../Java基础知识整理/类、抽象类、内部类、接口.html">
+            
+                    
+                        <b>1.3.5.3.</b>
+                    
+                    类、抽象类、内部类、接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" >
+            
+                <span>
+            
+                    
+                        <b>1.3.6.</b>
+                    
+                    类加载和反射
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.6.1" data-path="../../../Java基础知识整理/类编译、加载和执行.html">
+            
+                <a href="../../../Java基础知识整理/类编译、加载和执行.html">
+            
+                    
+                        <b>1.3.6.1.</b>
+                    
+                    类编译、加载和执行
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.2" data-path="../../../Java基础知识整理/ClassLoader加载机制.html">
+            
+                <a href="../../../Java基础知识整理/ClassLoader加载机制.html">
+            
+                    
+                        <b>1.3.6.2.</b>
+                    
+                    ClassLoader加载机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.3" data-path="../../../Java基础知识整理/Java初始化顺序.html">
+            
+                <a href="../../../Java基础知识整理/Java初始化顺序.html">
+            
+                    
+                        <b>1.3.6.3.</b>
+                    
+                    Java初始化顺序
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.4" data-path="../../../Java基础知识整理/反射机制.html">
+            
+                <a href="../../../Java基础知识整理/反射机制.html">
+            
+                    
+                        <b>1.3.6.4.</b>
+                    
+                    反射机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" >
+            
+                <span>
+            
+                    
+                        <b>1.3.7.</b>
+                    
+                    异常和断言
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.7.1" data-path="../../../Java基础知识整理/防御式编程和契约式编程.html">
+            
+                <a href="../../../Java基础知识整理/防御式编程和契约式编程.html">
+            
+                    
+                        <b>1.3.7.1.</b>
+                    
+                    防御式编程和契约式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7.2" data-path="../../../Java基础知识整理/异常处理机制.html">
+            
+                <a href="../../../Java基础知识整理/异常处理机制.html">
+            
+                    
+                        <b>1.3.7.2.</b>
+                    
+                    异常处理机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7.3" data-path="../../../Java基础知识整理/断言.html">
+            
+                <a href="../../../Java基础知识整理/断言.html">
+            
+                    
+                        <b>1.3.7.3.</b>
+                    
+                    断言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../../../Java基础知识整理/集合框架.html">
+            
+                <a href="../../../Java基础知识整理/集合框架.html">
+            
+                    
+                        <b>1.3.8.</b>
+                    
+                    集合框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" >
+            
+                <span>
+            
+                    
+                        <b>1.3.9.</b>
+                    
+                    进程和线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.9.1" data-path="../../../Java基础知识整理/多线程.html">
+            
+                <a href="../../../Java基础知识整理/多线程.html">
+            
+                    
+                        <b>1.3.9.1.</b>
+                    
+                    多线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.2" data-path="../../../Java基础知识整理/Executor框架.html">
+            
+                <a href="../../../Java基础知识整理/Executor框架.html">
+            
+                    
+                        <b>1.3.9.2.</b>
+                    
+                    Executor框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.3" data-path="../../../Java基础知识整理/锁.html">
+            
+                <a href="../../../Java基础知识整理/锁.html">
+            
+                    
+                        <b>1.3.9.3.</b>
+                    
+                    锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.4" data-path="../../../Java基础知识整理/生产者消费者模型.html">
+            
+                <a href="../../../Java基础知识整理/生产者消费者模型.html">
+            
+                    
+                        <b>1.3.9.4.</b>
+                    
+                    生产者消费者模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.5" data-path="../../../Java基础知识整理/线程通信和进程通信.html">
+            
+                <a href="../../../Java基础知识整理/线程通信和进程通信.html">
+            
+                    
+                        <b>1.3.9.5.</b>
+                    
+                    线程通信和进程通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.6" data-path="../../../Java基础知识整理/协程、孤儿线程、僵尸线程、守护线程.html">
+            
+                <a href="../../../Java基础知识整理/协程、孤儿线程、僵尸线程、守护线程.html">
+            
+                    
+                        <b>1.3.9.6.</b>
+                    
+                    协程、孤儿线程、僵尸线程、守护线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" >
+            
+                <span>
+            
+                    
+                        <b>1.3.10.</b>
+                    
+                    IO
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.10.1" data-path="../../../Java基础知识整理/标准IO.html">
+            
+                <a href="../../../Java基础知识整理/标准IO.html">
+            
+                    
+                        <b>1.3.10.1.</b>
+                    
+                    标准IO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.2" data-path="../../../Java基础知识整理/NIO.html">
+            
+                <a href="../../../Java基础知识整理/NIO.html">
+            
+                    
+                        <b>1.3.10.2.</b>
+                    
+                    NIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.3" data-path="../../../Java基础知识整理/路径.html">
+            
+                <a href="../../../Java基础知识整理/路径.html">
+            
+                    
+                        <b>1.3.10.3.</b>
+                    
+                    路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.4" data-path="../../../Java基础知识整理/编码和编码格式.html">
+            
+                <a href="../../../Java基础知识整理/编码和编码格式.html">
+            
+                    
+                        <b>1.3.10.4.</b>
+                    
+                    编码和编码格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10.5" data-path="../../../Java基础知识整理/国际化.html">
+            
+                <a href="../../../Java基础知识整理/国际化.html">
+            
+                    
+                        <b>1.3.10.5.</b>
+                    
+                    国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../../../Java基础知识整理/Java注解.html">
+            
+                <a href="../../../Java基础知识整理/Java注解.html">
+            
+                    
+                        <b>1.3.11.</b>
+                    
+                    Java注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../../../Java基础知识整理/哈希散列.html">
+            
+                <a href="../../../Java基础知识整理/哈希散列.html">
+            
+                    
+                        <b>1.3.12.</b>
+                    
+                    哈希散列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../../../Java基础知识整理/序列化和反序列化.html">
+            
+                <a href="../../../Java基础知识整理/序列化和反序列化.html">
+            
+                    
+                        <b>1.3.13.</b>
+                    
+                    序列化和反序列化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../../../Java基础知识整理/泛型.html">
+            
+                <a href="../../../Java基础知识整理/泛型.html">
+            
+                    
+                        <b>1.3.14.</b>
+                    
+                    泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../../../Java基础知识整理/空间初始化和增长策略.html">
+            
+                <a href="../../../Java基础知识整理/空间初始化和增长策略.html">
+            
+                    
+                        <b>1.3.15.</b>
+                    
+                    空间初始化和增长策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../../../Java基础知识整理/Java中的语法糖.html">
+            
+                <a href="../../../Java基础知识整理/Java中的语法糖.html">
+            
+                    
+                        <b>1.3.16.</b>
+                    
+                    Java中的语法糖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../../../Java基础知识整理/Java中的引用类型.html">
+            
+                <a href="../../../Java基础知识整理/Java中的引用类型.html">
+            
+                    
+                        <b>1.3.17.</b>
+                    
+                    Java中的引用类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                        <b>1.4.</b>
+                    
+                    JVM
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../../JVM/运行时内存区域.html">
+            
+                <a href="../../../JVM/运行时内存区域.html">
+            
+                    
+                        <b>1.4.1.</b>
+                    
+                    运行时内存区域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../../JVM/内存模型、指令重排和内存屏障.html">
+            
+                <a href="../../../JVM/内存模型、指令重排和内存屏障.html">
+            
+                    
+                        <b>1.4.2.</b>
+                    
+                    内存模型、指令重排和内存屏障
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../../JVM/内存泄漏和垃圾回收.html">
+            
+                <a href="../../../JVM/内存泄漏和垃圾回收.html">
+            
+                    
+                        <b>1.4.3.</b>
+                    
+                    内存泄漏和垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../../JVM/内存溢出和参数调优.html">
+            
+                <a href="../../../JVM/内存溢出和参数调优.html">
+            
+                    
+                        <b>1.4.4.</b>
+                    
+                    内存溢出和参数调优
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../introduction.html">
+            
+                <a href="../../introduction.html">
+            
+                    
+                        <b>1.5.</b>
+                    
+                    源码解读
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../java.lang/java-lang.html">
+            
+                <a href="../../java.lang/java-lang.html">
+            
+                    
+                        <b>1.5.1.</b>
+                    
+                    java.lang
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../java.lang/Object.html">
+            
+                <a href="../../java.lang/Object.html">
+            
+                    
+                        <b>1.5.1.1.</b>
+                    
+                    Object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.2" data-path="../../java.lang/Boolean.html">
+            
+                <a href="../../java.lang/Boolean.html">
+            
+                    
+                        <b>1.5.1.2.</b>
+                    
+                    Boolean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.3" data-path="../../java.lang/Byte.html">
+            
+                <a href="../../java.lang/Byte.html">
+            
+                    
+                        <b>1.5.1.3.</b>
+                    
+                    Byte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.4" data-path="../../java.lang/Short.html">
+            
+                <a href="../../java.lang/Short.html">
+            
+                    
+                        <b>1.5.1.4.</b>
+                    
+                    Short
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.5" data-path="../../java.lang/Integer.html">
+            
+                <a href="../../java.lang/Integer.html">
+            
+                    
+                        <b>1.5.1.5.</b>
+                    
+                    Integer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.6" data-path="../../java.lang/Long.html">
+            
+                <a href="../../java.lang/Long.html">
+            
+                    
+                        <b>1.5.1.6.</b>
+                    
+                    Long
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.7" data-path="../../java.lang/Float.html">
+            
+                <a href="../../java.lang/Float.html">
+            
+                    
+                        <b>1.5.1.7.</b>
+                    
+                    Float
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.8" data-path="../../java.lang/Double.html">
+            
+                <a href="../../java.lang/Double.html">
+            
+                    
+                        <b>1.5.1.8.</b>
+                    
+                    Double
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.9" data-path="../../java.lang/Character.html">
+            
+                <a href="../../java.lang/Character.html">
+            
+                    
+                        <b>1.5.1.9.</b>
+                    
+                    Character
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.10" data-path="../../java.lang/String.html">
+            
+                <a href="../../java.lang/String.html">
+            
+                    
+                        <b>1.5.1.10.</b>
+                    
+                    String
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.11" data-path="../../java.lang/StringBuilder.html">
+            
+                <a href="../../java.lang/StringBuilder.html">
+            
+                    
+                        <b>1.5.1.11.</b>
+                    
+                    StringBuilder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.12" data-path="../../java.lang/StringBuffer.html">
+            
+                <a href="../../java.lang/StringBuffer.html">
+            
+                    
+                        <b>1.5.1.12.</b>
+                    
+                    StringBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.13" data-path="../../java.lang/Class.html">
+            
+                <a href="../../java.lang/Class.html">
+            
+                    
+                        <b>1.5.1.13.</b>
+                    
+                    Class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.14" data-path="../../java.lang/ClassLoader.html">
+            
+                <a href="../../java.lang/ClassLoader.html">
+            
+                    
+                        <b>1.5.1.14.</b>
+                    
+                    ClassLoader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.15" data-path="../../java.lang/Throwable.html">
+            
+                <a href="../../java.lang/Throwable.html">
+            
+                    
+                        <b>1.5.1.15.</b>
+                    
+                    Throwable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.16" data-path="../../java.lang/Exception.html">
+            
+                <a href="../../java.lang/Exception.html">
+            
+                    
+                        <b>1.5.1.16.</b>
+                    
+                    Exception
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.17" data-path="../../java.lang/Error.html">
+            
+                <a href="../../java.lang/Error.html">
+            
+                    
+                        <b>1.5.1.17.</b>
+                    
+                    Error
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.18" data-path="../../java.lang/RuntimeException.html">
+            
+                <a href="../../java.lang/RuntimeException.html">
+            
+                    
+                        <b>1.5.1.18.</b>
+                    
+                    RuntimeException
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.19" data-path="../../java.lang/Thread.html">
+            
+                <a href="../../java.lang/Thread.html">
+            
+                    
+                        <b>1.5.1.19.</b>
+                    
+                    Thread
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.20" data-path="../../java.lang/ThreadGroup.html">
+            
+                <a href="../../java.lang/ThreadGroup.html">
+            
+                    
+                        <b>1.5.1.20.</b>
+                    
+                    ThreadGroup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.21" data-path="../../java.lang/Math.html">
+            
+                <a href="../../java.lang/Math.html">
+            
+                    
+                        <b>1.5.1.21.</b>
+                    
+                    Math
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.22" data-path="../../java.lang/Enum.html">
+            
+                <a href="../../java.lang/Enum.html">
+            
+                    
+                        <b>1.5.1.22.</b>
+                    
+                    Enum
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.23" data-path="../../java.lang/System.html">
+            
+                <a href="../../java.lang/System.html">
+            
+                    
+                        <b>1.5.1.23.</b>
+                    
+                    System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.24" data-path="../../java.lang/Iterable.html">
+            
+                <a href="../../java.lang/Iterable.html">
+            
+                    
+                        <b>1.5.1.24.</b>
+                    
+                    Iterable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.25" data-path="../../java.lang/Runnable.html">
+            
+                <a href="../../java.lang/Runnable.html">
+            
+                    
+                        <b>1.5.1.25.</b>
+                    
+                    Runnable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.26" data-path="../../java.lang/Runtime.html">
+            
+                <a href="../../java.lang/Runtime.html">
+            
+                    
+                        <b>1.5.1.26.</b>
+                    
+                    Runtime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.27" data-path="../../java.lang/ThreadLocal.html">
+            
+                <a href="../../java.lang/ThreadLocal.html">
+            
+                    
+                        <b>1.5.1.27.</b>
+                    
+                    ThreadLocal
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28" data-path="../../java.lang/java.lang.reflect/java.lang.reflect.html">
+            
+                <a href="../../java.lang/java.lang.reflect/java.lang.reflect.html">
+            
+                    
+                        <b>1.5.1.28.</b>
+                    
+                    java.lang.reflect
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.28.1" data-path="../../java.lang/java.lang.reflect/Field.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Field.html">
+            
+                    
+                        <b>1.5.1.28.1.</b>
+                    
+                    Field
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28.2" data-path="../../java.lang/java.lang.reflect/Method.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Method.html">
+            
+                    
+                        <b>1.5.1.28.2.</b>
+                    
+                    Method
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28.3" data-path="../../java.lang/java.lang.reflect/Modifier.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Modifier.html">
+            
+                    
+                        <b>1.5.1.28.3.</b>
+                    
+                    Modifier
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28.4" data-path="../../java.lang/java.lang.reflect/Constructor.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Constructor.html">
+            
+                    
+                        <b>1.5.1.28.4.</b>
+                    
+                    Constructor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28.5" data-path="../../java.lang/java.lang.reflect/Array.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Array.html">
+            
+                    
+                        <b>1.5.1.28.5.</b>
+                    
+                    Array
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.28.6" data-path="../../java.lang/java.lang.reflect/Proxy.html">
+            
+                <a href="../../java.lang/java.lang.reflect/Proxy.html">
+            
+                    
+                        <b>1.5.1.28.6.</b>
+                    
+                    Proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29" data-path="../../java.lang/java.lang.annotation/java.lang.annotaion.html">
+            
+                <a href="../../java.lang/java.lang.annotation/java.lang.annotaion.html">
+            
+                    
+                        <b>1.5.1.29.</b>
+                    
+                    java.lang.annotaion
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.29.1" data-path="../../java.lang/java.lang.annotation/Annotaion.html">
+            
+                <a href="../../java.lang/java.lang.annotation/Annotaion.html">
+            
+                    
+                        <b>1.5.1.29.1.</b>
+                    
+                    Annotaion
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29.2" data-path="../../java.lang/java.lang.annotation/Documented.html">
+            
+                <a href="../../java.lang/java.lang.annotation/Documented.html">
+            
+                    
+                        <b>1.5.1.29.2.</b>
+                    
+                    Documented
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29.3" data-path="../../java.lang/java.lang.annotation/ElementType.html">
+            
+                <a href="../../java.lang/java.lang.annotation/ElementType.html">
+            
+                    
+                        <b>1.5.1.29.3.</b>
+                    
+                    ElementType
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29.4" data-path="../../java.lang/java.lang.annotation/Target.html">
+            
+                <a href="../../java.lang/java.lang.annotation/Target.html">
+            
+                    
+                        <b>1.5.1.29.4.</b>
+                    
+                    Target
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29.5" data-path="../../java.lang/java.lang.annotation/RetentionPolicy.html">
+            
+                <a href="../../java.lang/java.lang.annotation/RetentionPolicy.html">
+            
+                    
+                        <b>1.5.1.29.5.</b>
+                    
+                    RetentionPolicy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.1.29.6" data-path="../../java.lang/java.lang.annotation/Retention.html">
+            
+                <a href="../../java.lang/java.lang.annotation/Retention.html">
+            
+                    
+                        <b>1.5.1.29.6.</b>
+                    
+                    Retention
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../java-util.html">
+            
+                <a href="../java-util.html">
+            
+                    
+                        <b>1.5.2.</b>
+                    
+                    java.util
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../Random.html">
+            
+                <a href="../Random.html">
+            
+                    
+                        <b>1.5.2.1.</b>
+                    
+                    Random
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../EnumSet.html">
+            
+                <a href="../EnumSet.html">
+            
+                    
+                        <b>1.5.2.2.</b>
+                    
+                    EnumSet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.3" data-path="../EnumMap.html">
+            
+                <a href="../EnumMap.html">
+            
+                    
+                        <b>1.5.2.3.</b>
+                    
+                    EmumMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.4" data-path="../Arrays.html">
+            
+                <a href="../Arrays.html">
+            
+                    
+                        <b>1.5.2.4.</b>
+                    
+                    Arrays
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.5" data-path="../DualPivotQuicksort.html">
+            
+                <a href="../DualPivotQuicksort.html">
+            
+                    
+                        <b>1.5.2.5.</b>
+                    
+                    DualPivotQuicksort
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.6" data-path="../Collection.html">
+            
+                <a href="../Collection.html">
+            
+                    
+                        <b>1.5.2.6.</b>
+                    
+                    Collection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.7" data-path="../Collections.html">
+            
+                <a href="../Collections.html">
+            
+                    
+                        <b>1.5.2.7.</b>
+                    
+                    Collections
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.8" data-path="../Set.html">
+            
+                <a href="../Set.html">
+            
+                    
+                        <b>1.5.2.8.</b>
+                    
+                    Set
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.9" data-path="../HashSet.html">
+            
+                <a href="../HashSet.html">
+            
+                    
+                        <b>1.5.2.9.</b>
+                    
+                    HashSet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.10" data-path="../LinkedHashSet.html">
+            
+                <a href="../LinkedHashSet.html">
+            
+                    
+                        <b>1.5.2.10.</b>
+                    
+                    LinkedHashSet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.11" data-path="../TreeSet.html">
+            
+                <a href="../TreeSet.html">
+            
+                    
+                        <b>1.5.2.11.</b>
+                    
+                    TreeSet
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.12" data-path="../List.html">
+            
+                <a href="../List.html">
+            
+                    
+                        <b>1.5.2.12.</b>
+                    
+                    List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.13" data-path="../Iterator.html">
+            
+                <a href="../Iterator.html">
+            
+                    
+                        <b>1.5.2.13.</b>
+                    
+                    Iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.14" data-path="../ListIterator.html">
+            
+                <a href="../ListIterator.html">
+            
+                    
+                        <b>1.5.2.14.</b>
+                    
+                    ListIterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.15" data-path="../ArrayList.html">
+            
+                <a href="../ArrayList.html">
+            
+                    
+                        <b>1.5.2.15.</b>
+                    
+                    ArrayList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.16" data-path="../LinkedList.html">
+            
+                <a href="../LinkedList.html">
+            
+                    
+                        <b>1.5.2.16.</b>
+                    
+                    LinkedList
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.17" data-path="../Vector.html">
+            
+                <a href="../Vector.html">
+            
+                    
+                        <b>1.5.2.17.</b>
+                    
+                    Vector
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.18" data-path="../Stack.html">
+            
+                <a href="../Stack.html">
+            
+                    
+                        <b>1.5.2.18.</b>
+                    
+                    Stack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.19" data-path="../Map.html">
+            
+                <a href="../Map.html">
+            
+                    
+                        <b>1.5.2.19.</b>
+                    
+                    Map
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.20" data-path="../HashMap.html">
+            
+                <a href="../HashMap.html">
+            
+                    
+                        <b>1.5.2.20.</b>
+                    
+                    HashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.21" data-path="../LinkedHashMap.html">
+            
+                <a href="../LinkedHashMap.html">
+            
+                    
+                        <b>1.5.2.21.</b>
+                    
+                    LinkedHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.22" data-path="../SortedMap.html">
+            
+                <a href="../SortedMap.html">
+            
+                    
+                        <b>1.5.2.22.</b>
+                    
+                    SortedMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.23" data-path="../TreeMap.html">
+            
+                <a href="../TreeMap.html">
+            
+                    
+                        <b>1.5.2.23.</b>
+                    
+                    TreeMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.24" data-path="../NavigableMap.html">
+            
+                <a href="../NavigableMap.html">
+            
+                    
+                        <b>1.5.2.24.</b>
+                    
+                    NavigableMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.25" data-path="../Hashtable.html">
+            
+                <a href="../Hashtable.html">
+            
+                    
+                        <b>1.5.2.25.</b>
+                    
+                    Hashtable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.26" data-path="../ArrayDeque.html">
+            
+                <a href="../ArrayDeque.html">
+            
+                    
+                        <b>1.5.2.26.</b>
+                    
+                    ArrayDeque
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.27" data-path="../PriorityQueue.html">
+            
+                <a href="../PriorityQueue.html">
+            
+                    
+                        <b>1.5.2.27.</b>
+                    
+                    PriorityQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.28" data-path="../Spliterator.html">
+            
+                <a href="../Spliterator.html">
+            
+                    
+                        <b>1.5.2.28.</b>
+                    
+                    Spliterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.29" data-path="../Objects.html">
+            
+                <a href="../Objects.html">
+            
+                    
+                        <b>1.5.2.29.</b>
+                    
+                    Objects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.30" data-path="../Comparator.html">
+            
+                <a href="../Comparator.html">
+            
+                    
+                        <b>1.5.2.30.</b>
+                    
+                    Comparator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.31" data-path="../Optional.html">
+            
+                <a href="../Optional.html">
+            
+                    
+                        <b>1.5.2.31.</b>
+                    
+                    Optional
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.32" data-path="../java.util.regex/java.util.regex.html">
+            
+                <a href="../java.util.regex/java.util.regex.html">
+            
+                    
+                        <b>1.5.2.32.</b>
+                    
+                    java.util.regex
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.32.1" data-path="../java.util.regex/Pattern.html">
+            
+                <a href="../java.util.regex/Pattern.html">
+            
+                    
+                        <b>1.5.2.32.1.</b>
+                    
+                    Pattern
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.32.2" data-path="../java.util.regex/Matcher.html">
+            
+                <a href="../java.util.regex/Matcher.html">
+            
+                    
+                        <b>1.5.2.32.2.</b>
+                    
+                    Matcher
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.33" data-path="../java.util.Stream/java.util.stream.html">
+            
+                <a href="../java.util.Stream/java.util.stream.html">
+            
+                    
+                        <b>1.5.2.33.</b>
+                    
+                    java.util.stream
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.33.1" data-path="../java.util.Stream/Stream.html">
+            
+                <a href="../java.util.Stream/Stream.html">
+            
+                    
+                        <b>1.5.2.33.1.</b>
+                    
+                    Stream
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.33.2" data-path="../java.util.Stream/IntStream.html">
+            
+                <a href="../java.util.Stream/IntStream.html">
+            
+                    
+                        <b>1.5.2.33.2.</b>
+                    
+                    IntStream/LongStream/DoubleStream
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.33.3" data-path="../java.util.Stream/Collector.html">
+            
+                <a href="../java.util.Stream/Collector.html">
+            
+                    
+                        <b>1.5.2.33.3.</b>
+                    
+                    Collector
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.33.4" data-path="../java.util.Stream/Collectors.html">
+            
+                <a href="../java.util.Stream/Collectors.html">
+            
+                    
+                        <b>1.5.2.33.4.</b>
+                    
+                    Collectors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.33.5" data-path="../java.util.Stream/StreamSupport.html">
+            
+                <a href="../java.util.Stream/StreamSupport.html">
+            
+                    
+                        <b>1.5.2.33.5.</b>
+                    
+                    StreamSupport
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34" data-path="../java.util.function/java.util.function.html">
+            
+                <a href="../java.util.function/java.util.function.html">
+            
+                    
+                        <b>1.5.2.34.</b>
+                    
+                    java.util.function
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.34.1" data-path="../java.util.function/Predicate.html">
+            
+                <a href="../java.util.function/Predicate.html">
+            
+                    
+                        <b>1.5.2.34.1.</b>
+                    
+                    Predicate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.2" data-path="../java.util.function/IntPredicate.html">
+            
+                <a href="../java.util.function/IntPredicate.html">
+            
+                    
+                        <b>1.5.2.34.2.</b>
+                    
+                    IntPredicate/LongPredict/DoublePredict
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.3" data-path="../java.util.function/BiPredict.html">
+            
+                <a href="../java.util.function/BiPredict.html">
+            
+                    
+                        <b>1.5.2.34.3.</b>
+                    
+                    BiPredict
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.4" data-path="../java.util.function/Consumer.html">
+            
+                <a href="../java.util.function/Consumer.html">
+            
+                    
+                        <b>1.5.2.34.4.</b>
+                    
+                    Consumer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.5" data-path="../java.util.function/IntConsumer.html">
+            
+                <a href="../java.util.function/IntConsumer.html">
+            
+                    
+                        <b>1.5.2.34.5.</b>
+                    
+                    IntConsumer/LongConsumer/DoubleConsumer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.6" data-path="../java.util.function/BiConsumer.html">
+            
+                <a href="../java.util.function/BiConsumer.html">
+            
+                    
+                        <b>1.5.2.34.6.</b>
+                    
+                    BiConsumer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.7" data-path="../java.util.function/ObjIntConsumer.html">
+            
+                <a href="../java.util.function/ObjIntConsumer.html">
+            
+                    
+                        <b>1.5.2.34.7.</b>
+                    
+                    ObjIntConsumer/ObjLongConsumer/object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.8" data-path="../java.util.function/Function.html">
+            
+                <a href="../java.util.function/Function.html">
+            
+                    
+                        <b>1.5.2.34.8.</b>
+                    
+                    Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.9" data-path="../java.util.function/IntFunction.html">
+            
+                <a href="../java.util.function/IntFunction.html">
+            
+                    
+                        <b>1.5.2.34.9.</b>
+                    
+                    IntFunction/LongFunction/DoubleFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.10" data-path="../java.util.function/IntToLongFunction.html">
+            
+                <a href="../java.util.function/IntToLongFunction.html">
+            
+                    
+                        <b>1.5.2.34.10.</b>
+                    
+                    IntToLongFunction/IntToDoubleFunction/LongToDoubleFunction/LongToIntFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.11" data-path="../java.util.function/ToIntFunction.html">
+            
+                <a href="../java.util.function/ToIntFunction.html">
+            
+                    
+                        <b>1.5.2.34.11.</b>
+                    
+                    ToIntFunction/ToDoubleFunction/ToLongFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.12" data-path="../java.util.function/BiFunction.html">
+            
+                <a href="../java.util.function/BiFunction.html">
+            
+                    
+                        <b>1.5.2.34.12.</b>
+                    
+                    BiFunction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.13" data-path="../java.util.function/UnaryOperator.html">
+            
+                <a href="../java.util.function/UnaryOperator.html">
+            
+                    
+                        <b>1.5.2.34.13.</b>
+                    
+                    UnaryOperator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.14" data-path="../java.util.function/BinaryOperator.html">
+            
+                <a href="../java.util.function/BinaryOperator.html">
+            
+                    
+                        <b>1.5.2.34.14.</b>
+                    
+                    BinaryOperator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.15" data-path="../java.util.function/Supplier.html">
+            
+                <a href="../java.util.function/Supplier.html">
+            
+                    
+                        <b>1.5.2.34.15.</b>
+                    
+                    Supplier
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.34.16" data-path="../java.util.function/BooleanSupplier.html">
+            
+                <a href="../java.util.function/BooleanSupplier.html">
+            
+                    
+                        <b>1.5.2.34.16.</b>
+                    
+                    BooleanSupplier/IntSupplier/LongSupplier/DoubleSupplier
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35" data-path="java.util.concurrent.html">
+            
+                <a href="java.util.concurrent.html">
+            
+                    
+                        <b>1.5.2.35.</b>
+                    
+                    java.util.concurrent
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.35.1" data-path="Callable.html">
+            
+                <a href="Callable.html">
+            
+                    
+                        <b>1.5.2.35.1.</b>
+                    
+                    Callable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.2" data-path="Future.html">
+            
+                <a href="Future.html">
+            
+                    
+                        <b>1.5.2.35.2.</b>
+                    
+                    Future
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.3" data-path="FutureTask.html">
+            
+                <a href="FutureTask.html">
+            
+                    
+                        <b>1.5.2.35.3.</b>
+                    
+                    FutureTask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.4" data-path="ConcurrentHashMap.html">
+            
+                <a href="ConcurrentHashMap.html">
+            
+                    
+                        <b>1.5.2.35.4.</b>
+                    
+                    ConcurrentHashMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.5" data-path="CountDownLatch.html">
+            
+                <a href="CountDownLatch.html">
+            
+                    
+                        <b>1.5.2.35.5.</b>
+                    
+                    CountDownLatch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.6" data-path="CyclicBarrier.html">
+            
+                <a href="CyclicBarrier.html">
+            
+                    
+                        <b>1.5.2.35.6.</b>
+                    
+                    CyclicBarrier
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.7" data-path="Semaphore.html">
+            
+                <a href="Semaphore.html">
+            
+                    
+                        <b>1.5.2.35.7.</b>
+                    
+                    Semaphore
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.8" data-path="Executor.html">
+            
+                <a href="Executor.html">
+            
+                    
+                        <b>1.5.2.35.8.</b>
+                    
+                    Executor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.9" data-path="ExecutorService.html">
+            
+                <a href="ExecutorService.html">
+            
+                    
+                        <b>1.5.2.35.9.</b>
+                    
+                    ExecutorService
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2.35.10" data-path="ThreadPoolExecutor.html">
+            
+                <a href="ThreadPoolExecutor.html">
+            
+                    
+                        <b>1.5.2.35.10.</b>
+                    
+                    ThreadPoolExecutor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.11" data-path="BlockingQueue.html">
+            
+                <a href="BlockingQueue.html">
+            
+                    
+                        <b>1.5.2.35.11.</b>
+                    
+                    BlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.12" data-path="ArrayBlockingQueue.html">
+            
+                <a href="ArrayBlockingQueue.html">
+            
+                    
+                        <b>1.5.2.35.12.</b>
+                    
+                    ArrayBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.13" data-path="LinkedBlockingQueue.html">
+            
+                <a href="LinkedBlockingQueue.html">
+            
+                    
+                        <b>1.5.2.35.13.</b>
+                    
+                    LinkedBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.14" data-path="SynchronousBlockingQueue.html">
+            
+                <a href="SynchronousBlockingQueue.html">
+            
+                    
+                        <b>1.5.2.35.14.</b>
+                    
+                    SynchronousBlockingQueue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.15" data-path="Executors.html">
+            
+                <a href="Executors.html">
+            
+                    
+                        <b>1.5.2.35.15.</b>
+                    
+                    Executors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.16" data-path="ScheduledThreadPollExecutor.html">
+            
+                <a href="ScheduledThreadPollExecutor.html">
+            
+                    
+                        <b>1.5.2.35.16.</b>
+                    
+                    ScheduledThreadPollExecutor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.17" data-path="java.util.concurrent.atomic/java.util.concurrent.atomic.html">
+            
+                <a href="java.util.concurrent.atomic/java.util.concurrent.atomic.html">
+            
+                    
+                        <b>1.5.2.35.17.</b>
+                    
+                    java.util.concurrent.atomic
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.35.17.1" data-path="java.util.concurrent.atomic/AtomicReference.html">
+            
+                <a href="java.util.concurrent.atomic/AtomicReference.html">
+            
+                    
+                        <b>1.5.2.35.17.1.</b>
+                    
+                    AtomicReference
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18" data-path="java.util.concurrent.locks/java.util.concurrent.locks.html">
+            
+                <a href="java.util.concurrent.locks/java.util.concurrent.locks.html">
+            
+                    
+                        <b>1.5.2.35.18.</b>
+                    
+                    java.util.concurrent.locks
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.35.18.1" data-path="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                <a href="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                    
+                        <b>1.5.2.35.18.1.</b>
+                    
+                    AbstractQueuedSynchronizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.2" data-path="java.util.concurrent.locks/LockSupport.html">
+            
+                <a href="java.util.concurrent.locks/LockSupport.html">
+            
+                    
+                        <b>1.5.2.35.18.2.</b>
+                    
+                    LockSupport
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.3" data-path="java.util.concurrent.locks/Lock.html">
+            
+                <a href="java.util.concurrent.locks/Lock.html">
+            
+                    
+                        <b>1.5.2.35.18.3.</b>
+                    
+                    Lock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.4" data-path="java.util.concurrent.locks/ReentrantLock.html">
+            
+                <a href="java.util.concurrent.locks/ReentrantLock.html">
+            
+                    
+                        <b>1.5.2.35.18.4.</b>
+                    
+                    ReentrantLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.5" data-path="java.util.concurrent.locks/ReentrantReadWriteLock.html">
+            
+                <a href="java.util.concurrent.locks/ReentrantReadWriteLock.html">
+            
+                    
+                        <b>1.5.2.35.18.5.</b>
+                    
+                    ReentrantReadWriteLock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.6" data-path="java.util.concurrent.locks/Condition.html">
+            
+                <a href="java.util.concurrent.locks/Condition.html">
+            
+                    
+                        <b>1.5.2.35.18.6.</b>
+                    
+                    Condition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.7" data-path="java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
+            
+                <a href="java.util.concurrent.locks/AbstractOwnableSynchronizer.html">
+            
+                    
+                        <b>1.5.2.35.18.7.</b>
+                    
+                    AbstractOwnableSynchronizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.35.18.8" data-path="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                <a href="java.util.concurrent.locks/AbstractQueuedSynchronizer.html">
+            
+                    
+                        <b>1.5.2.35.18.8.</b>
+                    
+                    AbstractQueuedSynchronizer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../java.io/java-io.html">
+            
+                <a href="../../java.io/java-io.html">
+            
+                    
+                        <b>1.5.3.</b>
+                    
+                    java.io
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../java.io/File.html">
+            
+                <a href="../../java.io/File.html">
+            
+                    
+                        <b>1.5.3.1.</b>
+                    
+                    File
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.2" data-path="../../java.io/Reader.html">
+            
+                <a href="../../java.io/Reader.html">
+            
+                    
+                        <b>1.5.3.2.</b>
+                    
+                    Reader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.3" data-path="../../java.io/BufferedReader.html">
+            
+                <a href="../../java.io/BufferedReader.html">
+            
+                    
+                        <b>1.5.3.3.</b>
+                    
+                    BufferedReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.4" data-path="../../java.io/InputStreamReader.html">
+            
+                <a href="../../java.io/InputStreamReader.html">
+            
+                    
+                        <b>1.5.3.4.</b>
+                    
+                    InputStreamReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.5" data-path="../../java.io/StringReader.html">
+            
+                <a href="../../java.io/StringReader.html">
+            
+                    
+                        <b>1.5.3.5.</b>
+                    
+                    StringReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.6" data-path="../../java.io/FileReader.html">
+            
+                <a href="../../java.io/FileReader.html">
+            
+                    
+                        <b>1.5.3.6.</b>
+                    
+                    FileReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.7" data-path="../../java.io/PipedReader.html">
+            
+                <a href="../../java.io/PipedReader.html">
+            
+                    
+                        <b>1.5.3.7.</b>
+                    
+                    PipedReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.8" data-path="../../java.io/CharArrayReader.html">
+            
+                <a href="../../java.io/CharArrayReader.html">
+            
+                    
+                        <b>1.5.3.8.</b>
+                    
+                    CharArrayReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.9" data-path="../../java.io/FilterReader.html">
+            
+                <a href="../../java.io/FilterReader.html">
+            
+                    
+                        <b>1.5.3.9.</b>
+                    
+                    FilterReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.10" data-path="../../java.io/PushbackReader.html">
+            
+                <a href="../../java.io/PushbackReader.html">
+            
+                    
+                        <b>1.5.3.10.</b>
+                    
+                    PushbackReader
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.11" data-path="../../java.io/Writer.html">
+            
+                <a href="../../java.io/Writer.html">
+            
+                    
+                        <b>1.5.3.11.</b>
+                    
+                    Writer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.12" data-path="../../java.io/PipedWriter.html">
+            
+                <a href="../../java.io/PipedWriter.html">
+            
+                    
+                        <b>1.5.3.12.</b>
+                    
+                    PipedWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.13" data-path="../../java.io/CharArrayWriter.html">
+            
+                <a href="../../java.io/CharArrayWriter.html">
+            
+                    
+                        <b>1.5.3.13.</b>
+                    
+                    CharArrayWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3.14" data-path="../../java.io/FilterWriter.html">
+            
+                <a href="../../java.io/FilterWriter.html">
+            
+                    
+                        <b>1.5.3.14.</b>
+                    
+                    FilterWriter
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../java.nio/java-nio.html">
+            
+                <a href="../../java.nio/java-nio.html">
+            
+                    
+                        <b>1.5.4.</b>
+                    
+                    java.nio
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../java.nio/java.nio.Charset/java-Charset.html">
+            
+                <a href="../../java.nio/java.nio.Charset/java-Charset.html">
+            
+                    
+                        <b>1.5.4.1.</b>
+                    
+                    java.Charset
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1.1" data-path="../../java.nio/java.nio.Charset/Charset.html">
+            
+                <a href="../../java.nio/java.nio.Charset/Charset.html">
+            
+                    
+                        <b>1.5.4.1.1.</b>
+                    
+                    Charset
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../java.nio/java.nio.Channels/java.nio.Channels.html">
+            
+                <a href="../../java.nio/java.nio.Channels/java.nio.Channels.html">
+            
+                    
+                        <b>1.5.4.2.</b>
+                    
+                    java.nio.Channels
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.2.1" data-path="../../java.nio/java.nio.Channels/Channel.html">
+            
+                <a href="../../java.nio/java.nio.Channels/Channel.html">
+            
+                    
+                        <b>1.5.4.2.1.</b>
+                    
+                    Channel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2.2" data-path="../../java.nio/java.nio.Channels/FileChannel.html">
+            
+                <a href="../../java.nio/java.nio.Channels/FileChannel.html">
+            
+                    
+                        <b>1.5.4.2.2.</b>
+                    
+                    FileChannel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2.3" data-path="../../java.nio/java.nio.Channels/DatagramChannel.html">
+            
+                <a href="../../java.nio/java.nio.Channels/DatagramChannel.html">
+            
+                    
+                        <b>1.5.4.2.3.</b>
+                    
+                    DatagramChannel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2.4" data-path="../../java.nio/java.nio.Channels/SocketChannel.html">
+            
+                <a href="../../java.nio/java.nio.Channels/SocketChannel.html">
+            
+                    
+                        <b>1.5.4.2.4.</b>
+                    
+                    SocketChannel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2.5" data-path="../../java.nio/java.nio.Channels/ServerSocketChannel.html">
+            
+                <a href="../../java.nio/java.nio.Channels/ServerSocketChannel.html">
+            
+                    
+                        <b>1.5.4.2.5.</b>
+                    
+                    ServerSocketChannel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2.6" data-path="../../java.nio/java.nio.Channels/Selector.html">
+            
+                <a href="../../java.nio/java.nio.Channels/Selector.html">
+            
+                    
+                        <b>1.5.4.2.6.</b>
+                    
+                    Selector
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../java.nio/ByteBuffer.html">
+            
+                <a href="../../java.nio/ByteBuffer.html">
+            
+                    
+                        <b>1.5.4.3.</b>
+                    
+                    ByteBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../../java.nio/ShortBuffer.html">
+            
+                <a href="../../java.nio/ShortBuffer.html">
+            
+                    
+                        <b>1.5.4.4.</b>
+                    
+                    ShortBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="../../java.nio/IntBuffer.html">
+            
+                <a href="../../java.nio/IntBuffer.html">
+            
+                    
+                        <b>1.5.4.5.</b>
+                    
+                    IntBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.6" data-path="../../java.nio/LongBuffer.html">
+            
+                <a href="../../java.nio/LongBuffer.html">
+            
+                    
+                        <b>1.5.4.6.</b>
+                    
+                    LongBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.7" data-path="../../java.nio/FloatBuffer.html">
+            
+                <a href="../../java.nio/FloatBuffer.html">
+            
+                    
+                        <b>1.5.4.7.</b>
+                    
+                    FloatBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.8" data-path="../../java.nio/DoubleBuffer.html">
+            
+                <a href="../../java.nio/DoubleBuffer.html">
+            
+                    
+                        <b>1.5.4.8.</b>
+                    
+                    DoubleBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.9" data-path="../../java.nio/CharBuffer.html">
+            
+                <a href="../../java.nio/CharBuffer.html">
+            
+                    
+                        <b>1.5.4.9.</b>
+                    
+                    CharBuffer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                        <b>1.6.</b>
+                    
+                    设计模式
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../../设计模式/六大原则/六大原则.html">
+            
+                <a href="../../../设计模式/六大原则/六大原则.html">
+            
+                    
+                        <b>1.6.1.</b>
+                    
+                    六大原则
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1.1" data-path="../../../设计模式/六大原则/单一原则.html">
+            
+                <a href="../../../设计模式/六大原则/单一原则.html">
+            
+                    
+                        <b>1.6.1.1.</b>
+                    
+                    单一原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.2" data-path="../../../设计模式/六大原则/里氏替换原则.html">
+            
+                <a href="../../../设计模式/六大原则/里氏替换原则.html">
+            
+                    
+                        <b>1.6.1.2.</b>
+                    
+                    里氏替换原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.3" data-path="../../../设计模式/六大原则/依赖倒置原则.html">
+            
+                <a href="../../../设计模式/六大原则/依赖倒置原则.html">
+            
+                    
+                        <b>1.6.1.3.</b>
+                    
+                    依赖倒置原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.4" data-path="../../../设计模式/六大原则/接口隔离原则.html">
+            
+                <a href="../../../设计模式/六大原则/接口隔离原则.html">
+            
+                    
+                        <b>1.6.1.4.</b>
+                    
+                    接口隔离原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.5" data-path="../../../设计模式/六大原则/迪米特法则.html">
+            
+                <a href="../../../设计模式/六大原则/迪米特法则.html">
+            
+                    
+                        <b>1.6.1.5.</b>
+                    
+                    迪米特法则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.1.6" data-path="../../../设计模式/六大原则/开闭原则.html">
+            
+                <a href="../../../设计模式/六大原则/开闭原则.html">
+            
+                    
+                        <b>1.6.1.6.</b>
+                    
+                    开闭原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../../设计模式/设计模式/设计模式.html">
+            
+                <a href="../../../设计模式/设计模式/设计模式.html">
+            
+                    
+                        <b>1.6.2.</b>
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../../../设计模式/设计模式/创建型模式/创建型模式.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/创建型模式.html">
+            
+                    
+                        <b>1.6.2.1.</b>
+                    
+                    创建型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1.1" data-path="../../../设计模式/设计模式/创建型模式/Abstract Factory.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/Abstract Factory.html">
+            
+                    
+                        <b>1.6.2.1.1.</b>
+                    
+                    Abstract Factory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.1.2" data-path="../../../设计模式/设计模式/创建型模式/Factory Method.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/Factory Method.html">
+            
+                    
+                        <b>1.6.2.1.2.</b>
+                    
+                    Factory Method
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.1.3" data-path="../../../设计模式/设计模式/创建型模式/Singleton.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/Singleton.html">
+            
+                    
+                        <b>1.6.2.1.3.</b>
+                    
+                    Singleton
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.1.4" data-path="../../../设计模式/设计模式/创建型模式/Builder.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/Builder.html">
+            
+                    
+                        <b>1.6.2.1.4.</b>
+                    
+                    Builder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.1.5" data-path="../../../设计模式/设计模式/创建型模式/Prototype.html">
+            
+                <a href="../../../设计模式/设计模式/创建型模式/Prototype.html">
+            
+                    
+                        <b>1.6.2.1.5.</b>
+                    
+                    Prototype
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2" data-path="../../../设计模式/设计模式/结构型模式/结构型模式.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/结构型模式.html">
+            
+                    
+                        <b>1.6.2.2.</b>
+                    
+                    结构型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.2.1" data-path="../../../设计模式/设计模式/结构型模式/Adapter.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Adapter.html">
+            
+                    
+                        <b>1.6.2.2.1.</b>
+                    
+                    Adapter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.2" data-path="../../../设计模式/设计模式/结构型模式/Bridge.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Bridge.html">
+            
+                    
+                        <b>1.6.2.2.2.</b>
+                    
+                    Bridge
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.3" data-path="../../../设计模式/设计模式/结构型模式/Composite.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Composite.html">
+            
+                    
+                        <b>1.6.2.2.3.</b>
+                    
+                    Composite
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.4" data-path="../../../设计模式/设计模式/结构型模式/Decorator.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Decorator.html">
+            
+                    
+                        <b>1.6.2.2.4.</b>
+                    
+                    Decorator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.5" data-path="../../../设计模式/设计模式/结构型模式/Facade.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Facade.html">
+            
+                    
+                        <b>1.6.2.2.5.</b>
+                    
+                    Facade
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.6" data-path="../../../设计模式/设计模式/结构型模式/Flyweight.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Flyweight.html">
+            
+                    
+                        <b>1.6.2.2.6.</b>
+                    
+                    Flyweight
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.2.7" data-path="../../../设计模式/设计模式/结构型模式/Proxy.html">
+            
+                <a href="../../../设计模式/设计模式/结构型模式/Proxy.html">
+            
+                    
+                        <b>1.6.2.2.7.</b>
+                    
+                    Proxy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3" data-path="../../../设计模式/设计模式/行为型模式/行为型模式.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/行为型模式.html">
+            
+                    
+                        <b>1.6.2.3.</b>
+                    
+                    行为型模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.3.1" data-path="../../../设计模式/设计模式/行为型模式/Chain of Responsibility.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Chain of Responsibility.html">
+            
+                    
+                        <b>1.6.2.3.1.</b>
+                    
+                    Chain of Responsibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.2" data-path="../../../设计模式/设计模式/行为型模式/Interpreter.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Interpreter.html">
+            
+                    
+                        <b>1.6.2.3.2.</b>
+                    
+                    Interpreter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.3" data-path="../../../设计模式/设计模式/行为型模式/Template Method.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Template Method.html">
+            
+                    
+                        <b>1.6.2.3.3.</b>
+                    
+                    Template Method
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.4" data-path="../../../设计模式/设计模式/行为型模式/Command.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Command.html">
+            
+                    
+                        <b>1.6.2.3.4.</b>
+                    
+                    Command
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.5" data-path="../../../设计模式/设计模式/行为型模式/Iterator.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Iterator.html">
+            
+                    
+                        <b>1.6.2.3.5.</b>
+                    
+                    Iterator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.6" data-path="../../../设计模式/设计模式/行为型模式/Mediator.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Mediator.html">
+            
+                    
+                        <b>1.6.2.3.6.</b>
+                    
+                    Mediator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.7" data-path="../../../设计模式/设计模式/行为型模式/Memento.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Memento.html">
+            
+                    
+                        <b>1.6.2.3.7.</b>
+                    
+                    Memento
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.8" data-path="../../../设计模式/设计模式/行为型模式/Observer.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Observer.html">
+            
+                    
+                        <b>1.6.2.3.8.</b>
+                    
+                    Observer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.9" data-path="../../../设计模式/设计模式/行为型模式/State.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/State.html">
+            
+                    
+                        <b>1.6.2.3.9.</b>
+                    
+                    State
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.10" data-path="../../../设计模式/设计模式/行为型模式/Strategy.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Strategy.html">
+            
+                    
+                        <b>1.6.2.3.10.</b>
+                    
+                    Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2.3.11" data-path="../../../设计模式/设计模式/行为型模式/Visitor.html">
+            
+                <a href="../../../设计模式/设计模式/行为型模式/Visitor.html">
+            
+                    
+                        <b>1.6.2.3.11.</b>
+                    
+                    Visitor
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../../Java 8新特性/Java 8新特性.html">
+            
+                <a href="../../../Java 8新特性/Java 8新特性.html">
+            
+                    
+                        <b>1.7.</b>
+                    
+                    Java 8 新特性
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                <a href="../../../Java 8新特性/基于-parameters编译器标志.html">
+            
+                    
+                        <b>1.7.1.</b>
+                    
+                    基于-parameters编译器标志
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../../Java 8新特性/流.html">
+            
+                <a href="../../../Java 8新特性/流.html">
+            
+                    
+                        <b>1.7.2.</b>
+                    
+                    流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../../Java 8新特性/行为参数化——lambda表达式.html">
+            
+                <a href="../../../Java 8新特性/行为参数化——lambda表达式.html">
+            
+                    
+                        <b>1.7.3.</b>
+                    
+                    行为参数化——lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../../Java 8新特性/接口中可以定义非抽象方法了.html">
+            
+                <a href="../../../Java 8新特性/接口中可以定义非抽象方法了.html">
+            
+                    
+                        <b>1.7.4.</b>
+                    
+                    接口中可以定义非抽象方法了
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                <a href="../../../Java 8新特性/@FunctionalInterface注解.html">
+            
+                    
+                        <b>1.7.5.</b>
+                    
+                    @FunctionalInterface注解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../../Java 8新特性/Effectively final.html">
+            
+                <a href="../../../Java 8新特性/Effectively final.html">
+            
+                    
+                        <b>1.7.6.</b>
+                    
+                    Effectively final
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../../../Java 8新特性/Predicate.html">
+            
+                <a href="../../../Java 8新特性/Predicate.html">
+            
+                    
+                        <b>1.7.7.</b>
+                    
+                    Predicate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../../Java 8新特性/HashMap改进.html">
+            
+                <a href="../../../Java 8新特性/HashMap改进.html">
+            
+                    
+                        <b>1.7.8.</b>
+                    
+                    HashMap改进
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../../Java 8新特性/方法构造和函数引用.html">
+            
+                <a href="../../../Java 8新特性/方法构造和函数引用.html">
+            
+                    
+                        <b>1.7.9.</b>
+                    
+                    方法构造和函数引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.10" data-path="../../../Java 8新特性/map操作.html">
+            
+                <a href="../../../Java 8新特性/map操作.html">
+            
+                    
+                        <b>1.7.10.</b>
+                    
+                    map操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                        <b>1.8.</b>
+                    
+                    常用工具
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../../常用工具/FastJson.html">
+            
+                <a href="../../../常用工具/FastJson.html">
+            
+                    
+                        <b>1.8.1.</b>
+                    
+                    FastJson
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                        <b>1.9.</b>
+                    
+                    错题集
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../../错题集/错题集1.html">
+            
+                <a href="../../../错题集/错题集1.html">
+            
+                    
+                        <b>1.9.1.</b>
+                    
+                    错题集1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../../错题集/错题集2.html">
+            
+                <a href="../../../错题集/错题集2.html">
+            
+                    
+                        <b>1.9.2.</b>
+                    
+                    错题集2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../../错题集/错题集3.html">
+            
+                <a href="../../../错题集/错题集3.html">
+            
+                    
+                        <b>1.9.3.</b>
+                    
+                    错题集3
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../../错题集/错题集4.html">
+            
+                <a href="../../../错题集/错题集4.html">
+            
+                    
+                        <b>1.9.4.</b>
+                    
+                    错题集4
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >ThreadPoolExecutor</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-anchor"></i><ul><li><a href="#threadpoolexecutor">ThreadPoolExecutor</a></li><ul><li><a href="#public-class-threadpoolexecutor-extends-abstractexecutorservice">public class ThreadPoolExecutor extends AbstractExecutorService</a></li><li><a href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;">&#x6784;&#x9020;&#x65B9;&#x6CD5;</a></li><ul><li><a href="#corepoolsize">corePoolSize</a></li><li><a href="#maximumpoolsize">maximumPoolSize</a></li><li><a href="#workqueue">workQueue</a></li><li><a href="#keepalivetime&#x548C;unit">keepAliveTime&#x548C;unit</a></li><li><a href="#handler">handler</a></li></ul><li><a href="#public-void-executerunnable-command">public void execute(Runnable command){..}</a></li><li><a href="#public-void-shutdown-">public void shutdown() {..}</a></li><li><a href="#public-list-shutdownnow-">public List shutdownNow() {..}</a></li></ul></ul></div><a href="#threadpoolexecutor" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="threadpoolexecutor"><a name="threadpoolexecutor" class="anchor-navigation-ex-anchor" href="#threadpoolexecutor"><i class="fa fa-link" aria-hidden="true"></i></a>ThreadPoolExecutor</h1>
+<p>&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x4E86;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+<ol>
+<li>&#x51CF;&#x5C11;&#x4E86;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x8C03;&#x7528;&#x5F00;&#x9500;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6267;&#x884C;&#x5927;&#x91CF;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x7684;&#x662F;&#x5076;&#x63D0;&#x4F9B;&#x4E86;&#x6539;&#x8FDB;&#x7684;&#x6027;&#x80FD;&#x3002;</li>
+<li>&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x9650;&#x5236;&#x548C;&#x7BA1;&#x7406;&#x8D44;&#x6E90;&#xFF08;&#x5305;&#x62EC;&#x7EBF;&#x7A0B;&#xFF09;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6BCF;&#x4E2A;<code>ThreadPoolExecutor</code>&#x8FD8;&#x7EF4;&#x62A4;&#x4E86;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x4F8B;&#x5982;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x4EFB;&#x52A1;&#x7684;&#x6570;&#x91CF;&#x3002;</li>
+</ol>
+<p><code>ThreadPoolExecutor</code>&#x662F;&#x6211;&#x4EEC;&#x6700;&#x5E38;&#x7528;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#xFF0C;&#x5176;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/ThreadPoolExecutor_1.png" alt="ThreadPoolExecutor">
+<img src="http://ovn0i3kdg.bkt.clouddn.com/ThreadPoolExecutor_2.png" alt="ThreadPoolExecutor">
+<img src="http://ovn0i3kdg.bkt.clouddn.com/ThreadPoolExecutor_3.png" alt="ThreadPoolExecutor"></p>
+<p>&#x8FD9;&#x4E2A;&#x7C7B;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x53EF;&#x8C03;&#x53C2;&#x6570;&#x548C;&#x53EF;&#x6269;&#x5C55;&#x6027;&#x7684;&#x94A9;&#x5B50;&#xFF0C;&#x4F46;&#x662F;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x6700;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x4F7F;&#x7528;<code>Executors</code>&#x5DE5;&#x5382;&#x7C7B;&#x4E2D;&#x7684;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ul>
+<li><code>Executors.newCachedThreadPool()</code>&#xFF1A;&#x521B;&#x5EFA;&#x65E0;&#x754C;&#x7EBF;&#x7A0B;&#x6C60;&#xFF0C;&#x5E26;&#x81EA;&#x52A8;&#x7EBF;&#x7A0B;&#x56DE;&#x6536;&#x3002;</li>
+<li><code>Executors.newFixedThreadPool&#xFF08;int)</code>&#xFF1A;&#x521B;&#x5EFA;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#x3002;</li>
+<li><code>Executors.newSingleThreadExecutor&#xFF08;&#xFF09;</code>&#xFF1A;&#x521B;&#x5EFA;&#x5355;&#x7EBF;&#x7A0B;&#x8BDD;&#x7EBF;&#x7A0B;&#x6C60;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x4E9B;&#x662F;&#x6211;&#x4EEC;&#x5E38;&#x89C1;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x914D;&#x7F6E;&#x9884;&#x8BBE;&#xFF0C;&#x6781;&#x5C11;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x914D;&#x7F6E;&#x548C;&#x8C03;&#x6574;&#x3002;&#x914D;&#x7F6E;&#x548C;&#x8C03;&#x6574;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x53EF;&#x4EE5;&#x6709;&#x4EE5;&#x4E0B;&#x9009;&#x62E9;&#xFF08;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x7FFB;&#x8BD1;&#x81EA;<a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java 8 doc API</a>&#x4E2D;<code>ThreadPoolExecutor</code>&#x7684;&#x8BF4;&#x660E;&#xFF09;&#xFF1A;</p>
+<ul>
+<li><p>&#x6838;&#x5FC3;&#x548C;&#x6700;&#x5927;&#x6C60;&#x5927;&#x5C0F;
+<code>ThreadPoolExecutor</code>&#x5C06;&#x6839;&#x636E;<code>corePoolSize</code>&#xFF08;&#x53C2;&#x9605;<code>getCorePoolSize</code>&#xFF09;&#x548C;<code>maximumPoolSize</code>&#xFF08;&#x8BF7;&#x53C2;&#x9605;<code>getMaximumPoolSize</code>&#xFF09;&#x8BBE;&#x7F6E;&#x7684;&#x8FB9;&#x754C;&#x81EA;&#x52A8;&#x8C03;&#x6574;&#x7EBF;&#x7A0B;&#x6C60;&#x5927;&#x5C0F;&#xFF08;&#x53C2;&#x9605;<code>getPoolSize</code>&#xFF09;&#x3002;&#x5F53;&#x65B9;&#x6CD5;<code>execute(Runnable)</code>&#x4E2D;&#x63D0;&#x4EA4;&#x65B0;&#x4EFB;&#x52A1;&#x5E76;&#x4E14;&#x5C11;&#x4E8E;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x5904;&#x4E8E;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x5373;&#x4F7F;&#x5176;&#x4ED6;&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#x5904;&#x4E8E;&#x7A7A;&#x95F2;&#x72B6;&#x6001;&#xFF0C;&#x4E5F;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7EBF;&#x7A0B;&#x6765;&#x5904;&#x7406;&#x8BE5;&#x8BF7;&#x6C42;&#x3002;&#x5982;&#x679C;&#x6709;&#x591A;&#x4F59;<code>corePoolSize</code>&#x4F46;&#x662F;&#x5C11;&#x4E8E;<code>maximumPoolSize</code>&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x5219;&#x4EC5;&#x5F53;&#x961F;&#x5217;&#x5DF2;&#x6EE1;&#x65F6;&#x624D;&#x4F1A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;<code>corePoolSize</code>&#x548C;<code>maximumPoolSize</code>&#x76F8;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;&#x7684;&#x7EBF;&#x7A0B;&#x6C60;&#xFF1B;&#x901A;&#x8FC7;<code>maximumPoolSize</code>&#x8BBE;&#x7F6E;&#x4E3A;&#x57FA;&#x672C;&#x65E0;&#x754C;&#x7684;&#x503C;&#xFF08;&#x6BD4;&#x5982;<code>Integer.MAX_VALUE</code>&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA9;&#x7EBF;&#x7A0B;&#x6C60;&#x5BB9;&#x7EB3;&#x4EFB;&#x610F;&#x6570;&#x91CF;&#x7684;&#x5E76;&#x53D1;&#x4EFB;&#x52A1;&#x3002;&#x901A;&#x5E38;&#xFF0C;&#x6838;&#x5FC3;&#x548C;&#x6700;&#x5927;&#x6C60;&#x5927;&#x5C0F;&#x53EA;&#x5728;&#x6784;&#x5EFA;&#x65F6;&#x8BBE;&#x7F6E;&#xFF0C;&#x4F46;&#x662F;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>setCorePoolSize(int)</code>&#x548C;<code>setMaxmumPoolSize(int)</code>&#x6765;&#x52A8;&#x6001;&#x66F4;&#x6539;&#x3002;</p>
+</li>
+<li><p>&#x6309;&#x9700;&#x5EFA;&#x8BBE;
+&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5373;&#x4F7F;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x6700;&#x521D;&#x662F;&#x5728;&#x65B0;&#x4EFB;&#x52A1;&#x5230;&#x8FBE;&#x65F6;&#x521B;&#x5EFA;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;<code>prestartCoreThread()</code>&#x6216;<code>prestartAllCoreThreads()</code>&#x6765;&#x52A8;&#x6001;&#x91CD;&#x5199;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x975E;&#x7A7A;&#x961F;&#x5217;&#x6784;&#x5EFA;&#x6C60;&#xFF0C;&#x5219;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x9884;&#x5148;&#x542F;&#x52A8;&#x7EBF;&#x7A0B;&#x3002;</p>
+</li>
+<li><p>&#x521B;&#x5EFA;&#x65B0;&#x7EBF;&#x7A0B;
+&#x6CA1;&#x6709;&#x7279;&#x522B;&#x8BF4;&#x660E;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;<code>Executors.defaultThreadFactory()</code>&#xFF0C;&#x5B83;&#x521B;&#x5EFA;&#x7684;&#x7EBF;&#x7A0B;&#x90FD;&#x5728;&#x540C;&#x4E00;&#x4E2A;<code>ThreadGroup</code>&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;<code>NORM_PRIORITY</code>&#x4F18;&#x5148;&#x7EA7;&#x548C;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#x3002;&#x901A;&#x8FC7;&#x63D0;&#x4F9B;&#x4E0D;&#x540C;&#x7684;<code>ThreadFactory</code>&#xFF0C;&#x53EF;&#x4EE5;&#x66F4;&#x6539;&#x7EBF;&#x7A0B;&#x7684;&#x540D;&#x79F0;&#x3001;&#x7EBF;&#x7A0B;&#x7EC4;&#x3001;&#x4F18;&#x5148;&#x7EA7;&#x3001;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#x7B49;&#x3002;&#x5982;&#x679C;<code>ThreadFactory</code>&#x5728;&#x4ECE;<code>newThread</code>&#x8FD4;&#x56DE;<code>null</code>&#x65F6;&#x672A;&#x80FD;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#xFF0C;&#x5219;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x5C06;&#x7EE7;&#x7EED;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x4EFB;&#x52A1;&#x3002;&#x7EBF;&#x7A0B;&#x62E5;&#x6709;<code>modifyThread</code> RuntimePermission&#x3002;&#x5982;&#x679C;&#x5DE5;&#x4F5C;&#x7EBF;&#x7A0B;&#x6216;&#x4F7F;&#x7528;&#x8BE5;&#x6C60;&#x7684;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x4E0D;&#x5177;&#x6709;&#x6B64;&#x6743;&#x9650;&#xFF0C;&#x5219;&#x670D;&#x52A1;&#x53EF;&#x80FD;&#x964D;&#x7EA7;&#xFF0C;&#x914D;&#x7F6E;&#x66F4;&#x6539;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x53CA;&#x65F6;&#x751F;&#x6548;&#xFF0C;&#x5E76;&#x4E14;&#x5173;&#x95ED;&#x6C60;&#x53EF;&#x80FD;&#x4F1A;&#x4FDD;&#x6301;&#x53EF;&#x7EC8;&#x6B62;&#x4F46;&#x5C1A;&#x672A;&#x5B8C;&#x6210;&#x72B6;&#x6001;&#x3002;</p>
+</li>
+<li>&#x7EBF;&#x7A0B;&#x6D3B;&#x8DC3;&#x6570;&#x91CF;
+&#x5982;&#x679C;&#x6C60;&#x5F53;&#x524D;&#x62E5;&#x6709;&#x591A;&#x4E2A;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#xFF0C;&#x90A3;&#x4E48;&#x591A;&#x4F59;&#x7684;&#x7EBF;&#x7A0B;&#x5C06;&#x88AB;&#x7EC8;&#x6B62;&#xFF0C;&#x5982;&#x679C;&#x4ED6;&#x4EEC;&#x7684;&#x7A7A;&#x95F2;&#x65F6;&#x95F4;&#x5DF2;&#x7ECF;&#x8D85;&#x8FC7;&#x4E86;<code>keepAliveTime</code>&#xFF08;&#x8BF7;&#x53C2;&#x9605;<code>getKeepAliveTime(TimeUnit)</code>&#xFF09;&#x3002;&#x8FD9;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x5728;&#x4E0D;&#x79EF;&#x6781;&#x4F7F;&#x7528;&#x6C60;&#x65F6;&#x51CF;&#x5C11;&#x8D44;&#x6E90;&#x6D88;&#x8017;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x5982;&#x679C;&#x6C60;&#x5728;&#x4EE5;&#x540E;&#x53D8;&#x7684;&#x66F4;&#x52A0;&#x6D3B;&#x8DC3;&#xFF0C;&#x5219;&#x5C06;&#x6784;&#x5EFA;&#x65B0;&#x7EBF;&#x7A0B;&#x3002;&#x6B64;&#x53C2;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;<code>setKeepAliveTime(long, TimeUnit)</code>&#x52A8;&#x6001;&#x66F4;&#x6539;&#xFF0C;&#x4F7F;&#x7528;<code>Long.MAX_VALUE</code>&#x503C;&#x3001;<code>TimeUnit.NANOSECONDS</code>&#x53EF;&#x6709;&#x6548;&#x5730;&#x7981;&#x7528;&#x5728;&#x5173;&#x95ED;&#x4E4B;&#x524D;&#x7EC8;&#x6B62;&#x7A7A;&#x95F2;&#x7EBF;&#x7A0B;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4FDD;&#x6301;&#x6D3B;&#x52A8;&#x7B56;&#x7565;&#x4EC5;&#x9002;&#x7528;&#x4E8E;&#x5B58;&#x5728;&#x591A;&#x4F59;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x53EA;&#x8981;<code>keepAliveTime</code>&#x503C;&#x4E0D;&#x4E3A;0&#xFF0C;&#x65B9;&#x6CD5;<code>allowCoreThreadTimeOut(boolean)</code>&#x4E5F;&#x53EF;&#x7528;&#x4E8E;&#x5C06;&#x6B64;&#x8D85;&#x65F6;&#x7B56;&#x7565;&#x5E94;&#x7528;&#x4E8E;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x3002;</li>
+<li><p>&#x961F;&#x5217;
+&#x4EFB;&#x4F55;<code>BlockingQueue</code>&#x90FD;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4F20;&#x8F93;&#x548C;&#x4FDD;&#x5B58;&#x63D0;&#x4EA4;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x6B64;&#x961F;&#x5217;&#x7684;&#x4F7F;&#x7528;&#x4E0E;&#x6C60;&#x5927;&#x5C0F;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x5C11;&#x4E8E;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x90A3;&#x4E48;<code>Executor</code>&#x603B;&#x662F;&#x503E;&#x5411;&#x4E8E;&#x6DFB;&#x52A0;&#x65B0;&#x7EBF;&#x7A0B;&#x800C;&#x4E0D;&#x662F;&#x6392;&#x961F;&#x3002;</li>
+<li>&#x5982;&#x679C;<code>corePoolSize</code>&#x6216;&#x66F4;&#x591A;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x90A3;&#x4E48;<code>Executor</code>&#x603B;&#x662F;&#x503E;&#x5411;&#x4E8E;&#x6392;&#x961F;&#x8BF7;&#x6C42;&#x800C;&#x4E0D;&#x662F;&#x6DFB;&#x52A0;&#x65B0;&#x7EBF;&#x7A0B;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x8BF7;&#x6C42;&#x4E0D;&#x80FD;&#x6392;&#x961F;&#xFF0C;&#x5219;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7EBF;&#x7A0B;&#xFF0C;&#x9664;&#x975E;&#x8FD9;&#x4F1A;&#x8D85;&#x591A;<code>maximumPoolSize</code>&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8BE5;&#x4EFB;&#x52A1;&#x5C06;&#x88AB;&#x62D2;&#x7EDD;&#x3002;
+&#x6709;&#x4E09;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x6392;&#x961F;&#x7B56;&#x7565;&#xFF1A;</li>
+<li>&#x76F4;&#x63A5;&#x5207;&#x6362;&#x3002;&#x5BF9;&#x4E8E;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x9ED8;&#x8BA4;&#x9009;&#x62E9;&#x662F;<code>SynchronousQueue</code>&#xFF0C;&#x5B83;&#x5C06;&#x4EFB;&#x52A1;&#x4EA4;&#x7ED9;&#x4E0B;&#x57CE;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x4FDD;&#x7559;&#x3002;&#x8FD9;&#x91CC;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7EBF;&#x7A0B;&#x7ACB;&#x5373;&#x53EF;&#x7528;&#x6765;&#x8FD0;&#x884C;&#x5B83;&#xFF0C;&#x90A3;&#x4E48;&#x6392;&#x961F;&#x4EFB;&#x52A1;&#x7684;&#x5C1D;&#x8BD5;&#x5C06;&#x5931;&#x8D25;&#xFF0C;&#x56E0;&#x6B64;&#x5C06;&#x6784;&#x5EFA;&#x65B0;&#x7684;&#x65B0;&#x57CE;&#x3002;&#x6B64;&#x7B56;&#x7565;&#x548B;&#x5904;&#x7406;&#x53EF;&#x80FD;&#x5177;&#x6709;&#x5185;&#x90E8;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x7684;&#x8BF7;&#x6C42;&#x96C6;&#x65F6;&#x907F;&#x514D;&#x9501;&#x5B9A;&#x3002;&#x76F4;&#x63A5;&#x5207;&#x6362;&#x901A;&#x5E38;&#x9700;&#x8981;&#x65E0;&#x9650;&#x5236;&#x7684;<code>maximumPoolSize</code>&#x6765;&#x907F;&#x514D;&#x62D2;&#x7EDD;&#x65B0;&#x63D0;&#x4EA4;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x8FD9;&#x53CD;&#x8FC7;&#x6765;&#x53C8;&#x627F;&#x8BA4;&#xFF0C;&#x5F53;&#x547D;&#x4EE4;&#x6301;&#x7EED;&#x4EE5;&#x5E73;&#x5747;&#x901F;&#x5EA6;&#x8D85;&#x591A;&#x53EF;&#x5904;&#x7406;&#x901F;&#x5EA6;&#x65F6;&#xFF0C;&#x7EBF;&#x7A0B;&#x7684;&#x65E0;&#x7EBF;&#x589E;&#x957F;&#x79F0;&#x4E3A;&#x53EF;&#x80FD;&#x3002;</li>
+<li>&#x65E0;&#x754C;&#x961F;&#x5217;&#x3002;&#x5728;&#x6240;&#x6709;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#x7E41;&#x5FD9;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x65E0;&#x754C;&#x961F;&#x5217;&#xFF08;&#x4F8B;&#x5982;&#x6CA1;&#x6709;&#x9884;&#x5B9A;&#x4E49;&#x5BB9;&#x91CF;&#x7684;<code>LinkedBlockingQueue</code>&#xFF09;&#x5C06;&#x5012;&#x7F6E;&#x65B0;&#x4EFB;&#x52A1;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7B49;&#x5F85;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;<code>corePoolSize</code>&#x7EBF;&#x7A0B;&#x3002;&#xFF08;&#x56E0;&#x4E3A;<code>maximumPoolSize</code>&#x7684;&#x503C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4F5C;&#x7528;&#x3002;&#xFF09;&#x5F53;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x5B8C;&#x5168;&#x72EC;&#x7ACB;&#x4E8E;&#x5176;&#x4ED6;&#x4EFB;&#x52A1;&#x65F6;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x662F;&#x9002;&#x5F53;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x4EFB;&#x52A1;&#x4E0D;&#x80FD;&#x5F71;&#x54CD;&#x5176;&#x4ED6;&#x4EFB;&#x4F55;&#x6267;&#x884C;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728;&#x7F51;&#x9875;&#x670D;&#x52A1;&#x5668;&#x4E2D;&#xFF0C;&#x867D;&#x7136;&#x8FD9;&#x79CD;&#x6392;&#x961F;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x5730;&#x6D88;&#x9664;&#x77AC;&#x65F6;&#x7A81;&#x53D1;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x627F;&#x8BA4;&#x5F53;&#x547D;&#x4EE4;&#x6301;&#x7EED;&#x4EE5;&#x5E73;&#x5747;&#x901F;&#x5EA6;&#x5FEB;&#x4E8E;&#x5904;&#x7406;&#x7684;&#x901F;&#x5EA6;&#x5230;&#x8FBE;&#x65F6;&#xFF0C;&#x65E0;&#x9650;&#x5236;&#x7684;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x589E;&#x957F;&#x7684;&#x53EF;&#x80FD;&#x6027;&#x3002;</li>
+<li>&#x6709;&#x754C;&#x961F;&#x5217;&#x3002;&#x6709;&#x754C;&#x961F;&#x5217;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;<code>ArrayBlockingQueue</code>&#xFF09;&#x6709;&#x52A9;&#x4E8E;&#x9632;&#x6B62;&#x5728;&#x4F7F;&#x7528;&#x6709;&#x9650;&#x7684;<code>maximumPoolSize</code>&#x65F6;&#x8D44;&#x6E90;&#x8017;&#x5C3D;&#xFF0C;&#x4F46;&#x53EF;&#x6709;&#x66F4;&#x96BE;&#x4EE5;&#x8C03;&#x6574;&#x548C;&#x63A7;&#x5236;&#x3002;&#x961F;&#x5217;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x6700;&#x5927;&#x6C60;&#x5927;&#x5C0F;&#x53EF;&#x4EE5;&#x5F7C;&#x6B64;&#x4EA4;&#x6362;&#xFF1B;&#x4F7F;&#x7528;&#x5927;&#x961F;&#x5217;&#x548C;&#x5C0F;&#x6C60;&#x53EF;&#x4EE5;&#x6700;&#x5927;&#x9650;&#x5EA6;&#x5730;&#x51CF;&#x5C11;CPU&#x7684;&#x4F7F;&#x7528;&#x7387;&#xFF0C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x548C;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x5F00;&#x9500;&#xFF0C;&#x4F46;&#x4F1A;&#x5BFC;&#x81F4;&#x4EFB;&#x52A1;&#x7684;&#x4F4E;&#x541E;&#x5410;&#x91CF;&#xFF0C;&#x5982;&#x679C;&#x4EFB;&#x52A1;&#x7ECF;&#x5E38;&#x88AB;&#x963B;&#x585E;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x5B83;&#x4EEC;&#x662F;I/O&#x7ED1;&#x5B9A;&#x7684;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;&#x7CFB;&#x7EDF;&#x53EF;&#x80FD;&#x4F1A;&#x5B89;&#x6392;&#x66F4;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6211;&#x4EEC;&#x8BBE;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x3002;&#x4F7F;&#x7528;&#x5C0F;&#x961F;&#x5217;&#x901A;&#x5E38;&#x9700;&#x8981;&#x66F4;&#x5927;&#x7684;&#x6C60;&#xFF0C;&#x8FD9;&#x4F1A;&#x4F7F;&#x5F97;CPU&#x66F4;&#x52A0;&#x7E41;&#x5FD9;&#xFF0C;&#x4F46;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x4E0D;&#x53EF;&#x63A5;&#x53D7;&#x7684;&#x8C03;&#x5EA6;&#x5F00;&#x9500;&#xFF0C;&#x8FD9;&#x4E5F;&#x4F1A;&#x964D;&#x4F4E;&#x541E;&#x5410;&#x91CF;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x62D2;&#x7EDD;&#x4EFB;&#x52A1;
+&#x5F53;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x5173;&#x95ED;&#x65F6;&#xFF0C;&#x4EE5;&#x53CA;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x5BF9;&#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x548C;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x5BB9;&#x91CF;&#x4F7F;&#x7528;&#x6709;&#x9650;&#x8FB9;&#x754C;&#x5E76;&#x4E14;&#x8FBE;&#x5230;&#x9971;&#x548C;&#x65F6;&#xFF0C;&#x5728;&#x65B9;&#x6CD5;execute&#xFF08;Runnable&#xFF09;&#x4E2D;&#x63D0;&#x4EA4;&#x7684;&#x65B0;&#x4EFB;&#x52A1;&#x5C06;&#x88AB;&#x62D2;&#x7EDD;&#x3002; &#x65E0;&#x8BBA;&#x54EA;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6267;&#x884C;&#x65B9;&#x6CD5;&#x90FD;&#x4F1A;&#x8C03;&#x7528;<code>RejectedExecutionHandler</code>&#x7684; <code>RejectedExecutionHandler.rejectedExecution&#xFF08;Runnable&#xFF0C;ThreadPoolExecutor&#xFF09;</code>&#x65B9;&#x6CD5;&#x3002; &#x63D0;&#x4F9B;&#x56DB;&#x4E2A;&#x9884;&#x5B9A;&#x4E49;&#x7684;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x7B56;&#x7565;:</p>
+<ul>
+<li>&#x5728;&#x9ED8;&#x8BA4;&#x7684;<code>ThreadPoolExecutor.AbortPolicy</code>&#x4E2D;&#xFF0C;&#x8BE5;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5728;&#x62D2;&#x7EDD;&#x65F6;&#x629B;&#x51FA;&#x8FD0;&#x884C;&#x65F6;<code>RejectedExecutionException</code>&#x3002;</li>
+<li>&#x5728;<code>ThreadPoolExecutor.CallerRunsPolicy</code>&#x4E2D;&#xFF0C;&#x8C03;&#x7528;&#x81EA;&#x8EAB;&#x6267;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x8FD0;&#x884C;&#x8BE5;&#x4EFB;&#x52A1;&#x3002; &#x8FD9;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x53CD;&#x9988;&#x63A7;&#x5236;&#x673A;&#x5236;&#xFF0C;&#x53EF;&#x4EE5;&#x51CF;&#x6162;&#x63D0;&#x4EA4;&#x65B0;&#x4EFB;&#x52A1;&#x7684;&#x901F;&#x5EA6;&#x3002;</li>
+<li>&#x5728;<code>ThreadPoolExecutor.DiscardPolicy</code>&#x4E2D;&#xFF0C;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x5C06;&#x88AB;&#x5220;&#x9664;&#x3002;</li>
+<li>&#x5728;<code>ThreadPoolExecutor.DiscardOldestPolicy</code>&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x672A;&#x5173;&#x95ED;&#xFF0C;&#x5219;&#x4F1A;&#x5220;&#x9664;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x5934;&#x90E8;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x8BD5;&#x6267;&#x884C;&#xFF08;&#x53EF;&#x80FD;&#x4F1A;&#x518D;&#x6B21;&#x5931;&#x8D25;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x91CD;&#x590D;&#x6267;&#x884C;&#xFF09;&#x3002;
+&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x548C;&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x79CD;&#x7C7B;&#x7684;<code>RejectedExecutionHandler</code>&#x7C7B;&#x3002; &#x8FD9;&#x6837;&#x505A;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5728;&#x653F;&#x7B56;&#x65E8;&#x5728;&#x4EC5;&#x5728;&#x7279;&#x5B9A;&#x5BB9;&#x91CF;&#x6216;&#x6392;&#x961F;&#x7B56;&#x7565;&#x4E0B;&#x5DE5;&#x4F5C;&#x65F6;&#x3002;</li>
+</ul>
+</li>
+<li>&#x94A9;&#x5B50;&#x65B9;&#x6CD5;
+&#x8BE5;&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;&#x5728;&#x6267;&#x884C;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x4E4B;&#x524D;&#x548C;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x7684;&#x53D7;&#x4FDD;&#x62A4;&#x7684;&#x53EF;&#x8986;&#x76D6;<code>beforeExecute&#xFF08;Thread&#xFF0C;Runnable&#xFF09;</code>&#x548C;<code>afterExecute&#xFF08;Runnable&#xFF0C;Throwable&#xFF09;</code>&#x65B9;&#x6CD5;&#x3002; &#x8FD9;&#x4E9B;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x64CD;&#x7EB5;&#x6267;&#x884C;&#x73AF;&#x5883;; &#x4F8B;&#x5982;&#xFF0C;&#x91CD;&#x65B0;&#x521D;&#x59CB;&#x5316;<code>ThreadLocals</code>&#xFF0C;&#x6536;&#x96C6;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#x6216;&#x6DFB;&#x52A0;&#x65E5;&#x5FD7;&#x6761;&#x76EE;&#x3002; &#x53E6;&#x5916;&#xFF0C;&#x53EF;&#x4EE5;&#x91CD;&#x5199;&#x65B9;&#x6CD5;<code>terminate&#xFF08;&#xFF09;</code>&#x6765;&#x6267;&#x884C;<code>Executor</code>&#x5B8C;&#x5168;&#x7EC8;&#x6B62;&#x540E;&#x9700;&#x8981;&#x5B8C;&#x6210;&#x7684;&#x4EFB;&#x4F55;&#x7279;&#x6B8A;&#x5904;&#x7406;&#x3002;
+&#x5982;&#x679C;&#x94A9;&#x5B50;&#x6216;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x5219;&#x5185;&#x90E8;&#x5DE5;&#x4F5C;&#x8005;&#x7EBF;&#x7A0B;&#x53EF;&#x80FD;&#x4F1A;&#x5931;&#x8D25;&#x5E76;&#x7A81;&#x7136;&#x7EC8;&#x6B62;&#x3002;</li>
+<li>&#x961F;&#x5217;&#x7EF4;&#x62A4;
+&#x65B9;&#x6CD5;<code>getQueue&#xFF08;&#xFF09;</code>&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x4EE5;&#x7528;&#x4E8E;&#x76D1;&#x89C6;&#x548C;&#x8C03;&#x8BD5;&#x3002; &#x5F3A;&#x70C8;&#x5EFA;&#x8BAE;&#x4E0D;&#x8981;&#x5C06;&#x6B64;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;&#x76EE;&#x7684;&#x3002; &#x63D0;&#x4F9B;&#x4E24;&#x79CD;&#x63D0;&#x4F9B;&#x7684;&#x65B9;&#x6CD5;<code>remove&#xFF08;Runnable&#xFF09;</code>&#x548C;<code>purge&#xFF08;&#xFF09;</code>&#x53EF;&#x7528;&#x4E8E;&#x5728;&#x5927;&#x91CF;&#x6392;&#x961F;&#x7684;&#x4EFB;&#x52A1;&#x88AB;&#x53D6;&#x6D88;&#x65F6;&#x534F;&#x52A9;&#x5B58;&#x50A8;&#x56DE;&#x6536;&#x3002;</li>
+<li>Finalization
+&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x4E2D;&#x4E0D;&#x518D;&#x88AB;&#x5F15;&#x7528;&#x4E14;&#x6CA1;&#x6709;&#x5269;&#x4F59;&#x7EBF;&#x7A0B;&#x7684;&#x6C60;&#x5C06;&#x81EA;&#x52A8;&#x5173;&#x95ED;&#x3002; &#x5982;&#x679C;&#x60A8;&#x5E0C;&#x671B;&#x786E;&#x4FDD;&#x5373;&#x4F7F;&#x7528;&#x6237;&#x5FD8;&#x8BB0;&#x8C03;&#x7528;<code>shutdown&#xFF08;&#xFF09;</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x56DE;&#x6536;&#x672A;&#x5F15;&#x7528;&#x7684;&#x6C60;&#xFF0C;&#x90A3;&#x4E48;&#x60A8;&#x5FC5;&#x987B;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x9002;&#x5F53;&#x7684;&#x4FDD;&#x6301;&#x6D3B;&#x52A8;&#x65F6;&#x95F4;&#xFF0C;&#x4F7F;&#x7528;&#x96F6;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x7684;&#x4E0B;&#x9650;&#x548C;/&#x6216;&#x8BBE;&#x7F6E;<code>allowCoreThreadTimeOut&#xFF08;boolean&#xFF09;</code>&#x3002;</li>
+</ul>
+<p>&#x4E0A;&#x9762;&#x662F;&#x5BF9;<code>ThreadPoolExecutor</code>&#x7684;&#x8BF4;&#x660E;&#xFF0C;&#x8BB2;&#x4E86;&#x5F88;&#x591A;&#x4F46;&#x662F;&#x4E00;&#x5934;&#x96FE;&#x6C34;&#xFF0C;&#x8FD8;&#x662F;&#x770B;&#x770B;&#x6E90;&#x7801;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x5427;&#x3002;</p>
+<h2 id="public-class-threadpoolexecutor-extends-abstractexecutorservice"><a name="public-class-threadpoolexecutor-extends-abstractexecutorservice" class="anchor-navigation-ex-anchor" href="#public-class-threadpoolexecutor-extends-abstractexecutorservice"><i class="fa fa-link" aria-hidden="true"></i></a>public class ThreadPoolExecutor extends AbstractExecutorService</h2>
+<p>&#x7C7B;&#x58F0;&#x660E;&#xFF0C;&#x76F4;&#x63A5;&#x7EE7;&#x627F;&#x81EA;<code>AbstractExecutorService</code>&#xFF0C;&#x800C;&#x8FD9;&#x4E2A;&#x62BD;&#x8C61;&#x7C7B;&#x53C8;&#x5B9E;&#x73B0;&#x4E86;<code>ExecutorService</code>&#x63A5;&#x53E3;&#xFF0C;&#x7C7B;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><img src="http://ovn0i3kdg.bkt.clouddn.com/AbstractExecutorService.png" alt="AbstractExecutorService"></p>
+<h2 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;"><a name="&#x6784;&#x9020;&#x65B9;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x9020;&#x65B9;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x9020;&#x65B9;&#x6CD5;</h2>
+<p>&#x91CD;&#x8F7D;&#x4E86;&#x56DB;&#x79CD;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x3002;&#x6838;&#x5FC3;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ThreadPoolExecutor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> corePoolSize,
+                          <span class="hljs-keyword">int</span> maximumPoolSize,
+                          <span class="hljs-keyword">long</span> keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue&lt;Runnable&gt; workQueue,
+                          ThreadFactory threadFactory,
+                          RejectedExecutionHandler handler)</span> </span>{
+    <span class="hljs-keyword">if</span> (corePoolSize &lt; <span class="hljs-number">0</span> ||
+        maximumPoolSize &lt;= <span class="hljs-number">0</span> ||
+        maximumPoolSize &lt; corePoolSize ||
+        keepAliveTime &lt; <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException();
+    <span class="hljs-keyword">if</span> (workQueue == <span class="hljs-keyword">null</span> || threadFactory == <span class="hljs-keyword">null</span> || handler == <span class="hljs-keyword">null</span>)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();
+    <span class="hljs-keyword">this</span>.acc = System.getSecurityManager() == <span class="hljs-keyword">null</span> ?
+            <span class="hljs-keyword">null</span> :
+            AccessController.getContext();
+    <span class="hljs-keyword">this</span>.corePoolSize = corePoolSize;
+    <span class="hljs-keyword">this</span>.maximumPoolSize = maximumPoolSize;
+    <span class="hljs-keyword">this</span>.workQueue = workQueue;
+    <span class="hljs-keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);
+    <span class="hljs-keyword">this</span>.threadFactory = threadFactory;
+    <span class="hljs-keyword">this</span>.handler = handler;
+}
+<span class="hljs-comment">/* The context to be used when executing the finalizer, or null. */</span>
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AccessControlContext acc;
+
+ <span class="hljs-comment">/**
+ * Core pool size is the minimum number of workers to keep alive
+ * (and not allow to time out etc) unless allowCoreThreadTimeOut
+ * is set, in which case the minimum is zero.
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> corePoolSize;
+
+<span class="hljs-comment">/**
+ * Maximum pool size. Note that the actual maximum is internally
+ * bounded by CAPACITY.
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> maximumPoolSize;
+
+<span class="hljs-comment">/**
+* The queue used for holding tasks and handing off to worker
+* threads.  We do not require that workQueue.poll() returning
+* null necessarily means that workQueue.isEmpty(), so rely
+* solely on isEmpty to see if the queue is empty (which we must
+* do for example when deciding whether to transition from
+* SHUTDOWN to TIDYING).  This accommodates special-purpose
+* queues such as DelayQueues for which poll() is allowed to
+* return null even if it may later return non-null when delays
+* expire.
+*/</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;
+
+<span class="hljs-comment">/**
+ * Timeout in nanoseconds for idle threads waiting for work.
+ * Threads use this timeout when there are more than corePoolSize
+ * present or if allowCoreThreadTimeOut. Otherwise they wait
+ * forever for new work.
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">long</span> keepAliveTime;
+
+
+<span class="hljs-comment">/**
+* Factory for new threads. All threads are created using this
+* factory (via method addWorker).  All callers must be prepared
+* for addWorker to fail, which may reflect a system or user&apos;s
+* policy limiting the number of threads.  Even though it is not
+* treated as an error, failure to create threads may result in
+* new tasks being rejected or existing ones remaining stuck in
+* the queue.
+*
+* We go further and preserve pool invariants even in the face of
+* errors such as OutOfMemoryError, that might be thrown while
+* trying to create threads.  Such errors are rather common due to
+* the need to allocate a native stack in Thread.start, and users
+* will want to perform clean pool shutdown to clean up.  There
+* will likely be enough memory available for the cleanup code to
+* complete without encountering yet another OutOfMemoryError.
+*/</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> ThreadFactory threadFactory;
+
+<span class="hljs-comment">/**
+ * Handler called when saturated or shutdown in execute.
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RejectedExecutionHandler handler;
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x4E0E;&#x7EBF;&#x7A0B;&#x7684;&#x7BA1;&#x7406;&#x5173;&#x7CFB;&#x5BC6;&#x5207;&#xFF0C;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x5F04;&#x660E;&#x767D;&#x5404;&#x81EA;&#x7684;&#x542B;&#x4E49;</p>
+<h3 id="corepoolsize"><a name="corepoolsize" class="anchor-navigation-ex-anchor" href="#corepoolsize"><i class="fa fa-link" aria-hidden="true"></i></a>corePoolSize</h3>
+<p>&#x7EBF;&#x7A0B;&#x6C60;&#x7684;<strong>&#x57FA;&#x672C;&#x5927;&#x5C0F;</strong>&#xFF0C;&#x5373;&#x5728;&#x6CA1;&#x6709;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x6709;&#x5728;&#x5DE5;&#x4F5C;&#x961F;&#x5217;&#x6EE1;&#x4E86;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x4F1A;&#x521B;&#x5EFA;&#x8D85;&#x51FA;&#x8FD9;&#x4E2A;&#x6570;&#x91CF;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;&#x5728;&#x521A;&#x521A;&#x521B;&#x5EFA;<code>ThreadPoolExecutor</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7EBF;&#x7A0B;&#x5E76;&#x4E0D;&#x4F1A;&#x7ACB;&#x5373;&#x542F;&#x52A8;&#xFF0C;&#x800C;&#x662F;&#x8981;&#x7B49;&#x5230;&#x6709;&#x4EFB;&#x52A1;&#x63D0;&#x4EA4;&#x65F6;&#x624D;&#x4F1A;&#x542F;&#x52A8;&#xFF0C;&#x9664;&#x975E;&#x8C03;&#x7528;&#x4E86;<code>prestartCoreThread/prestartAllCoreThreads</code>&#x4E8B;&#x5148;&#x542F;&#x52A8;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x3002;&#x518D;&#x8003;&#x8651;&#x5230;<code>keepAliveTime</code>&#x548C;<code>allowCoreThreadTimeOut</code>&#x8D85;&#x65F6;&#x53C2;&#x6570;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x5927;&#x5C0F;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;<code>corePoolSize</code>&#x3002;</p>
+<blockquote>
+<p>&#x4EC0;&#x4E48;&#x662F;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x5462;&#xFF1F;&#x5C31;&#x662F;&#x9884;&#x5148;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x4E00;&#x76F4;&#x5B58;&#x6D3B;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x5373;&#x4F7F;&#x6CA1;&#x6709;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x6267;&#x884C;&#x4E5F;&#x4E00;&#x76F4;&#x6D3B;&#x7740;&#xFF0C;&quot;&#x4E00;&#x76F4;&#x6D3B;&#x7740;&quot;&#x8FD9;&#x79CD;&#x8BF4;&#x6CD5;&#x4E0D;&#x51C6;&#x786E;&#xFF0C;&#x81F3;&#x5C11;&#x5982;&#x679C;&#x8BBE;&#x7F6E;<code>allowCoreThreadTimeOut=true</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x8D85;&#x65F6;&#x540E;&#x662F;&#x4F1A;&#x9000;&#x51FA;&#x7684;&#x3002;</p>
+</blockquote>
+<h3 id="maximumpoolsize"><a name="maximumpoolsize" class="anchor-navigation-ex-anchor" href="#maximumpoolsize"><i class="fa fa-link" aria-hidden="true"></i></a>maximumPoolSize</h3>
+<p>&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x5141;&#x8BB8;&#x7684;<strong>&#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x6570;</strong>&#xFF0C;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x7684;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x6570;&#x76EE;&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7;&#x8BE5;&#x503C;&#x3002;&#x5982;&#x679C;&#x961F;&#x5217;&#x4E2D;&#x4EFB;&#x52A1;&#x5DF2;&#x6EE1;&#xFF0C;&#x5E76;&#x4E14;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x4E2A;&#x6570;&#x5C0F;&#x4E8E;<code>maximumPoolSize</code>&#xFF0C;&#x90A3;&#x4E48;&#x4F1A;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x7EBF;&#x7A0B;&#x6765;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x3002;&#x8FD9;&#x91CC;&#x503C;&#x5F97;&#x4E00;&#x63D0;&#x7684;&#x662F;<code>largestPoolSize</code>&#xFF0C;&#x8BE5;&#x53D8;&#x91CF;&#x8BB0;&#x5F55;&#x4E86;&#x7EBF;&#x7A0B;&#x6C60;&#x5728;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;<strong>&#x66FE;&#x7ECF;</strong>&#x51FA;&#x73B0;&#x7684;&#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x4E2A;&#x6570;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x8BF4;&#x662F;&#x66FE;&#x7ECF;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x7EBF;&#x7A0B;&#x6C60;&#x521B;&#x5EFA;&#x4E4B;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528;<code>setMaximumPoolSize()</code>&#x6539;&#x53D8;&#x8FD0;&#x884C;&#x7684;&#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x7684;&#x6570;&#x76EE;&#x3002;</p>
+<p>&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x6C60;&#x5927;&#x5C0F;&#x7684;&#x6982;&#x5FF5;<code>poolSize</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x91CF;&#x662F;&#x6307;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x5B9E;&#x9645;&#x6570;&#x91CF;&#xFF0C;&#x5F53;&#x8BE5;&#x503C;&#x4E3A;0&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x7EBF;&#x7A0B;&#xFF0C;&#x7EBF;&#x7A0B;&#x6C60;&#x4F1A;&#x7EC8;&#x6B62;&#xFF1B;&#x540C;&#x4E00;&#x65F6;&#x523B;&#xFF0C;<code>poolSize</code>&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7;<code>maximumPoolSize</code>&#x3002;</p>
+<h3 id="workqueue"><a name="workqueue" class="anchor-navigation-ex-anchor" href="#workqueue"><i class="fa fa-link" aria-hidden="true"></i></a>workQueue</h3>
+<p><code>workQueue</code>&#x662F;<code>BlockingQueue</code>&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x963B;&#x585E;&#x961F;&#x5217;&#xFF0C;&#x5F53;&#x65B0;&#x4EFB;&#x52A1;&#x6761;&#x4EF6;&#x4E4B;&#x540E;&#xFF0C;&#x53D1;&#x73B0;<code>corePool</code>&#x7684;&#x6570;&#x91CF;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;<code>corePoolSize</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C06;&#x4F1A;&#x5C06;&#x4EFB;&#x52A1;&#x653E;&#x5230;&#x963B;&#x585E;&#x961F;&#x5217;&#x4E2D;&#x3002;<code>BlockingQueue</code>&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5728;API&#x4E2D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x4E09;&#x79CD;&#x8BE5;&#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;<code>SynchronousQueue</code>&#x3001;<code>LinkedBlockingQueue</code>&#x548C;<code>ArrayBlockingQueue</code>&#x3002;&#x8FD9;&#x4E9B;&#x5177;&#x4F53;&#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x6E90;&#x7801;&#x89E3;&#x51B3;&#x7684;&#x535A;&#x6587;&#x3002;</p>
+<h3 id="keepalivetime&#x548C;unit"><a name="keepalivetime&#x548C;unit" class="anchor-navigation-ex-anchor" href="#keepalivetime&#x548C;unit"><i class="fa fa-link" aria-hidden="true"></i></a>keepAliveTime&#x548C;unit</h3>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5904;&#x5728;<strong>&#x7A7A;&#x95F2;&#x72B6;&#x6001;</strong>&#x7684;&#x65F6;&#x95F4;&#x8D85;&#x8FC7;&#x4E86;&#x8BE5;&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x5C31;&#x4F1A;&#x56E0;&#x4E3A;&#x8D85;&#x65F6;&#x800C;&#x9000;&#x51FA;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x6838;&#x5FC3;&#x5927;&#x5C0F;<code>corePoolSize=5</code>&#xFF0C;&#x800C;&#x5F53;&#x524D;&#x5927;&#x5C0F;<code>poolSize =8</code>&#xFF0C;&#x90A3;&#x4E48;&#x8D85;&#x51FA;&#x6838;&#x5FC3;&#x5927;&#x5C0F;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x4F1A;&#x6309;&#x7167;<code>keepAliveTime</code>&#x7684;&#x503C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4F1A;&#x8D85;&#x65F6;&#x9000;&#x51FA;&#x3002;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x6838;&#x5FC3;&#x5927;&#x5C0F;<code>corePoolSize=5</code>&#xFF0C;&#x800C;&#x5F53;&#x524D;&#x5927;&#x5C0F;<code>poolSize =5</code>&#xFF0C;&#x90A3;&#x4E48;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x90FD;&#x662F;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x4F1A;&#x9000;&#x51FA;&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;<code>allowCoreThreadTimeOut</code>&#x3002;</p>
+<p><code>allowCoreThreadTimeOut</code>&#x8BE5;&#x5C5E;&#x6027;&#x7528;&#x6765;&#x63A7;&#x5236;&#x662F;&#x5426;&#x5141;&#x8BB8;<strong>&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;</strong>&#x8D85;&#x65F6;&#x9000;&#x51FA;&#x3002;&#x5982;&#x679C;&#x8BE5;&#x503C;&#x4E3A;false&#xFF0C;&#x90A3;&#x4E48;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x4FDD;&#x6301;&#x4E3A;&#x5B58;&#x6D3B;&#x72B6;&#x6001;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x4E0D;&#x662F;&#x7A7A;&#x95F2;&#xFF0C;&#x5982;&#x679C;&#x4E3A;true&#xFF0C;&#x90A3;&#x4E48;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x7684;&#x7A7A;&#x95F2;&#x65F6;&#x95F4;&#x5982;&#x679C;&#x8FBE;&#x5230;&#x4E86;<code>keepAliveTime</code>&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x63A8;&#x51FA;&#x3002;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x5927;&#x5C0F;&#x5DF2;&#x7ECF;&#x8FBE;&#x5230;&#x4E86;corePoolSize&#xFF0C;&#x4E0D;&#x7BA1;&#x6709;&#x6CA1;&#x6709;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x6267;&#x884C;&#xFF0C;&#x7EBF;&#x7A0B;&#x6C60;&#x90FD;&#x4F1A;&#x4FDD;&#x8BC1;&#x8FD9;&#x4E9B;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x5904;&#x4E8E;&#x5B58;&#x6D3B;&#x72B6;&#x6001;&#x3002;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF1A;&#x8BE5;&#x5C5E;&#x6027;&#x53EA;&#x662F;&#x7528;&#x6765;&#x63A7;&#x5236;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#x7684;&#x3002;</p>
+<h3 id="handler"><a name="handler" class="anchor-navigation-ex-anchor" href="#handler"><i class="fa fa-link" aria-hidden="true"></i></a>handler</h3>
+<p><code>handler</code>&#x662F;<code>RejectedExecutionHandler</code>&#x7C7B;&#x578B;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x8868;&#x793A;&#x7684;&#x662F;&#x7EBF;&#x7A0B;&#x62D2;&#x7EDD;&#x7B56;&#x7565;&#x3002;<code>RejectedExecutionHandler</code>&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5728;<code>ThreadPoolExecutor</code>&#x4E2D;&#x6709;&#x56DB;&#x79CD;&#x8BE5;&#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;</p>
+<h4 id="abortpolicy"><a name="abortpolicy" class="anchor-navigation-ex-anchor" href="#abortpolicy"><i class="fa fa-link" aria-hidden="true"></i></a>AbortPolicy</h4>
+<p>&#x5BF9;&#x62D2;&#x7EDD;&#x4EFB;&#x52A1;&#x629B;&#x5F03;&#x5904;&#x7406;&#xFF0C;&#x5E76;&#x4E14;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+* A handler for rejected tasks that throws a
+* {<span class="hljs-doctag">@code</span> RejectedExecutionException}.
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbortPolicy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RejectedExecutionHandler</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates an {<span class="hljs-doctag">@code</span> AbortPolicy}.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AbortPolicy</span><span class="hljs-params">()</span> </span>{ }
+
+    <span class="hljs-comment">/**
+     * Always throws RejectedExecutionException.
+     *
+     * <span class="hljs-doctag">@param</span> r the runnable task requested to be executed
+     * <span class="hljs-doctag">@param</span> e the executor attempting to execute this task
+     * <span class="hljs-doctag">@throws</span> RejectedExecutionException always
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rejectedExecution</span><span class="hljs-params">(Runnable r, ThreadPoolExecutor e)</span> </span>{
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RejectedExecutionException(<span class="hljs-string">&quot;Task &quot;</span> + r.toString() +
+                                             <span class="hljs-string">&quot; rejected from &quot;</span> +
+                                             e.toString());
+    }
+}
+</code></pre>
+<h4 id="callerrunspolicy"><a name="callerrunspolicy" class="anchor-navigation-ex-anchor" href="#callerrunspolicy"><i class="fa fa-link" aria-hidden="true"></i></a>CallerRunsPolicy</h4>
+<p>&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x91CD;&#x8BD5;&#x6DFB;&#x52A0;&#x5F53;&#x524D;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x4ED6;&#x4F1A;&#x81EA;&#x52A8;&#x91CD;&#x590D;&#x8C03;&#x7528; execute() &#x65B9;&#x6CD5;&#xFF0C;&#x76F4;&#x5230;&#x6210;&#x529F;&#x3002;</p>
+<pre><code class="lang-Java"><span class="hljs-comment">/**
+ * A handler for rejected tasks that runs the rejected task
+ * directly in the calling thread of the {<span class="hljs-doctag">@code</span> execute} method,
+ * unless the executor has been shut down, in which case the task
+ * is discarded.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CallerRunsPolicy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RejectedExecutionHandler</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates a {<span class="hljs-doctag">@code</span> CallerRunsPolicy}.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CallerRunsPolicy</span><span class="hljs-params">()</span> </span>{ }
+
+    <span class="hljs-comment">/**
+     * Executes task r in the caller&apos;s thread, unless the executor
+     * has been shut down, in which case the task is discarded.
+     *
+     * <span class="hljs-doctag">@param</span> r the runnable task requested to be executed
+     * <span class="hljs-doctag">@param</span> e the executor attempting to execute this task
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rejectedExecution</span><span class="hljs-params">(Runnable r, ThreadPoolExecutor e)</span> </span>{
+        <span class="hljs-keyword">if</span> (!e.isShutdown()) {
+            r.run();
+        }
+    }
+}
+</code></pre>
+<h4 id="discardpolicy"><a name="discardpolicy" class="anchor-navigation-ex-anchor" href="#discardpolicy"><i class="fa fa-link" aria-hidden="true"></i></a>DiscardPolicy</h4>
+<p>&#x5BF9;&#x62D2;&#x7EDD;&#x4EFB;&#x52A1;&#x76F4;&#x63A5;&#x65E0;&#x58F0;&#x629B;&#x5F03;&#xFF0C;&#x6CA1;&#x6709;&#x5F02;&#x5E38;&#x4FE1;&#x606F;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * A handler for rejected tasks that silently discards the
+ * rejected task.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiscardPolicy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RejectedExecutionHandler</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates a {<span class="hljs-doctag">@code</span> DiscardPolicy}.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DiscardPolicy</span><span class="hljs-params">()</span> </span>{ }
+
+    <span class="hljs-comment">/**
+     * Does nothing, which has the effect of discarding task r.
+     *
+     * <span class="hljs-doctag">@param</span> r the runnable task requested to be executed
+     * <span class="hljs-doctag">@param</span> e the executor attempting to execute this task
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rejectedExecution</span><span class="hljs-params">(Runnable r, ThreadPoolExecutor e)</span> </span>{
+    }
+}
+</code></pre>
+<h4 id="discardoldestpolicy"><a name="discardoldestpolicy" class="anchor-navigation-ex-anchor" href="#discardoldestpolicy"><i class="fa fa-link" aria-hidden="true"></i></a>DiscardOldestPolicy</h4>
+<p>&#x5BF9;&#x62D2;&#x7EDD;&#x4EFB;&#x52A1;&#x4E0D;&#x629B;&#x5F03;&#xFF0C;&#x800C;&#x662F;&#x629B;&#x5F03;&#x961F;&#x5217;&#x91CC;&#x9762;&#x7B49;&#x5F85;&#x6700;&#x4E45;&#x7684;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x62D2;&#x7EDD;&#x4EFB;&#x52A1;&#x52A0;&#x5230;&#x961F;&#x5217;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * A handler for rejected tasks that discards the oldest unhandled
+ * request and then retries {<span class="hljs-doctag">@code</span> execute}, unless the executor
+ * is shut down, in which case the task is discarded.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DiscardOldestPolicy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RejectedExecutionHandler</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates a {<span class="hljs-doctag">@code</span> DiscardOldestPolicy} for the given executor.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DiscardOldestPolicy</span><span class="hljs-params">()</span> </span>{ }
+
+    <span class="hljs-comment">/**
+     * Obtains and ignores the next task that the executor
+     * would otherwise execute, if one is immediately available,
+     * and then retries execution of task r, unless the executor
+     * is shut down, in which case task r is instead discarded.
+     *
+     * <span class="hljs-doctag">@param</span> r the runnable task requested to be executed
+     * <span class="hljs-doctag">@param</span> e the executor attempting to execute this task
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rejectedExecution</span><span class="hljs-params">(Runnable r, ThreadPoolExecutor e)</span> </span>{
+        <span class="hljs-keyword">if</span> (!e.isShutdown()) {
+            e.getQueue().poll();
+            e.execute(r);
+        }
+    }
+}
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#xFF0C;&#x5404;&#x7C7B;&#x53C2;&#x6570;&#x57FA;&#x672C;&#x5851;&#x9020;&#x4E86;&#x6574;&#x4E2A;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x8F6E;&#x5ED3;&#x3002;&#x5728;&#x5B66;&#x4E60;&#x5404;&#x79CD;&#x7EC6;&#x8282;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x7528;&#x4E0B;&#x9762;&#x8FD9;&#x5F20;&#x56FE;&#x6765;&#x4E32;&#x8054;&#x4EE5;&#x4E0B;<code>ThreadPoolExecutor</code>&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#xFF1A;
+<img src="https://upload-images.jianshu.io/upload_images/2177145-33c7b5ff75cf2bf7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="ThreadPoolExecutor&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;"></p>
+<p>&#x5F53;&#x8C03;&#x7528;<code>ThreadPoolExecutor</code>&#x7684;<code>execute</code>&#x63D0;&#x4EA4;&#x4EFB;&#x52A1;&#x540E;&#xFF1A;</p>
+<ol>
+<li>&#x9996;&#x5148;&#x68C0;&#x67E5;CorePool&#x4E2D;&#x7EBF;&#x7A0B;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x6B64;&#x65F6;CorePool&#x4E2D;&#x7EBF;&#x7A0B;&#x7684;&#x6570;&#x76EE;&#x4E8E;<code>corePoolSize</code>&#xFF0C;&#x90A3;&#x4E48;<strong>&#x521B;&#x5EFA;&#x65B0;&#x7EBF;&#x7A0B;</strong>&#x6765;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x521B;&#x5EFA;&#x65B0;&#x7EBF;&#x7A0B;&#xFF0C;&#x5373;&#x4F7F;&#x6709;&#x7A7A;&#x95F2;&#x7684;&#x6838;&#x5FC3;&#x7EBF;&#x7A0B;&#xFF0C;&#x7EBF;&#x7A0B;&#x6C60;&#x4E5F;&#x4F1A;&#x4F18;&#x5148;&#x521B;&#x5EFA;&#x65B0;&#x7EBF;&#x7A0B;&#x5904;&#x7406;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x5F53;&#x524D;CorePool&#x5185;&#x7684;&#x7EBF;&#x7A0B;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;<code>CorePoolSize</code>&#xFF0C;&#x90A3;&#x4E48;&#x5C06;&#x7EBF;&#x7A0B;&#x5C1D;&#x8BD5;&#x52A0;&#x5165;&#x5230;<code>BlockingQueue</code>&#x3002;</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x80FD;&#x52A0;&#x5165;<code>BlockingQueue</code>&#xFF0C;&#x5728;&#x5C0F;&#x4E8E;<code>MaxPoolSize</code>&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x6570;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;<code>MaxPoolSize</code>&#xFF0C;&#x90A3;&#x4E48;&#x6267;&#x884C;&#x62D2;&#x7EDD;&#x7B56;&#x7565;&#x3002;</li>
+</ol>
+<p>&#x5BF9;&#x4E8E;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;&#xFF0C;&#x300A;&#x7F16;&#x5199;&#x9AD8;&#x8D28;&#x91CF;&#x4EE3;&#x7801; &#x6539;&#x5584;Java&#x7A0B;&#x5E8F;&#x7684;151&#x4E2A;&#x5EFA;&#x8BAE;&#x300B;&#x8FD9;&#x672C;&#x4E66;&#x91CC;&#x4E3E;&#x7684;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x5F88;&#x5F62;&#x8C61;&#xFF1A;
+<img src="http://img.blog.csdn.net/20161107130709586?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="&#x5173;&#x4E8E;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x4E00;&#x4E2A;&#x6BD4;&#x55BB;">
+<img src="http://img.blog.csdn.net/20161107130723836?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="&#x5173;&#x4E8E;&#x7EBF;&#x7A0B;&#x6C60;&#x7684;&#x4E00;&#x4E2A;&#x6BD4;&#x55BB;"></p>
+<h2 id="public-void-executerunnable-command"><a name="public-void-executerunnable-command" class="anchor-navigation-ex-anchor" href="#public-void-executerunnable-command"><i class="fa fa-link" aria-hidden="true"></i></a>public void execute(Runnable command){..}</h2>
+<p>&#x8FD9;&#x662F;&#x7EBF;&#x7A0B;&#x6C60;&#x63D0;&#x4EA4;&#x65B0;&#x4EFB;&#x52A1;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Executes the given task sometime in the future.  The task
+ * may execute in a new thread or in an existing pooled thread.
+ *
+ * If the task cannot be submitted for execution, either because this
+ * executor has been shutdown or because its capacity has been reached,
+ * the task is handled by the current {<span class="hljs-doctag">@code</span> RejectedExecutionHandler}.
+ *
+ * <span class="hljs-doctag">@param</span> command the task to execute
+ * <span class="hljs-doctag">@throws</span> RejectedExecutionException at discretion of
+ *         {<span class="hljs-doctag">@code</span> RejectedExecutionHandler}, if the task
+ *         cannot be accepted for execution
+ * <span class="hljs-doctag">@throws</span> NullPointerException if {<span class="hljs-doctag">@code</span> command} is null
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">(Runnable command)</span> </span>{
+    <span class="hljs-keyword">if</span> (command == <span class="hljs-keyword">null</span>)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NullPointerException();
+    <span class="hljs-comment">/*
+     * Proceed in 3 steps:
+     *
+     * 1. If fewer than corePoolSize threads are running, try to
+     * start a new thread with the given command as its first
+     * task.  The call to addWorker atomically checks runState and
+     * workerCount, and so prevents false alarms that would add
+     * threads when it shouldn&apos;t, by returning false.
+     *
+     * 2. If a task can be successfully queued, then we still need
+     * to double-check whether we should have added a thread
+     * (because existing ones died since last checking) or that
+     * the pool shut down since entry into this method. So we
+     * recheck state and if necessary roll back the enqueuing if
+     * stopped, or start a new thread if there are none.
+     *
+     * 3. If we cannot queue task, then we try to add a new
+     * thread.  If it fails, we know we are shut down or saturated
+     * and so reject the task.
+     */</span>
+    <span class="hljs-keyword">int</span> c = ctl.get();
+    <span class="hljs-keyword">if</span> (workerCountOf(c) &lt; corePoolSize) {
+        <span class="hljs-keyword">if</span> (addWorker(command, <span class="hljs-keyword">true</span>))
+            <span class="hljs-keyword">return</span>;
+        c = ctl.get();
+    }
+    <span class="hljs-keyword">if</span> (isRunning(c) &amp;&amp; workQueue.offer(command)) {
+        <span class="hljs-keyword">int</span> recheck = ctl.get();
+        <span class="hljs-keyword">if</span> (! isRunning(recheck) &amp;&amp; remove(command))
+            reject(command);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (workerCountOf(recheck) == <span class="hljs-number">0</span>)
+            addWorker(<span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!addWorker(command, <span class="hljs-keyword">false</span>))
+        reject(command);
+}
+
+<span class="hljs-comment">/**
+ * The main pool control state, ctl, is an atomic integer packing
+ * two conceptual fields
+ *   workerCount, indicating the effective number of threads
+ *   runState,    indicating whether running, shutting down etc
+ *
+ * In order to pack them into one int, we limit workerCount to
+ * (2^29)-1 (about 500 million) threads rather than (2^31)-1 (2
+ * billion) otherwise representable. If this is ever an issue in
+ * the future, the variable can be changed to be an AtomicLong,
+ * and the shift/mask constants below adjusted. But until the need
+ * arises, this code is a bit faster and simpler using an int.
+ *
+ * The workerCount is the number of workers that have been
+ * permitted to start and not permitted to stop.  The value may be
+ * transiently different from the actual number of live threads,
+ * for example when a ThreadFactory fails to create a thread when
+ * asked, and when exiting threads are still performing
+ * bookkeeping before terminating. The user-visible pool size is
+ * reported as the current size of the workers set.
+ *
+ * The runState provides the main lifecycle control, taking on values:
+ *
+ *   RUNNING:  Accept new tasks and process queued tasks
+ *   SHUTDOWN: Don&apos;t accept new tasks, but process queued tasks
+ *   STOP:     Don&apos;t accept new tasks, don&apos;t process queued tasks,
+ *             and interrupt in-progress tasks
+ *   TIDYING:  All tasks have terminated, workerCount is zero,
+ *             the thread transitioning to state TIDYING
+ *             will run the terminated() hook method
+ *   TERMINATED: terminated() has completed
+ *
+ * The numerical order among these values matters, to allow
+ * ordered comparisons. The runState monotonically increases over
+ * time, but need not hit each state. The transitions are:
+ *
+ * RUNNING -&gt; SHUTDOWN
+ *    On invocation of shutdown(), perhaps implicitly in finalize()
+ * (RUNNING or SHUTDOWN) -&gt; STOP
+ *    On invocation of shutdownNow()
+ * SHUTDOWN -&gt; TIDYING
+ *    When both queue and pool are empty
+ * STOP -&gt; TIDYING
+ *    When pool is empty
+ * TIDYING -&gt; TERMINATED
+ *    When the terminated() hook method has completed
+ *
+ * Threads waiting in awaitTermination() will return when the
+ * state reaches TERMINATED.
+ *
+ * Detecting the transition from SHUTDOWN to TIDYING is less
+ * straightforward than you&apos;d like because the queue may become
+ * empty after non-empty and vice versa during SHUTDOWN state, but
+ * we can only terminate if, after seeing that it is empty, we see
+ * that workerCount is 0 (which sometimes entails a recheck -- see
+ * below).
+ */</span>
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> AtomicInteger ctl = <span class="hljs-keyword">new</span> AtomicInteger(ctlOf(RUNNING, <span class="hljs-number">0</span>));
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COUNT_BITS = Integer.SIZE - <span class="hljs-number">3</span>;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> CAPACITY   = (<span class="hljs-number">1</span> &lt;&lt; COUNT_BITS) - <span class="hljs-number">1</span>;
+
+ <span class="hljs-comment">// runState is stored in the high-order bits</span>
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> RUNNING    = -<span class="hljs-number">1</span> &lt;&lt; COUNT_BITS;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SHUTDOWN   =  <span class="hljs-number">0</span> &lt;&lt; COUNT_BITS;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> STOP       =  <span class="hljs-number">1</span> &lt;&lt; COUNT_BITS;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TIDYING    =  <span class="hljs-number">2</span> &lt;&lt; COUNT_BITS;
+ <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> TERMINATED =  <span class="hljs-number">3</span> &lt;&lt; COUNT_BITS;
+
+ <span class="hljs-comment">// Packing and unpacking ctl</span>
+ <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">runStateOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> c)</span>     </span>{ <span class="hljs-keyword">return</span> c &amp; ~CAPACITY; }
+ <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">workerCountOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> c)</span>  </span>{ <span class="hljs-keyword">return</span> c &amp; CAPACITY; }
+ <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">ctlOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rs, <span class="hljs-keyword">int</span> wc)</span> </span>{ <span class="hljs-keyword">return</span> rs | wc; }
+</code></pre>
+<p>&#x8BF4;&#x5B9E;&#x8BDD;&#x5177;&#x4F53;&#x7684;&#x6CA1;&#x600E;&#x4E48;&#x770B;&#x61C2;&#xFF0C;&#x4F46;&#x662F;&#x5927;&#x6982;&#x80FD;&#x7406;&#x89E3;&#xFF0C;&#x8BB2;&#x7684;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x4E0A;&#x9762;&#x753B;&#x7684;&#x90A3;&#x5F20;&#x56FE;&#x7684;&#x5DE5;&#x4F5C;&#x6D41;&#x7A0B;&#x3002;</p>
+<h2 id="public-void-shutdown-"><a name="public-void-shutdown-" class="anchor-navigation-ex-anchor" href="#public-void-shutdown-"><i class="fa fa-link" aria-hidden="true"></i></a>public void shutdown() {..}</h2>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Initiates an orderly shutdown in which previously submitted
+ * tasks are executed, but no new tasks will be accepted.
+ * Invocation has no additional effect if already shut down.
+ *
+ * &lt;p&gt;This method does not wait for previously submitted tasks to
+ * complete execution.  Use {<span class="hljs-doctag">@link</span> #awaitTermination awaitTermination}
+ * to do that.
+ *
+ * <span class="hljs-doctag">@throws</span> SecurityException {<span class="hljs-doctag">@inheritDoc</span>}
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">shutdown</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">this</span>.mainLock;
+    mainLock.lock();
+    <span class="hljs-keyword">try</span> {
+        checkShutdownAccess();
+        advanceRunState(SHUTDOWN);
+        interruptIdleWorkers();
+        onShutdown(); <span class="hljs-comment">// hook for ScheduledThreadPoolExecutor</span>
+    } <span class="hljs-keyword">finally</span> {
+        mainLock.unlock();
+    }
+    tryTerminate();
+}
+
+<span class="hljs-comment">/**
+ * Lock held on access to workers set and related bookkeeping.
+ * While we could use a concurrent set of some sort, it turns out
+ * to be generally preferable to use a lock. Among the reasons is
+ * that this serializes interruptIdleWorkers, which avoids
+ * unnecessary interrupt storms, especially during shutdown.
+ * Otherwise exiting threads would concurrently interrupt those
+ * that have not yet interrupted. It also simplifies some of the
+ * associated statistics bookkeeping of largestPoolSize etc. We
+ * also hold mainLock on shutdown and shutdownNow, for the sake of
+ * ensuring workers set is stable while separately checking
+ * permission to interrupt and actually interrupting.
+ */</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">new</span> ReentrantLock();
+
+<span class="hljs-comment">/**
+ * If there is a security manager, makes sure caller has
+ * permission to shut down threads in general (see shutdownPerm).
+ * If this passes, additionally makes sure the caller is allowed
+ * to interrupt each worker thread. This might not be true even if
+ * first check passed, if the SecurityManager treats some threads
+ * specially.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">checkShutdownAccess</span><span class="hljs-params">()</span> </span>{
+    SecurityManager security = System.getSecurityManager();
+    <span class="hljs-keyword">if</span> (security != <span class="hljs-keyword">null</span>) {
+        security.checkPermission(shutdownPerm);
+        <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">this</span>.mainLock;
+        mainLock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">for</span> (Worker w : workers)
+                security.checkAccess(w.thread);
+        } <span class="hljs-keyword">finally</span> {
+            mainLock.unlock();
+        }
+    }
+}
+
+<span class="hljs-comment">/**
+ * Transitions runState to given target, or leaves it alone if
+ * already at least the given target.
+ *
+ * <span class="hljs-doctag">@param</span> targetState the desired state, either SHUTDOWN or STOP
+ *        (but not TIDYING or TERMINATED -- use tryTerminate for that)
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">advanceRunState</span><span class="hljs-params">(<span class="hljs-keyword">int</span> targetState)</span> </span>{
+    <span class="hljs-keyword">for</span> (;;) {
+        <span class="hljs-keyword">int</span> c = ctl.get();
+        <span class="hljs-keyword">if</span> (runStateAtLeast(c, targetState) ||
+            ctl.compareAndSet(c, ctlOf(targetState, workerCountOf(c))))
+            <span class="hljs-keyword">break</span>;
+}
+}
+
+<span class="hljs-comment">/**
+* Common form of interruptIdleWorkers, to avoid having to
+* remember what the boolean argument means.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">interruptIdleWorkers</span><span class="hljs-params">()</span> </span>{
+interruptIdleWorkers(<span class="hljs-keyword">false</span>);
+}
+
+<span class="hljs-comment">/**
+* Interrupts threads that might be waiting for tasks (as
+* indicated by not being locked) so they can check for
+* termination or configuration changes. Ignores
+* SecurityExceptions (in which case some threads may remain
+* uninterrupted).
+*
+* <span class="hljs-doctag">@param</span> onlyOne If true, interrupt at most one worker. This is
+* called only from tryTerminate when termination is otherwise
+* enabled but there are still other workers.  In this case, at
+* most one waiting worker is interrupted to propagate shutdown
+* signals in case all threads are currently waiting.
+* Interrupting any arbitrary thread ensures that newly arriving
+* workers since shutdown began will also eventually exit.
+* To guarantee eventual termination, it suffices to always
+* interrupt only one idle worker, but shutdown() interrupts all
+* idle workers so that redundant workers exit promptly, not
+* waiting for a straggler task to finish.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">interruptIdleWorkers</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> onlyOne)</span> </span>{
+  <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">this</span>.mainLock;
+  mainLock.lock();
+  <span class="hljs-keyword">try</span> {
+  <span class="hljs-keyword">for</span> (Worker w : workers) {
+      Thread t = w.thread;
+      <span class="hljs-keyword">if</span> (!t.isInterrupted() &amp;&amp; w.tryLock()) {
+          <span class="hljs-keyword">try</span> {
+              t.interrupt();
+          } <span class="hljs-keyword">catch</span> (SecurityException ignore) {
+          } <span class="hljs-keyword">finally</span> {
+              w.unlock();
+          }
+      }
+      <span class="hljs-keyword">if</span> (onlyOne)
+          <span class="hljs-keyword">break</span>;
+  }
+  } <span class="hljs-keyword">finally</span> {
+  mainLock.unlock();
+  }
+}
+
+<span class="hljs-comment">/**
+ * Performs any further cleanup following run state transition on
+ * invocation of shutdown.  A no-op here, but used by
+ * ScheduledThreadPoolExecutor to cancel delayed tasks.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onShutdown</span><span class="hljs-params">()</span> </span>{
+}
+
+<span class="hljs-comment">/**
+ * Transitions to TERMINATED state if either (SHUTDOWN and pool
+ * and queue empty) or (STOP and pool empty).  If otherwise
+ * eligible to terminate but workerCount is nonzero, interrupts an
+ * idle worker to ensure that shutdown signals propagate. This
+ * method must be called following any action that might make
+ * termination possible -- reducing worker count or removing tasks
+ * from the queue during shutdown. The method is non-private to
+ * allow access from ScheduledThreadPoolExecutor.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tryTerminate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">for</span> (;;) {
+        <span class="hljs-keyword">int</span> c = ctl.get();
+        <span class="hljs-keyword">if</span> (isRunning(c) ||
+            runStateAtLeast(c, TIDYING) ||
+            (runStateOf(c) == SHUTDOWN &amp;&amp; ! workQueue.isEmpty()))
+            <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">if</span> (workerCountOf(c) != <span class="hljs-number">0</span>) { <span class="hljs-comment">// Eligible to terminate</span>
+            interruptIdleWorkers(ONLY_ONE);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">this</span>.mainLock;
+        mainLock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">if</span> (ctl.compareAndSet(c, ctlOf(TIDYING, <span class="hljs-number">0</span>))) {
+                <span class="hljs-keyword">try</span> {
+                    terminated();
+                } <span class="hljs-keyword">finally</span> {
+                    ctl.set(ctlOf(TERMINATED, <span class="hljs-number">0</span>));
+                    termination.signalAll();
+                }
+                <span class="hljs-keyword">return</span>;
+            }
+        } <span class="hljs-keyword">finally</span> {
+            mainLock.unlock();
+        }
+        <span class="hljs-comment">// else retry on failed CAS</span>
+    }
+}
+</code></pre>
+<p><code>shutdown</code>&#x53EA;&#x662F;&#x5C06;&#x7A7A;&#x95F2;&#x7684;&#x7EBF;&#x7A0B;<code>interrupt()</code> &#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5728;<code>shutdown&#xFF08;&#xFF09;</code>&#x4E4B;&#x524D;&#x63D0;&#x4EA4;&#x7684;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x76F4;&#x5230;&#x7ED3;&#x675F;&#x3002;</p>
+<h2 id="public-list-shutdownnow-"><a name="public-list-shutdownnow-" class="anchor-navigation-ex-anchor" href="#public-list-shutdownnow-"><i class="fa fa-link" aria-hidden="true"></i></a>public List shutdownNow() {..}</h2>
+<p>&#x4E0E;<code>shutdown</code>&#x65B9;&#x6CD5;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;<code>shutdownNow</code>&#x65B9;&#x6CD5;&#x5C06;<code>interrupt</code><strong>&#x6240;&#x6709;</strong> &#x7EBF;&#x7A0B;&#xFF0C; &#x56E0;&#x6B64;&#x5927;&#x90E8;&#x5206;&#x7EBF;&#x7A0B;&#x5C06;&#x7ACB;&#x523B;&#x88AB;&#x4E2D;&#x65AD;&#x3002;&#x4E4B;&#x6240;&#x4EE5;&#x662F;&#x5927;&#x90E8;&#x5206;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5168;&#x90E8; &#xFF0C;&#x662F;&#x56E0;&#x4E3A;<code>interrupt()</code>&#x65B9;&#x6CD5;&#x80FD;&#x529B;&#x6709;&#x9650;&#x3002;&#x4F46;&#x662F;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x5E76;&#x4E0D;&#x4EE3;&#x8868;&#x7EBF;&#x7A0B;&#x6C60;&#x5C31;&#x4E00;&#x5B9A;&#x7ACB;&#x5373;&#x5C31;&#x80FD;&#x9000;&#x51FA;&#xFF0C;&#x5B83;&#x53EF;&#x80FD;&#x5FC5;&#x987B;&#x8981;&#x7B49;&#x5F85;&#x6240;&#x6709;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x4EFB;&#x52A1;&#x90FD;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x4E86;&#x624D;&#x80FD;&#x9000;&#x51FA;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-comment">/**
+ * Attempts to stop all actively executing tasks, halts the
+ * processing of waiting tasks, and returns a list of the tasks
+ * that were awaiting execution. These tasks are drained (removed)
+ * from the task queue upon return from this method.
+ *
+ * &lt;p&gt;This method does not wait for actively executing tasks to
+ * terminate.  Use {<span class="hljs-doctag">@link</span> #awaitTermination awaitTermination} to
+ * do that.
+ *
+ * &lt;p&gt;There are no guarantees beyond best-effort attempts to stop
+ * processing actively executing tasks.  This implementation
+ * cancels tasks via {<span class="hljs-doctag">@link</span> Thread#interrupt}, so any task that
+ * fails to respond to interrupts may never terminate.
+ *
+ * <span class="hljs-doctag">@throws</span> SecurityException {<span class="hljs-doctag">@inheritDoc</span>}
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Runnable&gt; <span class="hljs-title">shutdownNow</span><span class="hljs-params">()</span> </span>{
+    List&lt;Runnable&gt; tasks;
+    <span class="hljs-keyword">final</span> ReentrantLock mainLock = <span class="hljs-keyword">this</span>.mainLock;
+    mainLock.lock();
+    <span class="hljs-keyword">try</span> {
+        checkShutdownAccess();
+        advanceRunState(STOP);
+        interruptWorkers();
+        tasks = drainQueue();
+    } <span class="hljs-keyword">finally</span> {
+        mainLock.unlock();
+    }
+    tryTerminate();
+    <span class="hljs-keyword">return</span> tasks;
+}
+</code></pre>
+<blockquote>
+<p>&#x5269;&#x4E0B;&#x7684;&#x65B9;&#x6CD5;&#x5176;&#x5B9E;&#x57FA;&#x672C;&#x4E0A;&#x90FD;&#x4E0D;&#x592A;&#x7528;&#x5230;&#xFF0C;&#x6BD4;&#x5982;&#x4FEE;&#x6539;<code>corePoolSize</code>&#x7684;&#x5927;&#x5C0F;&#x3001;&#x4FEE;&#x6539;<code>maximumPoolSize</code>&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x8FD9;&#x4E9B;&#x91CF;&#x5176;&#x5B9E;&#x5728;&#x521B;&#x5EFA;&#x6C60;&#x7684;&#x65F6;&#x5019;&#x5DF2;&#x7ECF;&#x5B9A;&#x597D;&#x4E86;&#xFF0C;&#x5F88;&#x5C11;&#x6539;&#x53D8;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x4F7F;&#x7528;&#x7684;&#x662F;<code>Executors</code>&#x5DE5;&#x5382;&#x7C7B;&#x6765;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x6C60;&#x3002;&#x6240;&#x4EE5;&#x91CD;&#x70B9;&#x8FD8;&#x662F;&#x653E;&#x5728;<code>Executors</code>&#x4E0A;&#x5427;&#x3002;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x5982;&#x679C;&#x6709;&#x5174;&#x8DA3;&#x540E;&#x9762;&#x518D;&#x6574;&#x7406;&#x3002;</p>
+</blockquote>
+<p>&#x53C2;&#x8003;</p>
+<ul>
+<li><a href="http://blog.csdn.net/aitangyong/article/details/38822505" target="_blank">&#x7406;&#x89E3;ThreadPoolExecutor&#x6E90;&#x7801;(&#x4E00;)&#x7EBF;&#x7A0B;&#x6C60;&#x7684;corePoolSize&#x3001;maximumPoolSize&#x548C;poolSize</a></li>
+<li><a href="https://www.jianshu.com/p/ade771d2c9c0" target="_blank">&#x6DF1;&#x5165;&#x7406;&#x89E3;java&#x7EBF;&#x7A0B;&#x6C60;&#x2014;ThreadPoolExecutor</a></li>
+<li><a href="http://blog.csdn.net/psiitoy/article/details/38587293" target="_blank">Java &#x7EBF;&#x7A0B;&#x6C60; ThreadPoolExecutor.(&#x5305;&#x542B;&#x62D2;&#x7EDD;&#x7B56;&#x7565;CallerRunsPolicy,AbortPolicy,DiscardPolicy,DiscardOldestPolicy )</a></li>
+<li><a href="http://blog.csdn.net/wfzczangpeng/article/details/52015866" target="_blank">Java&#x591A;&#x7EBF;&#x7A0B;&#x7814;&#x7A76;05-ThreadPoolExecutor&#x4E2D;workQueue&#x3001;threadFactory&#x548C;handle</a></li>
+<li><a href="https://www.cnblogs.com/waytobestcoder/p/5323130.html" target="_blank">ThreadPoolExecutor&#x7EBF;&#x7A0B;&#x6C60;&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x6280;&#x5DE7;</a></li>
+<li><a href="http://blog.csdn.net/zknxx/article/details/53057683" target="_blank">&#x591A;&#x7EBF;&#x7A0B;&#x4E4B;&#x7EBF;&#x7A0B;&#x6C60;newFixedThreadPool&#xFF08;&#x4E8C;&#xFF09;</a></li>
+</ul>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; baoxiaofang.com 2017 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2018-03-18 20:05:31
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ExecutorService.html" class="navigation navigation-prev " aria-label="Previous page: ExecutorService">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="BlockingQueue.html" class="navigation navigation-next " aria-label="Next page: BlockingQueue">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"ThreadPoolExecutor","level":"1.5.2.35.10","depth":4,"next":{"title":"BlockingQueue","level":"1.5.2.35.11","depth":4,"path":"源码解读/java.util/java.util.concurrent/BlockingQueue.md","ref":"源码解读/java.util/java.util.concurrent/BlockingQueue.md","articles":[]},"previous":{"title":"ExecutorService","level":"1.5.2.35.9","depth":4,"path":"源码解读/java.util/java.util.concurrent/ExecutorService.md","ref":"源码解读/java.util/java.util.concurrent/ExecutorService.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","-livereload","search-plus@^0.0.11","github@^2.0.0","disqus@^0.1.0","advanced-emoji@^0.2.1","anchors@^0.7.1","include-codeblock@^3.0.2","ace@^0.3.2","emphasize@^1.1.0","katex@^1.1.3","splitter@^0.0.8","mermaid-gb3@2.1.0","tbfed-pagefooter@^0.0.1","sectionx@^3.1.0","sitemap-general@^0.1.1","anchor-navigation-ex@0.1.8","favicon@^0.0.2","todo@^0.1.3","terminal@^0.3.2","klipse@^1.2.0","livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © baoxiaofang.com 2017","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"disqus":{"useIdentifier":false,"shortName":"gitbookuse"},"emphasize":{},"ace":{},"github":{"url":"https://github.com/guhuaijin/Java"},"todo":{},"splitter":{},"sitemap-general":{"prefix":"https://www.gitbook.com"},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{"tag":"b"},"highlight":{},"mermaid-gb3":{},"anchor-navigation-ex":{"isRewritePageTitle":false,"multipleH1":true,"mode":"float","tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right"},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico"},"klipse":{"myConfigKey":"it's the default value"},"advanced-emoji":{"embedEmojis":false},"include-codeblock":{"check":false,"edit":true,"fixlang":false,"lang":"","template":"ace","theme":"chrome","unindent":true},"sharing":{"qq":false,"all":["facebook","google","twitter","weibo","instapaper","linkedin","pocket","stumbleupon","qq","qzone"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":true,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":true},"terminal":{"copyButtons":true,"fade":true,"style":"flat"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"search-plus":{}},"theme":"default","author":"xiaofang.bao","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Java Foundation","language":"zh-hans","output.name":"site","links":{"sidebar":{"Home":"http://www.guhuaijin.com"}},"gitbook":"3.2.3","description":"Java Foundation"},"file":{"path":"源码解读/java.util/java.util.concurrent/ThreadPoolExecutor.md","mtime":"2018-03-18T12:05:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-02T02:16:29.008Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-ace/ace/ace.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-ace/ace.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/book/plugin.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-terminal/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    <script src="../../../gitbook/gitbook-plugin-mermaid-gb3/mermaid/mermaid.min.js"></script>
+
+    </body>
+</html>
+
