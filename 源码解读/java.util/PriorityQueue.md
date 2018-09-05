@@ -222,7 +222,7 @@ private void siftUpUsingComparator(int k, E x) {
 ```
 由以上算法可以看出，新插入的节点一开始是被放到了数组的最后一个位置，然后比较其祖先节点序列，将大于它的往下移动，慢慢找到自己的位置，最后赋值到该位置，完成了插入操作。下图是该过程的示例：
 
-![offer操作过程示意](http://img.blog.csdn.net/20170504201821474?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzMwOTg3MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![offer操作过程示意](https://ws4.sinaimg.cn/large/0069RVTdly1fuwdpm5bu4j30kf09bjrm.jpg)
 
 ## 删除
 堆的删除的位置是定的，一定发生在根节点。`PriorityQueue`提供`poll`和`remove`方法，这两个方法是不一样的，首先来看`poll`方法：
@@ -243,11 +243,11 @@ public E poll() {
 ```
 `poll`删除的是根节点，它将根节点和最后一个节点交换，其根本还是从根节点开始进行"下沉"的操作，调用了`siftDown`方法，这个方法在前面已经讲过。
 
-![poll操作1](http://img.blog.csdn.net/20170504210640977?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzMwOTg3MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![poll操作1](https://ws1.sinaimg.cn/large/0069RVTdly1fuwdq6akehj30br08l0sw.jpg)
 
-![poll操作2](http://img.blog.csdn.net/20170504210713811?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzMwOTg3MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![poll操作2](https://ws3.sinaimg.cn/large/0069RVTdly1fuwdql0wksj30es08ht8v.jpg)
 
-![poll操作3](http://img.blog.csdn.net/20170504210728030?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzMwOTg3MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![poll操作3](https://ws2.sinaimg.cn/large/0069RVTdly1fuwdqvmxx5j30kb07zjrr.jpg)
 
 
 
@@ -293,7 +293,8 @@ private E removeAt(int i) {
 }
 ```
 而这个过程就比较麻烦，因为删除了这个节点后，不仅需要"上浮"还需要“下沉”操作。下面是一个remove(4)的过程：
-![remove(4)](http://img.blog.csdn.net/20170504231009404?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMzMwOTg3MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+![remove(4)](https://ws1.sinaimg.cn/large/0069RVTdly1fuwdrd12axj30ls0gmdgm.jpg)
 
 
 `PriorityQueue`默认的是小根堆，如果实现大根堆呢？可以传入自定义的比较器，例如：

@@ -11,7 +11,7 @@
 
 ## 构造方法
 重载了5种构造方法。所有方法的第一步都是使用`super`来初始化容量和装载因子。第二部分是给`accessOrder`赋值。这是一个`boolean`量，其作用是定义`LinkedHashMap`的顺序：
-* true : 基于访问的顺序，即遍历的时候按照LUR的顺序
+* true : 基于访问的顺序，即遍历的时候按照LRU的顺序
 * false : 基于插入的顺序，即遍历的时候按照FIFO的顺序
 
 这是什么意思呢？下面是一个测试程序：
@@ -43,7 +43,7 @@ public class LinkedHashMapTest {
     }
 }
 ```
-从上例可以看出，当`accessOrder`设置为true的顺序时，`LinkedList`将基于访问的顺序，什么意思呢？就是使用LUR(最近最少被使用的调度算法)，将最近被访问的元素加到了最后。
+从上例可以看出，当`accessOrder`设置为true的顺序时，`LinkedList`将基于访问的顺序，什么意思呢？就是使用LRU(最近最少被使用的调度算法)，将最近被访问的元素加到了最后。
 
 从`LinkedHashMap`的构造方法中并不能看出它是如何维护元素的顺序的。实际上，`LinkedHashMap`仍旧采用`HashMap`来操作数据结构，另外使用了`LinkedList`来维护插入元素的先后顺序。下面就比较一下`HashMap`与`LinkedHashMap`中元素节点的数据结构的不同：
 ```Java
@@ -101,7 +101,7 @@ private void linkNodeLast(LinkedHashMap.Entry<K,V> p) {
 
 所以这样一来，`LinkedHashMap`的结构大致是这样：
 
-![LinkedHashMap](http://img.blog.csdn.net/20170412153450906?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQwMzI5MA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![LinkedHashMap](https://ws3.sinaimg.cn/large/0069RVTdly1fuwhkmr03kj30wm0ki0u5.jpg)
 
 `HashMap`中不存在before和after域，所以遍历的时候只是按照哈希桶和链表进行访问，并不能保证按照元素的插入顺序进行访问。而`LinkedHashMap`维护了一个双向链表，这个链表的顺序就是访问访问顺序，所以能够按照插入顺序进行访问。
 

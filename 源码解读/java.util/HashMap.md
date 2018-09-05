@@ -190,15 +190,19 @@ final Node<K,V>[] resize() {
     int oldCap = (oldTab == null) ? 0 : oldTab.length;
     int oldThr = threshold;
     int newCap, newThr = 0;
+    /*如果旧表的长度不是空*/
     if (oldCap > 0) {
         if (oldCap >= MAXIMUM_CAPACITY) {
             threshold = Integer.MAX_VALUE;
             return oldTab;
         }
+        /*把新表的长度设置为旧表长度的两倍，newCap=2*oldCap*/
         else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
                  oldCap >= DEFAULT_INITIAL_CAPACITY)
+                 /*把新表的门限设置为旧表门限的两倍，newThr=oldThr*2*/
             newThr = oldThr << 1; // double threshold
     }
+    /*如果旧表的长度的是0，就是说第一次初始化表*/
     else if (oldThr > 0) // initial capacity was placed in threshold
         newCap = oldThr;
     else {               // zero initial threshold signifies using defaults
@@ -206,29 +210,35 @@ final Node<K,V>[] resize() {
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
     if (newThr == 0) {
-        float ft = (float)newCap * loadFactor;
+        float ft = (float)newCap * loadFactor;  //新表长度乘以加载因子
         newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
                   (int)ft : Integer.MAX_VALUE);
     }
     threshold = newThr;
     @SuppressWarnings({"rawtypes","unchecked"})
+        /*下面开始构造新表，初始化表中的数据*/
         Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
-    table = newTab;
-    if (oldTab != null) {
+    table = newTab; //把新表赋值给table
+    if (oldTab != null) { // 原表不是空要把原表中数据移动到新表中
+        /*遍历原来的旧表*/		
         for (int j = 0; j < oldCap; ++j) {
             Node<K,V> e;
             if ((e = oldTab[j]) != null) {
                 oldTab[j] = null;
-                if (e.next == null)
+                if (e.next == null) //说明这个node没有链表直接放在新表的e.hash & (newCap - 1)位置
                     newTab[e.hash & (newCap - 1)] = e;
                 else if (e instanceof TreeNode)
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
-                else { // preserve order
+                    /*如果e后边有链表,到这里表示e后面带着个单链表，需要遍历单链表，将每个结点重*/
+                else { // preserve order保证顺序
+                    ////新计算在新表的位置，并进行搬运
                     Node<K,V> loHead = null, loTail = null;
                     Node<K,V> hiHead = null, hiTail = null;
                     Node<K,V> next;
                     do {
                         next = e.next;
+                        //新表是旧表的两倍容量，实例上就把单链表拆分为两队
+                        //e.hash&oldCap为偶数一队，e.hash&oldCap为奇数一对
                         if ((e.hash & oldCap) == 0) {
                             if (loTail == null)
                                 loHead = e;
@@ -237,18 +247,102 @@ final Node<K,V>[] resize() {
                             loTail = e;
                         }
                         else {
-                            if (hiTail == null)
+                            if (hiTail == null)//  /**
+     * Initializes or doubles table size.  If null, allocates in
+     * accord with initial capacity target held in field threshold.
+     * Otherwise, because we are using power-of-two expansion, the
+     * elements from each bin must either stay at same index, or move
+     * with a power of two offset in the new table.
+     *
+     * @return the table
+     */
+    final Node<K,V>[] resize() {
+        Node<K,V>[] oldTab = table;
+        int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        int oldThr = threshold;
+        int newCap, newThr = 0;
+
+	/*如果旧表的长度不是空*/
+        if (oldCap > 0) {
+            if (oldCap >= MAXIMUM_CAPACITY) {
+                threshold = Integer.MAX_VALUE;
+                return oldTab;
+            }
+	/*把新表的长度设置为旧表长度的两倍，newCap=2*oldCap*/
+            else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                     oldCap >= DEFAULT_INITIAL_CAPACITY)
+	      /*把新表的门限设置为旧表门限的两倍，newThr=oldThr*2*/
+                newThr = oldThr << 1; // double threshold
+        }
+     /*如果旧表的长度的是0，就是说第一次初始化表*/
+        else if (oldThr > 0) // initial capacity was placed in threshold
+            newCap = oldThr;
+        else {               // zero initial threshold signifies using defaults
+            newCap = DEFAULT_INITIAL_CAPACITY;
+            newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+        }
+
+
+
+        if (newThr == 0) {
+            float ft = (float)newCap * loadFactor;//新表长度乘以加载因子
+            newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
+                      (int)ft : Integer.MAX_VALUE);
+        }
+        threshold = newThr;
+        @SuppressWarnings({"rawtypes","unchecked"})
+	/*下面开始构造新表，初始化表中的数据*/
+        Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+        table = newTab;//把新表赋值给table
+        if (oldTab != null) {//原表不是空要把原表中数据移动到新表中
+            /*遍历原来的旧表*/		
+            for (int j = 0; j < oldCap; ++j) {
+                Node<K,V> e;
+                if ((e = oldTab[j]) != null) {
+                    oldTab[j] = null;
+                    if (e.next == null)//说明这个node没有链表直接放在新表的e.hash & (newCap - 1)位置
+                        newTab[e.hash & (newCap - 1)] = e;
+                    else if (e instanceof TreeNode)
+                        ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+	/*如果e后边有链表,到这里表示e后面带着个单链表，需要遍历单链表，将每个结点重*/
+                    else { // preserve order保证顺序
+					////新计算在新表的位置，并进行搬运
+                        Node<K,V> loHead = null, loTail = null;
+                        Node<K,V> hiHead = null, hiTail = null;
+                        Node<K,V> next;
+
+                        do {
+                            next = e.next;//记录下一个结点
+			  //新表是旧表的两倍容量，实例上就把单链表拆分为两队，
+　　　　　　　　　　　　　　//e.hash&oldCap为偶数一队，e.hash&oldCap为奇数一对
+                            if ((e.hash & oldCap) == 0) {
+                                if (loTail == null)
+                                    loHead = e;
+                                else
+                                    loTail.next = e;
+                                loTail = e;
+                            }
+                            else {
+                                if (hiTail == null)
+                                    hiHead = e;
+                                else
+                                    hiTail.next = e;
+                                hiTail = e;
+                            }
+                        } while ((e = next) != null);
+
+                        if (loTail != null) {
                                 hiHead = e;
                             else
                                 hiTail.next = e;
                             hiTail = e;
                         }
                     } while ((e = next) != null);
-                    if (loTail != null) {
+                    if (loTail != null) {//lo队不为null，放在新表原位置
                         loTail.next = null;
                         newTab[j] = loHead;
                     }
-                    if (hiTail != null) {
+                    if (hiTail != null) { //hi队不为null，放在新表j+oldCap位置
                         hiTail.next = null;
                         newTab[j + oldCap] = hiHead;
                     }
@@ -324,7 +418,7 @@ Node<K,V> newNode(int hash, K key, V value, Node<K,V> next) {
     return new Node<>(hash, key, value, next);
 }
 
-//！！Java 8 HashMap的分离链表。 在没有降低哈希冲突的度的情况下，使用红黑书代替链表。
+//！！Java 8 HashMap的分离链表。 在没有降低哈希冲突的度的情况下，使用红黑树代替链表。
 /*
 使用链表还是树，与一个哈希桶中的元素数目有关。下面两个参数中展示了Java 8的HashMap在使用树和使用链表之间切换的阈值。当冲突的元素数增加到8时，链表变为树；当减少至6时，树切换为链表。中间有2个缓冲值的原因是避免频繁的切换浪费计算机资源。
 */
@@ -351,7 +445,7 @@ static final int hash(Object key) {
 
 再者，根据哈希值找到了table[i]，需要判断该位置是红黑树还是链表。如果是红黑树，调用`putTreeVal`方法插入节点。否则就是链表，那么就用链地址法解决问题。在解决的过程中，如果发现冲突的数量大于约定的允许的冲突最大值（默认为8），就将链表转为红黑树，然后执行插入节点的操作，否则就按照链表的插入操作进行。注意如果已经存在key，参数`onlyIfAbsent`决定了是否要覆盖旧的value值。
 
-> 红黑树的实现很重要，我们另外起一章来讲解。
+> 红黑树的实现很重要，详见算法笔记中的“红黑树”专题。
 
 最后size增加1（当然，如果本来就存在key值，size是不会变化的），这里的size是实际存储的映射关系真实个数，和“容量”是不同的概念。此时要判断是否需要进行扩容操作。
 

@@ -14,7 +14,7 @@
 
 下面就这两类方法做源码解读：
 ## 集合包装方法
-在`Collections`类结构中，我们可以看到非常多的内部类，他们的名字具有有这样的特点：分别前缀(Unmodified-、Synchronized-、Checked-、Empty-、Singleton-)和后缀（`Collection`框架中的接口或类），分别对应了不可变集合、线程安全集合、类型安全集合、空集合类、单元素集合类、。
+在`Collections`类结构中，我们可以看到非常多的内部类，他们的名字具有有这样的特点：分别前缀（Unmodified-、Synchronized-、Checked-、Empty-、Singleton-）和后缀（`Collection`框架中的接口或类），分别对应了不可变集合、线程安全集合、类型安全集合、空集合类、单元素集合类。
 
 ### 不可变集合
 首先是不可变集合，名字统一为`UnmodifiedXXX`，顾名思义，当集合被包装成不可变集合的时候，如果对集合进行操作，将抛出`UnsupportedOperationException`。例如下面这个例子：
