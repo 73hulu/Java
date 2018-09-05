@@ -984,3 +984,5 @@ public class OnceOnlyMap {
 * [JDK1.8逐字逐句带你理解ConcurrentHashMap(2)](https://blog.csdn.net/u012403290/article/details/68485855)
 * [ConcurrentHashMap源码分析(1.8)](https://www.cnblogs.com/zerotomax/p/8687425.html)
 * [并发编程 —— ConcurrentHashMap size 方法原理分析](https://www.cnblogs.com/stateis0/p/9062054.html)
+* [ConcurrentHashMap源码分析（JDK8版本）](https://blog.csdn.net/u010723709/article/details/48007881)
+* [ConcurrentHashMap源码解析（jdk1.8）](https://blog.csdn.net/programmer_at/article/details/79715177)
