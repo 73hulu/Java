@@ -16,7 +16,7 @@ JUC中各种锁（比如`ReentrantLock`），基本上都是排他锁，即同�
 1. 公平性：支持非公平（默认）和公平性锁获取方式，前者吞吐量大于后者
 1. 锁重入性：其内部的`WriteLock`可以获取`ReadLock`，但是反过来`ReadLock`想要获得`WriteLock`则永远都不要想。
 2. **锁降级**： `WriteLock`可以降级为`ReadLock`，顺序是：先获得`WriteLock`再获得`ReadLock`，然后释放`WriteLock`，这时候线程将保持`Readlock`的持有。反过来`ReadLock`想要升级为`WriteLock`则不可能，为什么？参上一条。
-3.` ReadLock`可以被多个线程持有并且在作用时排斥任何的`WriteLock`，而`WriteLock`则是完全的互斥。这一特性最为重要，因为对于**高读取频率而相对较低写入**的数据结构，使用此类锁同步机制则可以提高并发量。
+3. ` ReadLock`可以被多个线程持有并且在作用时排斥任何的`WriteLock`，而`WriteLock`则是完全的互斥。这一特性最为重要，因为对于**高读取频率而相对较低写入**的数据结构，使用此类锁同步机制则可以提高并发量。
 4. 不管是`ReadLock`还是`WriteLock`都支持`Interrupt`，语义与`ReentrantLock`一致。
 5. `WriteLock`支持`Condition`并且与`ReentrantLock`语义一致，而`ReadLock`则不能使用`Condition`，否则抛出`UnsupportedOperationException`异常。
 

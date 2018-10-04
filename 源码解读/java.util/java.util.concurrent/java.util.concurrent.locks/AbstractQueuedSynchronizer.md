@@ -137,7 +137,7 @@ AQS是最基础的锁的框架定义，具体的同步争用器实现争用方�
 
 例如`CountDownLatch`，任务分为`N`个子线程去执行，`state`也初始化为`N`（注意`N`要与线程个数一致）。这`N`个子线程是并行执行的，每个子线程执行完后`countDown()`一次，`state`会`CAS`减1。等到所有子线程都执行完后(即`state = 0`)，会`unpark()`主调用线程，然后主调用线程就会从`await()`函数返回，继续后余动作。
 
-一般来说，自定义同步器要么是独占方法，要么是共享方式，他们也只需实现`tryAcquire-tryRelease`、`tryAcquireShared-tryReleaseShare`d中的一种即可。但AQS也支持自定义同步器同时实现独占和共享两种方式，如`ReentrantReadWriteLock`。
+一般来说，自定义同步器要么是独占方法，要么是共享方式，他们也只需实现`tryAcquire-tryRelease`、`tryAcquireShared-tryReleaseShared`中的一种即可。但AQS也支持自定义同步器同时实现独占和共享两种方式，如`ReentrantReadWriteLock`。
 
 
 以上大概就是AQS对于JUC所作的贡献了，它之所以重要，就是提供了一个最基础、也是最重要的线程等待队列。
@@ -211,8 +211,8 @@ protected boolean tryAcquire(int arg) {
 2. addWaiter(Node)
 这个方法是将当前线程加入到等待队伍的队尾，并且返回当前线程所在的节点。
 ```java
-//获取锁失败后，将其包装成节点
-//1. 尝试将新节点以最快的方式设置为尾节点，如果CAS设置尾节点成功，返回附加着当前线程的节点。
+// 获取锁失败后，将其包装成节点
+// 1. 尝试将新节点以最快的方式设置为尾节点，如果CAS设置尾节点成功，返回附加着当前线程的节点。
 // 2. 如果CAS操作失败，则调用enq方法，循环入队直到成功。
 private Node addWaiter(Node mode) {
     //以给定模式构造结点。mode有两种：EXCLUSIVE（独占）和SHARED（共享）
