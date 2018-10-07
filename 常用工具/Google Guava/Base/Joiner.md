@@ -2,6 +2,8 @@
 
 用来串联一些文字（例如数组、可迭代集合，map元素等）。通常可以返回`Joiner`本身或者一个最终结果的字符串。
 
+> 同样作用的还有JDK8中`Collections`中`joining()`和JDK中`StringJoiner`。
+
 ![Joiner](https://ws1.sinaimg.cn/large/006tNc79ly1fvty3vqjzij30iy0qi74q.jpg)
 
 
