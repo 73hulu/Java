@@ -22,7 +22,7 @@ Google Guava是什么东西？首先要追溯到2007年的“Google Collections 
 
 | 类型 | 功能 |
 | :------------- | :------------- |
-| base | 基本工具，让Java的使用更加舒适 |
+|base | 基本工具，让Java的使用更加舒适 |
 |collect   | 对JDK集合的扩展，非常重要  |
 |cache   |  本地缓存的实现 |
 |concurrent   | 并发实现  |

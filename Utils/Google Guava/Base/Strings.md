@@ -64,6 +64,7 @@ Strings.padStart("2010", 3, '0'); // "2010"
 Strings.padEnd("4.", 5, '0'); // 4.000
 Strings.padEnd("2010", 3, '!'); // "2010"
 ```
+> `Ascii`中`truncate`方法有点类似于该方法，但是有点不太一样。
 
 ## public static String repeat(String string, int count){..}
 顾名思义，用于快速创建子串周期重复的字符串。
