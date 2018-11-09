@@ -27,7 +27,7 @@
 对类或对象怎样交互和怎样分配职责进行描述。共十一种：
   * 责任链模式(Chain of Responsibility)
   * 解释器模式(Interpreter)
-  * 模板方法模式(Template Method)
+  * **模板方法模式(Template Method)**
   * **命令模式(Command)**
   * 迭代子模式(Iterator)
   * 中介者模式(Mediator)
