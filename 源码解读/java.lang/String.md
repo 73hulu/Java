@@ -120,7 +120,7 @@ public static native void arraycopy(Object src,  int  srcPos,
 ```
 好吧，不追究了，了解到这里就好。
 
-##### public String(char value[], int offset, int count){..}
+### public String(char value[], int offset, int count){..}
 接收参数，就是拷贝出一个字符数组的一部分，定义如下:
 ```java
 public String(char value[], int offset, int count) {

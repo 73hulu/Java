@@ -31,7 +31,7 @@ TDD(Test-Driven Development, 测试驱动开发)开发模式是依赖开发模�
 > “倒置”这个词是相对于“正置”这个词而言的。依赖正置是指类间的依赖是实实在在的
 
 ## 依赖的三种写法
-对象的依赖传递有三种方式：构造方法传递、setter方法传递和接口传递
+对象的依赖传递有三种方式：构造方法传递、setter方法传递和接口传递。
 
 例如，我们定义两个接口:`IDriven`和`ICar`，前者表示“会开车”这种技能，后者表示“（车）能跑”这种技能。定义如下：
 ```JAVA
@@ -47,8 +47,8 @@ public interface ICar{
 ```
 两者各自有实现类`Driver`和`Car`，前者需要驾驶汽车，即我们需要传递一个`ICar`的对象给`Driver`，让其进行构造。有三种方式进行参数传递。
 
-* 构造方法传递依赖对象
-在**高层**的**实现类**的构造函数中设置依赖关系
+### 构造方法传递依赖对象
+即在高层实现类的构造函数中设置依赖关系：
 ```JAVA
 public class Driver implements IDriven{
     private ICar car;
@@ -63,8 +63,8 @@ public class Driver implements IDriven{
     }
 }
 ```
-* setter方法传递依赖对象
-在**高层**的**抽象**中设置setter声明依赖关系。比如上例中`IDriven`的接口应该改写成：
+### setter方法传递依赖对象
+即在低层中设置setter方法来声明依赖关系，同时在高层中实现该方法。上例中`IDriven`的接口应该改写成：
 ```JAVA
 public interface IDriven{
   public void setCar(ICar icar);
@@ -85,8 +85,8 @@ public class Driver implements IDriven{
 }
 ```
 
-* 接口声明中传递依赖对象
-在**高层**类的**接口**声明中设置参数声明依赖关系。比如上例中`IDriven`接口应该改写成：
+### 接口声明中传递依赖对象
+在低层的接口方法声明中设置参数声明依赖关系。上例中`IDriven`接口应该改写成：
 ```JAVA
 public interface IDriven{
   public void drive(Icar car);
@@ -100,7 +100,7 @@ public Driver implements IDriven{
   }
 }
 ```
-> 侵入性太强了。不建议使用
+这种写法侵入性太强了，不建议使用。
 
 ## 最佳实践
 * 每个类都有接口或抽象类，或者兼有之。
