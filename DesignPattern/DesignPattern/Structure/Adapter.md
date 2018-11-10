@@ -5,6 +5,8 @@
 > `Executors`中定义的`RunableAddapter`就是适配器模式的实践者。
 > 适配器模式又叫做“变压器模式”，也叫“包装器模式”（Wrapper）。但是包装。但是包装器可不止这一个，它还包括装饰器模式。
 
+![适配器模式](https://ws4.sinaimg.cn/large/006tNbRwly1fx26558flgj30w40f0gm9.jpg)
+
 ### 适配器模型
 * Target : 定义用户实际需要的接口。
 ```java

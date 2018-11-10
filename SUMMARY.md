@@ -124,6 +124,8 @@
         * [Objects](源码解读/java.util/Objects.md)
         * [Comparator](源码解读/java.util/Comparator.md)
         * [Optional](源码解读/java.util/Optional.md)
+        * [Observable](源码解读/java.util/Observable.md)
+        * [Observer](源码解读/java.util/Observer.md)
         * [java.util.regex](源码解读/java.util/java.util.regex/java.util.regex.md)
             * [Pattern](源码解读/java.util/java.util.regex/Pattern.md)
             * [Matcher](源码解读/java.util/java.util.regex/Matcher.md)
@@ -211,7 +213,7 @@
         * [DoubleBuffer](源码解读/java.nio/DoubleBuffer.md)
         * [CharBuffer](源码解读/java.nio/CharBuffer.md)
 * 设计模式
-    * [Principle](DesignPattern/Principle/Principle.md)
+    * [六大设计原则](DesignPattern/Principle/Principle.md)
         * [单一原则](DesignPattern/Principle/Single.md)
         * [里氏替换原则](DesignPattern/Principle/Liskov.md)
         * [依赖倒置原则](DesignPattern/Principle/DIP.md)
@@ -283,3 +285,4 @@
     * [错题集2](错题集/错题集2.md)
     * [错题集3](错题集/错题集3.md)
     * [错题集4](错题集/错题集4.md)
+

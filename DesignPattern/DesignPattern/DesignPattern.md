@@ -1,42 +1,19 @@
 # 设计模式
 
-> * [java设计模式demo —— java-design-patterns](https://github.com/iluwatar/java-design-patterns)
-> * 《设计模式之禅》
+> 推荐资源：
+> * [五分钟读懂UML类图](https://www.cnblogs.com/shindo/p/5579191.html)：UML是设计模式最简单、最全面的描述，不要记代码。
+> * 《设计模式之禅》：初看之时觉得：什么玩意？再读茅塞顿开，特别是后半部分设计模式的选择问题，写的非常好，值得一读再读。
+> * [博客·设计模式系列](http://www.cnblogs.com/jingmoxukong/p/4228021.html)：基础简洁，适合在记忆模糊之时当做工具书翻阅。
+> * [java设计模式demo —— java-design-patterns](https://github.com/iluwatar/java-design-patterns)：需要JDK8新特性的了解才能读懂。
 
 常见的23种设计模式，如果进行组织呢？
 
 一种常见的组织方式是按照“目的”来划分，即模式是用来完成什么工作的，这种分类标准下，一共分为3大类。
-1. 创建型
-与对象的创建有关。有五种：
-  * **工厂方法模式(Factory Method)**
-  * **抽象工厂模式(Abstract Factory)**
-  * 创建者模式(Builder)
-  * **单例模式(Singleton)**
-  * 原型模式(Prototype)
 
-2. 结构型
-处理类或对象的组合。有七种：
-  * **适配器模式（Adapter）**
-  * 桥接模式(Bridge)
-  * **组合模式(Composite)**
-  * **装饰器模式(Decorator)**
-  * 外观模式(Facade)
-  * 享元模式(Flyweight)
-  * **代理模式(Proxy)**
-3. 行为型
-对类或对象怎样交互和怎样分配职责进行描述。共十一种：
-  * 责任链模式(Chain of Responsibility)
-  * 解释器模式(Interpreter)
-  * **模板方法模式(Template Method)**
-  * **命令模式(Command)**
-  * 迭代子模式(Iterator)
-  * 中介者模式(Mediator)
-  * 备忘录模式(Memento)
-  * **观察者模式(Observer)**
-  * 状态模式(State)
-  * **策略模式(Strategy)**
-  * 访问者模式(Visitor)
+![23种设计模式](https://ws1.sinaimg.cn/large/006tNbRwly1fx334lg6doj31kw0nudol.jpg)
 
+> 上图中，每个模式破折号后面的内容是本人对该种模式的一个精简、理解的描述，便于记忆及理解设计模式的目的。
+> 在一次面试过程中被问到一个词概括各个设计模式的含义，当时没有归纳好，特此反思并回填。
 
 还有一种分类标准是“范围”，即模式主要作用于类还是对象。
 类模式处理类和子类之间的关系，这是通过继承关系完成的，在编译时刻便确定下来，是静态的。

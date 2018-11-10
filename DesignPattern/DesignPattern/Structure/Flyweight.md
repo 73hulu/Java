@@ -4,6 +4,7 @@ Flyweight模式翻译过来是“享元模式”，名字有点怪，但是我�
 
 > Flyweight是拳击比赛中的特有名词，意思是“较轻量级”。
 
+![享元模式](https://ws4.sinaimg.cn/large/006tNbRwly1fx26dn4xnlj30k50bbq3u.jpg)
 
 
 享元技模式是池技术的重要实现方式，其定义如下：使用**共享对象**可有效得支持大量**细粒度的对象**。
