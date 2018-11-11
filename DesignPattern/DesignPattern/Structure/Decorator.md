@@ -3,7 +3,7 @@
 
 
 
-![装饰者模式](http://img.blog.csdn.net/20160523105203595)
+![装饰者模式](https://ws1.sinaimg.cn/large/006tNbRwly1fx41j36e1oj30eo0dogmc.jpg)
 
 
 装饰器有两个角色：组件（被装饰者）和装饰者。

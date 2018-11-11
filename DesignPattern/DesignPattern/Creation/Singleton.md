@@ -20,7 +20,7 @@
 2. 类中还得有一个私有的构造函数，来主动创建这个私有静态变量
 3. 类得提供一个**公有静态**方法来让别人获得这个实例。
 
-![Singleton](http://ovn0i3kdg.bkt.clouddn.com/Singleton.png)
+![Singleton](https://ws1.sinaimg.cn/large/006tNbRwly1fx41enczb6j30mq09474p.jpg)
 
 
 单例模式有很多实现方式。下面就是几种常见的实现：

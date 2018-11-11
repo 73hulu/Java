@@ -6,7 +6,7 @@
 工程方法克服了这个缺点，它将类的实例化（具体产品的创建）延迟到了工厂类的子类（具体工厂）中完成，即由具体的工厂来决定应该创建哪一个产品。
 
 
-![Factory Method](http://img.blog.csdn.net/20160828082911344)
+![Factory Method](https://ws1.sinaimg.cn/large/006tNbRwly1fx41coqrolj30ce0823yt.jpg)
 
 
 假设这样的情况：工厂A生产产品a，按照抽象工厂的方法，它应该写成这样：

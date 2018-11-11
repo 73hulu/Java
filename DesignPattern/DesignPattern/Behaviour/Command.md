@@ -7,19 +7,19 @@
 显然这样做的好处是符合封装的特性，降低耦合度，Command是将对行为进行封装的典型模式，Factory是将创建进行封装的模式。
 
 
-![命令模式](http://img.blog.csdn.net/20170621121426157?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvc2p5dHRrbA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![命令模式](https://ws3.sinaimg.cn/large/006tNbRwly1fx41mnnjhtj30iw09a74v.jpg)
 
 在类图中可以看到三个角色：
 * Receiver接收者：就是干活的角色，命令传递到这里是应该被执行的。
 * Command命令角色：需要执行的所有命令都在这里声明。
 * Invoker调用者角色：接收到命令并执行命令。
+
 ```java
 // 通用的Receiver类
 public abstract class Receiver{
   // 抽象接收者，定义每个接收者都必须完成的业务
   public abstract void doSomething();
 }
-
 // 具体的Receiver类 这种接收者可以很多，主要依赖业务的具体定义。
 public class ConcreteReceiver1 extends Receiver{
   public void doSomething(){
@@ -62,6 +62,7 @@ public class Invoker(){
   }
 }
 ```
+
 以下是测试代码：
 ```java
 public class Client{

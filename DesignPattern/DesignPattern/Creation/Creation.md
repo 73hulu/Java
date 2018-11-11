@@ -14,9 +14,7 @@
 ## [抽象工厂模式（Abstract Factory）](./Abstract Factory.md)—— 产品簇
 提供了一系列相关或相互依赖对象的接口，无需指定它们具体的实现类。说明白点就是面向接口编程，制定了一类工厂的全部功能，然后让不同的实现类去实现这个工厂的所有能力。所有它的好处就是提供了一个产品簇（全都归属于某个特定工厂）。缺点在于如果工厂增加了某项能力，需要从顶层接口处修改，那么将会影响所有的工厂实现（全部要去实现这个新的能力），不符合开闭原则。
 
-UML图如下：
 
-![Abstract Factory](http://ovn0i3kdg.bkt.clouddn.com/Abstract%20Factory.png)
 
 在JDK和扩展包中，以下类中的方法使用了抽象工厂设计模式：
 * `java.util.Calendar#getInstance()`
@@ -32,6 +30,10 @@ UML图如下：
 * `javax.xml.parsers.DocumentBuilderFactory#newInstance()`
 * `javax.xml.transform.TransformerFactory#newInstance()`
 * `javax.xml.xpath.XPathFactory#newInstance()`
+
+UML图如下：
+
+![Abstract Factory](https://ws2.sinaimg.cn/large/006tNbRwly1fx41b4jac9j30s00bkjsa.jpg)
 
 ## [工厂方法模式(Factory Method)](./Factory Method.md) —— 延迟实现
 定义一个用于创建对象的接口，让子类决定实例化哪一个类，工厂方法使一个类的实例化延迟到其子类。
@@ -50,7 +52,7 @@ UML图如下：
 
 UML图如下：
 
-![Factory Method](http://img.blog.csdn.net/20160828082911344)
+![Factory Method](https://ws1.sinaimg.cn/large/006tNbRwly1fx41coqrolj30ce0823yt.jpg)
 
 
 ## [创建者模式(Builder)](./Builder.md) —— 配件装配
@@ -69,6 +71,7 @@ UML图如下：
 
 ![Builder](http://ovn0i3kdg.bkt.clouddn.com/Builder.png)
 
+> 创建者模式和工厂方法、抽象工厂相比，更加注重组件装配的技术，即更加关注细节。
 
 ## [单例模式(Singleton)](./Singleton.md) —— 独生子
 保证一个类只要一个实例。这一特别的需求有的是因为某些事物本身不能存在多个（比如只能接一个打印机，那么就只能有一个打印机实例），有的是因为要节省内存消耗，不能产生多个实例。
@@ -81,7 +84,7 @@ UML图如下：
 
 UML图如下：
 
-![Singleton](http://ovn0i3kdg.bkt.clouddn.com/Singleton.png)
+![Singleton](https://ws1.sinaimg.cn/large/006tNbRwly1fx41enczb6j30mq09474p.jpg)
 
 
 ## [原型模式(Prototype)](./Prototype.md) —— 快速大量拷贝

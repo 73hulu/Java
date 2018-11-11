@@ -5,7 +5,7 @@
 
 抽象工厂的结构如下：
 
-![Abstract Factory](http://ovn0i3kdg.bkt.clouddn.com/Abstract%20Factory.png)
+![Abstract Factory](https://ws2.sinaimg.cn/large/006tNbRwly1fx41b4jac9j30s00bkjsa.jpg)
 
 这里面有这样几种角色：
 1. 抽象工厂（AbstractFactory）：声明一个接口，这个接口中包含创建抽象产品对象的方法
